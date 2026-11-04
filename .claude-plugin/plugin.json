@@ -1,9 +1,9 @@
 {
-  "name": "impeccable",
-  "description": "Design fluency for frontend development. 1 skill with 24 commands (/impeccable polish, /impeccable audit, /impeccable critique, etc.) and curated anti-pattern detection.",
+  "name": "jala",
+  "description": "واژگان طراحی فارسی برای توسعهٔ فرانت‌اند. ۱ اسکیل با ۲۴ دستور (/jala polish، /jala audit، /jala critique و...) و دیتکتور الگوهای ضدطراحی (اسلاپ). نسخهٔ فارسیِ پروژهٔ Impeccable.",
   "version": "4.8.0",
   "author": {
-    "name": "Paul Bakaus",
+    "name": "Jala (based on Impeccable by Paul Bakaus)",
     "email": "paul@paulbakaus.com"
   },
   "homepage": "https://impeccable.style",

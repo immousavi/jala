@@ -472,13 +472,13 @@ function renderFindings(findings) {
       const itemEl = document.createElement('div');
       itemEl.className = 'finding-item' + (item.isHidden ? ' is-hidden' : '');
       const tag = item.isPageLevel
-        ? '<span class="finding-tag tag-page">page</span>'
-        : item.isHidden ? '<span class="finding-tag tag-hidden" title="Element is currently hidden on the page">hidden</span>' : '';
+        ? '<span class="finding-tag tag-page">صفحه</span>'
+        : item.isHidden ? '<span class="finding-tag tag-hidden" title="این عنصر در حال حاضر روی صفحه پنهان است">پنهان</span>' : '';
       itemEl.innerHTML = `
         ${tag}
         <div class="finding-row">
           <span class="finding-selector">${escapeHtml(item.selector)}</span>
-          <button class="finding-copy" title="Copy this finding">
+          <button class="finding-copy" title="کپی این یافته">
             <svg width="11" height="11" viewBox="0 0 16 16" fill="none"><path d="M11 1H3a2 2 0 0 0-2 2v10h2V3h8V1zm3 3H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 11H7V6h7v9z" fill="currentColor"/></svg>
           </button>
         </div>

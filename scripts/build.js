@@ -45,7 +45,7 @@ import { ENGINE_TARGETS, binaryName, main as fetchEngineMain, readEngineVersion 
 function generateCounts(rootDir, skills, buildDir) {
   // Count active commands. After the v3.0 consolidation, commands are sub-commands
   // of /impeccable. Count them from the command router table in SKILL.md.
-  const impeccableSkill = skills.find(s => s.name === 'impeccable');
+  const impeccableSkill = skills.find(s => s.name === 'jala');
   let commandCount;
   if (impeccableSkill) {
     // Count lines in the command table that start with | `...` | — tolerant

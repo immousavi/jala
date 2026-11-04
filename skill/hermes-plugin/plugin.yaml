@@ -1,6 +1,6 @@
 name: impeccable-design-hook
 version: "1.0.0"
-description: "Runs the Impeccable design detector on UI files the agent writes or patches and adds the findings to the tool result, so the model fixes broken images, contrast failures and design-system drift on its next step. Before the turn ends, a deeper pass over every UI file touched in the session hands back whatever is left. It runs only where the impeccable skill is installed (the project's .hermes/skills or the Hermes home); set hook.enabled to false in .impeccable/config.json to turn it off for a project."
+description: "دیتکتور طراحی جلا را روی فایل‌های UI که ایجنت می‌نویسد یا وصله اجرا می‌کند و یافته‌ها را به نتیجهٔ ابزار می‌افزاید، تا مدل در گام بعد تصاویر شکسته، شکست‌های کنتراست و فاصله (drift) از سیستم طراحی را درست کند. پیش از پایان نوبت، پاسِ عمیق‌تری روی هر فایل UI لمس‌شده در نشست، باقی‌مانده را پس می‌دهد. فقط جایی اجرا می‌شود که اسکیل jala نصب باشد (.hermes/skills پروژه یا home هِرمس)؛ برای خاموش‌کردنش در یک پروژه، hook.enabled را در .impeccable/config.json روی false بگذار."
 provides_hooks:
   - transform_tool_result
   - pre_verify

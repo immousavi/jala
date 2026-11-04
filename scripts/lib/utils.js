@@ -472,25 +472,25 @@ export const PROVIDER_PLACEHOLDERS = {
   'claude-code': {
     model: 'Claude',
     config_file: 'CLAUDE.md',
-    ask_instruction: 'Ask with the AskUserQuestion tool and wait for the answer before continuing.',
+    ask_instruction: 'با ابزار AskUserQuestion بپرس و قبل از ادامه، منتظر پاسخ بمان.',
     command_prefix: '/'
   },
   'cursor': {
     model: 'the model',
     config_file: '.cursorrules',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'dsh': {
     model: 'DeepSeek',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask with the ask_user_question tool and wait for the answer before continuing.',
+    ask_instruction: 'با ابزار ask_user_question بپرس و قبل از ادامه، منتظر پاسخ بمان.',
     command_prefix: '/'
   },
   'gemini': {
     model: 'Gemini',
     config_file: 'GEMINI.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'codex': {
@@ -500,79 +500,79 @@ export const PROVIDER_PLACEHOLDERS = {
     // {{ask_instruction}} call site is sentence-initial. That is enforced by
     // validateAskInstructionSites() in scripts/build.js, not left to authors:
     // four reference files had already spliced the placeholder mid-sentence.
-    ask_instruction: "Ask with Codex's structured user-input/question tool when available, or directly in chat if it is not, and wait for the answer before continuing.",
+    ask_instruction: "اگر ابزار ساختاریافتهٔ ورودی/پرسش Codex در دسترس است با آن بپرس، وگرنه مستقیم در چت؛ و قبل از ادامه منتظر پاسخ بمان.",
     command_prefix: '$'
   },
   'agents': {
     model: 'the model',
     config_file: '.github/copilot-instructions.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'kiro': {
     model: 'Claude',
     config_file: '.kiro/settings.json',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   opencode: {
     model: 'Claude',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask with the `question` tool and wait for the answer before continuing.',
+    ask_instruction: 'با ابزار `question` بپرس و قبل از ادامه، منتظر پاسخ بمان.',
     command_prefix: '/'
   },
   'pi': {
     model: 'the model',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'omp': {
     model: 'the model',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'qoder': {
     model: 'the model',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'trae': {
     model: 'the model',
     config_file: 'RULES.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'rovo-dev': {
     model: 'Rovo Dev',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   veto: {
     model: 'the selected model',
     config_file: '~/.veto/config.json',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/',
   },
   'vibe': {
     model: 'Mistral',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'grok': {
     model: 'Grok',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask with the AskUserQuestion tool and wait for the answer before continuing.',
+    ask_instruction: 'با ابزار AskUserQuestion بپرس و قبل از ادامه، منتظر پاسخ بمان.',
     command_prefix: '/'
   },
   'antigravity': {
     model: 'Gemini',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'hermes': {
@@ -581,13 +581,13 @@ export const PROVIDER_PLACEHOLDERS = {
     // for harnesses without a vendor-fixed assistant name.
     model: 'the model',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask the user directly to clarify what you cannot infer.',
+    ask_instruction: 'آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.',
     command_prefix: '/'
   },
   'devin': {
     model: 'Devin',
     config_file: 'AGENTS.md',
-    ask_instruction: 'Ask with the ask_user_question tool when available, or directly in chat if it is not, and wait for the answer before continuing.',
+    ask_instruction: 'اگر ابزار ask_user_question در دسترس است با آن بپرس، وگرنه مستقیم در چت؛ و قبل از ادامه منتظر پاسخ بمان.',
     command_prefix: '/'
   }
 };

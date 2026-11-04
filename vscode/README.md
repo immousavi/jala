@@ -1,27 +1,27 @@
-# Impeccable for GitHub Copilot
+# جلا برای GitHub Copilot
 
-Design guidance and tools for building, critiquing, auditing, and refining interfaces with GitHub Copilot in VS Code.
+راهنما و ابزارهای طراحی برای ساختن، نقد، ممیزی و پالایش رابط‌ها با GitHub Copilot در VS Code — نسخهٔ فارسیِ Impeccable.
 
-## Use
+## استفاده
 
-Requires VS Code 1.109.3 or later, GitHub Copilot Chat access, and a trusted local checkout. Open Copilot Chat in Agent mode and try:
+به VS Code نسخهٔ ۱٫۱۰۹٫۳ یا بالاتر، دسترسی GitHub Copilot Chat و یک checkout محلیِ مورد‌اعتماد نیاز دارد. Copilot Chat را در حالت Agent باز کن و امتحان کن:
 
-- `/impeccable polish` to refine the current interface.
-- `/impeccable audit` to inspect accessibility and implementation quality.
-- `/impeccable shape` to plan a new interface.
+- `/jala polish` برای پالایش رابط فعلی.
+- `/jala audit` برای بازرسی دسترس‌پذیری و کیفیت پیاده‌سازی.
+- `/jala shape` برای برنامه‌ریزی یک رابط جدید.
 
-Copilot can also discover the skill automatically for relevant design requests. Supporting references load only when needed.
+Copilot می‌تواند اسکیل را برای درخواست‌های طراحیِ مرتبط خودش هم کشف کند. مرجع‌های پشتیبان فقط وقتی لود می‌شوند که لازم باشند.
 
-If `/impeccable` is missing immediately after trusting a folder, run **Developer: Reload Window**, then try again.
+اگر `/jala` بلافاصله بعد از اعتماد‌کردن به یک پوشه غایب بود، **Developer: Reload Window** را اجرا کن و دوباره امتحان کن.
 
-## What gets installed
+## چه چیزی نصب می‌شود
 
-This extension bundles the skill, references, and engine launchers. It has no extension runtime, activation events, telemetry code, update command, or automatic detector hooks. Installing it does not copy files into your project or edit `copilot-instructions.md`. Marketplace updates replace the bundled skill.
+این افزونه اسکیل، مرجع‌ها و لانچرهای موتور را باندل می‌کند. هیچ runtime افزونه، activation event، کد تلمتری، فرمان به‌روزرسانی یا هوک خودکارِ دیتکتور ندارد. نصبش فایلی در پروژه‌ات کپی نمی‌کند و `copilot-instructions.md` را ویرایش نمی‌کند. به‌روزرسانی‌های Marketplace، اسکیل باندل‌شده را جایگزین می‌کنند.
 
-When Copilot invokes an engine command, the launcher uses an available engine or downloads its pinned version from Impeccable's GitHub releases into your user cache. Downloads are checksum-verified. The engine runs on your machine with Copilot's normal command approval controls; no Node.js installation is required. The first download needs network access. On Windows without a POSIX shell, use the `.cmd` launcher (in PowerShell, invoke a quoted path with `&`).
+وقتی Copilot یک فرمان موتور را صدا می‌زند، لانچر از موتورِ موجود استفاده می‌کند یا نسخهٔ پین‌شده‌اش را از ریلیزهای GitHub پروژهٔ اصلی در کش کاربری تو دانلود می‌کند. دانلودها با چک‌سام تأیید می‌شوند. موتور روی ماشین تو با کنترل‌های تأییدِ فرمانِ عادیِ Copilot اجرا می‌شود؛ نصب Node.js لازم نیست. دانلود اول به دسترسی شبکه نیاز دارد. در ویندوز بدون شل POSIX از لانچر `.cmd` استفاده کن (در PowerShell مسیر کوتیشن‌دار را با `&` صدا بزن).
 
-Commands you request may edit your project or launch local previews. This is not an editor diagnostics extension, and it does not block saves. Native custom-agent sidecars and automatic hooks from other installation methods are not registered by this skill-only package; the skill includes its inline role fallbacks.
+فرمان‌هایی که درخواست می‌کنی ممکن است پروژه‌ات را ویرایش کنند یا پیش‌نمایش لوکال بالا بیاورند. این افزونهٔ تشخیصِ ویرایشگر نیست و ذخیره‌ها را مسدود نمی‌کند. سایدکارهای custom-agent نیتیو و هوک‌های خودکار از روش‌های نصب دیگر توسط این بستهٔ فقط-اسکیل ثبت نمی‌شوند؛ اسکیل جایگزین‌های نقشِ درون‌خطی خودش را دارد.
 
-Avoid installing another Impeccable skill copy in the same workspace or user profile: duplicate skill names can make selection ambiguous. Browser-only VS Code without a terminal is unsupported. Remote SSH, WSL, and container setups need the extension and engine on the workspace host and are not yet smoke-tested.
+از نصب نسخهٔ دیگری از اسکیل جلا یا Impeccable در همان workspace یا پروفایل کاربری بپرهیز: نام‌های اسکیل تکراری انتخاب را مبهم می‌کنند. VS Codeِ فقط-مرورگریِ بدون ترمینال پشتیبانی نمی‌شود. راه‌اندازی‌های Remote SSH، WSL و کانتینر، افزونه و موتور را روی میزبانِ workspace می‌خواهند و هنوز smoke-test نشده‌اند.
 
-[Documentation](https://impeccable.style/docs) · [Source and issues](https://github.com/pbakaus/impeccable)
+[مستندات](https://impeccable.style/docs) · [سورس و مسائل](https://github.com/pbakaus/impeccable)

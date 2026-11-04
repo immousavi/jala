@@ -1,6 +1,6 @@
 {
-  "name": "impeccable",
-  "owner": { "name": "Renaissance Geek, Inc." },
-  "metadata": { "description": "Impeccable design tools for Cursor" },
-  "plugins": [{ "name": "impeccable", "source": "./cursor-plugin" }]
+  "name": "jala",
+  "owner": { "name": "Jala contributors (based on Impeccable by Renaissance Geek, Inc.)" },
+  "metadata": { "description": "ابزارهای طراحی جلا برای Cursor — نسخهٔ فارسیِ Impeccable" },
+  "plugins": [{ "name": "jala", "source": "./cursor-plugin" }]
 }

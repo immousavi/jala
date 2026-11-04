@@ -1,97 +1,96 @@
-# Chrome Web Store Listing
+# فهرست فروشگاه Chrome Web Store
 
-Copy for the Developer Dashboard. Every field below maps to one dashboard
-field; paste them as they are. Keep this file in step with the manifest
-(`extension/manifest.json`) and the rule registry (the count comes from
-`extension/detector/antipatterns.json` after `bun run build:extension`).
+متن برای Developer Dashboard. هر بخش زیر با یک فیلد داشبورد متناظر است؛ آن‌ها را عیناً جای‌گذاری کن. این فایل را هم‌قدم با مانفست (`extension/manifest.json`) و رجیستری قواعد (شمارش از `extension/detector/antipatterns.json` بعد از `bun run build:extension`) نگه دار.
 
-## Name
-Impeccable
+نکتهٔ فورک فارسی: توضیحات قواعد در این فورک از رجیستریِ فارسی‌شدهٔ `crates/live/assets/antipatterns.json` می‌آیند. این فهرست را می‌توانی فارسی یا دوزبانه عرضه کنی؛ متن زیر فارسی است.
 
-## Short description (132 chars max)
-Detect AI slop and design anti-patterns in any web page. Open DevTools and see what needs fixing.
+## نام
+Jala (جلا)
 
-## Detailed description
+## توضیح کوتاه (حداکثر ۱۳۲ نویسه)
+اسلاپ هوش مصنوعی و الگوهای ضدطراحی را در هر صفحهٔ وب ببین. DevTools را باز کن و ببین چه چیزی نیاز به درست‌کردن دارد.
 
-Impeccable detects 61 common UI anti-patterns directly in your browser. Open the Impeccable panel in DevTools on any page and overlays highlight issues, from AI-generated design tells to accessibility and quality problems.
+## توضیح مفصل
 
-WHAT IT DETECTS
+جلا ۶۱ الگوی ضدطراحیِ رایج UI را مستقیم در مرورگر تو تشخیص می‌دهد. پنل جلا را در DevTools هر صفحه باز کن؛ اورلی‌ها مشکلات را هایلایت می‌کنند — از نشانه‌های طراحیِ تولیدشده با هوش مصنوعی تا مشکلات دسترس‌پذیری و کیفیت.
 
-AI slop (design tells that scream "AI made this"):
-- Cream and beige "AI default" backgrounds
-- Purple/violet AI color palettes
-- Gradient text on headings
-- Side-tab and rounded-border accent stripes
-- Nested cards, monotonous spacing, icon-tile stacks, edge-flush cards
-- Bounce and elastic easing, hover image zoom, marquees, pulsing dots, blinking cursors
-- Dark mode with glowing accents, radial halos and spotlight glows
-- Overused fonts, flat type hierarchy, italic-serif heroes
-- Oversized H1s, extreme negative letter-spacing
-- Uppercase eyebrow chips, kickers above headings, numbered section markers
-- Em-dash overuse, marketing buzzwords, aphoristic cadence, "theater" phrases
-- Thin borders with wide drop shadows, repeating-stripe and grid backgrounds
-- Shape-assembled illustrations, organic clip paths, buried raster images
+چه چیزی تشخیص می‌دهد
 
-Quality issues (general design and accessibility):
-- Low contrast text (WCAG AA), gray text on colored backgrounds, occluded text
-- Cramped padding, tight line height, uneven heading rhythm
-- Skipped heading levels
-- Line length too long, text running to the viewport edge, columns overflowing the first viewport
-- Tiny body text, undersized UI text, justified text, all-caps body copy, wide letter-spacing
-- Layout-property animations, clipped overflow containers, text overflow
-- Broken images, script errors, content hidden at rest, repeated container text
-- Drift from a project's own design system (fonts, colors, radii, type sizes)
+اسلاپ هوش مصنوعی (نشانه‌های طراحی که فریاد می‌زنند «هوش مصنوعی ساخته»):
+- پس‌زمینه‌های کرم و بژِ «پیش‌فرض هوش مصنوعی»
+- پالت‌های رنگی بنفش/بنفش‌فام
+- متن گرادیانی روی عنوان‌ها
+- نوارهای تاکیدیِ یک‌طرفه و حاشیه‌گرد
+- کارت‌های تودرتو، فاصله‌گذاری یکنواخت، پشتهٔ کاشی آیکن، کارت‌های چسبیده به لبه
+- ایزینگ جهشی و فنری، زوم تصویر در هاور، مارکی، نقطه‌های تپنده، کرسرهای چشمک‌زن
+- حالت تیره با تاکیدهای درخشان، هاله‌های شعاعی و نورافکن‌ها
+- فونت‌های بیش‌ازحد استفاده‌شده، سلسله‌مراتب تایپِ تخت، هیروهای سریف ایتالیک
+- H1های اورسایز، فاصله‌گذاری حروفِ به‌شدت منفی
+- چیپ‌های ابروی بزرگ‌نویس، کیکرهای بالای عنوان، نشانگرهای بخش‌های شماره‌دار
+- اشباع خط تیره، واژه‌های بازاریابی توخالی، نثر حکمت‌واره، عبارت‌های «تئاتربازی»
+- حاشیه‌های نازک با سایه‌های پهن، پس‌زمینه‌های راه‌راه و شبکه‌ای تکرارشونده
+- تصویرسازی‌های مونتاژشکل، clip-pathهای ارگانیک، تصاویر raster دفن‌شده
 
-HOW IT WORKS
+مشکلات کیفیت (طراحی عمومی و دسترس‌پذیری):
+- متن کم‌کنتراست (WCAG AA)، متن خاکستری روی پس‌زمینهٔ رنگی، متنِ محوشده
+- پدینگ خفه، ارتفاع خط تنگ، ریتم عنوان‌های نابرابر
+- پرش سطح عنوان‌ها
+- طول خط بلند، متنِ رسیده به لبهٔ ویوپورت، ستون‌های سرریزشده از ویوپورت اول
+- متن بدنهٔ خیلی ریز، متن کاربردیِ زیراندازه، متن جاستیفای‌شده، متن بدنهٔ تمام‌بزرگ، فاصله‌گذاری حروف باز
+- انیمیشن پراپرتی‌های layout، ظرف‌های کلیپ‌کنندهٔ سرریز، سرریز متن
+- تصاویر شکسته، خطاهای اسکریپت، محتوای نامرئی در حالت آرام، متن تکراری در یک ظرف
+- drift از سیستم طراحیِ خود پروژه (فونت‌ها، رنگ‌ها، شعاع‌ها، سایزهای تایپ)
 
-1. Install the extension
-2. Open DevTools on any page (Cmd+Opt+I / F12) and click the "Impeccable" panel tab
-3. The page is scanned and overlays highlight every finding
-4. The panel lists the findings, grouped as AI tells and quality issues
-5. Click any finding to jump to the element in the Elements panel
+چطور کار می‌کند
 
-FEATURES
+1. پسوند را نصب کن
+2. روی هر صفحه DevTools را باز کن (Cmd+Opt+I / F12) و تب پنل «جلا» را بزن
+3. صفحه اسکن می‌شود و اورلی‌ها هر یافته را هایلایت می‌کنند
+4. پنل، یافته‌ها را فهرست می‌کند، گروه‌بندی‌شده به نشانه‌های هوش مصنوعی و مشکلات کیفیت
+5. هر یافته را کلیک کن تا در پنل Elements به عنصر بپری
 
-- Scans when you open the panel; opt in to scanning the moment DevTools opens
-- Grouped findings: AI tells vs. quality issues
-- Click-to-inspect: jump from a finding to the element
-- Toggle overlays on/off from the panel or the toolbar popup
-- Per-rule settings: disable detections you don't care about
-- Re-scans on navigation, including SPA route changes
-- Works on any website, including pages with a strict Content Security Policy
-- Runs 100% locally, no data sent anywhere
+ویژگی‌ها
 
-The same 61 rules power the Impeccable CLI and the live design mode, built from one open-source rule engine.
+- اسکن با بازکردن پنل؛ می‌توانی اسکن خودکار لحظهٔ بازشدن DevTools را فعال کنی
+- یافته‌های گروه‌بندی‌شده: نشانه‌های هوش مصنوعی در برابر مشکلات کیفیت
+- کلیک-برای-بازرسی: پرش از یافته به عنصر
+- خاموش/روشن‌کردن اورلی‌ها از پنل یا پاپ‌آپ نوار ابزار
+- تنظیم هر قاعده: تشخیص‌های بی‌اهمیت برای تو را خاموش کن
+- اسکن دوباره پس از ناوبری، شامل تغییر مسیرهای SPA
+- روی هر وب‌سایتی کار می‌کند، شامل صفحه‌های با Content Security Policy سخت‌گیرانه
+- ۱۰۰٪ لوکال اجرا می‌شود؛ هیچ داده‌ای به هیچ‌جا نمی‌رود
 
-Open source at https://github.com/pbakaus/impeccable
+همان ۶۱ قاعده، CLI و حالت طراحی زندهٔ جلا را قدرت می‌دهند — ساخته‌شده از یک موتور قواعدِ متن‌باز.
 
-## What's new (version notes for 1.4.0)
+متن‌باز: https://github.com/pbakaus/impeccable
 
-The detector now runs as WebAssembly in an extension offscreen document. The page is snapshotted and the rules evaluate that snapshot, so a site's Content Security Policy no longer decides whether the detector runs. Same rules as the Impeccable CLI and live mode, built from the same source, now 61 of them. New "offscreen" permission for exactly that; nothing about what the extension can see has changed.
+## چه چیز جدید است (یادداشت نسخهٔ 1.4.0)
 
-## Category
+دیتکتور حالا به‌شکل WebAssembly در یک سند offscreen پسوند اجرا می‌شود. صفحه snapshot می‌شود و قواعد روی همان snapshot ارزیابی می‌شوند، پس CSP سایت دیگر تصمیم نمی‌گیرد که دیتکتور اجرا شود یا نه. همان قواعد CLI و حالت زنده، از همان سورس — حالا ۶۱ قاعده. مجوز جدید «offscreen» دقیقاً برای همین؛ هیچ چیز دربارهٔ آنچه پسوند می‌بیند عوض نشده.
+
+## دسته‌بندی
 Developer Tools
 
-## Language
-English
+## زبان
+فارسی / English
 
-## Privacy policy URL
+## آدرس سیاست حفظ حریم خصوصی
 https://impeccable.style/privacy
 
-## Single purpose description
-Detects and highlights UI anti-patterns (AI-generated design tells and general quality issues) on any web page.
+## توضیح تک‌منظوره
+تشخیص و هایلایت الگوهای ضدطراحی UI (نشانه‌های طراحیِ تولیدشده با هوش مصنوعی و مشکلات عمومی کیفیت) روی هر صفحهٔ وب.
 
-## Permission justifications (Privacy practices tab)
+## توجیه مجوزها (تب Privacy practices)
 
-- **activeTab**: Scans the page the user is looking at when they open the panel or press Scan in the popup; nothing runs on tabs the user has not asked about.
-- **scripting**: Injects the content script that takes the page snapshot and draws the finding overlays on the current tab.
-- **storage**: Saves the user's own settings (disabled rules, overlay visibility, the auto-scan preference) in Chrome sync storage. No page data is stored.
-- **webNavigation**: Re-scans after in-page navigation in single-page apps, where no full page load happens.
-- **offscreen**: Runs the WebAssembly rule engine over the page snapshot in an offscreen document, because page Content Security Policies block WebAssembly in the content-script and page worlds. The document is created for a scan and closed afterward.
-- **Host permission (all sites)**: The user can scan any site they visit; the scan runs only on the active tab when the user asks for it.
+- **activeTab**: صفحه‌ای را که کاربر نگاه می‌کند وقتی پنل را باز می‌کند یا در پاپ‌آپ Scan می‌زند اسکن می‌کند؛ روی تب‌هایی که کاربر نپرسیده هیچ‌چیز اجرا نمی‌شود.
+- **scripting**: تزریق content script که snapshot صفحه می‌گیرد و اورلی‌های یافته‌ها را روی تب فعلی می‌کشد.
+- **storage**: تنظیمات خود کاربر (قواعد خاموش‌شده، نمایانی اورلی، ترجیح اسکن خودکار) را در Chrome sync storage ذخیره می‌کند. هیچ دادهٔ صفحه‌ای ذخیره نمی‌شود.
+- **webNavigation**: پس از ناوبری درون‌صفحه‌ای در اپ‌های تک‌صفحه‌ای دوباره اسکن می‌کند، جایی که لود کامل صفحه رخ نمی‌دهد.
+- **offscreen**: موتور قواعد WebAssembly را روی snapshot صفحه در یک سند offscreen اجرا می‌کند، چون CSP صفحه‌ها اجرای WebAssembly را در دنیای content-script و صفحه مسدود می‌کنند. سند برای یک اسکن ساخته و بعدش بسته می‌شود.
+- **مجوز Host (همهٔ سایت‌ها)**: کاربر می‌تواند هر سایتی را که بازدید می‌کند اسکن کند؛ اسکن فقط روی تب فعال و به درخواست کاربر اجرا می‌شود.
 
-## Remote code
-No. The rule engine (WebAssembly) and all scripts ship inside the package. Nothing is fetched or evaluated from the network.
+## کد ریموت
+خیر. موتور قواعد (WebAssembly) و همهٔ اسکریپت‌ها داخل بسته عرضه می‌شوند. هیچ چیزی از شبکه fetch یا evaluate نمی‌شود.
 
-## Data usage
-The extension collects no user data. Scans run locally; no page content, findings, or identifiers leave the browser. Certify: not being sold to third parties, not used for purposes unrelated to the single purpose, not used for creditworthiness or lending.
+## استفاده از داده
+پسوند هیچ دادهٔ کاربری جمع نمی‌کند. اسکن‌ها لوکال اجرا می‌شوند؛ هیچ محتوای صفحه، یافته یا شناسه‌ای مرورگر را ترک نمی‌کند. تأیید: به شخص ثالث فروخته نمی‌شود، برای اهداف بی‌ربط به تک‌منظوره استفاده نمی‌شود، برای اعتبارسنجی یا وام استفاده نمی‌شود.
