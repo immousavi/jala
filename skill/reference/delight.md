@@ -1,70 +1,70 @@
-> **Additional context needed**: the brand's emotional range.
+> **context اضافه لازم است**: گسترهٔ احساسی برند.
 
-Make the experience memorable at moments that earn it. Delight is not a layer of generic whimsy; it is product character revealed through a useful interaction, a humane response, or an unexpectedly considered detail.
+تجربه را در لحظه‌هایی به‌یادماندنی کن که لیاقتش را دارند. دلپذیری لایه‌ای از شوخ‌طبعیِ عمومی نیست؛ شخصیتِ محصول است که از یک تعامل مفید، پاسخی انساندوستانه یا جزئیاتی غیرمنتظره‌ولی-اندیشیده آشکار می‌شود.
 
 ---
 
-## Visitor mode
+## حالت بازدیدکننده
 
-- **Persuade + Experience:** personality may run through voice, composition, motion, and discovery, provided the artifact remains the focus.
-- **Operate + Read:** concentrate delight at meaningful moments such as first use, completion, recovery, or mastery. Reliability carries everything else.
+- **اقناع (Persuade) + تجربه (Experience):** شخصیت می‌تواند در صدا، ترکیب‌بندی، حرکت و کشف جاری باشد، به‌شرطی که آرتیفکت همچنان کانون بماند.
+- **عملیات (Operate) + خواندن (Read):** دلپذیری را در لحظه‌های معنادار متراکم کن: اولین‌استفاده، اتمام، ریکاوری، یا تسلط. بقیهٔ چیزها را قابلیت‌اعتماد حمل می‌کند.
 
-## Find the opportunity
+## فرصت را پیدا کن
 
-Inspect the target, DESIGN.md, product voice, repeated-use frequency, and emotional context. Look for:
+هدف، DESIGN.md، صدای محصول، فرکانس استفادهٔ تکراری و بافت احساسی را بازرسی کن. دنبال این‌ها بگرد:
 
-- effort worth acknowledging;
-- waiting that can become informative;
-- an empty or first-use state that can orient;
-- an error or recovery moment that needs empathy;
-- an interaction whose physical or verbal response could express the brand;
-- a useful capability people might enjoy discovering.
+- تلاشی که شایستهٔ قدردانی است؛
+- انتظاری که می‌تواند اطلاع‌رسان شود؛
+- حالت خالی یا اولین‌استفاده‌ای که می‌تواند جهت‌دهد؛
+- لحظهٔ خطا یا ریکاوری‌ای که به همدلی نیاز دارد؛
+- تعاملی که پاسخ فیزیکی یا کلامی‌اش می‌تواند برند را بیان کند؛
+- قابلیت مفیدی که کشفش لذت‌بخش باشد.
 
-Do not manufacture a celebration for an ordinary click. Ask only when the brand's emotional range or the stakes cannot be inferred.
+برای یک کلیک معمولی جشن نساز. فقط وقتی بپرس که گسترهٔ احساسی برند یا ابعاد ماجرا استنتاج‌نپذیر باشد.
 
-## Define one delight thesis
+## یک تز دلپذیری تعریف کن
 
-State in one sentence what the user should feel and why that feeling belongs to this product. Then choose the smallest system that can deliver it:
+در یک جمله بگو کاربر باید چه حس کند و چرا این حس به همین محصول تعلق دارد. بعد کوچک‌ترین سیستمی را انتخاب کن که می‌تواند تحویلش بدهد:
 
-- a distinctive response to a meaningful action;
-- product-specific language that clarifies while carrying voice;
-- an interaction or transition with a recognizable material behavior;
-- an illustration, sound, haptic, or environmental detail grounded in the product world;
-- a discovery reward that reveals real utility.
+- پاسخی متمایز به یک کنشِ معنادار؛
+- زبانِ مخصوصِ محصول که هم‌زمان روشن می‌کند و صدا را حمل می‌کند؛
+- تعامل یا ترنزیشنی با رفتار متریالیِ قابل‌شناسایی؛
+- تصویرسازی، صدا، هاپتیک یا جزئیات محیطیِ ریشه‌دار در جهانِ محصول؛
+- پاداشِ کشفِ که کاربرد واقعی را آشکار می‌کند.
 
-Derive the treatment from product mechanism and visual world, not a stock catalog.
+پرداخت را از سازوکار محصول و جهان بصری مشتق کن، نه از کاتالوگ آماده.
 
-## Build for the emotional moment
+## برای لحظهٔ احساسی بساز
 
-- **Success:** match the response to the effort and consequence. Major milestones can expand; routine saves should simply feel certain.
-- **Waiting:** show truthful progress, useful context, or product-specific activity. Never fake work or delay completion to stage a flourish.
-- **Empty and first use:** make the next action clear before adding personality.
-- **Error and recovery:** lead with the problem and recovery. Warmth may reduce stress; jokes must not trivialize loss, money, privacy, or blocked work.
-- **Repeated interaction:** keep the response satisfying after the hundredth use. Variation is useful only when it remains coherent and predictable enough to trust.
-- **Discovery:** reward curiosity without hiding required functionality.
+- **موفقیت:** پاسخ را با تلاش و پیامد هم‌وزن کن. نقطه‌عطف‌های بزرگ می‌توانند منبسط شوند؛ ذخیره‌های روتین فقط باید قطعی حس شوند.
+- **انتظار:** پیشرفت صادق، بافت مفید یا فعالیتِ مخصوصِ محصول نشان بده. هرگز کارِ جعلی نساز یا اتمام را برای اجرای پرشور به تأخیر نینداز.
+- **خالی و اولین‌استفاده:** قبل از افزودن شخصیت، کنش بعدی را شفاف کن.
+- **خطا و ریکاوری:** اول مسئله و بازیابی. گرما می‌تواند استرس را کم کند؛ شوخی هرگز زیان، پول، حریم خصوصی یا کارِ متوقف‌شده را کوچک نکند.
+- **تعامل تکراری:** پاسخ را بعد از استفادهٔ صدم همچنان رضایت‌بخش نگه دار. تنوع فقط وقتی مفید است که منسجم و به‌اندازهٔ کافی قابل‌اعتماد بماند.
+- **کشف:** کنجکاوی را پاداش بده بدون پنهان‌کردن کارکرد لازم.
 
-Copy must use the product's language. Generic whimsy is worse than neutral clarity.
+متن باید از زبان خودِ محصول استفاده کند. شوخ‌طبعیِ عمومی از شفافیتِ خنثی بدتر است.
 
-## Protect the experience
+## از تجربه محافظت کن
 
-Delight must not:
+دلپذیری نباید:
 
-- delay, block, or obscure the primary task;
-- override platform conventions or accessibility;
-- add unrequested factual claims;
-- play sound without consent or ignore mute settings;
-- become mandatory, unskippable, or exhausting on repeat;
-- add a dependency or asset cost disproportionate to the moment.
+- کارِ اصلی را به تأخیر بیندازد، مسدود کند یا مبهم کند؛
+- عرف‌های پلتفرم یا دسترس‌پذیری را دور بزند؛
+- ادعای واقعیِ درخواست‌نشده اضافه کند؛
+- بدون رضایت صدا پخش کند یا تنظیم بی‌صدا را نادیده بگیرد؛
+- اجباری، پرش‌ناپذیر یا در تکرار فرساینده شود؛
+- وابستگی یا هزینهٔ assetای نامتناسب با لحظه اضافه کند.
 
-For authored motion, load [animate.md](animate.md). Respect screen readers, keyboard use, touch, localization, and cultural context. Nonessential loops stop when hidden. Make celebration intensity proportional to frequency and consequence.
+برای حرکتِ نویسنده‌شده، [animate.md](animate.md) را لود کن. صفحه‌خوان‌ها، استفاده از کیبورد، لمس، بومی‌سازی و بافت فرهنگی را رعایت کن. حلقه‌های غیرضروری وقتی پنهان‌اند متوقف شوند. شدتِ جشن را متناسب با فرکانس و پیامد کن.
 
-## Verify
+## راستی‌آزمایی
 
-- The moment is specific enough that a neighboring product could not use it unchanged.
-- It improves comprehension, confidence, motivation, or emotional recovery.
-- The interface remains fast and obvious without the flourish.
-- Repetition does not turn charm into friction.
-- Muted, keyboard, touch, and localized paths work.
-- The result feels like the selected world, not a generic “delight” treatment.
+- لحظه به‌قدر کافی مشخص است که محصول همسایه نتواند بدون تغییر ازش استفاده کند.
+- فهم، اطمینان، انگیزه یا ریکاوریِ احساسی را بهتر می‌کند.
+- رابط بدون پرشورِ آن همچنان سریع و بدیهی می‌ماند.
+- تکرار، دلربایی را به اصطکاک تبدیل نمی‌کند.
+- مسیرهای بی‌صدا، کیبورد، لمس و بومی‌شده کار می‌کنند.
+- نتیجه شبیه جهانِ انتخاب‌شده حس می‌شود، نه یک پرداخت عمومیِ «دلپذیری».
 
-When the personality feels earned, hand off to `{{command_prefix}}impeccable polish` for the final pass.
+وقتی شخصیت سرِ جای خودش نشست، پاسِ نهایی را به `{{command_prefix}}jala polish` بسپار.

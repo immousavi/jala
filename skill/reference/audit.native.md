@@ -1,139 +1,139 @@
-Run systematic **technical** quality checks on a native app (`ios` / `android` / `adaptive`) and generate a comprehensive report. Don't fix issues; document them for other commands to address.
+چک‌های کیفیت **فنی** سیستماتیک روی اپ نیتیو (`ios` / `android` / `adaptive`) اجرا کن و گزارش جامع بساز. مشکلات را درست نکن؛ برای فرمان‌های دیگر مستندشان کن.
 
-This is a code-level audit, not a design critique. Audit from source (SwiftUI / UIKit / Compose / React Native / Flutter); no browser tooling or `impeccable detect` applies. Score against the platform reference(s): [ios.md](ios.md) / [android.md](android.md), both for `adaptive`. Read them before scoring if Setup hasn't already. The report skeleton mirrors [audit.md](audit.md); keep the two in sync when changing it.
+این ممیزی سطح-کد است، نه نقد طراحی. از سورس ممیزی کن (SwiftUI / UIKit / Compose / React Native / Flutter)؛ هیچ ابزار مرورگر یا `impeccable detect` اعمال نمی‌شود. بر اساس مرجع(های) پلتفرمی نمره بده: [ios.md](ios.md) / [android.md](android.md)، هر دو برای `adaptive`. اگر Setup خودش نخوانده، قبل از نمره‌دادن بخوانشان. اسکلت گزارش آینهٔ [audit.md](audit.md) است؛ موقع تغییر، دو را هم‌گام نگه دار.
 
-## Diagnostic Scan
+## اسکن تشخیصی
 
-Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the criteria below.
+چک‌های جامع را در ۵ بعد اجرا کن. هر بعد را با معیارهای پایین از ۰ تا ۴ نمره بده.
 
-### 1. Accessibility (VoiceOver / TalkBack)
+### ۱. دسترس‌پذیری (VoiceOver / TalkBack)
 
-**Check for**:
-- **Missing labels**: interactive elements without accessibility labels, traits/roles, or state announcements
-- **Reading and focus order**: illogical traversal, unreachable controls, focus lost on navigation
-- **Text scaling**: fixed point sizes defeating Dynamic Type (iOS) or px instead of sp (Android); layouts that clip or overlap at large sizes
-- **Touch targets**: below 44 pt (iOS) / 48 dp (Android), or crammed without spacing
-- **Reduce Motion ignored**: parallax and large slides with no crossfade alternative
-- **Contrast**: text failing contrast in either appearance, light or dark
+**چک کن**:
+- **لیبل‌های غایب**: عناصر تعاملی بدون لیبل دسترس‌پذیری، traits/نقش‌ها، یا اعلامِ وضعیت
+- **ترتیب خواندن و فوکوس**: پیمایشِ بی‌منطق، کنترل‌های غیرقابل‌دسترس، فوکوسِ گم‌شده در ناوبری
+- **مقیاس متن**: سایزهای نقطه‌ایِ ثابت که Dynamic Type (iOS) را مغلوب می‌کنند، یا px به‌جای sp (اندروید)؛ چیدمان‌هایی که در سایزهای بزرگ می‌برند یا هم‌پوشان می‌شوند
+- **اهداف لمسی**: زیر ۴۴ pt (iOS) / ۴۸ dp (اندروید)، یا بدون فاصلهِ به‌هم‌فشرده
+- **Reduce Motion نادیده‌گرفته‌شده**: parallax و لغزش‌های بزرگ بدون جایگزین crossfade
+- **کنتراست**: متنِ رد‌شده در کنتراست، در هر دو ظاهر — روشن یا تیره
 
-**Score 0-4**: 0=Screen reader unusable, 1=Major gaps (unlabeled controls, no scaling), 2=Partial (labels exist, order or scaling breaks), 3=Good (minor gaps), 4=Excellent (labeled, ordered, scales cleanly, Reduce Motion honored)
+**نمره ۰-۴**: ۰=صفحه‌خوان بی‌استفاده، ۱=شکاف‌های بزرگ (کنترل‌های بی‌لیبل، بدون مقیاس)، ۲=جزئی (لیبل هست، ترتیب یا مقیاس می‌شکند)، ۳=خوب (شکاف‌های ریز)، ۴=عالی (لیبل‌دار، مرتب، مقیاس تمیز، Reduce Motion محترم)
 
-### 2. Performance
+### ۲. کارایی
 
-**Check for**:
-- **Slow startup**: heavy work on launch before first frame
-- **Unvirtualized lists**: long content without FlatList / LazyColumn / List recycling
-- **Main-thread jank**: synchronous work in scroll or gesture paths, dropped frames on 60/120 Hz
-- **Wasted rendering**: unnecessary re-renders (React Native) or recompositions (Compose); missing memoization/keys
-- **Image handling**: full-size images decoded for thumbnails, no caching
-- **App weight**: bloated JS bundle or binary, unused dependencies
+**چک کن**:
+- **شروع کند**: کار سنگین در launch قبل از اولین فریم
+- **فهرست‌های بدون مجازی‌سازی**: محتوای بلند بدون FlatList / LazyColumn / List recycling
+- **jankِ thread اصلی**: کار همگام در مسیرهای اسکرول یا ژست، فریم‌های انداخته روی 60/120 Hz
+- **رندر هدررفته**: re-renderهای غیرلازم (React Native) یا recompositionها (Compose)؛ memoization/key غایب
+- **مدیریت تصویر**: تصاویر سایز-کامل decode‌شده برای بندانگشتی، بدون کش
+- **وزن اپ**: باندل JS یا باینری چاق، وابستگی‌های بی‌استفاده
 
-**Score 0-4**: 0=Janky everywhere, 1=Major problems (unvirtualized lists, slow launch), 2=Partial, 3=Good (minor improvements possible), 4=Excellent (fast launch, smooth scroll, lean)
+**نمره ۰-۴**: ۰=همه‌جا janky، ۱=مشکلات بزرگ (فهرست بدون مجازی‌سازی، شروع کند)، ۲=جزئی، ۳=خوب (بهبودهای ریز ممکن)، ۴=عالی (شروع سریع، اسکرول نرم، لاغر)
 
-### 3. Appearance & Theming
+### ۳. ظاهر و تم‌بندی
 
-**Check for**:
-- **Hard-coded colors**: raw hex instead of semantic system colors (iOS) / Material color roles (Android) / design tokens
-- **Broken dark appearance**: missing dark variants, poor contrast in dark, quick inverts
-- **Dynamic Color** (Android 12+): no static fallback scheme, or ignored where it fits
-- **Off-platform materials**: hand-rolled visual materials where system materials or tonal elevation are expected
+**چک کن**:
+- **رنگ‌های هاردکد**: hex خام به‌جای رنگ‌های سیستمیِ معنایی (iOS) / نقش‌های رنگی Material (اندروید) / توکن‌های طراحی
+- **ظاهر تیره شکسته**: واریانت‌های تیره غایب، کنتراست ضعیف در تیره، معکوس‌سازی‌های سریع
+- **Dynamic Color** (Android 12+): بدون طرح fallback ایستا، یا نادیده‌گرفته جایی که می‌خواند
+- **متریال‌های خارج-از-پلتفرم**: متریال‌های بصری دست‌ساز جایی که متریال‌های سیستم یا ارتفاع تونال انتظار می‌رود
 
-**Score 0-4**: 0=Hard-coded everything, 1=Minimal tokens, 2=Partial (tokens exist, inconsistently used), 3=Good (minor hard-coded values), 4=Excellent (semantic throughout, both appearances first-class)
+**نمره ۰-۴**: ۰=همه‌چیز هاردکد، ۱=حداقل توکن، ۲=جزئی (توکن هست، ناسازگار استفاده می‌شود)، ۳=خوب (مقادیر هاردکد ریز)، ۴=عالی (معنایی در کل، هر دو ظاهر درجه‌یک)
 
-### 4. Platform Conformance (CRITICAL)
+### ۴. انطباق پلتفرم (بحرانی)
 
-Score against the loaded platform reference(s), including their slop tests. **Check for**:
-- **Broken system gestures**: edge-swipe back disabled (iOS), predictive Back hijacked (Android)
-- **Inset violations**: content under the notch, Dynamic Island, home indicator, status bar, or keyboard
-- **Off-platform navigation**: custom global nav, overloaded tab bars, iOS patterns on Android or vice versa
-- **Web-shaped controls**: HTML-style buttons, custom toggles, hover-dependent affordances
-- **Icon drift**: mixed icon sets instead of SF Symbols / Material Symbols
-- **System drift**: repeated shortcuts or decorative patterns that conflict with the product, platform, or established design system
+بر اساس مرجع(های) پلتفرمیِ لود‌شده نمره بده، شامل تست‌های اسلاپشان. **چک کن**:
+- **ژست‌های سیستمِ شکسته**: برگشتِ کشیدن-از-لبه غیرفعال (iOS)، Predictive Back ربوده‌شده (اندروید)
+- **نقض insetها**: محتوا زیر ناچ، Dynamic Island، نشانگر home، نوار وضعیت، یا کیبورد
+- **ناوبری خارج-از-پلتفرم**: ناوبری سراسری سفارشی، tab barهای اضافه‌بار، الگوهای iOS روی اندروید یا برعکس
+- **کنترل‌های شکل-وب**: دکمه‌های سبک HTML، کلیدهای سفارشی، امکان‌های وابسته به هاور
+- **drift آیکن**: مجموعه‌های آیکن قاطی به‌جای SF Symbols / Material Symbols
+- **drift سیستمی**: میان‌برها یا الگوهای تزئینیِ تکرارشونده که با محصول، پلتفرم یا سیستم طراحی تثبیت‌شده تضاد دارند
 
-**Score 0-4**: 0=Web port (nothing native), 1=Heavy violations (3-4 kinds), 2=Some (1-2 noticeable), 3=Mostly conformant (subtle issues), 4=Fully native (a fluent user trusts every screen)
+**نمره ۰-۴**: ۰=پورت وب (هیچ‌چیز نیتیو)، ۱=نقض‌های سنگین (۳-۴ نوع)، ۲=بعضی (۱-۲ مورد نمایان)، ۳=عمدتاً منطبق (مشکلات ظریف)، ۴=کاملاً نیتیو (کاربر روان به هر صفحه اعتماد می‌کند)
 
-### 5. Adaptivity
+### ۵. انطباق‌پذیری
 
-**Check for**:
-- **Stretched phone layouts**: tablet/iPad rendering a scaled-up phone UI instead of using size classes / window size classes
-- **Orientation breakage**: landscape clipping, ignored, or locked without reason
-- **Keyboard/IME handling**: inputs hidden behind the keyboard, no inset adjustment
-- **Multitasking**: iPad Split View / Android multi-window breaking layout
-- **Foldables**: hinge-unaware layouts on posture change (Android)
+**چک کن**:
+- **چیدمان‌های کش‌آمدهٔ موبایلی**: تبلت/iPad که UI موبایلِ مقیاس‌شده رندر می‌کند به‌جای استفاده از size classها / window size classها
+- **شکستن جهت**: برش در افقی، نادیده‌گرفته‌شده، یا قفل‌شده بدون دلیل
+- **مدیریت کیبورد/IME**: ورودی‌های پشت کیبورد، بدون تنظیم inset
+- **چندوظیفه‌ای**: iPad Split View / مولتی‌ویندوز اندروید که چیدمان را می‌شکند
+- **تاشوها**: چیدمان‌های بی‌خبر-از-لولا در تغییر posture (اندروید)
 
-**Score 0-4**: 0=One screen size only, 1=Major breakage (landscape or tablet broken), 2=Partial, 3=Good (minor edge cases), 4=Excellent (adapts across sizes, orientations, and windowing)
+**نمره ۰-۴**: ۰=فقط یک سایز صفحه، ۱=شکست‌های بزرگ (افقی یا تبلت شکسته)، ۲=جزئی، ۳=خوب (حالت‌های مرزی ریز)، ۴=عالی (وفق‌پذیر در سایزها، جهت‌ها و windowing)
 
-## Generate Report
+## گزارش بساز
 
-### Audit Health Score
+### نمرهٔ سلامت ممیزی
 
-| # | Dimension | Score | Key Finding |
+| # | بُعد | نمره | یافتهٔ کلیدی |
 |---|-----------|-------|-------------|
-| 1 | Accessibility | ? | [most critical issue or "--"] |
-| 2 | Performance | ? | |
-| 3 | Appearance & Theming | ? | |
-| 4 | Platform Conformance | ? | |
-| 5 | Adaptivity | ? | |
-| **Total** | | **??/20** | **[Rating band]** |
+| 1 | دسترس‌پذیری | ? | [بحرانی‌ترین مشکل یا "--"] |
+| 2 | کارایی | ? | |
+| 3 | ظاهر و تم‌بندی | ? | |
+| 4 | انطباق پلتفرم | ? | |
+| 5 | انطباق‌پذیری | ? | |
+| **مجموع** | | **??/20** | **[باند رتبه‌بندی]** |
 
-**Rating bands**: 18-20 Excellent (minor polish), 14-17 Good (address weak dimensions), 10-13 Acceptable (significant work needed), 6-9 Poor (major overhaul), 0-5 Critical (fundamental issues)
+**باندهای رتبه‌بندی**: 18-20 عالی (پالایش ریز)، 14-17 خوب (ابعاد ضعیف را رسیدگی کن)، 10-13 قابل‌قبول (کارِ قابل‌توجه لازم)، 6-9 ضعیف (بازسازی بزرگ)، 0-5 بحرانی (مشکلات بنیادین)
 
-### Platform Conformance Verdict
-**Start here.** Pass/fail: does this read as a native app or a ported website? List specific violations. Be brutally honest.
+### حکم انطباق پلتفرم
+**از اینجا شروع کن.** قبول/رد: این مثل اپ نیتیو می‌خواند یا وب‌سایتِ پورت‌شده؟ نقض‌های مشخص را فهرست کن. بی‌رحمانه صادق باش.
 
-### Executive Summary
-- Audit Health Score: **??/20** ([rating band])
-- Total issues found (count by severity: P0/P1/P2/P3)
-- Top 3-5 critical issues
-- Recommended next steps
+### خلاصهٔ اجرایی
+- نمرهٔ سلامت ممیزی: **??/20** ([باند رتبه‌بندی])
+- مجموع مشکلات یافت‌شده (شمارش بر اساس شدت: P0/P1/P2/P3)
+- ۳ تا ۵ مشکل بحرانیِ اول
+- گام‌های بعدی پیشنهادی
 
-### Detailed Findings by Severity
+### یافته‌های تفصیلی بر اساس شدت
 
-Tag every issue with **P0-P3 severity**:
-- **P0 Blocking**: Prevents task completion. Fix immediately
-- **P1 Major**: Significant difficulty or platform-guideline violation. Fix before release
-- **P2 Minor**: Annoyance, workaround exists. Fix in next pass
-- **P3 Polish**: Nice-to-fix, no real user impact. Fix if time permits
+هر مشکل را با **شدت P0-P3** تگ کن:
+- **P0 مسدودکننده**: مانع اتمام کار. فوری درست کن
+- **P1 بزرگ**: سختیِ قابل‌توجه یا نقض رهنمود پلتفرم. قبل از عرضه درست کن
+- **P2 ریز**: مزاحمت، workaround وجود دارد. در پاس بعدی درست کن
+- **P3 پالایش**: بهتر است درست شود، اثر واقعی کاربری ندارد. اگر وقت بود
 
-For each issue, document:
-- **[P?] Issue name**
-- **Location**: Screen, file, line
-- **Category**: Accessibility / Performance / Theming / Conformance / Adaptivity
-- **Impact**: How it affects users
-- **Guideline**: The HIG / Material rule it violates (if applicable)
-- **Recommendation**: How to fix it
-- **Suggested command**: Which command to use (prefer: {{available_commands}})
+برای هر مشکل مستند کن:
+- **[P?] نام مشکل**
+- **محل**: صفحه، فایل، خط
+- **دسته**: دسترس‌پذیری / کارایی / تم‌بندی / انطباق / انطباق‌پذیری
+- **اثر**: چطور روی کاربران اثر می‌گذارد
+- **رهنمود**: کدام قاعدهٔ HIG / Material را نقض می‌کند (در صورت وجود)
+- **توصیه**: چطور درستش کنی
+- **فرمان پیشنهادی**: کدام فرمان (ترجیح: {{available_commands}})
 
-### Patterns & Systemic Issues
+### الگوها و مشکلات سیستمیک
 
-Identify recurring problems that indicate systemic gaps rather than one-off mistakes:
-- "Hard-coded colors appear in 15+ screens, should use semantic colors"
-- "Touch targets consistently below 44 pt throughout the tab bar and list rows"
+مشکلات تکرارشونده‌ای را شناسایی کن که شکافِ سیستمیک را نشان می‌دهند نه اشتباهِ یک‌باره:
+- «رنگ‌های هاردکد در ۱۵+ صفحه ظاهر می‌شوند، باید از رنگ‌های معنایی استفاده شود»
+- «اهداف لمسی به‌طور یکدست زیر ۴۴ pt در کل tab bar و ردیف‌های فهرست»
 
-### Positive Findings
+### یافته‌های مثبت
 
-Note what's working well: good practices to maintain and replicate.
+آنچه خوب کار می‌کند را بنویس: شیوه‌های خوبی که باید حفظ و تکرار شوند.
 
-## Recommended Actions
+## کنش‌های پیشنهادی
 
-List recommended commands in priority order (P0 first, then P1, then P2):
+فرمان‌های پیشنهادی را به ترتیب اولویت فهرست کن (اول P0، بعد P1، بعد P2):
 
-1. **[P?] `{{command_prefix}}command-name`**: Brief description (specific context from audit findings)
-2. **[P?] `{{command_prefix}}command-name`**: Brief description (specific context)
+1. **[P?] `{{command_prefix}}command-name`**: توضیح کوتاه (بافتِ مشخص از یافته‌های ممیزی)
+2. **[P?] `{{command_prefix}}command-name`**: توضیح کوتاه (بافتِ مشخص)
 
-**Rules**: Only recommend commands from: {{available_commands}}. Map findings to the most appropriate command. End with `{{command_prefix}}impeccable polish` as the final step if any fixes were recommended.
+**قواعد**: فقط از {{available_commands}} فرمان پیشنهاد بده. یافته‌ها را به مناسب‌ترین فرمان نگاشت کن. اگر درستی پیشنهاد شد، با `{{command_prefix}}jala polish` به‌عنوان گام نهایی تمام کن.
 
-After presenting the summary, tell the user:
+بعد از ارائهٔ خلاصه، به کاربر بگو:
 
-> You can ask me to run these one at a time, all at once, or in any order you prefer.
+> می‌توانی بخواهی این‌ها را یکی‌یکی، همه‌با‌هم، یا به هر ترتیبی که می‌پسندی اجرا کنم.
 >
-> Re-run `{{command_prefix}}impeccable audit` after fixes to see your score improve.
+> بعد از درست‌کرده‌ها، `{{command_prefix}}jala audit` را دوباره اجرا کن تا نمره‌ات را بهتر ببینی.
 
-Keep P3s few: a long tail of minor issues buries the ones that matter.
+P3ها را کم نگه دار: دنبالهٔ بلندِ مشکلات ریز، مهم‌ها را دفن می‌کند.
 
-**Avoid**:
-- Report issues without explaining impact (why does this matter?)
-- Provide generic recommendations (be specific and actionable)
-- Skip positive findings (celebrate what works)
-- Forget to prioritize (everything can't be P0)
-- Report false positives without verification
+**بپرهیز از**:
+- گزارش مشکل بدون توضیح اثر (چرا این مهم است؟)
+- توصیه‌های عمومی (مشخص و عملی باش)
+- رد‌کردن یافته‌های مثبت (آنچه کار می‌کند را جشن بگیر)
+- فراموش‌کردن اولویت‌بندی (همه‌چیز نمی‌تواند P0 باشد)
+- گزارش false positive بدون تأیید

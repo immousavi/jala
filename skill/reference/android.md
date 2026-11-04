@@ -1,46 +1,46 @@
-# Android platform
+# پلتفرم Android
 
-For native Android apps: Jetpack Compose, Android Views, React Native, Expo, Flutter shipping to Android hardware.
+برای اپ‌های نیتیو اندروید: Jetpack Compose، Android Views، React Native، Expo، Flutter که به سخت‌افزار اندرویدی عرضه می‌شوند.
 
-On native, the visitor mode narrows what expression may override. Material Design 3 governs structure, navigation, and interaction in every mode; brand expresses through Material's theming (color roles, type scale, shape, motion). A Material-everywhere cross-platform app that also ships to iPhone still owes iOS its OS guarantees on that hardware: safe-area insets, Reduce Motion, edge-swipe back.
+روی نیتیو، حالتِ بازدیدکننده تعیین می‌کند ابراز اجازهٔ دورزدنِ چه چیزی را دارد. Material Design 3 بر ساختار، ناوبری و تعامل در هر حالتی حکومت می‌کند؛ برند از طریق تم‌بندی Material ابراز می‌شود (نقش‌های رنگ، مقیاس تایپ، شکل، حرکت). اپ کراس-پلتفرمیِ همه‌جا-Material که به آیفون هم عرضه می‌شود، روی آن سخت‌افزار همچنان تضمین‌های iOS را بدهکار است: insetهای safe-area، Reduce Motion، برگشتِ کشیدن-از-لبه.
 
-## The Android slop test
+## تست اسلاپ Android
 
-Would a fluent Android user trust this app, or trip on off-spec components? The most common tell is an iOS app wearing Android's skin: a bottom-only navigation copied from iPhone, a back arrow that ignores the system Back gesture, Cupertino-shaped switches and dialogs. Material 3 is the rulebook; follow its components and theme the brand through it.
+آیا کاربرِ روانِ اندروید به این اپ اعتماد می‌کند، یا در کامپوننت‌های خارج‌از-مشخصه سکندری می‌خورد؟ رایج‌ترین نشانه، اپ iOS با پوست اندرویدی است: ناوبریِ فقط-پایینی که از آیفون کپی شده، فلش برگشتی که ژست Back سیستم را نادیده می‌گیرد، سوییچ و دیالوگ‌های شکل-Cupertino. Material 3 کتاب قوانین است؛ کامپوننت‌هایش را دنبال کن و برند را از مسیرش تم بده.
 
-## Layout & structure
+## چیدمان و ساختار
 
-- **Material navigation, matched to size.** Navigation bar (bottom, 3–5 destinations) on compact width; navigation rail or drawer on expanded width. Never ship a phone bottom-bar untouched on a tablet. <!-- rule:android-layout-adaptive-nav -->
-- **System Back always works.** Honor the predictive Back gesture and Back button; never trap the user or hijack the gesture. <!-- rule:android-layout-system-back -->
-- **Edge-to-edge with window insets.** Apply the status bar, navigation bar, display cutout, and IME insets so content never hides behind system bars or the keyboard. <!-- rule:android-layout-window-insets -->
-- **Top app bar for screen context**; pair with a FAB when the screen has a single primary action. <!-- rule:android-layout-top-app-bar -->
+- **ناوبری Material، هم‌اندازه با صفحه.** navigation bar (پایین، ۳–۵ مقصد) در عرض فشرده؛ navigation rail یا drawer در عرض باز. هرگز bottom-bar موبایلیِ دست‌نخورده روی تبلت عرضه نکن. <!-- rule:android-layout-adaptive-nav -->
+- **Back سیستم همیشه کار می‌کند.** ژست Predictive Back و دکمهٔ Back را محترم بشمار؛ هرگز کاربر را به دام نینداز یا ژست را ربای. <!-- rule:android-layout-system-back -->
+- **Edge-to-edge با window insetها.** insetهای نوار وضعیت، نوار ناوبری، display cutout و IME را اعمال کن تا محتوا هرگز پشت نوارهای سیستم یا کیبورد پنهان نشود. <!-- rule:android-layout-window-insets -->
+- **Top app bar برای بافت صفحه**؛ وقتی صفحه یک کنش اصلیِ تکی دارد با FAB جفتش کن. <!-- rule:android-layout-top-app-bar -->
 
-## Touch targets
+## اهداف لمسی
 
-- **48×48 dp minimum** for every touch target, with at least 8 dp between them. <!-- rule:android-touch-target-48dp -->
+- **حداقل ۴۸×۴۸ dp** برای هر هدف لمسی، با دست‌کم ۸ dp فاصله بین آن‌ها. <!-- rule:android-touch-target-48dp -->
 
-## Typography
+## تایپوگرافی
 
-- **Material type scale.** Display, Headline, Title, Body, Label roles (large/medium/small each). Map text to roles; never hand-pick sizes per screen. <!-- rule:android-typo-type-scale -->
-- **Roboto is the system face**; theme a brand face in through the type scale, keeping body, labels, and controls legible and consistent. <!-- rule:android-typo-system-font -->
-- **sp units, never fixed px**, so type follows the system font-size setting. <!-- rule:android-typo-scalable-sp -->
+- **مقیاس تایپ Material.** نقش‌های Display، Headline، Title، Body، Label (هر کدام large/medium/small). متن را به نقش‌ها نگاشت کن؛ هرگز سایزها را صفحه‌به‌صفحه دستی انتخاب نکن. <!-- rule:android-typo-type-scale -->
+- **Roboto قلم سیستمی است**؛ قلم برند را از مسیر مقیاس تایپ تم بده، با حفظ خوانایی و یکدستیِ بدنه، لیبل‌ها و کنترل‌ها. <!-- rule:android-typo-system-font -->
+- **واحد sp، هرگز px ثابت نه**، تا تایپ تنظیم سایز فونت سیستم را دنبال کند. <!-- rule:android-typo-scalable-sp -->
 
-## Color & theming
+## رنگ و تم‌بندی
 
-- **Material color roles** (primary, on-primary, surface, surface-variant, secondary-container, outline, error). Role tokens resolve light/dark and contrast variants automatically; raw hex breaks there. <!-- rule:android-color-role-tokens -->
-- **Dynamic Color (Material You)** where it fits: derive the scheme from the user's wallpaper on Android 12+, with a static fallback. <!-- rule:android-color-dynamic-color -->
-- **Dark theme is a first-class scheme.** Design and test it; never a quick invert. <!-- rule:android-color-dark-theme -->
-- **Tonal elevation.** Convey elevation through the standard surface tonal levels (plus shadow where appropriate); no arbitrary drop shadows. <!-- rule:android-color-tonal-elevation -->
+- **نقش‌های رنگی Material** (primary، on-primary، surface، surface-variant، secondary-container، outline، error). توکن‌های نقش، واریانت‌های روشن/تیره و کنتراست را خودکار حل می‌کنند؛ hex خام آنجا می‌شکند. <!-- rule:android-color-role-tokens -->
+- **Dynamic Color (Material You)** جایی که می‌خواند: طرح را از والپیپر کاربر روی Android 12+ مشتق کن، با fallback ایستا. <!-- rule:android-color-dynamic-color -->
+- **تم تیره طرحی درجه‌یک است.** طراحی و تستش کن؛ هرگز معکوس‌سازیِ سریع نه. <!-- rule:android-color-dark-theme -->
+- **ارتفاع تونال.** ارتفاع را از طریق پله‌های تونالِ استاندارد سطح منتقل کن (به‌علاوه سایه جایی که مناسب است)؛ سایهٔ dropِ دلخواه نه. <!-- rule:android-color-tonal-elevation -->
 
-## Components & motion
+## کامپوننت‌ها و حرکت
 
-- **Material components.** Buttons (filled / tonal / outlined / text), FAB, switches, chips, snackbars, bottom sheets, Material dialogs, navigation bar/rail/drawer. Never port iOS controls or invent equivalents. <!-- rule:android-components-material -->
-- **One FAB, one primary action.** Never stack FABs or spend one on a secondary task. <!-- rule:android-components-single-fab -->
-- **Snackbars for transient feedback** (actionable when useful, never a toast for that); dialogs only for decisions that must interrupt. <!-- rule:android-components-snackbar -->
-- **Material motion patterns.** Container transform, shared-axis, fade-through, with standard easing and durations; honor the system Remove animations setting with a crossfade or instant cut. <!-- rule:android-motion-material-and-reduce -->
+- **کامپوننت‌های Material.** دکمه‌ها (filled / tonal / outlined / text)، FAB، سوییچ‌ها، chips، snackbarها، bottom sheetها، دیالوگ‌های Material، navigation bar/rail/drawer. هرگز کنترل‌های iOS را پورت نکن یا معادل ازخودساخته نساز. <!-- rule:android-components-material -->
+- **یک FAB، یک کنش اصلی.** هرگز FABها را روی هم نچین یا یکی را خرج کار ثانویه نکن. <!-- rule:android-components-single-fab -->
+- **Snackbar برای بازخورد گذرا** (وقتی مفید است کنش‌پذیر، هرگز به‌جای آن توست نه)؛ دیالوگ فقط برای تصمیم‌هایی که باید قطع کنند. <!-- rule:android-components-snackbar -->
+- **الگوهای حرکت Material.** Container transform، shared-axis، fade-through، با ایزینگ و مدت استاندارد؛ تنظیم سیستم Remove animations را با crossfade یا برشِ فوری محترم بشمار. <!-- rule:android-motion-material-and-reduce -->
 
-## Verifying the build
+## راستی‌آزمایی بیلد
 
-- **Screenshots come from the emulator or a connected device, never a browser.** Build and install, then capture with `adb exec-out screencap -p > <path>` (pick a device with `adb -s <serial>` when several are attached). Capture every device class the app ships to, at least one phone and, when tablets are a target, one tablet, and write the files where the review flow expects them. <!-- rule:android-verify-emulator-capture -->
-- **Dark theme and font scale belong in the pass.** `adb shell cmd uimode night yes` flips the theme; `adb shell settings put system font_scale 1.3` (read both settings first with `adb shell cmd uimode night` and `adb shell settings get system font_scale`, and restore them after) catches the clipped labels a fixed layout hides; with several targets attached, the capture's `-s <serial>` goes on these commands too. <!-- rule:android-verify-theme-and-scale -->
-- **Emulators give breadth; gestures, refresh rates, and performance need hardware.** Say which one produced the evidence. <!-- rule:android-verify-hardware-honesty -->
+- **اسکرین‌شات‌ها از شبیه‌ساز یا دستگاه متصل می‌آیند، هرگز مرورگر نه.** بیلد و نصب کن، بعد با `adb exec-out screencap -p > <path>` بگیر (با چند دستگاه متصل، با `adb -s <serial>` انتخاب کن). هر کلاس دستگاهی که اپ عرضه می‌شود را بگیر، دست‌کم یک موبایل و اگر تبلت‌ها هدف‌اند یک تبلت، و فایل‌ها را جایی بنویس که جریان بازبینی انتظارشان را دارد. <!-- rule:android-verify-emulator-capture -->
+- **تم تیره و مقیاس فونت جزو پاس‌اند.** `adb shell cmd uimode night yes` تم را عوض می‌کند؛ `adb shell settings put system font_scale 1.3` (اول هر دو تنظیم را با `adb shell cmd uimode night` و `adb shell settings get system font_scale` بخوان و بعد برگردان) لیبل‌های بریده‌شده را می‌گیرد که چیدمان ثابت پنهانشان می‌کند؛ با چند هدف متصل، `-s <serial>` کپچر روی این فرمان‌ها هم می‌رود. <!-- rule:android-verify-theme-and-scale -->
+- **شبیه‌سازها پوشش می‌دهند؛ ژست‌ها، نرخ‌های نوسازی و کارایی سخت‌افزار می‌خواهند.** بگو کدام شاهد را تولید کرده. <!-- rule:android-verify-hardware-honesty -->

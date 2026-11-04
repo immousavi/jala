@@ -1,10 +1,10 @@
-Generate a `DESIGN.md` file at the project root that captures the current visual design system, so AI agents generating new screens stay on-brand.
+یک فایل `DESIGN.md` در ریشهٔ پروژه تولید کن که سیستم طراحی بصریِ فعلی را ثبت کند، تا ایجنت‌های هوش مصنوعی‌ای که صفحه‌های جدید تولید می‌کنند هم‌خوان با برند بمانند.
 
-DESIGN.md follows the [official DESIGN.md format spec](https://raw.githubusercontent.com/google-labs-code/design.md/main/docs/spec.md): optional YAML frontmatter carrying machine-readable design tokens, followed by up to eight markdown sections in a fixed order. **Tokens are normative; prose provides context for how to apply them.** Sections may be omitted when not relevant, but those present stay in the specified order. Use the canonical headings below so the file remains portable across DESIGN.md-aware tools.
+DESIGN.md از [اسپک رسمی فرمت DESIGN.md](https://raw.githubusercontent.com/google-labs-code/design.md/main/docs/spec.md) پیروی می‌کند: فرانت‌متر (frontmatter) اختیاریِ YAML که توکن‌های طراحیِ ماشین‌خوان را حمل می‌کند، و پس از آن حداکثر هشت بخش markdown با ترتیبی ثابت. **توکن‌ها ملاک‌اند (normative)؛ نثر بافتِ چگونگی اعمالشان را فراهم می‌کند.** بخش‌های بی‌ربط می‌توانند حذف شوند، اما هر بخشی که هست در ترتیب تعیین‌شده می‌ماند. از عنوان‌های استاندارد (canonical) زیر استفاده کن تا فایل میان ابزارهای آشنای DESIGN.md قابل‌حمل بماند.
 
-## The frontmatter: token schema
+## فرانت‌متر: اسکیمای توکن
 
-The YAML frontmatter is the machine-readable layer. It's what Stitch's linter validates and what the live panel renders tiles from. Keep it tight; every entry should correspond to a token the project actually uses.
+فرانت‌متر YAML لایهٔ ماشین‌خوان است؛ همان چیزی که لینترِ Stitch اعتبارسنجی می‌کند و پنل زنده تایل‌هایش را از روی آن رندر می‌کند. جمع‌وجورش نگه دار؛ هر مدخل باید متناظر با توکنی باشد که پروژه واقعاً به کار می‌برد.
 
 ```yaml
 ---
@@ -40,15 +40,15 @@ components:
 ---
 ```
 
-Rules that matter:
+قواعد مهم:
 
-- **Token refs** use `{path.to.token}` (e.g. `{colors.primary}`, `{rounded.md}`). Components may reference primitives; primitives may not reference each other.
-- **Colors accept any valid CSS color string.** Hex is the recommended default for portability, but preserve an incumbent `rgb()`, `hsl()`, `oklch()`, wide-gamut, or mixed-color value when it is the project's normative source. Never split the source of truth without explicit reason.
-- **Component sub-tokens** are limited to 8 props: `backgroundColor`, `textColor`, `typography`, `rounded`, `padding`, `size`, `height`, `width`. Shadows, motion, focus rings, backdrop-filter: none of those fit. Carry them in the sidecar (Step 4b).
-- **Scale keys are open-ended.** Use whatever names the project already uses (`oxblood-deep`, `surface-container-low`). Don't rename to Material defaults.
-- **Variants are naming convention, not schema.** `button-primary` / `button-primary-hover` / `button-primary-active` as sibling keys.
+- **ارجاع‌های توکن** از `{path.to.token}` استفاده می‌کنند (مثل `{colors.primary}`، `{rounded.md}`). کامپوننت‌ها می‌توانند به پریمیتیوها ارجاع بدهند؛ پریمیتیوها نمی‌توانند به یکدیگر ارجاع بدهند.
+- **رنگ‌ها هر رشتهٔ رنگیِ معتبر CSS را می‌پذیرند.** hex پیش‌فرضِ توصیه‌شده برای قابلیت حمل است، اما مقدار برجای `rgb()`، `hsl()`، `oklch()`، گسترهٔ رنگی وسیع یا رنگ مختلط را حفظ کن وقتی همان منبع ملاکِ پروژه است. بدون دلیل صریح، هرگز منبع حقیقت را دوپاره نکن.
+- **زیرتوکن‌های کامپوننت** به ۸ پراپرتی محدودند: `backgroundColor`، `textColor`، `typography`، `rounded`، `padding`، `size`، `height`، `width`. سایه‌ها، موشن، حلقه‌های فوکوس، backdrop-filter: هیچ‌کدام جا نمی‌شوند. آن‌ها را در سایدکار (sidecar) حمل کن (گام ۴ب).
+- **کلیدهای مقیاس باز هستند.** هر نامی را که پروژه از قبل به کار می‌برد استفاده کن (`oxblood-deep`، `surface-container-low`). به پیش‌فرض‌های Material تغییر نام نده.
+- **واریانت‌ها قرارداد نام‌گذاری‌اند، نه اسکیما.** `button-primary` / `button-primary-hover` / `button-primary-active` به‌عنوان کلیدهای هم‌سطح.
 
-## The markdown body: eight sections (canonical order)
+## بدنهٔ markdown: هشت بخش (ترتیب استاندارد)
 
 1. `## Overview`
 2. `## Colors`
@@ -59,75 +59,75 @@ Rules that matter:
 7. `## Components`
 8. `## Do's and Don'ts`
 
-Omit irrelevant sections rather than filling them with invented rules. Put responsive layout in Layout, depth in Elevation & Depth, radius and form language in Shapes, and per-component behavior in Components. Unknown sections are preserved by the format, but new visual guidance should use the canonical structure whenever it fits.
+بخش‌های بی‌ربط را حذف کن، به‌جای آنکه با قاعده‌های از خودساخته پُرشان کنی. چیدمان واکنش‌گرا را در Layout بگذار، عمق را در Elevation & Depth، شعاع و زبان فرم را در Shapes، و رفتار هر کامپوننت را در Components. بخش‌های ناشناخته توسط فرمت حفظ می‌شوند، اما راهنمای بصریِ جدید هر جا که مناسب است از ساختار استاندارد استفاده کند.
 
-## When to run
+## چه زمانی اجرا شود
 
-- New-work found a coherent incumbent visual system but no `DESIGN.md`.
-- The first implementation of a new world is complete and its provisional decisions need to be carbonized.
-- An existing `DESIGN.md` is stale (the design has drifted).
-- Before a large redesign, to capture the current state as a reference.
+- new-work یک سیستم بصری برجای منسجم یافته اما `DESIGN.md` وجود ندارد.
+- اولین پیاده‌سازیِ جهان جدید کامل شده و تصمیم‌های موقتش باید تثبیت و ماندگار شوند.
+- `DESIGN.md` موجود کهنه شده است (طراحی از آن فاصله (drift) گرفته).
+- قبل از یک بازطراحی بزرگ، برای ثبت وضعیت فعلی به‌عنوان مرجع.
 
-If a `DESIGN.md` already exists, **do not silently overwrite it**. Show the user the existing file first. {{ask_instruction}} The choice is refresh, overwrite, or merge.
+اگر `DESIGN.md` از قبل وجود دارد، **بی‌سروصدا بازنویسی‌اش نکن**. اول فایل موجود را به کاربر نشان بده. {{ask_instruction}} انتخاب میان بازسازی (refresh)، بازنویسی کامل (overwrite) یا ادغام (merge) است.
 
-## Two paths
+## دو مسیر
 
-- **Scan mode** (default): the project has design tokens, components, or rendered output. Extract, then confirm descriptive language. Use when there's code to analyze.
-- **Seed mode**: the project is pre-implementation. Ensure PRODUCT.md exists, then reuse new-work's visual-world workshop and write its directional DESIGN.md seed. Re-run in scan mode once there's code.
+- **حالت اسکن** (پیش‌فرض): پروژه توکن طراحی، کامپوننت یا خروجی رندرشده دارد. استخراج کن، بعد زبان توصیفی را تأیید بگیر. وقتی کدی برای تحلیل هست استفاده شود.
+- **حالت بذر (seed)**: پروژه هنوز پیش از پیاده‌سازی است. موجود بودن PRODUCT.md را مطمئن شو، بعد کارگاه جهان بصریِ new-work را دوباره به کار بگیر و بذرِ جهت‌دارِ DESIGN.md را بنویس. وقتی کد وجود داشت، در حالت اسکن دوباره اجرا کن.
 
-Decide by scanning first (Scan mode Step 1). If the scan finds no tokens, no component files, and no rendered site, offer seed mode; don't silently switch. `/impeccable document --seed` requests new-work's world workshop, but it does not authorize replacing coherent code: when an incumbent system exists, offer scan mode or route an explicit identity-replacement request through new-work.
+تصمیم را با اسکن اولیه بگیر (گام ۱ حالت اسکن). اگر اسکن نه توکنی یافت، نه فایل کامپوننتی و نه سایتِ رندرشده‌ای، حالت بذر را پیشنهاد بده؛ بی‌سروصدا سوییچ نکن. `/jala document --seed` کارگاه جهانِ new-work را درخواست می‌کند، اما مجوزِ جایگزین‌کردن کدِ منسجم نیست: وقتی سیستمی برجا وجود دارد، حالت اسکن را پیشنهاد بده یا درخواست صریحِ جایگزینی هویت را به new-work ارجاع بده.
 
-## Scan mode (approach C: auto-extract, then confirm descriptive language)
+## حالت اسکن (رویکرد C: استخراج خودکار، سپس تأیید زبان توصیفی)
 
-### Step 1: Find the design assets
+### گام ۱: پیدا کردن دارایی‌های طراحی
 
-Search the codebase in priority order:
+کدبیس را به ترتیب اولویت جست‌وجو کن:
 
-1. **CSS custom properties**: grep for `--color-`, `--font-`, `--spacing-`, `--radius-`, `--shadow-`, `--ease-`, `--duration-` declarations in CSS files (usually `src/styles/`, `public/css/`, `app/globals.css`, etc.). Record name, value, and the file it's defined in.
-2. **Tailwind config**: if `tailwind.config.{js,ts,mjs}` exists, read the `theme.extend` block for colors, fontFamily, spacing, borderRadius, boxShadow.
-3. **CSS-in-JS theme files**: styled-components, emotion, vanilla-extract, stitches; look for `theme.ts`, `tokens.ts`, or equivalent.
-4. **Design token files**: `tokens.json`, `design-tokens.json`, Style Dictionary output, W3C token community group format.
-5. **Component library**: scan the main button, card, input, navigation, dialog components. Note their variant APIs and default styles.
-6. **Global stylesheet**: the root CSS file usually has the base typography and color assignments.
-7. **Visible rendered output**: if browser automation tools are available, load the live site and sample computed styles from key elements (body, h1, a, button, .card). This catches values that tokens miss.
+1. **CSS custom propertyها**: در فایل‌های CSS دنبال اعلان‌های `--color-`، `--font-`، `--spacing-`، `--radius-`، `--shadow-`، `--ease-`، `--duration-` بگرد (معمولاً `src/styles/`، `public/css/`، `app/globals.css` و مانند آن‌ها). نام، مقدار و فایلی که در آن تعریف شده را ثبت کن.
+2. **کانفیگ Tailwind**: اگر `tailwind.config.{js,ts,mjs}` وجود دارد، بلاک `theme.extend` را برای colors، fontFamily، spacing، borderRadius و boxShadow بخوان.
+3. **فایل‌های تم CSS-in-JS**: styled-components، emotion، vanilla-extract، stitches؛ دنبال `theme.ts`، `tokens.ts` یا معادلشان بگرد.
+4. **فایل‌های توکن طراحی**: `tokens.json`، `design-tokens.json`، خروجی Style Dictionary، فرمت گروه کامیونیتیِ توکن W3C.
+5. **کتابخانهٔ کامپوننت**: کامپوننت‌های اصلی button، card، input، navigation و dialog را اسکن کن. API واریانت‌ها و استایل‌های پیش‌فرضشان را یادداشت کن.
+6. **استایل‌شیت سراسری**: فایل CSS ریشه معمولاً تایپوگرافی پایه و تخصیص‌های رنگ را دارد.
+7. **خروجی رندرشدهٔ قابل‌دید**: اگر ابزارهای اتوماسیون مرورگر در دسترس است، سایت زنده را لود کن و استایل‌های computed را از عناصر کلیدی (body، h1، a، button، .card) نمونه‌برداری کن. این کار مقادیری را می‌گیرد که از توکن‌ها جا می‌مانند.
 
-### Step 2: Auto-extract what can be auto-extracted
+### گام ۲: استخراج خودکارِ هرچه را می‌توان خودکار استخراج کرد
 
-Build a structured draft from the discovered tokens. For each token class:
+از توکن‌های کشف‌شده یک پیش‌نویس ساختارمند بساز. برای هر کلاس توکن:
 
-- **Colors**: Group into Primary / Secondary / Tertiary / Neutral (the Material-derived roles Stitch uses). If the project only has one accent, express it as Primary + Neutral; omit Secondary and Tertiary rather than inventing them.
-- **Typography**: Map observed sizes and weights to the Material hierarchy (display / headline / title / body / label). Note font-family stacks and the scale ratio.
-- **Elevation**: Catalogue the shadow vocabulary. If the project is flat and uses tonal layering instead, that's a valid answer; state it explicitly.
-- **Components**: For each common component (button, card, input, chip, list item, tooltip, nav), extract shape (radius), color assignment, hover/focus treatment, internal padding.
-- **Layout + spacing**: Extract grid, container, breakpoint, rhythm, and density behavior into Layout.
-- **Shapes**: Extract radius, corner, border, clipping, and recurring form behavior into Shapes.
+- **رنگ‌ها**: در گروه‌های Primary / Secondary / Tertiary / Neutral دسته‌بندی کن (نقش‌های برگرفته از Material که Stitch به کار می‌برد). اگر پروژه فقط یک رنگ تأکیدی دارد، آن را Primary + Neutral ابراز کن؛ Secondary و Tertiary را از خودنساز و حذفشان کن.
+- **تایپوگرافی**: اندازه‌ها و وزن‌های مشاهده‌شده را به سلسله‌مراتب Material نگاشت کن (display / headline / title / body / label). استک‌های font-family و نسبت مقیاس را یادداشت کن.
+- **برجستگی**: واژگان سایه‌ها را فهرست‌برداری کن. اگر پروژه تخت است و به‌جایش لایه‌بندی تونال به کار می‌برد، این هم پاسخ معتبری است؛ صریح بگو.
+- **کامپوننت‌ها**: برای هر کامپوننت رایج (button، card، input، chip، list item، tooltip، nav)، شکل (شعاع)، تخصیص رنگ، پردازش هاور/فوکوس و پدینگ داخلی را استخراج کن.
+- **چیدمان و فاصله‌گذاری**: رفتار گرید، کانتینر، بریک‌پوینت، ریتم و چگالی را در Layout استخراج کن.
+- **فرم‌ها**: شعاع، گوشه، بوردر، برش و رفتار فرمِ تکرارشونده را در Shapes استخراج کن.
 
-### Step 2b: Stage the frontmatter
+### گام ۲ب: آماده‌سازی فرانت‌متر
 
-From the auto-extracted tokens, draft the YAML frontmatter now (you'll write it at the top of DESIGN.md in Step 4). This is the machine-readable layer: what the live panel and Stitch's linter consume.
+از توکن‌های استخراج‌شدهٔ خودکار، همان حالا پیش‌نویس فرانت‌متر YAML را آماده کن (در گام ۴ آن را بالای DESIGN.md می‌نویسی). این لایهٔ ماشین‌خوان است: چیزی که پنل زنده و لینترِ Stitch مصرف می‌کنند.
 
-- **Colors**: one entry per extracted color. Key = descriptive slug (`oxblood-deep`, `editorial-magenta`, not `blue-800`). Value = whichever format the project treats as canonical (OKLCH or hex; see the frontmatter rules above). Don't split the source of truth: one format in the frontmatter, don't redefine the same token in prose with a different value.
-- **Typography**: one entry per role (`display`, `headline`, `title`, `body`, `label`). Typography is an object; include only the props that are real for the project (`fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `fontFeature`, `fontVariation`).
-- **Rounded / Spacing**: whatever scale steps the project actually uses, keyed by whatever scale name the project uses (`sm` / `md` / `lg`, or `surface-sm`, or numeric steps).
-- **Components**: one entry per variant (`button-primary`, `button-primary-hover`, `button-ghost`). Reference primitives via `{colors.X}`, `{rounded.Y}`. If a variant needs a property Stitch's 8-prop set doesn't cover (shadow, focus ring, backdrop-filter), carry the full snippet in the sidecar instead.
+- **رنگ‌ها**: به ازای هر رنگ استخراج‌شده یک مدخل. کلید = اسلاگ توصیفی (`oxblood-deep`، `editorial-magenta`، نه `blue-800`). مقدار = هر فرمتی که پروژه آن را ملاک می‌داند (OKLCH یا hex؛ قواعد فرانت‌متر را در بالا ببین). منبع حقیقت را دوپاره نکن: در فرانت‌متر یک فرمت، و همان توکن را در نثر با مقداری متفاوت بازتعریف نکن.
+- **تایپوگرافی**: به ازای هر نقش یک مدخل (`display`، `headline`، `title`، `body`، `label`). تایپوگرافی یک آبجکت است؛ فقط پراپرتی‌هایی را بیاور که برای پروژه واقعی‌اند (`fontFamily`، `fontSize`، `fontWeight`، `lineHeight`، `letterSpacing`، `fontFeature`، `fontVariation`).
+- **Rounded / Spacing**: هر پله‌ای از مقیاس که پروژه واقعاً استفاده می‌کند، با هر نام مقیاسی که پروژه به کار می‌برد (`sm` / `md` / `lg`، یا `surface-sm`، یا پله‌های عددی).
+- **کامپوننت‌ها**: به ازای هر واریانت یک مدخل (`button-primary`، `button-primary-hover`، `button-ghost`). پریمیتیوها را با `{colors.X}` و `{rounded.Y}` ارجاع بده. اگر واریانتی به پراپرتی‌ای نیاز دارد که مجموعهٔ ۸ پراپرتیِ Stitch پوشش نمی‌دهد (سایه، حلقهٔ فوکوس، backdrop-filter)، اسنیپت کامل را به‌جایش در سایدکار حمل کن.
 
-Skip anything the project doesn't have. Empty scale keys or fabricated tokens pollute the spec.
+هرچه پروژه ندارد را رد کن. کلیدهای مقیاسِ خالی یا توکن‌های ساختگی اسپک را آلوده می‌کنند.
 
-### Step 3: Ask the user for qualitative language
+### گام ۳: پرسیدن زبان کیفی از کاربر
 
-The following require creative input that cannot be auto-extracted. Ask them in two structured rounds of no more than three questions each (or the harness's lower limit), waiting between rounds:
+موارد زیر ورودی خلاقانه می‌خواهند که با استخراج خودکار به دست نمی‌آید. آن‌ها را در دو دورِ ساختارمندِ حداکثر سه‌سؤالی بپرس (یا سقف پایین‌ترِ هارنس) و میان دورها صبر کن:
 
-- **Creative North Star**: a single named metaphor for the whole system ("The Editorial Sanctuary", "The Golden State Curator", "The Lab Notebook"). Offer 2-3 options that honor PRODUCT.md's brand personality.
-- **Overview voice**: mood adjectives, aesthetic philosophy in 2-3 sentences, and any confirmed visual anti-reference.
-- **Color character** (for auto-extracted colors): descriptive names ("Deep Muted Teal-Navy", not "blue-800"). Suggest 2-3 options per key color based on hue/saturation.
-- **Elevation philosophy**: flat/layered/lifted. If shadows exist, is their role ambient or structural?
-- **Component philosophy**: the feel of buttons, cards, inputs in one phrase ("tactile and confident" vs. "refined and restrained").
+- **ستارهٔ قطبی خلاقانه (Creative North Star)**: یک استعارهٔ نام‌دار واحد برای کل سیستم ("The Editorial Sanctuary"، "The Golden State Curator"، "The Lab Notebook"). ۲ تا ۳ گزینه پیشنهاد بده که به شخصیت برند در PRODUCT.md وفادار باشند.
+- **صدای Overview**: صفت‌های حال‌وهوا، فلسفهٔ زیبایی‌شناختی در ۲ تا ۳ جمله، و هر ضد-مرجع بصریِ تأییدشده.
+- **شخصیت رنگ** (برای رنگ‌های استخراج‌شدهٔ خودکار): نام‌های توصیفی ("فیروزه‌ای-سرمه‌ایِ عمیق و کم‌جان"، نه "blue-800"). برای هر رنگ کلیدی ۲ تا ۳ گزینه بر پایهٔ رنگ‌مایه/اشباع پیشنهاد بده.
+- **فلسفهٔ برجستگی**: تخت/لایه‌ای/بالابرده. اگر سایه وجود دارد، نقشش محیطی است یا ساختاری؟
+- **فلسفهٔ کامپوننت‌ها**: حس دکمه‌ها، کارت‌ها و فیلدها در یک عبارت ("لمسی و مطمئن" در برابر "ظریف و خوددار").
 
-Carry a line from PRODUCT.md only when it is a durable brand commitment that actually constrains the visual system. Page strategy and surface concepts do not belong here.
+جمله‌ای از PRODUCT.md را فقط وقتی بیاور که تعهدی ماندگار از برند باشد و واقعاً سیستم بصری را مقید کند. راهبرد صفحه و مفاهیم سطح به این‌جا تعلق ندارند.
 
-### Step 4: Write DESIGN.md
+### گام ۴: نوشتن DESIGN.md
 
-The file opens with the YAML frontmatter staged in Step 2b (schema documented at the top of this reference), then the markdown body using the canonical structure below.
+فایل با فرانت‌متر YAMLِ آماده‌شده در گام ۲ب (اسکیمایش در بالای همین مرجع مستند شده) آغاز می‌شود، سپس بدنهٔ markdown با ساختار استاندارد زیر.
 
 ```markdown
 ---
@@ -137,124 +137,125 @@ colors:
   # ... staged frontmatter from Step 2b
 ---
 
-# Design System: [Project Title]
+# سیستم طراحی: [عنوان پروژه]
 
-## Overview
+## نمای کلی
 
-**Creative North Star: "[Named metaphor in quotes]"**
+**ستارهٔ شمالی خلاقیت: «استعارهٔ نام‌دار در گیومه»**
 
-[2-3 paragraph holistic description: personality, density, and aesthetic philosophy. Start from the North Star and work outward. State only confirmed visual rejections. End with a short **Key Characteristics:** bullet list.]
+[توصیف کلانِ ۲ تا ۳ پاراگرافی: شخصیت، تراکم و فلسفهٔ زیبایی‌شناسی. از ستارهٔ شمالی شروع کن و بیرون برو. فقط ردهای بصریِ تثبیت‌شده را اعلام کن. با یک فهرست کوتاه **ویژگی‌های کلیدی:** تمام کن.]
 
-## Colors
+## رنگ‌ها
 
-[Describe the palette character in one sentence.]
+[شخصیت پالت را در یک جمله توصیف کن.]
 
-### Primary
-- **[Descriptive Name]** (#HEX / oklch(...)): [Where and why this color is used. Be specific about context, not just role.]
+### اصلی
+- **[نام توصیفی]** (#HEX / oklch(...)): [کجا و چرا این رنگ استفاده می‌شود. دربارهٔ بافت مشخص باش، نه فقط نقش.]
 
-### Secondary (optional; omit if the project has only one accent)
-- **[Descriptive Name]** (#HEX): [Role.]
+### ثانویه (اختیاری؛ اگر پروژه فقط یک رنگ تاکیدی دارد حذف کن)
+- **[نام توصیفی]** (#HEX): [نقش.]
 
-### Tertiary (optional)
-- **[Descriptive Name]** (#HEX): [Role.]
+### سوم (اختیاری)
+- **[نام توصیفی]** (#HEX): [نقش.]
 
-### Neutral
-- **[Descriptive Name]** (#HEX): [Text / background / border / divider role.]
+### خنثی
+- **[نام توصیفی]** (#HEX): [نقش متن / پس‌زمینه / حاشیه / جداکننده.]
 - [...]
 
-### Named Rules (optional, powerful)
-**The [Rule Name] Rule.** [Short, forceful prohibition or doctrine, e.g. "The One Voice Rule. The primary accent is used on ≤10% of any given screen. Its rarity is the point."]
+### قواعد نام‌دار (اختیاری، قدرتمند)
+**قاعدهٔ [نام قاعده].** [ممنوعیت یا دکترین کوتاه و قاطع، مثلاً «قاعدهٔ یک‌صدا. رنگ تاکیدی اصلی روی حداکثر ۱۰٪ هر صفحه استفاده می‌شود. کمیابی‌اش همان نکته است.»]
 
-## Typography
+## تایپوگرافی
 
-**Display Font:** [Family] (with [fallback])
-**Body Font:** [Family] (with [fallback])
-**Label/Mono Font:** [Family, if distinct]
+**فونت نمایشی:** [خانواده] (با [fallback])
+**فونت بدنه:** [خانواده] (با [fallback])
+**فونت لیبل/مونو:** [خانواده، اگر جدا است]
 
-**Character:** [1-2 sentence personality description of the pairing.]
+**شخصیت:** [توصیف شخصیتِ جفت‌فونت در ۱-۲ جمله.]
 
-### Hierarchy
-- **Display** ([weight], [size/clamp], [line-height]): [Purpose; where it appears.]
-- **Headline** ([weight], [size], [line-height]): [Purpose.]
-- **Title** ([weight], [size], [line-height]): [Purpose.]
-- **Body** ([weight], [size], [line-height]): [Purpose. Include max line length like 65–75ch if relevant.]
-- **Label** ([weight], [size], [letter-spacing], [case if uppercase]): [Purpose.]
+### سلسله‌مراتب
+- **نمایشی** ([وزن], [سایز/clamp], [ارتفاع خط]): [هدف؛ کجا ظاهر می‌شود.]
+- **تیتر** ([وزن], [سایز], [ارتفاع خط]): [هدف.]
+- **عنوان** ([وزن], [سایز], [ارتفاع خط]): [هدف.]
+- **بدنه** ([وزن], [سایز], [ارتفاع خط]): [هدف. اگر مربوط است طول بیشینهٔ خط مثل ۶۵–۷۵ch را بیاور.]
+- **لیبل** ([وزن], [سایز], [فاصلهٔ حروف], [حالت اگر بزرگ‌نویس]): [هدف.]
+- روی سطوح فارسی: ارتفاع خط بدنه ۱٫۷ تا ۲٫۱، کف بدنه ۱۵–۱۶px، فونت فارسی (وزیرمتن/استعداد یا فونت مصوب برند) — ببین fa-typography.md.
 
-### Named Rules (optional)
-**The [Rule Name] Rule.** [Short doctrine about type use.]
+### قواعد نام‌دار (اختیاری)
+**قاعدهٔ [نام قاعده].** [دکترین کوتاه دربارهٔ استفاده از تایپ.]
 
-## Layout
+## چیدمان
 
-[Describe the grid or spatial model, container behavior, density, responsive changes, and the spacing rhythm. Include exact values only when observed.]
+[گرید یا مدل فضایی، رفتار ظرف، تراکم، تغییرهای واکنش‌گرا و ریتم فاصله‌گذاری را توصیف کن. مقدارهای دقیق را فقط وقتی بیاور که مشاهده شده‌اند.]
 
-## Elevation & Depth
+## ارتفاع و عمق
 
-[One paragraph: does this system use shadows, tonal layering, or a hybrid? If "no shadows", say so explicitly and describe how depth is conveyed instead.]
+[یک پاراگراف: این سیستم از سایه استفاده می‌کند، لایه‌بندی تونال، یا ترکیبی؟ اگر «بدون سایه» است صریح بگو و توضیح بده عمق چطور منتقل می‌شود.]
 
-### Shadow Vocabulary (if applicable)
-- **[Role name]** (`box-shadow: [exact value]`): [When to use it.]
+### واژه‌نامهٔ سایه (در صورت لزوم)
+- **[نام نقش]** (`box-shadow: [مقدار دقیق]`): [کی استفاده می‌شود.]
 - [...]
 
-### Named Rules (optional)
-**The [Rule Name] Rule.** [e.g. "The Flat-By-Default Rule. Surfaces are flat at rest. Shadows appear only as a response to state (hover, elevation, focus)."]
+### قواعد نام‌دار (اختیاری)
+**قاعدهٔ [نام قاعده].** [مثلاً «قاعدهٔ تخت-به‌صورت-پیش‌فرض. سطوح در حالت آرام تخت‌اند. سایه‌ها فقط در پاسخ به حالت ظاهر می‌شوند (هاور، ارتفاع، فوکوس).»]
 
-## Shapes
+## شکل‌ها
 
-[Describe the form language: corner/radius strategy, borders, clipping, and any recurring silhouette or geometry.]
+[زبانِ فرم را توصیف کن: راهبرد گوشه/شعاع، حاشیه‌ها، برش‌ها، و هر سیلوئت یا هندسهٔ تکرارشونده.]
 
-## Components
+## کامپوننت‌ها
 
-For each component, lead with a short character line, then specify shape, color assignment, states, and any distinctive behavior.
+برای هر کامپوننت، اول یک خطِ کوتاهِ شخصیت‌ساز بیاور، بعد شکل، تخصیص رنگ، حالت‌ها و هر رفتار متمایز را مشخص کن.
 
-### Buttons
-- **Shape:** [radius described, exact value in parens]
-- **Primary:** [color assignment + padding, in semantic + exact terms]
-- **Hover / Focus:** [transitions, treatments]
-- **Secondary / Ghost / Tertiary (if applicable):** [brief description]
+### دکمه‌ها
+- **شکل:** [شعاع توصیف‌شده، مقدار دقیق در پرانتز]
+- **اصلی:** [تخصیص رنگ + پدینگ، به زبان معنایی و دقیق]
+- **هاور / فوکوس:** [ترنزیشن‌ها، پرداخت‌ها]
+- **ثانویه / شبح / سوم (در صورت وجود):** [توصیف کوتاه]
 
-### Chips (if used)
-- **Style:** [background, text color, border treatment]
-- **State:** [selected / unselected, filter / action variants]
+### چیپ‌ها (در صورت استفاده)
+- **استایل:** [پس‌زمینه، رنگ متن، پرداخت حاشیه]
+- **حالت:** [انتخاب‌شده / انتخاب‌نشده، واریانت فیلتر / کنش]
 
-### Cards / Containers
-- **Corner Style:** [radius]
-- **Background:** [colors used]
-- **Shadow Strategy:** [reference Elevation section]
-- **Border:** [if any]
-- **Internal Padding:** [scale]
+### کارت‌ها / ظرف‌ها
+- **سبک گوشه:** [شعاع]
+- **پس‌زمینه:** [رنگ‌های استفاده‌شده]
+- **راهبرد سایه:** [ارجاع به بخش ارتفاع و عمق]
+- **حاشیه:** [در صورت وجود]
+- **پدینگ داخلی:** [مقیاس]
 
-### Inputs / Fields
-- **Style:** [stroke, background, radius]
-- **Focus:** [treatment, e.g. glow, border shift, etc.]
-- **Error / Disabled:** [if applicable]
+### ورودی‌ها / فیلدها
+- **استایل:** [خط دور، پس‌زمینه، شعاع]
+- **فوکوس:** [پرداخت، مثلاً درخشش، جابه‌جایی حاشیه و...]
+- **خطا / غیرفعال:** [در صورت وجود]
 
-### Navigation
-- **Style, typography, default/hover/active states, mobile treatment.**
+### ناوبری
+- **استایل، تایپوگرافی، حالت‌های پیش‌فرض/هاور/فعال، پرداخت موبایل.**
 
-### [Signature Component] (optional; if the project has a distinctive custom component worth documenting)
-[Description.]
+### [کامپوننت امضادار] (اختیاری؛ اگر پروژه کامپوننت سفارشیِ متمایزی دارد که ارزش مستندکردن دارد)
+[توصیف.]
 
-## Do's and Don'ts
+## بایدها و نبایدها
 
-Concrete visual guardrails grounded in the incumbent implementation or the user's chosen world. Lead each with "Do" or "Don't" and include exact values only when established. Do not turn a task-specific concept or surface strategy into a system-wide prohibition.
+حفاظ‌های بصریِ مشخص که در پیاده‌سازی برجا یا جهانِ انتخابیِ کاربر زمین‌گیر شده‌اند. هر مورد را با «باید» یا «نباید» شروع کن و مقدارهای دقیق را فقط وقتی بیاور که تثبیت شده‌اند. مفهومِ مخصوصِ یک کار یا راهبردِ مخصوصِ یک سطح را به ممنوعیتِ سراسری تبدیل نکن.
 
-### Do:
-- **Do** [specific prescription with exact values / named rule].
-- **Do** [...]
+### باید:
+- **باید** [تجویز مشخص با مقدارهای دقیق / قاعدهٔ نام‌دار].
+- **باید** [...]
 
-### Don't:
-- **Don't** [specific prohibition confirmed by the incumbent system or the user].
-- **Don't** [...]
-- **Don't** [...]
+### نباید:
+- **نباید** [ممنوعیت مشخص که سیستم برجا یا کاربر تأییدش کرده].
+- **نباید** [...]
+- **نباید** [...]
 ```
 
-### Step 4b: Write .impeccable/design.json sidecar (extensions only)
+### گام ۴ب: نوشتن سایدکار `.impeccable/design.json` (فقط extensions)
 
-The frontmatter owns token primitives (colors, typography, rounded, spacing, components). The sidecar at `.impeccable/design.json` carries **what Stitch's schema can't hold**: tonal ramps per color, shadow/elevation tokens, motion tokens, breakpoints, full component HTML/CSS snippets (the panel renders these into a shadow DOM), and narrative (north star, rules, do's/don'ts). It extends the frontmatter, it doesn't duplicate it.
+فرانت‌متر مالک توکن‌های اولیه است (colors، typography، rounded، spacing، components). سایدکار در `.impeccable/design.json` **آنچه اسکیمای Stitch نمی‌تواند نگه دارد** را حمل می‌کند: رمپ تونالِ هر رنگ، توکن‌های سایه/برجستگی، توکن‌های موشن، بریک‌پوینت‌ها، اسنیپت‌های کامل HTML/CSS کامپوننت‌ها (پنل این‌ها را درون shadow DOM رندر می‌کند) و روایت (ستارهٔ قطبی، قاعده‌ها، بایدها/نبایدها). سایدکار فرانت‌متر را گسترش می‌دهد، نه اینکه تکرارش کند.
 
-Regenerate the sidecar whenever you regenerate root `DESIGN.md`. If the user only asks to refresh the sidecar (e.g., from the live panel's stale-hint), preserve `DESIGN.md` and write only `.impeccable/design.json`.
+هر بار `DESIGN.md` ریشه را از نو تولید کردی، سایدکار را هم بازتولید کن. اگر کاربر فقط به‌روزرسانی سایدکار را خواست (مثلاً از راه هشدار کهنگیِ پنل زنده)، `DESIGN.md` را حفظ کن و فقط `.impeccable/design.json` را بنویس.
 
-#### Schema
+#### اسکیما
 
 ```json
 {
@@ -300,117 +301,117 @@ Regenerate the sidecar whenever you regenerate root `DESIGN.md`. If the user onl
 }
 ```
 
-**What changed from schemaVersion 1.** The old sidecar carried token primitive arrays (`tokens.colors[]`, `tokens.typography[]`, etc.). Those values now live in the frontmatter. The sidecar only carries metadata that can't live in the frontmatter (tonal ramps, canonical OKLCH when the hex is an approximation, display names, role hints), keyed by the frontmatter token name (`colorMeta.<token-name>`, `typographyMeta.<token-name>`). Components still carry full HTML/CSS because Stitch's 8-prop set can't hold them.
+**آنچه نسبت به schemaVersion 1 تغییر کرد.** سایدکار قدیمی آرایه‌های توکن اولیه را حمل می‌کرد (`tokens.colors[]`، `tokens.typography[]` و مانند آن‌ها). آن مقادیر حالا در فرانت‌متر زندگی می‌کنند. سایدکار فقط متادیتایی را حمل می‌کند که در فرانت‌متر جا نمی‌شود (رمپ‌های تونال، OKLCH قطعی وقتی hex تقریب است، نام‌های نمایشی، راهنمای نقش)، با کلیدِ نام توکنِ فرانت‌متر (`colorMeta.<token-name>`، `typographyMeta.<token-name>`). کامپوننت‌ها همچنان HTML/CSS کامل را حمل می‌کنند، چون مجموعهٔ ۸ پراپرتیِ Stitch ظرفیتش را ندارد.
 
-#### Component translation rules
+#### قواعد تبدیل کامپوننت
 
-The `html` and `css` fields must be **self-contained, drop-in snippets** that render correctly when injected into a shadow DOM. The panel applies them directly: no post-processing, no framework runtime.
+فیلدهای `html` و `css` باید **اسنیپت‌های خودکفا و آمادهٔ درج** باشند که هنگام تزریق به shadow DOM درست رندر شوند. پنل آن‌ها را مستقیم اعمال می‌کند: بدون پس‌پردازش، بدون رانتیم فریم‌ورک.
 
-1. **Tailwind expansion.** If the source uses Tailwind (className="bg-primary text-white rounded-lg px-6 py-3"), expand every utility to literal CSS properties in the `css` string. Do **not** reference Tailwind classes; do **not** assume a Tailwind CSS bundle is loaded. Each component is self-contained.
-2. **Token resolution.** If the project exposes tokens as CSS custom properties on `:root` (e.g. `--color-primary`, `--radius-md`), reference them via `var(--color-primary)`; they inherit through the shadow DOM and stay live-bound. If tokens live only in JS theme objects (styled-components, CSS-in-JS), resolve to literal values at generation time.
-3. **Icons.** Inline as SVG. Do not reference Lucide/Heroicons packages, icon fonts, or `<img src="...">`. A typical icon is 16-24px; copy the SVG path data directly.
-4. **States.** Include `:hover`, `:focus-visible`, and (if meaningful) `:active` rules inline. A static default-only snapshot makes the panel feel dead. Hover + focus rules in the CSS make it feel alive.
-5. **Reset bloat.** Extract only the component's *distinctive* CSS (background, color, padding, border-radius, typography, transition). Skip universal resets (`box-sizing: border-box`, `line-height: inherit`, `-webkit-font-smoothing`). The panel already has a neutral canvas; don't re-ship resets.
-6. **Scoped class names.** Prefix every class with `ds-` (e.g. `ds-btn-primary`, `ds-input-search`) so component CSS doesn't collide with other components' CSS in the same shadow DOM.
+1. **بازکردن کلاس‌های Tailwind.** اگر مبدأ از Tailwind استفاده می‌کند (className="bg-primary text-white rounded-lg px-6 py-3")، هر utility را در رشتهٔ `css` به پراپرتی‌های عینیِ CSS باز کن. **هرگز** به کلاس‌های Tailwind ارجاع نده؛ **هرگز** فرض نکن باندل CSSِ Tailwind لود شده است. هر کامپوننت خودکفاست.
+2. **حل توکن‌ها.** اگر پروژه توکن‌ها را به‌شکل CSS custom property روی `:root` عرضه می‌کند (مثلاً `--color-primary`، `--radius-md`)، با `var(--color-primary)` ارجاعشان بده؛ درون shadow DOM به ارث می‌رسند و اتصال زنده‌شان حفظ می‌شود. اگر توکن‌ها فقط در آبجکت‌های تمِ JS زندگی می‌کنند (styled-components، CSS-in-JS)، هنگام تولید به مقادیر عینی حلشان کن.
+3. **آیکون‌ها.** به‌صورت SVG اینلاین کن. به پکیج‌های Lucide/Heroicons، فونت‌های آیکونی یا `<img src="...">` ارجاع نده. آیکون معمولی ۱۶ تا ۲۴ پیکسل است؛ دادهٔ مسیر SVG را مستقیم کپی کن.
+4. **حالت‌ها.** قواعد `:hover`، `:focus-visible` و (اگر معنا دارد) `:active` را اینلاین بیاور. اسنپ‌شاتِ ایستا با فقط حالت پیش‌فرض، پنل را بی‌جان نشان می‌دهد. قواعد هاور + فوکوس در CSS به پنل حس زندگی می‌دهد.
+5. **حجم اضافهٔ ریست.** فقط CSS متمایزِ کامپوننت را استخراج کن (background، color، padding، border-radius، typography، transition). ریست‌های عمومی (`box-sizing: border-box`، `line-height: inherit`، `-webkit-font-smoothing`) را رد کن. پنل از قبل بوم خنثی دارد؛ ریست‌ها را دوباره تکرار نکن.
+6. **نام کلاس‌های اسکوپ‌شده.** هر کلاس را با پیشوند `ds-` بساز (مثل `ds-btn-primary`، `ds-input-search`) تا CSS کامپوننت‌ها با CSS بقیهٔ کامپوننت‌ها در همان shadow DOM تزاحم نکند.
 
-#### What to include
+#### چه چیزهایی را بیاوریم
 
-Aim for a tight set of **5-10 components** that best represent the visual system:
+یک مجموعهٔ جمع‌وجورِ **۵ تا ۱۰ کامپوننت** هدف بگیر که سیستم بصری را به بهترین شکل نمایندگی کند:
 
-- **Canonical primitives (always include if the project has them):** button (each variant as a separate component entry), input/text field, navigation, chip/tag, card.
-- **Signature components (include if distinctive):** the recurring custom patterns that actually define the implemented system.
-- **Skip the rest.** Utility components, form building blocks, wrapper layouts: not worth documenting unless visually distinctive.
+- **پریمیتیوهای استاندارد (اگر پروژه دارد، همیشه بیاور):** button (هر واریانت به‌عنوان یک مدخل جداگانه)، input/text field، navigation، chip/tag، card.
+- **کامپوننت‌های امضادار (اگر متمایزند بیاور):** الگوهای سفارشیِ تکرارشونده‌ای که واقعاً هویت سیستم پیاده‌سازی‌شده را می‌سازند.
+- **بقیه را رد کن.** کامپوننت‌های کاربردی، بلاک‌های سازندهٔ فرم و چیدمان‌های پوششی ارزش مستندسازی ندارند، مگر از نظر بصری متمایز باشند.
 
-If the project has **no component library yet** (bare landing page, new project), synthesize canonical primitives from the tokens using best-practice defaults consistent with the DESIGN.md's rules. Every `.impeccable/design.json` has *something* to render, even on day zero.
+اگر پروژه هنوز **کتابخانهٔ کامپوننت ندارد** (صفحهٔ فرودِ لخت، پروژهٔ تازه)، پریمیتیوهای استاندارد را از روی توکن‌ها با پیش‌فرض‌های بهترین‌رویه و هم‌خوان با قواعد DESIGN.md سنتز کن. هر `.impeccable/design.json` چیزی برای رندر کردن دارد، حتی در روز صفر.
 
-#### Tonal ramps
+#### رمپ‌های تونال
 
-For each color token, generate an 8-step `tonalRamp` array: dark to light, same hue, chroma reduced near white and black, stepped lightness from ~15% to ~95%. The panel renders this as a strip under the swatch. If the project already defines a tonal scale (Material `surface-container-low` family, Tailwind-style `blue-50..blue-900`), use those values. Otherwise synthesize in OKLCH.
+برای هر توکن رنگ، آرایهٔ `tonalRamp` هشت‌مرحله‌ای تولید کن: از تاریک به روشن، با همان رنگ‌مایه، با کرومای کاهش‌یافته نزدیک سفید و سیاه، و روشناییِ پله‌پله از حدود ۱۵٪ تا ۹۵٪. پنل این را به‌شکل نوار زیر سواچ (swatch) رندر می‌کند. اگر پروژه از قبل مقیاس تونال دارد (خانوادهٔ `surface-container-low` در Material، یا `blue-50..blue-900` به سبک Tailwind)، همان مقادیر را به کار ببر. وگرنه در OKLCH سنتز کن.
 
-#### Narrative mapping
+#### نگاشت روایت
 
-Pull directly from the DESIGN.md you just wrote:
+مستقیم از همان DESIGN.md که همین حالا نوشتی بردار:
 
-- `narrative.northStar` → the `**Creative North Star: "..."**` line from Overview
-- `narrative.overview` → the philosophy paragraphs from Overview
-- `narrative.keyCharacteristics` → the bulleted `**Key Characteristics:**` list
-- `narrative.rules` → every `**The [Name] Rule.** [body]` across all sections, tagged with `section`
-- `narrative.dos` / `narrative.donts` → the bullet lists from Do's and Don'ts verbatim
+- `narrative.northStar` → خط `**Creative North Star: "..."**` از Overview
+- `narrative.overview` → پاراگراف‌های فلسفه از Overview
+- `narrative.keyCharacteristics` → فهرست بولتِ `**Key Characteristics:**`
+- `narrative.rules` → هر `**The [Name] Rule.** [body]` در همهٔ بخش‌ها، با برچسبِ `section`
+- `narrative.dos` / `narrative.donts` → فهرست‌های بولتِ Do's and Don'ts، کلمه‌به‌کلمه
 
-Do not reword. The panel shows these as secondary collapsible context; the same voice that's in the Markdown carries through.
+بازنویسی نکن. پنل این‌ها را به‌عنوان بافتِ ثانویهٔ جمع‌شونده نشان می‌دهد؛ همان صدایی که در Markdown است، منتقل می‌شود.
 
-### Step 5: Confirm and refine
+### گام ۵: تأیید و پالایش
 
-1. Show the user the full DESIGN.md you wrote. Briefly highlight the non-obvious creative choices (descriptive color names, atmosphere language, named rules).
-2. Mention that `.impeccable/design.json` was also written alongside; the live panel will now render this project's actual button/input/nav primitives instead of generic approximations.
-3. Offer to refine any section: "Want me to revise a section, add component patterns I missed, or adjust the atmosphere language?"
+1. DESIGN.md کاملِ نوشته‌شده را به کاربر نشان بده. انتخاب‌های خلاقانهٔ غیربدیهی (نام‌های توصیفی رنگ، زبان حال‌وهوا، قاعده‌های نام‌دار) را کوتاه برجسته کن.
+2. بگو که `.impeccable/design.json` هم کنارش نوشته شده؛ پنل زنده از این پس پریمیتیوهای واقعیِ button/input/nav همین پروژه را رندر می‌کند، نه تقریب‌های عمومی را.
+3. پالایش هر بخش را پیشنهاد بده: «می‌خواهی بخشی را بازبینی کنم، الگوهای کامپوننتیِ جاافتاده را بیفزایم، یا زبان حال‌وهوا را تنظیم کنم؟»
 
-Your own write is the freshest source; subsequent commands in this session don't need a reload.
+نوشتهٔ خودت تازه‌ترین منبع است؛ فرمان‌های بعدی در همین نشست به reload نیاز ندارند.
 
-## Seed mode
+## حالت بذر
 
-For projects with no visual system to extract yet. Produces a user-chosen visual-world scaffold, not a fabricated token spec.
+برای پروژه‌هایی که هنوز سیستم بصری‌ای برای استخراج ندارند. داربستِ جهان بصریِ انتخاب‌شده توسط کاربر تولید می‌کند، نه اسپکِ توکنِ ساختگی.
 
-### Step 1: Route through new-work's workshop
+### گام ۱: مسیریابی از طریق کارگاه new-work
 
-PRODUCT.md is the prerequisite. If it is missing, load [init.md](init.md) and complete its product interview first. Do not create a visual identity without durable product context.
+پیش‌نیاز PRODUCT.md است. اگر نیست، [init.md](init.md) را لود کن و اول مصاحبهٔ محصولش را کامل کن. بدون بافت محصولِ ماندگار، هویت بصری نساز.
 
-If PRODUCT.md exists, load [new-work.md](new-work.md) and resolve visual authority. Seed mode requires a concrete first surface: use the target the user named, or ask what they want to make first. Run new-work's **Create or replace the visual world** flow, then **Commit the world**, so the visual world and its first expression are chosen together. Stop after the directional DESIGN.md seed and surface brief; do not implement. A structured simulated user counts as the user and must get the same choice.
+اگر PRODUCT.md هست، [new-work.md](new-work.md) را لود کن و تکلیف اقتدار بصری را روشن کن. حالت بذر به یک سطح اولِ مشخص نیاز دارد: هدفی را که کاربر نام برده به کار ببر، یا بپرس اول چه چیزی می‌خواهد بسازد. جریان **Create or replace the visual world** در new-work را اجرا کن، بعد **Commit the world** را، تا جهان بصری و نخستین ابراز آن با هم انتخاب شوند. بعد از بذرِ جهت‌دارِ DESIGN.md و بریف سطح، متوقف شو؛ پیاده‌سازی نکن. کاربر شبیه‌سازی‌شدهٔ ساختارمند هم‌ارز کاربر است و باید همان انتخاب را دریافت کند.
 
-If new-work already completed the workshop in this session, use its chosen direction directly. Do not ask again.
+اگر new-work کارگاه را همین نشست کامل کرده است، جهتِ انتخاب‌شده‌اش را مستقیم به کار ببر. دوباره نپرس.
 
-### Step 2: Write seed DESIGN.md
+### گام ۲: نوشتن DESIGN.md بذری
 
-Use the canonical section order from Scan mode. Populate the selected workshop direction and leave unresolved implementation facts as honest placeholders. The seed commits a world and its invariants; it does not pretend implementation tokens already exist.
+ترتیب استاندارد بخش‌ها از حالت اسکن را به کار ببر. جهتِ انتخاب‌شدهٔ کارگاه را درونش بنشان و حقایق حل‌نشدهٔ پیاده‌سازی را به‌شکل جای‌نگهدارهای صادقه رها کن. بذر به جهان و اصول تغییرناپذیرش تعهد می‌دهد؛ وانمود نمی‌کند که توکن‌های پیاده‌سازی از قبل وجود دارند.
 
-Lead the file with:
+فایل را با این آغاز کن:
 
 ```markdown
 <!-- SEED: established with the user before implementation; re-run /impeccable document once there's code to capture the actual tokens and components. -->
 ```
 
-Per-section guidance in seed mode:
+راهنمای هر بخش در حالت بذر:
 
-- **Overview**: the chosen design thesis, layout behavior, material character, imagery stance, motion grammar, and reusable signature. Keep the selected first-surface expression in its surface brief; do not promote its composition into the global world.
-- **Colors**: the selected palette strategy and roles. Include values only when the user, an existing asset, or new-work's exploration established them; otherwise mark them `[to be resolved during implementation]`.
-- **Typography**: the selected type character and role relationship. Include font names only when established; otherwise mark the pairing `[to be resolved during implementation]`.
-- **Layout**: the selected spatial grammar and responsive behavior, without pretending exact measurements are settled.
-- **Elevation & Depth**: the selected material and depth behavior, stated as an invariant rather than inferred from a generic preset.
-- **Shapes**: the selected form and corner language.
-- **Components**: omit entirely; no components exist yet.
-- **Do's and Don'ts**: record the durable guardrails confirmed during the world choice, not task-local refusals.
+- **Overview**: تز طراحیِ انتخاب‌شده، رفتار چیدمان، شخصیت متریال، موضع تصویرسازی، گرامر موشن و امضای بازاستفاده‌پذیر. ابراز سطح-اولِ انتخاب‌شده را در بریف سطحِ خودش نگه دار؛ ترکیب‌بندی‌اش را به جهانِ سراسری ترفیع نده.
+- **Colors**: راهبرد پالت و نقش‌های انتخاب‌شده. مقدارها را فقط وقتی بیاور که کاربر، asset موجود یا کاوشِ new-work آن‌ها را تثبیت کرده باشد؛ وگرنه `[to be resolved during implementation]` علامتشان بزن.
+- **Typography**: شخصیت تایپ و نسبت نقش‌های انتخاب‌شده. نام فونت‌ها را فقط وقتی بیاور که تثبیت شده‌اند؛ وگرنه جفت‌فونت را `[to be resolved during implementation]` علامت بزن.
+- **Layout**: گرامر فضایی و رفتار واکنش‌گرای انتخاب‌شده، بدون آنکه وانمود کنی اندازه‌های دقیق قطعی شده‌اند.
+- **Elevation & Depth**: متریال و رفتار عمقِ انتخاب‌شده، به‌عنوان اصلی تغییرناپذیر بیان شود، نه استنباط از یک پیش‌فرض عمومی.
+- **Shapes**: زبان فرم و گوشهٔ انتخاب‌شده.
+- **Components**: کلاً حذف شود؛ هنوز کامپوننتی وجود ندارد.
+- **Do's and Don'ts**: گاردریل‌های ماندگارِ تأییدشده در انتخاب جهان را ثبت کن، نه ممنوعیت‌های موضعیِ یک کارِ خاص.
 
-Seed mode writes a minimal frontmatter with `name` and `description` only; no colors, typography, rounded, spacing, or components yet. Real tokens land on the next Scan-mode run. Skip the `.impeccable/design.json` sidecar in seed mode for the same reason: nothing to render.
+حالت بذر فرانت‌متری کمینه فقط با `name` و `description` می‌نویسد؛ هنوز نه colors، نه typography، نه rounded، نه spacing و نه components. توکن‌های واقعی در اجرای بعدیِ حالت اسکن جای می‌گیرند. سایدکار `.impeccable/design.json` را هم در حالت بذر کنار بگذار، به همان دلیل: چیزی برای رندر کردن نیست.
 
-### Step 3: Confirm
+### گام ۳: تأیید
 
-1. Show the seed DESIGN.md. Call out that it is a seed (the marker is the literal commitment).
-2. Tell the user: "Re-run `/impeccable document` once you have some code. That pass will extract real tokens and generate the sidecar."
+1. DESIGN.md بذری را نشان بده. روشن کن که این یک بذر است (نشانگر، خودِ تعهد عینی است).
+2. به کاربر بگو: «وقتی کمی کد داشتی، `/jala document` را دوباره اجرا کن. آن اجرا توکن‌های واقعی را استخراج و سایدکار را تولید می‌کند.»
 
-Your own write is the freshest source; no reload needed.
+نوشتهٔ خودت تازه‌ترین منبع است؛ reload لازم نیست.
 
-## Style guidelines
+## رهنمودهای سبک
 
-- **Frontmatter first, prose second.** Tokens go in the YAML frontmatter; prose contextualizes them. Don't redefine a token value in two places; the frontmatter is normative.
-- **Carry only durable product constraints.** A binding logo, identity asset, accessibility need, or brand commitment from PRODUCT.md may constrain DESIGN.md. Surface strategy stays in its surface brief.
-- **Match the spec.** Use its eight canonical sections in order and omit any that are irrelevant. Put motion guidance with the world or component it affects rather than creating a token group the schema does not support.
-- **Descriptive > technical**: "Gently curved edges (8px radius)" > "rounded-lg". Include the technical value in parens, lead with the description.
-- **Functional > decorative**: for each token, explain WHERE and WHY it's used, not just WHAT it is.
-- **Exact values in parens**: hex codes, px/rem values, font weights; always the number in parens alongside the description.
-- **Use Named Rules**: `**The [Name] Rule.** [short doctrine]`. These are memorable, citable, and much stickier for AI consumers than bullet lists. Stitch's own outputs use them heavily ("The No-Line Rule", "The Ghost Border Fallback"). Aim for 1-3 per section.
-- **Be decisive where evidence is decisive.** Use hard language for actual invariants and softer language for provisional guidance.
-- **Use concrete audit tests only when they are grounded in the observed system or a confirmed user decision.** A one-sentence test beats a paragraph of principle.
-- **Reference PRODUCT.md selectively.** Product truth explains why the world fits; it does not supply page composition or a visual don't-list by default.
-- **Group colors by role**, not by hex-order or hue-order. Primary / Secondary / Tertiary / Neutral is the spec ordering.
+- **اول فرانت‌متر، بعد نثر.** توکن‌ها به فرانت‌متر YAML می‌روند؛ نثر بافتشان را فراهم می‌کند. مقدار یک توکن را در دو جا بازتعریف نکن؛ فرانت‌متر ملاک است.
+- **فقط قیود ماندگار محصول را حمل کن.** لوگوی الزام‌آور، asset هویتی، نیاز دسترس‌پذیری یا تعهد برندی از PRODUCT.md می‌تواند DESIGN.md را مقید کند. راهبرد سطح در بریفِ همان سطح می‌ماند.
+- **با اسپک هم‌خوان باش.** هشت بخش استانداردش را به‌ترتیب به کار ببر و هر بخش بی‌ربط را حذف کن. راهنمای موشن را کنار جهان یا کامپوننتی که بر آن اثر می‌گذارد بگذار، نه به‌شکل گروه توکنی که اسکیما پشتیبانی نمی‌کند.
+- **توصیفی > فنی**: "لبه‌های خمیدهٔ ملایم (شعاع ۸ پیکسل)" > "rounded-lg". مقدار فنی را داخل پرانتز بیاور و با توصیف آغاز کن.
+- **کارکردی > تزئینی**: برای هر توکن توضیح بده کجا و چرا به کار می‌رود، نه فقط چی‌ست.
+- **مقدار دقیق در پرانتز**: کدهای hex، مقادیر px/rem، وزن فونت‌ها؛ همیشه عدد را داخل پرانتز، کنار توصیف.
+- **از قاعده‌های نام‌دار استفاده کن**: `**The [Name] Rule.** [دکترین کوتاه]`. این قاعده‌ها به‌یادماندنی و قابل‌استنادند و برای مصرف‌کنندهٔ هوش مصنوعی بسیار ماندگارتر از فهرست‌های بولت‌اند. خروجی‌های خودِ Stitch سرشار از آن‌هاست ("The No-Line Rule"، "The Ghost Border Fallback"). برای هر بخش ۱ تا ۳ قاعده هدف بگیر.
+- **جایی که شواهد قاطع‌اند، قاطع باش.** برای اصول تغییرناپذیرِ واقعی زبان سخت و برای راهنمای موقت زبان نرم‌تر به کار ببر.
+- **آزمون‌های ممیزیِ عینی را فقط وقتی به کار ببر که در سیستم مشاهده‌شده یا تصمیم تأییدشدهٔ کاربر ریشه داشته باشند.** یک آزمونِ یک‌جمله‌ای از یک پاراگراف اصل بهتر است.
+- **PRODUCT.md را گزینشی ارجاع بده.** حقیقت محصول توضیح می‌دهد چرا این جهان می‌نشیند؛ به‌طور پیش‌فرض چیدمان صفحه یا فهرستِ «نکن»های بصری نمی‌دهد.
+- **رنگ‌ها را بر پایهٔ نقش گروه‌بندی کن**، نه بر پایهٔ ترتیب hex یا رنگ‌مایه. Primary / Secondary / Tertiary / Neutral ترتیب اسپک است.
 
-## Pitfalls
+## تله‌ها
 
-- Don't paste raw CSS class names. Translate to descriptive language.
-- Don't extract every token. Stop at what's actually reused; one-offs pollute the system.
-- Don't invent components that don't exist. If the project only has buttons and cards, only document those.
-- Don't overwrite an existing DESIGN.md without asking.
-- Don't duplicate content from PRODUCT.md. DESIGN.md is strictly visual.
-- Don't replace canonical sections with near-synonyms. Put layout and responsive behavior in `Layout`; put motion with the affected world or component.
-- Don't rename sections even slightly. "Colors" not "Color Palette & Roles". "Typography" not "Typography Rules". Tooling parsing depends on exact headers.
-- Don't duplicate token values between frontmatter and prose. If a color is in `colors.primary` as hex, the prose can name it and describe its role but should not reassert a different hex. The frontmatter is normative.
-- Don't invent frontmatter token groups outside Stitch's schema (no `motion:`, `breakpoints:`, `shadows:` at the top level). Stitch's Zod schema only accepts `colors`, `typography`, `rounded`, `spacing`, `components`. Anything else belongs in the sidecar's `extensions`.
+- نام خامِ کلاس‌های CSS را نچسبان. به زبان توصیفی ترجمه‌اش کن.
+- هر توکنی را استخراج نکن. جایی بایست که واقعاً بازاستفاده می‌شود؛ تک‌کاربردها سیستم را آلوده می‌کنند.
+- کامپوننتی که وجود ندارد اختراع نکن. اگر پروژه فقط دکمه و کارت دارد، فقط همان‌ها را مستند کن.
+- `DESIGN.md` موجود را بدون پرسیدن بازنویسی نکن.
+- محتوای PRODUCT.md را تکثیر نکن. DESIGN.md اکیداً بصری است.
+- بخش‌های استاندارد را با مترادف‌های نزدیک عوض نکن. چیدمان و رفتار واکنش‌گرا را در `Layout` بگذار؛ موشن را کنار جهان یا کامپوننتِ متأثر.
+- عنوان بخش‌ها را حتی اندکی تغییر نام نده. "Colors"، نه "Color Palette & Roles". "Typography"، نه "Typography Rules". پارس ابزارها به سرعنوان‌های دقیق وابسته است.
+- مقدار توکن‌ها را میان فرانت‌متر و نثر دوپاره نکن. اگر رنگی در `colors.primary` به‌شکل hex است، نثر می‌تواند نامش را بیاورد و نقشش را توضیح دهد، اما نباید hex متفاوتی دوباره ادعا کند. فرانت‌متر ملاک است.
+- گروه‌های توکنیِ بیرون از اسکیمای Stitch در فرانت‌متر اختراع نکن (`motion:`، `breakpoints:`، `shadows:` در سطح بالا ممنوع). اسکیمای Zodِ Stitch فقط `colors`، `typography`، `rounded`، `spacing` و `components` را می‌پذیرد. هر چیز دیگر جایش در `extensions` سایدکار است.

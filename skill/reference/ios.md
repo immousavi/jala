@@ -1,51 +1,51 @@
-# iOS platform
+# پلتفرم iOS
 
-For native iOS / iPadOS apps: SwiftUI, UIKit, React Native, Expo, Flutter shipping to Apple hardware.
+برای اپ‌های نیتیو iOS / iPadOS: SwiftUI، UIKit، React Native، Expo، Flutter که به سخت‌افزار اپل عرضه می‌شوند.
 
-On native, the visitor mode narrows what expression may override. HIG conformance governs structure, navigation, and interaction in every mode; brand expresses through the layer the platform leaves open (tint, type, motion, content).
+روی نیتیو، حالتِ بازدیدکننده تعیین می‌کند ابراز اجازهٔ دورزدنِ چه چیزی را دارد. انطباق با HIG بر ساختار، ناوبری و تعامل در هر حالتی حکومت می‌کند؛ برند از لایه‌ای ابراز می‌شود که پلتفرم باز گذاشته (tint، تایپ، حرکت، محتوا).
 
-## The iOS slop test
+## تست اسلاپ iOS
 
-Would a fluent iPhone user trust this app, or pause at off-spec controls? The tell is "ported from a website": reinvented navigation bars, custom back gestures, web-shaped buttons, hover-dependent affordances. Default to the platform's components; depart only for a reason the user would thank you for.
+آیا کاربرِ روانِ آیفون به این اپ اعتماد می‌کند، یا در کنترل‌های خارج‌از-مشخصه مکث می‌کند؟ نشانه، «پورت‌شده از وب‌سایت» است: نوارهای ناوبریِ بازاختراع‌شده، ژست برگشتِ سفارشی، دکمه‌های شکل-وب، امکان‌های وابسته به هاور. به کامپوننت‌های پلتفرم برگرد؛ فقط برای دلیلی منحرف شو که کاربر بابتش ازت تشکر کند.
 
-## Layout & structure
+## چیدمان و ساختار
 
-- **Safe area.** Lay out inside the safe-area insets. No controls under the notch, Dynamic Island, home indicator, or rounded corners. <!-- rule:ios-layout-safe-area -->
-- **System navigation.** Tab bar for 2–5 top-level sections (sections, never actions), navigation stack for hierarchy, sheet for self-contained tasks. No custom global nav, no mixed metaphors. <!-- rule:ios-layout-standard-navigation -->
-- **Edge-swipe back stays alive.** The left-edge back gesture is muscle memory; never disable or overlay it. <!-- rule:ios-layout-edge-swipe-back -->
-- **Large titles** on top-level screens, collapsing to inline on scroll. Deep detail screens stay inline. <!-- rule:ios-layout-large-titles -->
+- **Safe area.** داخل insetهای safe-area بچین. هیچ کنترلی زیر ناچ، Dynamic Island، نشانگر home یا گوشه‌های گرد نه. <!-- rule:ios-layout-safe-area -->
+- **ناوبری سیستمی.** tab bar برای ۲–۵ بخش سطح‌بالا (بخش‌ها، هرگز کنش‌ها)، stack ناوبری برای سلسله‌مراتب، sheet برای کارهای خودبسنده. هیچ ناوبری سراسری سفارشی، هیچ استعارهٔ مخلوط. <!-- rule:ios-layout-standard-navigation -->
+- **برگشتِ کشیدن-از-لبه زنده بماند.** ژست برگشتِ لبهٔ چپ حافظهٔ عضلانی است؛ هرگز غیرفعال یا زیرپوشش نکن. <!-- rule:ios-layout-edge-swipe-back -->
+- **تیترهای بزرگ** روی صفحه‌های سطح‌بالا، جمع‌شونده به inline هنگام اسکرول. صفحه‌های جزئیاتِ عمیق inline بمانند. <!-- rule:ios-layout-large-titles -->
 
-## Touch targets
+## اهداف لمسی
 
-- **44×44 pt minimum** for every tappable control, with breathing room between adjacent targets. <!-- rule:ios-touch-target-44pt -->
+- **حداقل ۴۴×۴۴ pt** برای هر کنترل قابل‌لمس، با فضای نفس بین اهداف مجاور. <!-- rule:ios-touch-target-44pt -->
 
-## Typography
+## تایپوگرافی
 
-- **Dynamic Type.** Use the system text styles (Large Title through Caption) so text follows the user's reading size. No hard-coded point sizes. <!-- rule:ios-typo-dynamic-type -->
-- **San Francisco carries the UI.** Body, labels, and controls stay on SF Pro / SF Compact; a brand face may appear in display moments. <!-- rule:ios-typo-system-font -->
-- **11 pt floor**; Body is 17 pt. <!-- rule:ios-typo-minimum-size -->
+- **Dynamic Type.** از استایل‌های متنیِ سیستم (Large Title تا Caption) استفاده کن تا متن اندازهٔ خوانشِ کاربر را دنبال کند. هیچ سایز نقطه‌ایِ هاردکد نه. <!-- rule:ios-typo-dynamic-type -->
+- **San Francisco رابط را حمل می‌کند.** بدنه، لیبل‌ها و کنترل‌ها روی SF Pro / SF Compact بمانند؛ قلم برند می‌تواند در لحظه‌های نمایشی ظاهر شود. <!-- rule:ios-typo-system-font -->
+- **کف ۱۱ pt**؛ Body برابر ۱۷ pt. <!-- rule:ios-typo-minimum-size -->
 
-## Color & materials
+## رنگ و متریال
 
-- **Semantic system colors** (label, secondaryLabel, systemBackground, separator, tint). They adapt to Dark Mode and increased contrast automatically; raw hex breaks there. <!-- rule:ios-color-semantic-system -->
-- **Dark Mode is a first-class appearance.** Design and test both. <!-- rule:ios-color-dark-mode -->
-- **One tint color** drives interactive elements; decoration is not its job. <!-- rule:ios-color-single-tint -->
-- **System materials** for blur and translucency behind bars and sheets; no hand-rolled glassmorphism. <!-- rule:ios-color-system-materials -->
+- **رنگ‌های سیستمیِ معنایی** (label، secondaryLabel، systemBackground، separator، tint). خودکار با Dark Mode و کنتراست افزایش‌یافته وفق می‌گیرند؛ hex خام آنجا می‌شکند. <!-- rule:ios-color-semantic-system -->
+- **Dark Mode ظاهریِ درجه‌یک است.** هر دو را طراحی و تست کن. <!-- rule:ios-color-dark-mode -->
+- **یک رنگ tint** عناصر تعاملی را می‌رانَد؛ تزئین کارش نیست. <!-- rule:ios-color-single-tint -->
+- **متریال‌های سیستمی** برای بلور و نیمه‌شفافیت پشت نوارها و sheetها؛ هیچ گلس‌مورفیسمِ دست‌ساز. <!-- rule:ios-color-system-materials -->
 
-## Components & controls
+## کامپوننت‌ها و کنترل‌ها
 
-- **Platform controls.** Switch, segmented control, stepper, system pickers, action sheets, alerts, context menus, swipe actions. Reinventing these for flavor is the most common native slop. <!-- rule:ios-components-native-controls -->
-- **SF Symbols** for iconography: baseline-aligned, Dynamic Type-aware, weight and scale variants. Don't mix in a web icon set. <!-- rule:ios-components-sf-symbols -->
-- **Deliberate modality.** Sheet for a focused dismissible sub-task, full-screen cover for immersion. Clear Cancel/Done; honor swipe-to-dismiss unless data loss requires a guard. <!-- rule:ios-components-modality -->
-- **Grouped/inset lists** for settings-shaped content; no bespoke card stacks. <!-- rule:ios-components-grouped-lists -->
+- **کنترل‌های پلتفرم.** Switch، segmented control، stepper، pickerهای سیستمی، action sheetها، alertها، منوهای بافتی، کنش‌های کشیدنی. بازاختراعِ این‌ها برای طعم، رایج‌ترین اسلاپ نیتیو است. <!-- rule:ios-components-native-controls -->
+- **SF Symbols** برای آیکونوگرافی: ترازِ خط‌پایه، آگاه از Dynamic Type، واریانت‌های وزن و مقیاس. مجموعه آیکن وب قاطی نکن. <!-- rule:ios-components-sf-symbols -->
+- **حالت‌داریِ آگاهانه.** sheet برای زیرکارِ متمرکزِ قابل‌بستن، full-screen cover برای غرق‌شدگی. Cancel/Done شفاف؛ کشیدن-برای-بستن را محترم بشمار مگر از‌دست‌رفتنِ داده محافظت بخواهد. <!-- rule:ios-components-modality -->
+- **فهرست‌های گروهی/inset** برای محتوای تنظیمات‌گونه؛ هیچ پشتهٔ کارتِ اختصاصی. <!-- rule:ios-components-grouped-lists -->
 
-## Motion
+## حرکت
 
-- **System transitions.** Push slides, sheets rise, dismiss reverses the entrance. Custom transitions that fight the navigation model disorient. <!-- rule:ios-motion-system-transitions -->
-- **Honor Reduce Motion.** Crossfade instead of parallax and large slides. <!-- rule:ios-motion-reduce-motion -->
+- **ترنزیشن‌های سیستمی.** push می‌لغزد، sheet بالا می‌آید، dismiss ورود را معکوس می‌کند. ترنزیشن‌های سفارشی که با مدل ناوبری می‌جنگند گیج‌کننده‌اند. <!-- rule:ios-motion-system-transitions -->
+- **Reduce Motion را محترم بشمار.** crossfade به‌جای parallax و لغزش‌های بزرگ. <!-- rule:ios-motion-reduce-motion -->
 
-## Verifying the build
+## راستی‌آزمایی بیلد
 
-- **Screenshots come from the Simulator, never a browser.** Build and run, then capture with `xcrun simctl io booted screenshot <path>` (with several running, replace `booted` with the target's UDID from `xcrun simctl list devices booted`; display names can collide, the UDID never does). Capture every device class the app ships to, at least one iPhone and, when iPad is a target, one iPad, and write the files where the review flow expects them. <!-- rule:ios-verify-simulator-capture -->
-- **Dark Mode and Dynamic Type belong in the pass.** `xcrun simctl ui booted appearance dark` flips appearance, reusing the capture's UDID when several are booted; a check at a large Dynamic Type size catches the truncation a fixed layout hides. <!-- rule:ios-verify-appearance-and-type -->
-- **Simulators give breadth; posture, gestures, and performance need hardware.** Say which one produced the evidence. <!-- rule:ios-verify-hardware-honesty -->
+- **اسکرین‌شات‌ها از Simulator می‌آیند، هرگز مرورگر نه.** بیلد و اجرا کن، بعد با `xcrun simctl io booted screenshot <path>` بگیر (با چند شبیه‌ساز در حال اجرا، `booted` را با UDID هدف از `xcrun simctl list devices booted` جایگزین کن؛ نام‌های نمایشی می‌توانند برخورد کنند، UDID هرگز). هر کلاس دستگاهی که اپ عرضه می‌شود را بگیر، دست‌کم یک iPhone و اگر iPad هدف است یک iPad، و فایل‌ها را جایی بنویس که جریان بازبینی انتظارشان را دارد. <!-- rule:ios-verify-simulator-capture -->
+- **Dark Mode و Dynamic Type جزو پاس‌اند.** `xcrun simctl ui booted appearance dark` ظاهر را عوض می‌کند، با استفادهٔ دوباره از UDID کپچر وقتی چندتا بوت‌اند؛ یک چک در سایز بزرگ Dynamic Type برش‌خوردگی را می‌گیرد که چیدمان ثابت پنهانش می‌کند. <!-- rule:ios-verify-appearance-and-type -->
+- **شبیه‌سازها پوشش می‌دهند؛ posture، ژست‌ها و کارایی سخت‌افزار می‌خواهند.** بگو کدام شاهد را تولید کرده. <!-- rule:ios-verify-hardware-honesty -->
