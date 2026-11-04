@@ -1,69 +1,72 @@
-# Product
+# محصول
 
 <!-- impeccable:product-schema 1 -->
 
-## Platform
+## پلتفرم
 
 web
 
-## Users
+## کاربران
 
-Designers, product managers, and engineers who use AI coding tools (Cursor, Claude Code, GitHub Copilot, Gemini CLI, Codex CLI, and others) and want better design output from their AI. They land on the site from GitHub, social media, or word of mouth, already aware that AI-generated UIs have quality problems. They're looking for a practical solution, not education about the problem.
+طراحان، مدیران محصول و مهندسانی که از ابزارهای کدنویسی هوش مصنوعی استفاده می‌کنند (Cursor، Claude Code، GitHub Copilot، Gemini CLI، Codex CLI و بقیه) و خروجی طراحیِ بهتری از هوش مصنوعی‌شان می‌خواهند. به‌ویژه توسعه‌دهندگان و تیم‌های ایرانی که محصول فارسی یا دوزبانه می‌سازند و به UIهای راست‌به‌چپ، تایپوگرافی فارسی درست و فرمت‌های ایرانی (تقویم جلالی، تومان، ارقام فارسی) نیاز دارند. از GitHub، شبکه‌های اجتماعی یا دهان‌به‌دهان می‌رسند و از قبل می‌دانند UIهای تولیدیِ هوش مصنوعی مشکل کیفیت دارد. دنبال راه‌حل عملی هستند، نه آموزشِ مسئله.
 
-## Product Purpose
+## هدف محصول
 
-Impeccable gives builders a shared design vocabulary with their AI, delivered as a plug-and-play skill that works in every major AI coding harness. Success is measured in two ways: (1) the user can steer AI output with design precision instead of vague prose, and (2) the AI produces interfaces that pass professional design review, not "looks like an AI made it" output.
+جلا به سازنده‌ها واژگان طراحیِ مشترکی با هوش مصنوعی‌شان می‌دهد، به‌شکل اسکیلی plug-and-play که در همهٔ هارنس‌های بزرگ کدنویسی AI کار می‌کند — با واژگانی که برای فارسی و RTL بومی شده است. موفقیت با دو معیار سنجیده می‌شود: (۱) کاربر بتواند خروجی هوش مصنوعی را با دقتِ طراحی هدایت کند نه با نثر مبهم، و (۲) هوش مصنوعی رابط‌هایی تولید کند که از بازبینی طراحی حرفه‌ای پاس می‌کنند، نه خروجیِ «انگار هوش مصنوعی ساخته».
 
-## Positioning
+## جایگاه‌یابی
 
-Impeccable combines an opinionated design skill, live browser iteration, and deterministic anti-pattern detection in one source-first system that is transformed for supported AI coding harnesses. The repository ships the same design vocabulary through harness-native distributions instead of maintaining unrelated prompts for each tool.
+جلا سه چیز را در یک سیستمِ سورس-محور ترکیب می‌کند — اسکیل طراحیِ دیدگاه‌دار، تکرار زنده در مرورگر، و دیتکتور قطعی الگوهای ضدطراحی — و برای هارنس‌های پشتیبانی‌شدهٔ کدنویسی AI تبدیل نسخه می‌شود. ریپو همان واژگان طراحی را از طریق توزیع‌های بومیِ هر ابزار عرضه می‌کند به‌جای نگهداری پرامپت‌های بی‌ارتباط برای هر ابزار. این فورک، نسخهٔ فارسیِ [Impeccable](https://github.com/pbakaus/impeccable) است.
 
-## Operating Context
+## بافت عملیاتی
 
-Builders install Impeccable from the repository or package, run `/impeccable init` once to record product truth, then direct design work through the shared command vocabulary. They may iterate against a runnable interface in live mode and use the CLI or browser extension for deterministic checks. Maintainers author the canonical skill under `skill/`; build scripts derive provider distributions, site assets, and validation output.
+سازنده‌ها جلا را از ریپو یا بسته نصب می‌کنند، یک‌بار `/jala init` را اجرا می‌کنند تا حقیقت محصول ثبت شود، بعد کار طراحی را با واژگان مشترکِ فرمان‌ها هدایت می‌کنند. می‌توانند در حالت زنده روی رابط قابل‌اجرا تکرار کنند و برای چک‌های قطعی از CLI یا پسوند مرورگر استفاده کنند. نگه‌دارنده‌ها اسکیلِ مرجع را زیر `skill/` می‌نویسند؛ اسکریپت‌های بیلد، توزیع‌های هر ابزار، assetهای سایت و خروجی اعتبارسنجی را از آن مشتق می‌کنند.
 
-## Capabilities and Constraints
+## قابلیت‌ها و محدودیت‌ها
 
-- The skill exposes 23 design commands covering new work, critique, technical audit, refinement, hardening, adaptation, and live iteration.
-- The CLI and browser extension run deterministic detector rules without an LLM or API key; LLM critique remains a separate judgment layer.
-- Provider-specific root harness folders and `plugin/` are generated distribution artifacts. Source changes belong in `skill/`, `scripts/`, `cli/`, `site/`, `extension/`, `functions/`, or `tests/`.
-- Product claims, testimonials, customers, benchmarks, pricing, licensing, and deployment facts must not be invented when evidence is absent.
+- اسکیل، ۲۳ فرمان طراحی را ارائه می‌دهد: کار جدید، نقد، ممیزی فنی، پالایش، سخت‌سازی، وفق‌دادن و تکرار زنده.
+- CLI و پسوند مرورگر، قواعد قطعی دیتکتور را بدون LLM و بدون کلید API اجرا می‌کنند؛ نقدِ LLM لایهٔ داوریِ جداست.
+- روی سطوح فارسی، اسکیل مرجع‌های `fa-typography`، `fa-rtl`، `fa-numbers-dates` و `fa-components` را ارائه می‌کند؛ توضیحات قواعد دیتکتور فارسی شده‌اند.
+- پوشه‌های ریشه‌ایِ مخصوص هر ابزار و `plugin/` آرتیفکت‌های توزیعِ تولیدشده‌اند. تغییرهای سورس به `skill/`، `scripts/`، `cli/`، `site/`، `extension/`، `functions/` یا `tests/` تعلق دارند.
+- ادعاهای محصول، توصیف‌نامه‌ها، مشتریان، بنچمارک، قیمت‌گذاری، لایسنس و حقایق استقرار نباید در نبود شاهد از خود ساخته شوند.
 
-## Brand Commitments
+## تعهدهای برند
 
-Expert, opinionated, refined. Impeccable speaks with an authoritative design voice: confident taste, editorial quality, zero hedging. It's the design director in the room who knows exactly what's wrong and how to fix it. The tone is **direct** (no "maybe consider"), **specific** (no "improve the vibe"), and **rooted in craft** (no hype, no hedging).
+خبره، دیدگاه‌دار، پخته. جلا با صدای طراحیِ معتبر حرف می‌زند: سلیقهٔ مطمئن، کیفیت ادیتوریال، صفرِ بی‌تعهدی. مدیر خلاقِ حاضر در اتاق است که دقیقاً می‌داند چه چیزی خراب است و چطور درستش کند. لحن **مستقیم** است (نه «شاید بهتر باشد»)، **مشخص** (نه «وایب را بهتر کن»)، و **ریشه‌دار در حِرفگی** (نه هایپ، نه بیم‌و بیم).
 
-Three-word personality: **expert, decisive, editorial**.
+شخصیت سه‌کلمه‌ای: **خبره، قاطع، ادیتوریال**.
 
-The site and brand must be the antithesis of everything Impeccable critiques. Specifically, avoid:
+سایت و برند باید نقیضِ هر چیزی باشد که جلا نقد می‌کند. به‌طور مشخص، از این‌ها بپرهیز:
 
-- **Generic AI tool marketing**: dark mode with purple gradients, neon accents, glassmorphism, glowing particles, cyan-on-black.
-- **SaaS landing-page clichés**: hero-metric layouts, identical-card feature grids, sparkline decorations, "boost your productivity" copy.
-- **Hedging language**: "might", "could", "consider", "perhaps". Impeccable is opinionated — it picks a direction and commits.
-- **Educational framing**: this product is for people who already know they have a problem; we solve it, we don't teach it.
-- **Over-decoration**: every visual element must earn its place. No ornament for ornament's sake.
+- **بازاریابی عمومیِ ابزارهای هوش مصنوعی**: حالت تیره با گرادیان بنفش، تاکیدهای نئونی، گلس‌مورفیسم، ذرات درخشان، فیروزه‌ای-روی-مشکی.
+- **کلیشه‌های صفحهٔ فرود SaaS**: چیدمان هیرو-متریک، گریدِ کارت‌های یکسان، تزئینات اسپارک‌لاین، متن «بهره‌وری‌ات را بالا ببر».
+- **زبانِ بیم‌و‌بیم**: «شاید»، «می‌تواند»، «لازم است در نظر بگیرید»، «هر شاید». جلا دیدگاه دارد — یک جهت انتخاب می‌کند و متعهد می‌شود.
+- **قاب‌بندی آموزشی**: این محصول برای کسانی است که از قبل می‌دانند مشکل دارند؛ ما حلش می‌کنیم، آموزشش نمی‌دهیم.
+- **تزئین بیش‌ازحد**: هر عنصر بصری باید جایش را بگیرد. هیچ زینتی برای خودِ زینت.
+- **فارسی‌سازیِ نصفه‌ونیمه**: Tahoma به‌عنوان فونت اصلی، ایتالیک مصنوعی، ارقام مخلوط، LTRِ آینه‌نشده. روی سطح فارسی، این‌ها معادلِ «به‌شکل هوش مصنوعی ساخته شده» هستند.
 
-## Evidence on Hand
+## شواهد موجود
 
-- `README.md` documents the public command set, supported installation paths, and deterministic detector behavior.
-- `skill/` contains the canonical guidance and command references; `tests/` contains regression coverage for its build and runtime behavior.
-- `site/` is the public product surface and a direct demonstration of the design standard Impeccable advocates.
-- `cli/` and `extension/` are working detector implementations, not roadmap claims.
-- The existing product record names no customer testimonials or quantified outcome studies. Future surfaces must not fabricate them.
+- `README.md` مجموعهٔ فرمان‌های عمومی، مسیرهای نصب پشتیبانی‌شده و رفتار قطعی دیتکتور را مستند می‌کند.
+- `skill/` راهنمای مرجع و ارجاع فرمان‌ها را دارد؛ `tests/` پوشش رگرسیون رفتار بیلد و runtime آن است.
+- `GLOSSARY.md` قرارداد نگارش و واژه‌نامهٔ فارسی‌سازی این فورک است.
+- `cli/` و `extension/` پیاده‌سازی‌های واقعیِ دیتکتورند، نه ادعای نقشهٔ راه.
+- رکورد موجود محصول، هیچ توصیف‌نامهٔ مشتری یا مطالعهٔ نتیجهٔ کمّی‌ای نام نمی‌برد. سطح‌های آینده نباید آن‌ها را جعل کنند.
 
-## Product Principles
+## اصول محصول
 
-1. **Practice what you preach.** The site must pass its own anti-pattern tests with flying colors. If we ship anything we'd flag in an audit, we've lost.
-2. **Show, don't tell.** Demonstrate design quality through execution, not through words about design quality. The site IS the demo.
-3. **Expert confidence.** Direct, opinionated, decisive. No hedging. Every assertion should sound like it comes from someone who has seen a thousand interfaces and knows what works.
-4. **Editorial over marketing.** Feels like a design publication (Eye Magazine, It's Nice That, A List Apart) rather than a SaaS landing page. Long-form reading, considered typography, breathing room.
-5. **Purposeful restraint.** Every element earns its place. Nothing decorative without function. Nothing included because "landing pages usually have that".
+1. **آنچه موعظه می‌کنی عمل کن.** سایت باید تست‌های ضدالگوی خودش را با نمرهٔ کامل پاس کند. اگر چیزی عرضه کنیم که در ممیزی پرچمش می‌زدیم، باخته‌ایم.
+2. **نشان بده، نگو.** کیفیت طراحی را با اجرا نشان بده، نه با حرف دربارهٔ کیفیت طراحی. خود سایت دموی محصول است.
+3. **اعتمادِ خبره.** مستقیم، دیدگاه‌دار، قاطع. بدون بیم‌و‌بیم. هر ادعا باید از کسی بیاید که هزار رابط دیده و می‌داند چه چیزی کار می‌کند.
+4. **ادیتوریال به‌جای بازاریابی.** حس یک نشریهٔ طراحی بدهد (Eye Magazine، It's Nice That، A List Apart و در ایران معادل‌هایشان)، نه صفحهٔ فرود SaaS. خواندن بلند، تایپوگرافی اندیشیده، فضای نفس‌کشیدن — و روی فارسی: تایپوگرافی فارسیِ درست.
+5. **خویشتن‌داریِ هدفمند.** هر عنصر جایش را می‌گیرد. هیچ‌چیز تزئینی بدون کارکرد. هیچ‌چیز فقط چون «صفحه‌های فرود معمولاً دارند».
 
-## Accessibility & Inclusion
+## دسترس‌پذیری و شمول
 
-Baseline: WCAG 2.1 AA on all pages. Key commitments:
-- Color contrast ratios verified with actual contrast checks, not eyeballing.
-- All interactive elements keyboard-navigable with visible focus states.
-- `prefers-reduced-motion` respected for every animation.
-- Semantic HTML first, ARIA as a supplement, never as a workaround.
-- Copy readable at an 8th-grade level; jargon only when precisely needed (design terms like "OKLCH", "chroma" are acceptable because they're the actual vocabulary users are here to learn).
+خط پایه: WCAG 2.1 AA روی همهٔ صفحات. تعهدهای کلیدی:
+- نسبت‌های کنتراست رنگ با چک واقعی کنتراست تأیید شوند، نه با چشم.
+- همهٔ عناصر تعاملی با کیبورد قابل‌ناوبری و با حالت فوکوسِ نمایان باشند.
+- `prefers-reduced-motion` برای هر انیمیشن رعایت شود.
+- اول HTML معنایی، ARIA مکمل — هرگز کارگشای جایگزین.
+- متنِ خوانا در سطح پایه؛ اصطلاح فنی فقط وقتی که دقیقاً لازم است (اصطلاح‌های طراحی مثل «OKLCH» و «کروما» قابل‌قبول‌اند چون همان واژگانی‌اند که کاربر برای یادگیری‌شان آمده؛ واژگان فارسی طبق GLOSSARY.md).
+- محتوای فارسی: نیم‌فاصلهٔ درست، ارقام فارسیِ یکدست، چیدمان RTL واقعی — دسترس‌پذیریِ فارسی بخشی از خط پایه است.

@@ -1,101 +1,103 @@
-# Impeccable CLI
+# جلا CLI
 
-Detect UI anti-patterns and design quality issues from the command line, and install the Impeccable design skill into your AI coding harness. The detector scans HTML, CSS, JSX, TSX, Vue, and Svelte files for 62 deterministic rules, including AI-generated UI tells, accessibility violations, and general design quality problems.
+تشخیص الگوهای ضدطراحی UI و مشکلات کیفیت طراحی از خط فرمان، و نصب اسکیل طراحی جلا در هارنس کدنویسی AI تو — نسخهٔ فارسیِ [Impeccable CLI](https://impeccable.style). دیتکتور فایل‌های HTML، CSS، JSX، TSX، Vue و Svelte را برای ۶۲ قاعدهٔ قطعی اسکن می‌کند: نشانه‌های UI تولیدشده با هوش مصنوعی، نقض‌های دسترس‌پذیری و مشکلات عمومی کیفیت طراحی.
 
-The npm package is a small launcher. It runs the `impeccable` engine binary for your platform, installed alongside it as an optional dependency (`@impeccable/cli-<os>-<arch>`), and falls back to a per-user cache or a one-time download when that package is missing.
+بستهٔ npm یک لانچر کوچک است. باینری موتور `impeccable` را برای پلتفرم تو اجرا می‌کند — به‌شکل وابستگی اختیاری کنارش نصب شده (`@impeccable/cli-<os>-<arch>`) — و وقتی آن بسته غایب است به کشِ هر-کاربر یا دانلودِ یک‌باره برمی‌گردد.
 
-## Quick Start
+## شروع سریع
 
 ```bash
-# Install skills into your AI harness (Claude, Cursor, Gemini, etc.)
+# نصب اسکیل‌ها در هارنس AI تو (Claude، Cursor، Gemini و...)
 npx impeccable install
 
-# Non-interactive install for a specific scope
+# نصب غیرتعاملی برای یک scope مشخص
 npx impeccable install -y --providers=claude,codex --scope=project
 
-# First command to run inside your AI harness
-/impeccable init
+# اولین فرمان برای اجرا داخل هارنس AI تو
+/jala init
 
-# Update skills to the latest version
+# به‌روزرسانی اسکیل‌ها به آخرین نسخه
 npx impeccable update
 
-# Install or update skills without hook manifests
+# نصب یا به‌روزرسانی اسکیل‌ها بدون مانفست هوک
 npx impeccable install --no-hooks
 
-# Link skills from a Git submodule checkout
+# لینک اسکیل‌ها از یک checkout ساب‌ماژول git
 npx impeccable link --source=.impeccable --providers=claude,cursor
 
-# List all available commands
+# فهرست همهٔ فرمان‌های موجود
 npx impeccable help
 
-# Scan files or directories for anti-patterns
+# اسکن فایل‌ها یا پوشه‌ها برای الگوهای ضدطراحی
 npx impeccable detect src/
 
-# Scan a live URL (uses an installed Chrome, Chromium, or Edge)
+# اسکن یک URL زنده (از Chrome، Chromium یا Edge نصب‌شده استفاده می‌کند)
 npx impeccable detect https://example.com
 
-# JSON output for CI/tooling
+# خروجی JSON برای CI و ابزارها
 npx impeccable detect --json src/
 
-# GitHub Actions annotations
+# انوتیشن‌های GitHub Actions
 npx impeccable detect --github src/
-# Catalog of detector rules (no scan)
+# کاتالوگ قواعد دیتکتور (بدون اسکن)
 npx impeccable detect --list-rules
 ```
 
-`npx impeccable skills <command>` is the legacy namespace and still works.
+`npx impeccable skills <command>` نام‌فضای قدیمی است و همچنان کار می‌کند.
 
-## What It Detects
+نکتهٔ فورک فارسی: نصب‌کنندهٔ `npx impeccable` اسکیلِ انگلیسیِ پروژهٔ اصلی را نصب می‌کند. برای محتوای فارسی، بعد از نصب فایل‌های `.md` پوشهٔ `skill/` این ریپو را روی پوشهٔ نصب‌شده کپی کن؛ موتور و CLI مشترک‌اند.
 
-**AI Slop Tells**: patterns that scream "AI generated this":
-- Side-tab accent borders, gradient text on headings
-- Purple/violet gradients and cyan-on-dark palettes
-- Dark mode with glowing accents, border + border-radius clashes
+## چه چیزی تشخیص می‌دهد
 
-**Typography Issues**: overused fonts (Inter, Roboto), flat type hierarchy, single font families
+**نشانه‌های اسلاپ هوش مصنوعی**: الگوهایی که فریاد می‌زنند «هوش مصنوعی ساخته»:
+- حاشیه‌های تاکیدیِ یک‌طرفه، متن گرادیانی روی عنوان‌ها
+- گرادیان‌های بنفش/بنفش‌فام و پالت‌های فیروزه‌ای-روی-تیره
+- حالت تیره با تاکیدهای درخشان، تضاد حاشیه + گوشه‌گرد
 
-**Color & Contrast**: WCAG AA violations, gray text on colored backgrounds, pure black/white
+**مشکلات تایپوگرافی**: فونت‌های بیش‌ازحد استفاده‌شده (Inter، Roboto)، سلسله‌مراتب تایپِ تخت، تک‌خانوادگی فونت — و برای فارسی: ایتالیک مصنوعی و letter-spacing روی حروف چسبان (مرجع [fa-typography](skill/reference/fa-typography.md))
 
-**Layout & Composition**: nested cards, monotonous spacing, everything-centered layouts
+**رنگ و کنتراست**: نقض‌های WCAG AA، متن خاکستری روی پس‌زمینهٔ رنگی، سیاه/سفید خالص
 
-**Motion**: bounce/elastic easing, layout property transitions
+**چیدمان و ترکیب‌بندی**: کارت‌های تودرتو، فاصله‌گذاری یکنواخت، چیدمان‌های همه-وسط‌چین
 
-**Quality**: tiny body text, cramped padding, long line lengths, small touch targets
+**حرکت**: ایزینگ جهشی/فنری، ترنزیشن پراپرتی‌های layout
 
-62 deterministic detector rules in total. See the full catalog at [impeccable.style/slop](https://impeccable.style/slop).
+**کیفیت**: متن بدنهٔ خیلی ریز، پدینگ خفه، طول خط بلند، اهداف لمسی کوچک
 
-## Exit Codes
+مجموعاً ۶۲ قاعدهٔ قطعی دیتکتور. کاتالوگ کامل: [impeccable.style/slop](https://impeccable.style/slop) — توضیحات قواعد در این فورک فارسی شده‌اند.
 
-- `0`: scan completed with no primary findings (advisories may still be listed)
-- `1`: at least one requested target could not be scanned
-- `2`: scan completed with primary findings
+## کدهای خروج
 
-Operational failure takes precedence when a multi-target scan is partial. In JSON mode, stdout remains a findings array and diagnostics are written to stderr. With `--github`, stdout is one GitHub Actions annotation per finding; GitHub displays at most 10 annotations of each type per step and 50 per job, and the rest stay in the log.
+- `0`: اسکن بدون یافتهٔ اصلی تمام شد (توصیه‌ای‌ها ممکن است فهرست شوند)
+- `1`: دست‌کم یکی از هدف‌های درخواستی قابل اسکن نبود
+- `2`: اسکن با یافته‌های اصلی تمام شد
 
-## Options
+در اسکن چندهدفهٔ ناقص، خطای عملیاتی تقدم دارد. در حالت JSON، stdout آرایهٔ یافته‌ها می‌ماند و تشخیص‌ها به stderr می‌روند. با `--github`، stdout به‌ازای هر یافته یک انوتیشن GitHub Actions است؛ GitHub در هر step حداکثر ۱۰ انوتیشن از هر نوع و در هر job حداکثر ۵۰ تا نشان می‌دهد و بقیه در لاگ می‌مانند.
+
+## گزینه‌ها
 
 ```
 impeccable detect [options] [file-or-dir-or-url...]
 
-  --json        Output findings as JSON
-  --github      Write GitHub Actions annotations for each finding
-  --list-rules  Print the detector rule catalog and exit
-  --scope       Only report rules in a design domain (type, layout)
-  --help        Show help
+  --json        یافته‌ها به‌صورت JSON
+  --github      نوشتن انوتیشن GitHub Actions برای هر یافته
+  --list-rules  چاپ کاتالوگ قواعد دیتکتور و خروج
+  --scope       فقط گزارش قواعد یک حوزهٔ طراحی (type، layout)
+  --help        نمایش راهنما
 ```
 
-## Requirements
+## پیش‌نیازها
 
-- Node.js 18.19+ to run `npx impeccable`. The engine itself is a self-contained binary and needs no runtime; the skill installed into your harness calls it directly.
-- For URL scans, an installed Chrome, Chromium, or Edge (set `IMPECCABLE_BROWSER` to point at one).
-- Behind a TLS-inspecting proxy, downloads trust your OS certificate store as well as the bundled Mozilla roots. Set `SSL_CERT_FILE` or `SSL_CERT_DIR` to use a specific CA bundle instead.
+- Node.js 18.19+ برای اجرای `npx impeccable`. خود موتور باینریِ خودکفاست و به runtime نیاز ندارد؛ اسکیلِ نصب‌شده در هارنس تو مستقیم صدایش می‌زند.
+- برای اسکن URL، یک Chrome، Chromium یا Edge نصب‌شده (`IMPECCABLE_BROWSER` را برای اشاره به یکی تنظیم کن).
+- پشت پروکسی بازرسی‌کنندهٔ TLS، دانلودها به فروشگاه گواهی OS تو و ریشه‌های موزیلای باندل‌شده اعتماد می‌کنند. `SSL_CERT_FILE` یا `SSL_CERT_DIR` را برای باندل CA مشخص تنظیم کن.
 
-Binary lookup order: `IMPECCABLE_BIN`, the platform package, `~/.impeccable/bin/<version>/`, then a download of the pinned version into that cache. Set `IMPECCABLE_BIN` to a local build to skip all of that.
+ترتیب یافتن باینری: `IMPECCABLE_BIN`، بستهٔ پلتفرم، `~/.impeccable/bin/<version>/`، بعد دانلود نسخهٔ پین‌شده به همان کش. برای ردشدن از همهٔ این‌ها `IMPECCABLE_BIN` را روی بیلد محلی تنظیم کن.
 
-## Part of Impeccable
+## بخشی از جلا
 
-This CLI is part of [Impeccable](https://impeccable.style), a cross-provider design skill pack for AI-powered development tools. The full suite includes 24 commands for Claude, Cursor, GitHub Copilot, Gemini, Codex, Hermes Agent, Veto, and more.
+این CLI بخشی از [جلا](https://impeccable.style) است — بستهٔ اسکیل طراحی بین-تامین‌کننده برای ابزارهای توسعه با هوش مصنوعی، و فورک فارسیِ [Impeccable](https://github.com/pbakaus/impeccable). مجموعهٔ کامل شامل ۲۴ فرمان برای Claude، Cursor، GitHub Copilot، Gemini، Codex، Hermes Agent، Veto و بیشتر است.
 
-## License
+## لایسنس
 
 [Apache 2.0](https://github.com/pbakaus/impeccable/blob/main/LICENSE)

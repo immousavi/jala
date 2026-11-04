@@ -1,33 +1,33 @@
 ---
-name: Impeccable
-description: Neo kinpaku system. Two brand anchors, kinpaku gold and verdigris patina, sit on dark warm-black lacquer. Restraint in chrome, brilliance in texture.
+name: جلا
+description: سیستم نئو-کینپاکو. دو لنگر برند، طلای کینپاکو و زنگار ورزگرس، روی لاکِ سیاهِ گرمِ تیره. خویشتن‌داری در کروم، درخشش در بافت.
 
 # All values below mirror site/styles/kinpaku-tokens.css verbatim. That file
 # is the source of truth; this frontmatter is the portable export. If a token
 # changes there, update both.
 colors:
-  # Brand anchors
-  kinpaku-gold: "oklch(84% 0.19 80.46)"       # primary accent
-  verdigris-patina: "oklch(70% 0.12 188)"     # secondary accent / state
-  dark-ink: "oklch(14% 0.018 95)"             # foreground on gold; never theme-remapped
+  # لنگرهای برند
+  kinpaku-gold: "oklch(84% 0.19 80.46)"       # تاکید اصلی
+  verdigris-patina: "oklch(70% 0.12 188)"     # تاکید ثانویه / وضعیت
+  dark-ink: "oklch(14% 0.018 95)"             # پیش‌زمینهٔ متن روی طلایی؛ هرگز remap تم نشود
 
-  # Surfaces
-  lacquer-black: "oklch(7% 0.006 95)"         # page ground
-  lacquer-deep: "oklch(4% 0.004 95)"          # deepest inset
-  raised-lacquer: "oklch(11% 0.006 95)"       # panels and inputs
-  graphite: "oklch(15% 0.008 95)"             # inactive states
-  graphite-2: "oklch(19% 0.008 95)"           # one step up from graphite
+  # سطوح
+  lacquer-black: "oklch(7% 0.006 95)"         # زمینهٔ صفحه
+  lacquer-deep: "oklch(4% 0.004 95)"          # عمیق‌ترین فرورفتگی
+  raised-lacquer: "oklch(11% 0.006 95)"       # پنل‌ها و ورودی‌ها
+  graphite: "oklch(15% 0.008 95)"             # حالت‌های غیرفعال
+  graphite-2: "oklch(19% 0.008 95)"           # یک پله بالاتر از graphite
 
-  # Text
-  champagne: "oklch(91% 0 0)"                 # headlines, <strong> — neutral white (name kept for compat)
-  text-warm: "oklch(88% 0 0)"                 # body — neutral near-white
-  text-muted: "oklch(72% 0 0)"                # captions, meta
-  text-faint: "oklch(62% 0 0)"                # subdued
-  text-mute-deep: "oklch(52% 0 0)"            # disabled
+  # متن
+  champagne: "oklch(91% 0 0)"                 # تیترها، <strong> — سفید خنثی (نام برای سازگاری حفظ شده)
+  text-warm: "oklch(88% 0 0)"                 # بدنه — نزدیک‌سفیدِ خنثی
+  text-muted: "oklch(72% 0 0)"                # کپشن، متا
+  text-faint: "oklch(62% 0 0)"                # کم‌رنگ
+  text-mute-deep: "oklch(52% 0 0)"            # غیرفعال
 
-  # Neutral ramp and light-mode paper/ink tokens. These mirror html.light in
-  # site/styles/kinpaku-tokens.css plus neutral utility stops used in docs and
-  # the live overlay.
+  # رامپ خنثی و توکن‌های کاغذ/جوهر حالت روشن. این‌ها آینهٔ html.light در
+  # site/styles/kinpaku-tokens.css به‌علاوهٔ پله‌های ابزار خنثیِ استفاده‌شده در
+  # docs و اورلی زنده‌اند.
   neutral-100: "oklch(100% 0 0)"
   neutral-99: "oklch(99% 0 0)"
   neutral-98: "oklch(98% 0 0)"
@@ -56,26 +56,26 @@ colors:
   light-disabled: "oklch(65% 0.01 95)"
   light-rule: "oklch(25% 0.02 95)"
 
-  # Gold ramp
-  kinpaku-pale: "oklch(86% 0.07 84)"          # hover lift, pale fills
-  kinpaku-rich: "oklch(77% 0.13 82)"          # active CTA, severity-medium
-  kinpaku-deep: "oklch(61% 0.085 78)"         # borders against the brand
-  kinpaku-rule: "oklch(78% 0.12 82)"          # alpha-friendly rule/glow base
-  kinpaku-rule-rich: "oklch(77% 0.14 82)"     # secondary button soft fill base
-  kinpaku-glint: "oklch(95% 0.04 84)"         # leaf texture highlight overlay
-  kinpaku-glint-bright: "oklch(98% 0.04 84)"  # animated leaf sheen highlight
-  kinpaku-glint-rich: "oklch(94% 0.07 82)"    # warmer leaf sheen edge
-  kinpaku-glint-soft: "oklch(98% 0.035 84)"   # hover glint on gold CTAs
-  gold-hairline: "oklch(78% 0 0 / 0.16)"      # default rule — neutral (name kept for compat)
-  gold-hairline-strong: "oklch(74% 0.09 82 / 0.6)" # active rule — gold
+  # رامپ طلایی
+  kinpaku-pale: "oklch(86% 0.07 84)"          # بالاآمدن هاور، پرهای کم‌رنگ
+  kinpaku-rich: "oklch(77% 0.13 82)"          # CTA فعال، شدت متوسط
+  kinpaku-deep: "oklch(61% 0.085 78)"         # حاشیه‌ها در برابر برند
+  kinpaku-rule: "oklch(78% 0.12 82)"          # پایهٔ دوستدار-آلفای خط/درخشش
+  kinpaku-rule-rich: "oklch(77% 0.14 82)"     # پایهٔ پرِ نرم دکمهٔ ثانویه
+  kinpaku-glint: "oklch(95% 0.04 84)"         # اورلی هایلایت بافت ورق طلا
+  kinpaku-glint-bright: "oklch(98% 0.04 84)"  # هایلایت جلوهٔ متحرک ورق
+  kinpaku-glint-rich: "oklch(94% 0.07 82)"    # لبهٔ گرم‌تر جلوهٔ ورق
+  kinpaku-glint-soft: "oklch(98% 0.035 84)"   # درخشش هاور روی CTAهای طلایی
+  gold-hairline: "oklch(78% 0 0 / 0.16)"      # خط پیش‌فرض — خنثی (نام برای سازگاری حفظ شده)
+  gold-hairline-strong: "oklch(74% 0.09 82 / 0.6)" # خط فعال — طلایی
 
-  # Patina ramp
-  patina-pale: "oklch(82% 0.07 188)"          # hover lift on patina
-  patina-deep: "oklch(49% 0.08 188)"          # deep oxide, dark variants
-  patina-rule: "oklch(70% 0.105 190)"         # alpha-friendly glow/rule base
-  patina-text: "oklch(76% 0.088 190)"         # small readable patina text
+  # رامپ زنگار
+  patina-pale: "oklch(82% 0.07 188)"          # بالاآمدن هاور روی زنگار
+  patina-deep: "oklch(49% 0.08 188)"          # اکسید عمیق، واریانت‌های تیره
+  patina-rule: "oklch(70% 0.105 190)"         # پایهٔ دوستدار-آلفای درخشش/خط
+  patina-text: "oklch(76% 0.088 190)"         # متن زنگارِ کوچکِ خوانا
 
-  # Legacy command category colors still used by homepage proof modules.
+  # رنگ‌های قدیمیِ دسته‌بندی فرمان‌ها که هنوز در ماژول‌های اثبات صفحهٔ اصلی استفاده می‌شوند.
   category-create-text: "oklch(86% 0.075 82)"
   category-evaluate-text: "oklch(76% 0.088 190)"
   category-refine-bg: "oklch(89% 0.055 84)"
@@ -89,12 +89,12 @@ colors:
   category-system-border: "oklch(58% 0.028 82)"
   category-system-text: "oklch(71% 0.028 82)"
 
-  # Conventional terminal chrome. Used only for faux terminal window dots.
+  # کروم متعارف ترمینال. فقط برای نقطه‌های پنجرهٔ ترمینالِ شبیه‌سازی‌شده.
   terminal-red: "#ff5f56"
   terminal-yellow: "#ffbd2e"
   terminal-green: "#27c93f"
 
-  # State (warning only, used sparingly)
+  # وضعیت (فقط هشدار، کم‌مصرف)
   vermilion-warning: "oklch(58% 0.15 35)"
   vermilion-warning-light: "oklch(52% 0.16 35)"
   success: "oklch(45% 0.18 145)"
@@ -105,43 +105,42 @@ colors:
 
 typography:
   scale:
-    # The enumerated type ramp, at a 16px root. Keys are the px value; values
-    # are the rem form to author with. Every literal font-size in the codebase
-    # lands on one of these steps, and the detector allows +/-0.5px around each,
-    # so the px and rem spellings of a step are interchangeable.
+    # رامپ تایپ شماره‌گذاری‌شده، با ریشهٔ 16px. کلیدها مقدار px و مقادیر، فرم rem
+    # برای نویسندگی‌اند. هر font-size تحت‌اللفظی در کدبیس روی یکی از این پله‌ها
+    # می‌نشیند و دیتکتور +/-0.5px دور هر پله را اجازه می‌دهد، پس املای px و rem
+    # یک پله جایگزین هم‌اند.
     #
-    # The named roles below pick from this ramp. The two fluid roles (display,
-    # headline) are the exception: they interpolate between clamp endpoints and
-    # are free to land between steps, which is what makes them fluid.
+    # نقش‌های نام‌دار پایین از این رامپ برمی‌دارند. دو نقش سیال (display و
+    # headline) استثنا هستند: بین endpointهای clamp درون‌یابی می‌شوند و آزادند
+    # بین پله‌ها فرود بیایند — همان چیزی که سیال‌بودنشان را می‌سازد.
     #
-    # Adding a step is a design decision, not a convenience. The tail this ramp
-    # replaced had 86 distinct sizes, including six near-identical steps between
-    # 13.7px and 15.4px that no reader could tell apart.
-    "8": "0.5rem"        # decorative micro-type: badges, superscript markers
-    "9": "0.5625rem"     # dense chrome, viz tick labels
-    "10": "0.625rem"     # overline, smallest legible caps
-    "11": "0.6875rem"    # eyebrow, badge, tag
-    "12": "0.75rem"      # meta lines, table chrome, inline code
-    "13": "0.8125rem"    # secondary UI text, card meta
-    "14": "0.875rem"     # dense body, list rows, controls
-    "15": "0.9375rem"    # long-form secondary text
-    "16": "1rem"         # default body
-    "18": "1.125rem"     # lead paragraph, card heading
-    "20": "1.25rem"      # card and panel titles
-    "24": "1.5rem"       # subsection heads
-    "28": "1.75rem"      # section heads
-    "32": "2rem"         # large section heads
-    "40": "2.5rem"       # sub-display
-    "48": "3rem"         # small display
-    "56": "3.5rem"       # display
-    "64": "4rem"         # large display
-    "72": "4.5rem"       # hero display
-    "80": "5rem"         # hero display, wide viewports
-    "88": "5.5rem"       # largest hero display
+    # افزودن یک پله تصمیمِ طراحی است، نه تسهیل. دنباله‌ای که این رامپ جایگزینش
+    # کرد ۸۶ سایز متمایز داشت، شامل شش پلهٔ تقریباً یکسان بین 13.7px و 15.4px
+    # که هیچ خواننده‌ای نمی‌توانست تشخیص‌شان دهد.
+    "8": "0.5rem"        # ریزتایپ تزئینی: بج، نشانگر بالانویس
+    "9": "0.5625rem"     # کروم متراکم، لیبل‌های تیک ویژوالایز
+    "10": "0.625rem"     # اورلاین، کوچک‌ترین caps خوانا
+    "11": "0.6875rem"    # ابرو، بج، تگ
+    "12": "0.75rem"      # خط‌های متا، کروم جدول، کد درون‌خطی
+    "13": "0.8125rem"    # متن UI ثانویه، متای کارت
+    "14": "0.875rem"     # بدنهٔ متراکم، ردیف فهرست، کنترل‌ها
+    "15": "0.9375rem"    # متن ثانویهٔ بلند
+    "16": "1rem"         # بدنهٔ پیش‌فرض
+    "18": "1.125rem"     # پاراگراف آغازین، عنوان کارت
+    "20": "1.25rem"      # عنوان کارت و پنل
+    "24": "1.5rem"       # سرصفحهٔ زیربخش
+    "28": "1.75rem"      # سرصفحهٔ بخش
+    "32": "2rem"         # سرصفحهٔ بخش بزرگ
+    "40": "2.5rem"       # زیر-نمایشی
+    "48": "3rem"         # نمایشی کوچک
+    "56": "3.5rem"       # نمایشی
+    "64": "4rem"         # نمایشی بزرگ
+    "72": "4.5rem"       # نمایشی هیرو
+    "80": "5rem"         # نمایشی هیرو، ویوپورت‌های عریض
+    "88": "5.5rem"       # بزرگ‌ترین نمایشی هیرو
   wordmark:
-    # Alumni Sans (token --ks-font-wordmark), the same face as display, held
-    # at weight 400 for the small brand lockup where the thin display cut
-    # would read too light.
+    # Alumni Sans (توکن --ks-font-wordmark)، همان قلم display، نگه‌داشته در وزن 400
+    # برای قفل برند کوچک که برشِ نازک display خیلی سبک خوانده می‌شد.
     fontFamily: "Alumni Sans, Albert Sans, Arial, sans-serif"
     fontSize: "1.125rem"
     fontWeight: 400
@@ -248,287 +247,287 @@ components:
     textColor: "{colors.kinpaku-gold}"
 ---
 
-# Design System: Impeccable
+# سیستم طراحی: جلا
 
-## 1. Overview: Neo Kinpaku
+## ۱. نمای کلی: نئو-کینپاکو
 
-**Creative North Star: "Neo Kinpaku"**
+**ستارهٔ شمالی خلاقیت: «نئو-کینپاکو»**
 
-Impeccable is now a dark lacquer interface marked by Japanese gold leaf and precise technical geometry. The brand should feel like a crafted object: black urushi, irregular kinpaku seams, quiet measurement marks, circuit traces, and controlled verdigris oxidation. It is refined, technical, and physical.
+جلا حالا رابطی با لاکِ تیره است که با ورق طلاژاپنی و هندسهٔ فنیِ دقیق علامت خورده. برند باید مثل یک شیءِ ساختگی حس شود: اوروشیِ سیاه، درزهای نامنظمِ کینپاکو، علامت‌های اندازه‌گیریِ آرام، ردهای مدار، و اکسیداسیونِ کنترل‌شدهٔ ورزگرس. پخته، فنی و فیزیکی است.
 
-This direction replaces the old warm-paper editorial system. No italic serif hero. No magenta accent. No generic AI-tool neon. The page should feel expensive and deliberate, but still useful: comparisons, command demos, live audit tables, and documentation modules remain the product proof.
+این جهت، سیستم ادیتوریالِ کاغذ-گرمِ قدیمی را جایگزین می‌کند. نه هیروی سریف ایتالیک، نه تاکید سرخابی، نه نئونِ عمومیِ ابزارهای هوش مصنوعی. صفحه باید گران و اندیشیده حس شود، ولی همچنان مفید: مقایسه‌ها، دموی فرمان‌ها، جدول‌های ممیزی زنده و ماژول‌های مستندات همچنان اثباتِ محصول‌اند.
 
-**Key characteristics**
+**ویژگی‌های کلیدی**
 
-- Dark mineral and lacquer surfaces, never pure black.
-- Kinpaku gold as the primary accent, with true leaf texture where an element carries brand weight.
-- Verdigris patina as the secondary accent for state, contrast, and "improved" signals.
-- A geometric sans voice with a widely tracked wordmark, not a serif editorial voice.
-- Thin calibration lines, circuit geometry, and gold seams used as functional structure.
-- Small radii, restrained borders, and almost no decorative shadow.
+- سطوح تیرهٔ معدنی و لاکی، هرگز سیاه خالص نیست.
+- طلای کینپاکو به‌عنوان تاکید اصلی، با بافت واقعیِ ورق جایی که عنصری وزن برند حمل می‌کند.
+- زنگار ورزگرس به‌عنوان تاکید ثانویه برای وضعیت، کنتراست و سیگنال «بهبودیافته».
+- صدای سانسِ هندسی با ووردمارکِ فاصله‌حروف‌باز، نه صدای ادیتوریالِ سریف.
+- خط‌های کالیبراسیونِ نازک، هندسهٔ مدار و درزهای طلایی به‌عنوان ساختارِ کارکردی.
+- شعاع‌های کوچک، حاشیه‌های خویشتن‌دار و تقریباً هیچ سایهٔ تزئینی.
 
-## 2. The Kit: One Vocabulary For Every Page
+## ۲. کیت: یک واژه‌نامه برای هر صفحه
 
-The site ships a global component kit at `site/styles/kinpaku-kit.css`, imported from `Base.astro` so every page gets it for free. The kit primitives are listed below. The live demos are on `/design-system`.
+سایت یک کیت کامپوننت سراسری در `site/styles/kinpaku-kit.css` دارد که از `Base.astro` ایمپورت می‌شود تا هر صفحه مجاناً بگیرد. پریمیتیوهای کیت در پایین فهرست شده‌اند. دموهای زنده در `/design-system` هستند.
 
-### The Kit Consumption Rule
+### قاعدهٔ مصرف کیت
 
-When building a new page or refactoring an existing one, reach for a kit primitive before inventing a new class. Specifically:
+وقتی صفحهٔ جدیدی می‌سازی یا یکی موجود را refactor می‌کنی، قبل از اختراع کلاس جدید سراغ یک پریمیتیو کیت برو. به‌طور مشخص:
 
-- **Buttons**: use `.ks-button` + a variant (`.ks-button-primary`, `-secondary`, `-ghost`, `-disabled`). Do not write a new `.hero-cta-primary` / `.footer-cta` / `.section-action-button` class — those are the bespoke vocabularies the kit is meant to replace.
-- **Grouping content**: use `.ks-bento` + `.ks-bento-tile` (with `--span-4` / `--span-6` / `--span-8` across a 12-column grid). This is the canonical answer to "how do I group 2-6 items without nesting cards?" Do not invent yet another card class.
-- **Section scaffolding**: use `.ks-section` for the container, `.ks-section-head` for the header, `<h2>` inside that (the kit styles it), and `.ks-section-sub` for the subhead. Eyebrow above the h2 is optional via `.ks-section-eyebrow` — skip it on editorial walkthroughs where every-section eyebrows read as AI scaffolding.
-- **Status, tags, toasts, modals, tooltips, empty states, pagination, skeletons, changelog rows**: use the kit primitive. Listed in the cheatsheet below.
+- **دکمه‌ها**: از `.ks-button` + یک واریانت (`.ks-button-primary`، `-secondary`، `-ghost`، `-disabled`) استفاده کن. کلاس جدیدِ `.hero-cta-primary` / `.footer-cta` / `.section-action-button` ننویس — آن‌ها همان واژه‌نامه‌های اختصاصی‌اند که کیت برای جایگزینی‌شان ساخته شده.
+- **گروه‌بندی محتوا**: از `.ks-bento` + `.ks-bento-tile` (با `--span-4` / `--span-6` / `--span-8` روی گرید ۱۲-ستونی) استفاده کن. این پاسخِ مرجعِ «چطور ۲ تا ۶ آیتم را بدون کارت‌های تودرتو گروه کنم؟» است. هنوز یک کلاس کارت دیگر اختراع نکن.
+- **داربست بخش**: `.ks-section` برای ظرف، `.ks-section-head` برای هدر، `<h2>` داخلش (کیت استایل می‌دهد)، و `.ks-section-sub` برای زیرعنوان. ابروی بالای h2 اختیاری است با `.ks-section-eyebrow` — در walkthroughهای ادیتوریال که ابروی هر-بخش حس داربست هوش مصنوعی می‌دهد، ازش بگذر.
+- **وضعیت، تگ، توست، مودال، تولتیپ، حالت خالی، صفحه‌بندی، اسکلتون، ردیف‌های changelog**: از پریمیتیو کیت. در چیت‌شیت پایین فهرست شده‌اند.
 
-Invent only when the kit truly doesn't cover the shape. When you do invent, flag it — a new pattern that solves a real recurring need belongs in the kit, not in page-specific CSS. Page CSS is for genuinely page-specific scenery (hero illustrations, unique editorial visuals), not for reinventing primitives the kit already has.
+فقط وقتی اختراع کن که کیت واقعاً آن شکل را پوشش نمی‌دهد. وقتی اختراع می‌کنی، پرچمش را بزن — الگوی جدیدی که یک نیاز تکرارشوندهٔ واقعی را حل می‌کند جایش در کیت است، نه در CSS مخصوص صفحه. CSS صفحه برای صحنه‌پردازیِ واقعاً مخصوصِ همان صفحه است (تصویرسازی هیرو، بصری‌های ادیتوریال یکتا)، نه برای بازاختراعِ پریمیتیوهایی که کیت دارد.
 
-### What's In The Kit (cheatsheet)
+### چه چیزی در کیت هست (چیت‌شیت)
 
-Every class below is a global primitive. Drop it on any element on any page using `<Base.astro>`; the styles resolve through `kinpaku-tokens.css` so they inherit the current brand values automatically.
+هر کلاس زیر یک پریمیتیو سراسری است. روی هر عنصرِ هر صفحه‌ای که از `<Base.astro>` استفاده می‌کند بیندازش؛ استایل‌ها از `kinpaku-tokens.css` حل می‌شوند پس خودبه‌خود مقادیر برندِ فعلی را به ارث می‌برند.
 
-**Brand lockup**
+**قفل برند**
 
-- `.ks-brand` — wrapper for the brand mark + wordmark lockup (anchor or div).
-- `.ks-mark` — the carved-tile glyph (a solid kinpaku square split by a diagonal slash), 38×38, no container border.
-- `.ks-wordmark` — the IMPECCABLE wordmark text, solid Alumni Sans (`--ks-font-wordmark`), uppercase, weight 400, letter-spacing 0.15em.
+- `.ks-brand` — رپرِ قفلِ نشان برند + ووردمارک (anchor یا div).
+- `.ks-mark` — گلیفِ کاشی‌حکاکی‌شده (مربع توپر کینپاکو که یک خط مورب شکسته)، ۳۸×۳۸، بدون حاشیهٔ ظرف.
+- `.ks-wordmark` — متن ووردمارک IMPECCABLE، Alumni Sans توپر (`--ks-font-wordmark`)، بزرگ‌نویس، وزن 400، فاصلهٔ حروف 0.15em.
 
-**Section scaffolding**
+**داربست بخش**
 
-- `.ks-section` — page-level section container, 1320px max-width, kit gutters.
-- `.ks-section-head` — the section header block.
-- `.ks-section-eyebrow` — small mono eyebrow above the h2 (optional).
-- `.ks-section-head h2` — auto-styles any h2 inside `.ks-section-head` to the section title scale (weight 300, kit display family).
-- `.ks-section-sub` — subhead paragraph below the h2.
-- `.ks-subsection` — nested grouping inside a section.
-- `.ks-subsection-label` — small mono label above a subsection's content.
+- `.ks-section` — ظرف بخشِ سطح‌صفحه، حداکثر عرض 1320px، گاترهای کیت.
+- `.ks-section-head` — بلوک هدر بخش.
+- `.ks-section-eyebrow` — ابروی مونوی کوچک بالای h2 (اختیاری).
+- `.ks-section-head h2` — هر h2 داخل `.ks-section-head` را خودکار به مقیاس عنوانِ بخش استایل می‌دهد (وزن 300، خانوادهٔ display کیت).
+- `.ks-section-sub` — پاراگراف زیرعنوان زیر h2.
+- `.ks-subsection` — گروه‌بندی تودرتو داخل یک بخش.
+- `.ks-subsection-label` — لیبل مونوی کوچک بالای محتوای زیربخش.
 
-**Buttons**
+**دکمه‌ها**
 
-- `.ks-button.ks-button-primary` — filled kinpaku CTA, dark text. Both classes required.
-- `.ks-button.ks-button-secondary` — outlined kinpaku CTA.
-- `.ks-button.ks-button-ghost` — text-only kinpaku button.
-- `.ks-button[disabled]` or `.ks-button.ks-button-disabled` — disabled state.
-- `.ks-button-arrow` — wrapper for an arrow SVG inside a button (sized correctly).
-- `.ks-button-row` — flex row helper for horizontal button groups.
+- `.ks-button.ks-button-primary` — CTA پرشدهٔ کینپاکو، متن تیره. هر دو کلاس لازم‌اند.
+- `.ks-button.ks-button-secondary` — CTA کینپاکو با خط دور.
+- `.ks-button.ks-button-ghost` — دکمهٔ فقط-متنِ کینپاکو.
+- `.ks-button[disabled]` یا `.ks-button.ks-button-disabled` — حالت غیرفعال.
+- `.ks-button-arrow` — رپرِ SVG فلش داخل دکمه (با سایز درست).
+- `.ks-button-row` — helper ردیف flex برای گروه‌های دکمهٔ افقی.
 
-**Form controls**
+**کنترل‌های فرم**
 
-- `.ks-form-sample` — vertical form layout.
-- `.ks-toggle` — switch (checkbox underneath, label visible).
-- `.ks-checkbox` — checkbox with label.
-- `.ks-select` — dropdown.
+- `.ks-form-sample` — چیدمان فرم عمودی.
+- `.ks-toggle` — سوییچ (checkbox زیرش، لیبل نمایان).
+- `.ks-checkbox` — چک‌باکس با لیبل.
+- `.ks-select` — فهرست کشویی.
 
-**Tabs**
+**تب‌ها**
 
-- `.ks-tabs` — tab container.
-- `.ks-tab-list` — tab buttons row.
-- `.ks-tab-panel` — tab content panel.
+- `.ks-tabs` — ظرف تب.
+- `.ks-tab-list` — ردیف دکمه‌های تب.
+- `.ks-tab-panel` — پنل محتوای تب.
 
-**Status, tags, and feedback**
+**وضعیت، تگ و بازخورد**
 
-- `.ks-badge` + `.is-detected` / `.is-improved` / `.is-ready` — pill badge with dot.
-- `.ks-badge-row` — flex row helper.
-- `.ks-tag` + `.is-detected` / `.is-improved` / `.is-neutral` / `.is-ready` — slim tag, no dot.
-- `.ks-tag-row` — flex row helper.
-- `.ks-toast` + `.is-success` / `.is-warning` — alert toast with icon + dismiss.
-- `.ks-toast-icon` / `.ks-toast-close` — inner parts.
-- `.ks-modal` + `.ks-modal-actions` / `.ks-modal-close` — dialog box.
-- `.ks-empty` + `.ks-empty-icon` — empty-state block.
-- `.ks-skeleton` — loading shimmer.
-- `.ks-pagination` — paged-list nav.
-- `.ks-icon-button` + `.ks-tooltip` — circular icon button with hover tooltip.
+- `.ks-badge` + `.is-detected` / `.is-improved` / `.is-ready` — بج قرصی با نقطه.
+- `.ks-badge-row` — helper ردیف flex.
+- `.ks-tag` + `.is-detected` / `.is-improved` / `.is-neutral` / `.is-ready` — تگ باریک، بدون نقطه.
+- `.ks-tag-row` — helper ردیف flex.
+- `.ks-toast` + `.is-success` / `.is-warning` — توست هشدار با آیکن + بستن.
+- `.ks-toast-icon` / `.ks-toast-close` — اجزای داخلی.
+- `.ks-modal` + `.ks-modal-actions` / `.ks-modal-close` — جعبهٔ دیالوگ.
+- `.ks-empty` + `.ks-empty-icon` — بلوک حالت خالی.
+- `.ks-skeleton` — shimmer بارگذاری.
+- `.ks-pagination` — ناوبری فهرست صفحه‌بندی‌شده.
+- `.ks-icon-button` + `.ks-tooltip` — دکمهٔ آیکنیِ گرد با تولتیپ هاور.
 
-**Containers**
+**ظرف‌ها**
 
-- `.ks-bento` — 12-column grid with dark plinth + 8px gutters.
-- `.ks-bento-tile` — single tile within a bento.
-- `.ks-bento-tile--span-4` / `--span-6` / `--span-8` — sizing (e.g. 8/4, 6/6, 4/8).
-- `.ks-bento-num` — tiny mono caps marker for tile numbering. Add `data-color="patina"` to flip to verdigris.
+- `.ks-bento` — گرید ۱۲-ستونی با پایهٔ تیره + گاتر 8px.
+- `.ks-bento-tile` — تک‌کاشی داخل بنتو.
+- `.ks-bento-tile--span-4` / `--span-6` / `--span-8` — سایزبندی (مثلاً 8/4، 6/6، 4/8).
+- `.ks-bento-num` — نشانگر مونوی ریزِ بزرگ‌نویس برای شماره‌گذاری کاشی. برای رفتن به ورزگرس `data-color="patina"` اضافه کن.
 
 **Changelog**
 
-- `.ks-changelog` — vertical list wrapper.
-- `.ks-changelog-entry` — single dated entry.
-- `.ks-changelog-date` — left-column date.
-- `.ks-changelog-body` — right-column content. Use `<em>` inside `<strong>` for a small "NEW" badge.
+- `.ks-changelog` — رپر فهرست عمودی.
+- `.ks-changelog-entry` — ورودی تاریخ‌دارِ تکی.
+- `.ks-changelog-date` — ستون چپِ تاریخ.
+- `.ks-changelog-body` — محتوای ستون راست. برای بج کوچک «NEW» از `<em>` داخل `<strong>` استفاده کن.
 
-### Tokens vs Classes
+### توکن‌ها در برابر کلاس‌ها
 
-The kit primitives consume the tokens from `site/styles/kinpaku-tokens.css`. When you need a color, type scale value, easing, or rule alpha outside a kit primitive, read the token directly:
+پریمیتیوهای کیت از توکن‌های `site/styles/kinpaku-tokens.css` مصرف می‌کنند. وقتی خارج از یک پریمیتیو کیت به رنگ، مقدار مقیاس تایپ، ایزینگ یا آلفای خط نیاز داری، مستقیم توکن را بخوان:
 
-- Colors: `var(--ks-kinpaku)`, `var(--ks-patina)`, `var(--ks-lacquer)`, `var(--ks-champagne)`, etc.
-- Type scale: `var(--ks-type-display-size)`, `var(--ks-type-headline-weight)`, etc.
-- Rules: `var(--ks-rule)`, `var(--ks-rule-strong)`.
-- Motion: `var(--ks-ease)`.
+- رنگ‌ها: `var(--ks-kinpaku)`، `var(--ks-patina)`، `var(--ks-lacquer)`، `var(--ks-champagne)` و...
+- مقیاس تایپ: `var(--ks-type-display-size)`، `var(--ks-type-headline-weight)` و...
+- خط‌ها: `var(--ks-rule)`، `var(--ks-rule-strong)`.
+- حرکت: `var(--ks-ease)`.
 
-Do not hand-type oklch values or font sizes in page CSS. If a value isn't in the token file, it's either a token that needs adding or a sign that the visual moment is bespoke enough to live page-locally — either way, the decision needs to be deliberate.
+در CSS صفحه، oklch یا سایز فونت را دستی تایپ نکن. اگر مقداری در فایل توکن نیست، یا توکنی است که باید اضافه شود، یا نشانهٔ این است که لحظهٔ بصری به‌قدر کافی اختصاصی است که page-لوکال زندگی کند — هر دو راه، تصمیم باید آگاهانه باشد.
 
-## 3. Colors: Lacquer, Gold, Patina
+## ۳. رنگ‌ها: لاک، طلا، زنگار
 
-### Ground and Surface
+### زمینه و سطح
 
-- **Lacquer Black** (`oklch(7% 0.006 95)`): Default page ground. It is warm and mineral, not neutral black.
-- **Lacquer Deep** (`oklch(4% 0.004 95)`): Deepest inset surfaces and footer depth.
-- **Raised Lacquer** (`oklch(11% 0.006 95)`): Panels, cards, demo frames, and dark UI surfaces.
-- **Graphite** (`oklch(15% 0.008 95)`): Input fields, inactive tiles, and subtle internal surfaces.
-- **Graphite 2** (`oklch(19% 0.008 95)`): One step above graphite; context pills, inactive chrome inside live mode bars.
+- **Lacquer Black** (`oklch(7% 0.006 95)`): زمینهٔ پیش‌فرض صفحه. گرم و معدنی است، نه سیاه خنثی.
+- **Lacquer Deep** (`oklch(4% 0.004 95)`): عمیق‌ترین سطوح فرورفته و عمق فوتر.
+- **Raised Lacquer** (`oklch(11% 0.006 95)`): پنل‌ها، کارت‌ها، قاب‌های دمو و سطوح UI تیره.
+- **Graphite** (`oklch(15% 0.008 95)`): فیلدهای ورودی، کاشی‌های غیرفعال و سطوح داخلیِ ظریف.
+- **Graphite 2** (`oklch(19% 0.008 95)`): یک پله بالای graphite؛ قرص‌های بافتی، کروم غیرفعال داخل نوارهای حالت زنده.
 
-### Gold System
+### سیستم طلا
 
-- **Kinpaku Gold** (`oklch(84% 0.19 80.46)`): Primary accent. CTAs, active state, wordmark, key rules, command focus.
-- **Kinpaku Rich** (`oklch(77% 0.13 82)`): Active CTA fill and severity-medium markers.
-- **Kinpaku Deep** (`oklch(61% 0.085 78)`): Secondary gold for borders, subdued icons, and large technical diagrams.
-- **Kinpaku Pale** (`oklch(86% 0.07 84)`): Hover lift and pale fills.
-- **Default Hairline** (`oklch(78% 0 0 / 0.16)`): Default border and divider. Neutral, so borders and labels don't carry warmth (token name `gold-hairline` / `--ks-rule` is legacy).
-- **Strong Gold Hairline** (`oklch(74% 0.09 82 / 0.6)`): Active borders, focus outlines, and structural anchors. Stays gold — this is where the hairline is meant to read as brand.
+- **Kinpaku Gold** (`oklch(84% 0.19 80.46)`): تاکید اصلی. CTAها، حالت فعال، ووردمارک، خط‌های کلیدی، فوکوس فرمان.
+- **Kinpaku Rich** (`oklch(77% 0.13 82)`): پرِ CTA فعال و نشانگرهای شدت-متوسط.
+- **Kinpaku Deep** (`oklch(61% 0.085 78)`): طلای ثانویه برای حاشیه‌ها، آیکن‌های کم‌رنگ و دیاگرام‌های فنیِ بزرگ.
+- **Kinpaku Pale** (`oklch(86% 0.07 84)`): بالاآمدن هاور و پرهای کم‌رنگ.
+- **Default Hairline** (`oklch(78% 0 0 / 0.16)`): حاشیه و جداکنندهٔ پیش‌فرض. خنثی، تا حاشیه‌ها و لیبل‌ها گرمی حمل نکنند (نام توکن `gold-hairline` / `--ks-rule` میراثی است).
+- **Strong Gold Hairline** (`oklch(74% 0.09 82 / 0.6)`): حاشیه‌های فعال، outlineهای فوکوس و لنگرهای ساختاری. طلایی می‌ماند — اینجاست که hairline قرار است برند بخواند.
 
-### Text
+### متن
 
-- **Champagne** (`oklch(91% 0 0)`): Headlines, `<strong>`, important labels. The brightest text tier, fully neutral (token name is legacy). Text carries no warmth at any tier; the gold accents and surfaces do.
-- **Body Text** (`oklch(88% 0 0)`): Body copy on dark surfaces. Neutral and bright so reading copy reads crisp, not mushy.
-- **Muted Text** (`oklch(72% 0 0)`): Metadata, captions, secondary labels.
-- **Faint Text** (`oklch(62% 0 0)`): Subdued labels.
-- **Mute Deep** (`oklch(52% 0 0)`): Disabled copy.
+- **Champagne** (`oklch(91% 0 0)`): تیترها، `<strong>`، لیبل‌های مهم. روشن‌ترین لایهٔ متن، کاملاً خنثی (نام توکن میراثی است). متن در هیچ لایه‌ای گرمی حمل نمی‌کند؛ تاکیدهای طلایی و سطوح حمل می‌کنند.
+- **Body Text** (`oklch(88% 0 0)`): متن بدنه روی سطوح تیره. خنثی و روشن تا متن خواندنی شارپ بخواند، نه خمیری.
+- **Muted Text** (`oklch(72% 0 0)`): متادیتا، کپشن، لیبل‌های ثانویه.
+- **Faint Text** (`oklch(62% 0 0)`): لیبل‌های کم‌رنگ.
+- **Mute Deep** (`oklch(52% 0 0)`): متن غیرفعال.
 
-### Secondary and State
+### ثانویه و وضعیت
 
-- **Verdigris Patina** (`oklch(70% 0.12 188)`): Secondary accent. Improved states, live indicators, hover emphasis, and contrast point.
-- **Patina Pale** (`oklch(82% 0.07 188)`): Hover lift on patina surfaces.
-- **Patina Deep** (`oklch(49% 0.08 188)`): Deep oxide. Background texture and dark patina variants.
-- **Vermilion Warning** (`oklch(58% 0.15 35)`): Error or anti-pattern warning only. Use sparingly.
+- **Verdigris Patina** (`oklch(70% 0.12 188)`): تاکید ثانویه. حالت‌های بهبودیافته، نشانگرهای زنده، اوجِ هاور و نقطهٔ کنتراست.
+- **Patina Pale** (`oklch(82% 0.07 188)`): بالاآمدن هاور روی سطوح زنگاری.
+- **Patina Deep** (`oklch(49% 0.08 188)`): اکسید عمیق. بافت پس‌زمینه و واریانت‌های زنگارِ تیره.
+- **Vermilion Warning** (`oklch(58% 0.15 35)`): فقط خطا یا هشدار الگوی ضدطراحی. کم‌مصرف.
 
-### Color Rules
+### قواعد رنگ
 
-**The Gold Carries Brand Rule.** Kinpaku gold is the primary brand signal. If a single accent must represent Impeccable, use gold, not magenta or cyan.
+**قاعدهٔ طلا حمل‌کنندهٔ برند.** طلای کینپاکو سیگنال اصلی برند است. اگر یک تاکید تکی باید جلا را نمایندگی کند، طلایی، نه سرخابی یا فیروزه‌ای.
 
-**The Patina Has Meaning Rule.** Verdigris is secondary. It marks improvement, live state, or contrast against gold. Do not use it as a generic decoration field.
+**قاعدهٔ زنگارِ معنادار.** ورزگرس ثانویه است. بهبود، حالت زنده یا کنتراست در برابر طلا را علامت می‌زند. به‌عنوان میدان تزئین عمومی استفاده نشود.
 
-**The Texture Budget Rule.** Leaf and patina textures are for brand-bearing moments: hero seams, CTA fills, dividers, major swatches, and select system modules. Generic cards stay mostly flat.
+**قاعدهٔ بودجهٔ بافت.** بافت‌های ورق و زنگار برای لحظه‌های برنددارند: درزهای هیرو، پرهای CTA، جداکننده‌ها، سواچ‌های اصلی و ماژول‌های سیستمیِ منتخب. کارت‌های عمومی عمدتاً تخت می‌مانند.
 
-**The OKLCH-Only Rule.** New colors are declared in OKLCH. Hex appears only inside third-party examples or imported assets.
+**قاعدهٔ فقط-OKLCH.** رنگ‌های جدید در OKLCH اعلام می‌شوند. Hex فقط داخل نمونه‌های شخص ثالث یا assetهای ایمپورت‌شده ظاهر می‌شود.
 
-**The Gold-By-Size-On-Paper Rule (light mode).** On paper, gold usage is gated by size, not banned. **Large display accents stay gold** — the hero's gold accent word reads beautifully at display scale (see the Designing hero: "with Impeccable" in kinpaku gold on paper). But **at body and label sizes gold fails contrast on the bright ground, so it is never used for small accent text on paper.** There, the roles swap to verdigris: links, active nav, and inline command code use `--ks-link-on-paper` (patina-deep, `oklch(49% 0.08 188)`) for contrast, and small labels fall back to muted ink. Verdigris also carries state on paper (active nav, "you are here"), consistent with the Patina Has Meaning rule. Gold otherwise stays on fills and marks (logo, CTA fills, nodes, active rules). Reach for the light-mode tokens (`--ks-link-on-paper`, `--ks-nav-active`, the `light-*` surfaces) when building on paper — the token list below is dark-first, so a naive read pulls you toward gold *body* text that the light theme forbids.
+**قاعدهٔ طلا-بر-حسب-سایز-روی-کاغذ (حالت روشن).** روی کاغذ، استفاده از طلا با سایز گیت می‌شود، نه ممنوعیت. **تاکیدهای نمایشیِ بزرگ طلایی می‌مانند** — واژهٔ تاکیدی طلایی هیرو در مقیاس display روی کاغذ زیبا می‌خواند (ببین هیروی Designing: «با جلا» به طلای کینپاکو روی کاغذ). ولی **در سایز بدنه و لیبل، طلا روی زمینهٔ روشن کنتراست می‌بازد، پس هرگز برای متنِ تاکیدیِ کوچک روی کاغذ استفاده نمی‌شود.** آنجا نقش‌ها به ورزگرس می‌روند: لینک‌ها، ناوبری فعال و کد فرمانِ درون‌خطی از `--ks-link-on-paper` (patina-deep، `oklch(49% 0.08 188)`) برای کنتراست استفاده می‌کنند و لیبل‌های کوچک به جوهرِ muted برمی‌گردند. ورزگرس وضعیت را هم روی کاغذ حمل می‌کند (ناوبری فعال، «تو اینجایی»)، هم‌سو با قاعدهٔ زنگارِ معنادار. طلا در بقیهٔ موارد روی پرها و نشان‌ها می‌ماند (لوگو، پرهای CTA، نودها، خط‌های فعال). هنگام ساختن روی کاغذ سراغ توکن‌های حالت روشن برو (`--ks-link-on-paper`، `--ks-nav-active`، سطوح `light-*`) — فهرست توکن پایین تیره-محور است، پس خواندنِ ساده تو را به‌سوی متن *بدنه*ٔ طلایی می‌برد که تم روشن ممنوعش می‌کند.
 
-## 4. Typography: Two faces, weight inversion at the top
+## ۴. تایپوگرافی: دو قلم، وارونگی وزن در رأس
 
-**Display font:** Alumni Sans, Albert Sans, Arial, sans-serif (a thin hairline cut carries the brand at display sizes)
-**Body and UI font:** Albert Sans, Avenir Next, Helvetica Neue, Arial, system-ui, sans-serif
-**Mono font:** SFMono-Regular, Roboto Mono, Consolas, monospace
+**فونت نمایشی:** Alumni Sans، Albert Sans، Arial، sans-serif (برشِ نازکِ hairline برند را در سایزهای نمایشی حمل می‌کند)
+**فونت بدنه و UI:** Albert Sans، Avenir Next، Helvetica Neue، Arial، system-ui، sans-serif
+**فونت مونو:** SFMono-Regular، Roboto Mono، Consolas، monospace
 
-The voice is geometric and restrained. The Alumni Sans display face is reserved for the hero h1 and section h2s; the brand wordmark uses the same face at a heavier weight. Everything else (body, UI labels, controls, code) uses Albert Sans. The faces pair cleanly because they share humanist proportions without fighting for attention.
+صدا هندسی و خویشتن‌دار است. قلم نمایشی Alumni Sans فقط برای h1 هیرو و h2های بخش رزرو است؛ ووردمارک برند همان قلم را در وزن سنگین‌تر استفاده می‌کند. بقیهٔ چیزها (بدنه، لیبل‌های UI، کنترل‌ها، کد) از Albert Sans. این دو قلم تمیز جفت می‌شوند چون نسبت‌های انسان‌گرای مشترک دارند بدون رقابت برای توجه.
 
-### Hierarchy
+### سلسله‌مراتب
 
-- **Wordmark**: Alumni Sans (`--ks-font-wordmark`), weight 400, uppercase, `1.3rem`, letter-spacing `0.15em`. Brand lockup only. The thin display cut reads too light at lockup size, so the wordmark holds weight 400.
-- **Display · h1**: Alumni Sans, `clamp(3.4rem, 6.5vw, 5.6rem)`, **weight 100**, line-height 1.02, letter-spacing `-0.01em`. Hero and major statements.
-- **Headline · h2**: Alumni Sans, `clamp(2.6rem, 4vw, 3.4rem)`, **weight 300**, line-height 1.04. Section titles.
-- **Title · h3**: Albert Sans, `1.18rem`, weight 500, line-height 1.35. Component and panel headings.
-- **Body**: Albert Sans, `1.02rem`, weight 400, line-height 1.8. Long copy on dark surfaces needs air.
-- **Eyebrow**: Mono, `0.7rem`, weight 500, uppercase, letter-spacing `0.18em`. Small markers above titles.
-- **Mono label**: Mono, `0.72rem`, letter-spacing `0.22em`. Category labels, nav metadata, table headers, audit lines.
+- **Wordmark**: Alumni Sans (`--ks-font-wordmark`)، وزن 400، بزرگ‌نویس، `1.3rem`، فاصلهٔ حروف `0.15em`. فقط قفل برند. برش نازک نمایشی در سایز قفل خیلی سبک می‌خواند، پس ووردمارک وزن 400 را نگه می‌دارد.
+- **Display · h1**: Alumni Sans، `clamp(3.4rem, 6.5vw, 5.6rem)`، **وزن 100**، ارتفاع خط 1.02، فاصلهٔ حروف `-0.01em`. هیرو و گزاره‌های اصلی.
+- **Headline · h2**: Alumni Sans، `clamp(2.6rem, 4vw, 3.4rem)`، **وزن 300**، ارتفاع خط 1.04. عنوان بخش‌ها.
+- **Title · h3**: Albert Sans، `1.18rem`، وزن 500، ارتفاع خط 1.35. سرصفحهٔ کامپوننت و پنل.
+- **Body**: Albert Sans، `1.02rem`، وزن 400، ارتفاع خط 1.8. متن بلند روی سطوح تیره هوا می‌خواهد.
+- **Eyebrow**: Mono، `0.7rem`، وزن 500، بزرگ‌نویس، فاصلهٔ حروف `0.18em`. نشانگرهای کوچک بالای عنوان‌ها.
+- **لیبل Mono**: Mono، `0.72rem`، فاصلهٔ حروف `0.22em`. لیبل دسته‌ها، متادیتای ناوبری، سرستون‌های جدول، خط‌های ممیزی.
 
-### Typography Rules
+### قواعد تایپوگرافی
 
-**The Weight-Inversion Rule.** Section h2s read heavier (300) than the hero h1 (100). This is deliberate: the hero is elegant and thin so the page can breathe; section anchors carry more weight to ground each block. Do not normalize the two weights.
+**قاعدهٔ وارونگی وزن.** h2های بخش‌ها سنگین‌تر (300) از h1 هیرو (100) می‌خوانند. عمدی است: هیرو ظریف و نازک است تا صفحه نفس بکشد؛ لنگرهای بخش وزن بیشتری حمل می‌کنند تا هر بلوک زمین‌گیر شود. دو وزن را نرمال نکن.
 
-**The Two-Face Rule.** Display sizes use Alumni Sans — thin (100) for the h1, heavier (300) for h2s. Anything sized below `1.2rem` uses Albert Sans. The thin display cut reads too light at small sizes, so it never carries body or UI text.
+**قاعدهٔ دو-قلم.** سایزهای نمایشی از Alumni Sans — نازک (100) برای h1، سنگین‌تر (300) برای h2ها. هر چیزی زیر `1.2rem` از Albert Sans. برش نازک نمایشی در سایز کوچک خیلی سبک می‌خواند، پس هرگز متن بدنه یا UI را حمل نمی‌کند.
 
-**Tracked Labels Are Short Rule.** Tracked uppercase labels are for short system markers. Do not write full sentences in tracked caps.
+**قاعدهٔ لیبل‌های فاصله‌دار-کوتاه.** لیبل‌های بزرگ‌نویسِ فاصله‌دار برای نشانگرهای سیستمیِ کوتاه‌اند. جملهٔ کامل در caps فاصله‌دار ننویس.
 
-**Dark Type Needs Air Rule.** Body text on lacquer uses line-height 1.65 to 1.8 and a max width of 65 to 75ch.
+**قاعدهٔ تایپِ تیره-هوا-می‌خواهد.** متن بدنه روی لاک از ارتفاع خط 1.65 تا 1.8 و حداکثر عرض 65 تا 75ch استفاده می‌کند.
 
-## 5. Elevation and Material
+## ۵. ارتفاع و متریال
 
-The system is mostly flat. Depth comes from material contrast, hairline borders, texture, and subtle inset light.
+سیستم عمدتاً تخت است. عمق از تضاد متریال، حاشیه‌های hairline، بافت و نورِ فرورفتهٔ ظریف می‌آید.
 
-### Shadow Vocabulary
+### واژه‌نامهٔ سایه
 
-- **Panel Setback:** `0 24px 70px oklch(2% 0.004 95 / 0.42)` for large framed modules only.
-- **CTA Lift:** `0 18px 48px oklch(2% 0.004 95 / 0.4)` plus a small inset highlight.
-- **Patina Glow:** `0 0 22px oklch(70% 0.105 190 / 0.24)` for tiny live indicators only.
-- **No Default Card Shadow:** Cards rest on borders and background shifts.
+- **Panel Setback:** `0 24px 70px oklch(2% 0.004 95 / 0.42)` فقط برای ماژول‌های قاب‌دار بزرگ.
+- **CTA Lift:** `0 18px 48px oklch(2% 0.004 95 / 0.4)` به‌علاوهٔ هایلایت فرورفتهٔ کوچک.
+- **Patina Glow:** `0 0 22px oklch(70% 0.105 190 / 0.24)` فقط برای نشانگرهای زندهٔ ریز.
+- **No Default Card Shadow:** کارت‌ها روی حاشیه و جابه‌جایی پس‌زمینه می‌نشینند.
 
-### Material Rules
+### قواعد متریال
 
-**Hairline First Rule.** Use 1px gold hairlines before adding shadow.
+**قاعدهٔ اول-hairline.** قبل از افزودن سایه، از hairline طلاییِ 1px استفاده کن.
 
-**No Glass Rule.** Translucency can exist in overlays, but decorative blur/glass panels are not part of this system.
+**قاعدهٔ بدون-شیشه.** شفافیت در اورلی‌ها می‌تواند باشد، ولی پنل‌های بلور/شیشهٔ تزئینی جزو این سیستم نیستند.
 
-**Texture Needs Contrast Rule.** Text never sits directly on high-contrast leaf texture. Add a lacquer veil or move the texture to an edge.
+**قاعدهٔ بافت-کنتراست-می‌خواهد.** متن هرگز مستقیم روی بافت ورقِ پرکنتراست نمی‌نشیند. حجاب لاک اضافه کن یا بافت را به لبه ببر.
 
-**Asset-Led Material Rule.** Brand-bearing material accents use raster assets or generated images, not hand-drawn SVG approximations of leaf, dust, oxidation, or clockwork. Code-native geometry is reserved for simple hairlines, layout grids, and functional UI structure.
+**قاعدهٔ متریال-asset-محور.** تاکیدهای متریالیِ برنددار از assetهای raster یا تصاویر تولیدشده استفاده می‌کنند، نه تقریب‌های SVG دست‌کشیده از ورق، غبار، اکسید یا چرخ‌دندگی. هندسهٔ کد-بومی برای hairlineهای ساده، گریدهای چیدمان و ساختار UI کارکردی رزرو است.
 
-## 6. Components
+## ۶. کامپوننت‌ها
 
-### Buttons
+### دکمه‌ها
 
-- **Primary:** Kinpaku texture or gold fill, dark text, 1px border, 2px radius, min-height 58px.
-- **Secondary:** Transparent lacquer, gold border, gold text. Use for secondary commands only.
-- **Hover:** Slight upward transform, brighter gold position, or patina border. No bounce.
-- **Focus:** Patina outline with a 4px offset.
+- **اصلی:** بافت کینپاکو یا پرِ طلایی، متن تیره، حاشیهٔ 1px، شعاع 2px، حداقل ارتفاع 58px.
+- **ثانویه:** لاک شفاف، حاشیهٔ طلایی، متن طلایی. فقط برای فرمان‌های ثانویه.
+- **هاور:** transform کمی رو به بالا، موقعیت طلایی روشن‌تر، یا حاشیهٔ زنگاری. بدون جهش.
+- **فوکوس:** outline زنگاری با آفست 4px.
 
-### Hero Compare
+### مقایسهٔ هیرو
 
-The before/after comparison is a proof object. It uses a dark grid field, a straight kinpaku seam, a gold handle, and readable labels. The "before" side can show AI slop colors, but the frame itself stays in the neo-kinpaku system.
+مقایسهٔ قبل/بعد یک شیءِ اثبات است. از میدان گرید تیره، درزِ مستقیم کینپاکو، دستگیرهٔ طلایی و لیبل‌های خوانا استفاده می‌کند. سمت «قبل» می‌تواند رنگ‌های اسلاپ هوش مصنوعی نشان بدهد، ولی خود قاب در سیستم نئو-کینپاکو می‌ماند.
 
-### Command Rail
+### ریل فرمان
 
-The first-viewport rail should map to workflow or high-value commands, not abstract design categories. Items use full-width dark bands, gold icons, and patina hover state.
+ریل ویوپورت اول باید به گردش‌کار یا فرمان‌های پربار نگاشت شود، نه دسته‌های انتزاعی طراحی. آیتم‌ها از باند تیرهٔ تمام‌عرض، آیکن‌های طلایی و حالت هاور زنگاری استفاده می‌کنند.
 
-### Periodic Table
+### جدول تناوبی
 
-The command table uses dark category cells. Kinpaku covers Create, Refine, and Simplify variants; patina covers Evaluate and Harden; System is muted graphite. No light pastel category tints remain on the homepage.
+جدول فرمان‌ها از سلول‌های دسته‌ی تیره استفاده می‌کند. کینپاکو واریانت‌های Create و Refine و Simplify را می‌پوشاند؛ زنگار Evaluate و Harden؛ System گریفیت خاموش. هیچ ته‌رنگ دسته‌ایِ پاستلیِ روشن روی صفحهٔ اصلی نمانده.
 
-### DESIGN.md Panel
+### پنل DESIGN.md
 
-The DESIGN.md visualization must show kinpaku as the primary color, patina as the secondary color, Alumni Sans and Albert Sans as the display and body families, and dark component samples. Magenta is not representative of the current system.
+بصری‌سازی DESIGN.md باید کینپاکو را رنگ اصلی، زنگار را رنگ ثانویه، Alumni Sans و Albert Sans را خانواده‌های display و بدنه، و نمونه‌های کامپوننت تیره نشان بدهد. سرخابی نمایندهٔ سیستم فعلی نیست.
 
-### Dividers and Material Accents
+### جداکننده‌ها و تاکیدهای متریالی
 
-Dividers use real kinpaku, dust, or verdigris texture assets when they need to carry the brand. Simple CSS dividers are limited to straight hairlines. Avoid synthetic dot rails, fake dust strokes, or pseudo-circuit motifs that create rendering artifacts.
+جداکننده‌ها وقتی باید برند حمل کنند، از assetهای بافت واقعی کینپاکو، غبار یا ورزگرس استفاده می‌کنند. جداکننده‌های CSS ساده به hairlineهای مستقیم محدودند. از ریل‌های نقطه‌ایِ مصنوعی، ضربه‌های غبارِ جعلی یا موتیف‌های شبه-مدارِ سازندهٔ آرتیفکت رندر بپرهیز.
 
-### Footer
+### فوتر
 
-The footer can carry the strongest oxidation accent. Use the gold seam plus patina edge as a final brand signature.
+فوتر می‌تواند قوی‌ترین تاکید اکسید را حمل کند. از درز طلایی به‌علاوهٔ لبهٔ زنگاری به‌عنوان امضای نهایی برند استفاده کن.
 
-### Live Mode Picker
+### پیکر نوار حالت زنده
 
-The global bottom bar and the contextual bar (configure / cycling / accept) share one chrome treatment. Source of truth: `skill/scripts/live-browser.js` (`barPaletteForTheme`, `initGlobalBar`, `initBar`). Homepage and `/live-mode` demos mirror it via `.live-demo-gbar` and `.live-demo-ctx` in `site/styles/kinpaku-kit.css`.
+نوار سراسری پایین و نوار بافتی (configure / cycling / accept) یک پرداخت کروم مشترک دارند. منبع حقیقت: `skill/scripts/live-browser.js` (`barPaletteForTheme`، `initGlobalBar`، `initBar`). دموهای صفحهٔ اصلی و `/live-mode` با `.live-demo-gbar` و `.live-demo-ctx` در `site/styles/kinpaku-kit.css` آینه‌اش می‌کنند.
 
-- **Surface:** Lacquer Deep (`oklch(4% 0.004 95)`), always. Picker chrome does not adapt to the host page's light/dark theme.
-- **Border:** 1px solid neutral hairline (`oklch(92% 0 0 / 0.13)`), radius 8px. The bar reads as a quiet precise tool; gold is reserved for the brand mark and the active control, not the container outline.
-- **Shadow:** `0 16px 36px -12px oklch(0% 0 0 / 0.6)` (tight neutral drop, no gold halo ring).
-- **Brand mark:** Impeccable carved-tile icon (same SVG paths as `site/components/Header.astro` / `favicon.svg`), kinpaku fill on transparent ground. Not a "/" slash or rounded-square placeholder.
-- **Default controls:** Champagne labels at rest (`oklch(84% 0.035 82)`), muted icons (`oklch(63% 0.024 82)`).
-- **Active toggle:** Crisp graphite pill (`oklch(27% 0 0)`) with kinpaku text/icon. The gold carries the "selected" signal; the pill itself is neutral, not a kinpaku-dim wash.
-- **Exit hover:** Vermilion (`oklch(58% 0.15 35)`), not a neutral gray lift.
-- **Context bar internals:** Graphite-2 pills, gold hairline dividers, kinpaku Go/Accept CTAs with lacquer-deep text.
-- **DESIGN.md toggle icon:** Four-quadrant swatch; bottom-right uses warm charcoal (`oklch(34% 0.014 82)`) so the tile reads against lacquer-deep, not void-black.
+- **سطح:** Lacquer Deep (`oklch(4% 0.004 95)`)، همیشه. کروم پیکر با تم روشن/تیرهٔ صفحهٔ میزبان خودش را وفق نمی‌دهد.
+- **حاشیه:** 1px solid hairline خنثی (`oklch(92% 0 0 / 0.13)`)، شعاع 8px. نوار ابزاری آرام و دقیق می‌خواند؛ طلا برای نشان برند و کنترل فعال رزرو است، نه outline ظرف.
+- **سایه:** `0 16px 36px -12px oklch(0% 0 0 / 0.6)` (دراپ خنثیِ تنگ، بدون حلقهٔ هالهٔ طلایی).
+- **نشان برند:** آیکن کاشی‌حکاکی‌شدهٔ جلا (همان مسیرهای SVGِ `site/components/Header.astro` / `favicon.svg`)، پرِ کینپاکو روی زمینهٔ شفاف. نه اسلش «/» و نه جای‌نگهدار مربع‌گوشه‌گرد.
+- **کنترل‌های پیش‌فرض:** لیبل‌های Champagne در حالت آرام (`oklch(84% 0.035 82)`)، آیکن‌های muted (`oklch(63% 0.024 82)`).
+- **کلید فعال:** قرص گریفیت شارپ (`oklch(27% 0 0)`) با متن/آیکن کینپاکو. طلا سیگنال «انتخاب‌شده» را حمل می‌کند؛ خود قرص خنثی است، نه شست‌وشوی کینپاکو-کم‌رنگ.
+- **هاور خروج:** Vermilion (`oklch(58% 0.15 35)`)، نه بالاآمدن خاکستری خنثی.
+- **اجزای نوار بافتی:** قرص‌های Graphite-2، جداکننده‌های hairline طلایی، CTAهای Go/Accept کینپاکو با متن lacquer-deep.
+- **آیکن کلید DESIGN.md:** سواچ چهار-ربعی؛ پایین-راست از زغالِ گرم استفاده می‌کند (`oklch(34% 0.014 82)`) تا کاشی روی lacquer-deep بخواند، نه سیاه-خلأ.
 
-**The Picker Is Brand Rule.** Live mode UI is Impeccable product chrome, not host-page chrome. It always ships the lacquer-deep fill, the carved-tile mark, and gold on the mark + active control. Brand reads through the mark and the gold accent rather than a gold border ringing the bar; the container itself stays a quiet neutral-edged tool.
+**قاعدهٔ پیکر-برند-است.** UI حالت زنده کرومِ محصول جلا است، نه کرومِ صفحهٔ میزبان. همیشه پرِ lacquer-deep، نشان کاشی‌حکاکی‌شده و طلا روی نشان + کنترل فعال را عرضه می‌کند. برند از طریق نشان و تاکید طلایی می‌خواند نه از حاشیهٔ طلاییِ دور نوار؛ خود ظرف ابزاری آرام با لبهٔ خنثی می‌ماند.
 
-## 7. Do and Do Not
+## ۷. بایدها و نبایدها
 
-### Do
+### باید
 
-- Do use kinpaku gold as the primary brand color.
-- Do use verdigris patina for secondary state and contrast.
-- Do keep surfaces dark, warm, and mineral.
-- Do use real texture assets for gold leaf and oxidation when the element is brand-bearing.
-- Do use circuit/calibration geometry as structure, especially around product proof.
-- Do keep cards compact, flat, and sharply bounded.
-- Do preserve utility: demos, sliders, audit tables, command examples, docs, and pricing must remain understandable.
-- Do keep live mode picker bars on lacquer-deep with kinpaku gold borders, regardless of host page theme.
+- باید طلای کینپاکو رنگ اصلی برند باشد.
+- باید زنگار ورزگرس برای وضعیت ثانویه و کنتراست استفاده شود.
+- باید سطوح تیره، گرم و معدنی بمانند.
+- باید برای ورق طلا و اکسید، وقتی عنصر برنددار است، assetهای بافت واقعی استفاده شود.
+- باید هندسهٔ مدار/کالیبراسیون به‌عنوان ساختار استفاده شود، به‌خصوص دور اثبات محصول.
+- باید کارت‌ها جمع‌وجور، تخت و با مرزِ شارپ بمانند.
+- باید کاربرد حفظ شود: دموها، اسلایدرها، جدول‌های ممیزی، مثال‌های فرمان، مستندات و قیمت‌گذاری باید فهمیدنی بمانند.
+- باید نوارهای پیکر حالت زنده روی lacquer-deep با حاشیه‌های طلای کینپاکو بمانند، فارغ از تم صفحهٔ میزبان.
 
-### Do Not
+### نباید
 
-- Do not use editorial magenta as a brand accent.
-- Do not use italic serif display typography.
-- Do not use purple gradients, neon cyan fields, glassmorphism, or generic AI-tool glow.
-- Do not put gold texture under long text.
-- Do not use beige, paper, or cream as the page ground **in the default (dark) theme**. (Light mode intentionally uses a warm paper ground — see the Gold-Is-A-Mark-On-Paper rule.)
-- Do not add decorative calibration marks that do not align with real content.
-- Do not use wide rounded cards or nested cards.
-- Do not use pure black or pure white.
-- Do not let the visual system hide the product proof.
-- Do not theme-adapt live mode picker chrome to match arbitrary host pages. The picker is always neo-kinpaku.
+- نباید سرخابی ادیتوریال به‌عنوان تاکید برند استفاده شود.
+- نباید تایپوگرافی نمایشیِ سریف ایتالیک استفاده شود.
+- نباید گرادیان بنفش، میدان‌های نئون فیروزه‌ای، گلس‌مورفیسم یا درخشش عمومیِ ابزارهای هوش مصنوعی استفاده شود.
+- نباید بافت طلا زیر متن بلند گذاشته شود.
+- نباید بژ، کاغذ یا کرم به‌عنوان زمینهٔ صفحه در **تم پیش‌فرض (تیره)** استفاده شود. (حالت روشن عمداً زمینهٔ کاغذ گرم دارد — ببین قاعدهٔ طلا-نشان-است-روی-کاغذ.)
+- نباید علامت‌های کالیبراسیون تزئینی اضافه شود که با محتوای واقعی تراز نیستند.
+- نباید کارت‌های گوشه‌گرد پهن یا کارت‌های تودرتو استفاده شود.
+- نباید سیاه خالص یا سفید خالص استفاده شود.
+- نباید سیستم بصری اثبات محصول را بپوشاند.
+- نباید کروم پیکر حالت زنده با صفحه‌های دلخواه میزبان تم-واکنش شود. پیکر همیشه نئو-کینپاکو است.

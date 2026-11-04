@@ -1,11 +1,15 @@
-# Third-Party Notices
+# اطلاعیهٔ شخص ثالث (Third-Party Notices)
 
-This project includes content derived from third-party work, used under the terms of its original license.
+این پروژه محتوایی شامل آثاری است که از کارهای شخص ثالث مشتق شده و تحت شرایط لایسنس اصلی‌شان استفاده می‌شود. This project includes content derived from third-party work, used under the terms of its original license.
 
-## Platform Design Skills
+## جلا — فورک فارسیِ Impeccable
 
-The `skill/reference/ios.md` and `skill/reference/android.md` platform reference files are distilled from ehmo's `platform-design-skills` (Apple Human Interface Guidelines and Material Design 3 rules), rewritten in Impeccable's voice.
+این ریپو نسخهٔ فارسی‌شدهٔ پروژهٔ [Impeccable](https://github.com/pbakaus/impeccable) (اثر Paul Bakaus، لایسنس Apache-2.0) است. تمام اعتبارِ معماری، موتور تشخیص و واژگان طراحی اصلی متعلق به سازندهٔ اصلی است؛ فارسی‌سازی، افزودن دانش طراحی فارسی (تایپوگرافی فارسی، RTL، تقویم جلالی، فرمت‌های ایرانی) و بومی‌سازی محتوا کارِ این فورک است.
 
-**Original work:** https://github.com/ehmo/platform-design-skills
-**Original license:** MIT
-**Author:** ehmo
+## اسکیل‌های طراحی پلتفرم
+
+فایل‌های مرجع پلتفرمی `skill/reference/ios.md` و `skill/reference/android.md` چکیده‌ای از `platform-design-skills` اثر ehmo (قواعد Apple Human Interface Guidelines و Material Design 3) هستند که به صدای Impeccable بازنویسی شده‌اند.
+
+**اثر اصلی:** https://github.com/ehmo/platform-design-skills
+**لایسنس اصلی:** MIT
+**پدیدآور:** ehmo
