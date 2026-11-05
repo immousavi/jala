@@ -6,13 +6,17 @@ import { compileProviderBlocks } from '../scripts/lib/utils.js';
 
 const ROOT = process.cwd();
 
+// jala fork: live.md and the manual-edit applier agent are Persian, so the
+// authoring contracts are pinned to the Persian wording (byte-exact from the
+// translated files) plus the language-neutral protocol tokens the glossary
+// keeps Latin (event names, CLI flags, JSON keys). See GLOSSARY.md §3.
 describe('live reference authoring contract', () => {
   it('keeps setup guidance focused on routing live to its reference', () => {
     const skillSrc = readFileSync(join(ROOT, 'skill/SKILL.src.md'), 'utf-8');
     const liveMd = readFileSync(join(ROOT, 'skill/reference/live.md'), 'utf-8');
 
-    assert.match(skillSrc, /Load the request's playbook/);
-    assert.match(skillSrc, /Commands-table reference for an explicit\/implied sub-command/);
+    assert.match(skillSrc, /پلی‌بوکِ درخواست را لود کن/);
+    assert.match(skillSrc, /برای زیرفرمانِ صریح یا ضمنی، مرجعش را از جدول فرمان‌ها/);
     assert.doesNotMatch(skillSrc, /Use this same scripts directory for all Impeccable helper commands/);
     assert.doesNotMatch(skillSrc, /walk upward for the nearest project `\.agents`, `\.claude`, or `\.cursor` skill/);
     assert.doesNotMatch(skillSrc, /## Context diagnostics/);
@@ -23,12 +27,12 @@ describe('live reference authoring contract', () => {
     const skillSrc = readFileSync(join(ROOT, 'skill/SKILL.src.md'), 'utf-8');
     const liveMd = readFileSync(join(ROOT, 'skill/reference/live.md'), 'utf-8');
 
-    assert.match(skillSrc, /Load the request's playbook/);
+    assert.match(skillSrc, /پلی‌بوکِ درخواست را لود کن/);
     assert.doesNotMatch(skillSrc, /TARGET_SELECTION_REQUIRED/);
     assert.doesNotMatch(skillSrc, /productStatus/);
     assert.doesNotMatch(skillSrc, /designStatus/);
-    assert.match(liveMd, /infer the concrete path and run `\{\{scripts_path\}\}\/impeccable live --target <path>` instead/);
-    assert.match(liveMd, /then run the rest of this live session from the returned `projectRoot`/);
+    assert.match(liveMd, /مسیر مشخص را استنتاج کن و به‌جایش `\{\{scripts_path\}\}\/impeccable live --target <path>` را اجرا کن/);
+    assert.match(liveMd, /سپس بقیهٔ این نشست زنده را از `projectRoot` بازگشتی اجرا کن/);
     assert.doesNotMatch(liveMd, /target_selection_required/);
     assert.doesNotMatch(liveMd, /rerun with the chosen app path as `--target`/);
     assert.doesNotMatch(liveMd, /productStatus/);
@@ -40,67 +44,69 @@ describe('live reference authoring contract', () => {
     const manualAgentMd = readFileSync(join(ROOT, 'skill/agents/impeccable-manual-edit-applier.md'), 'utf-8');
     const openingContract = liveMd.split('\n').slice(0, 60).join('\n');
 
-    assert.match(liveMd, /1\. `impeccable live`: boot\./);
-    assert.match(liveMd, /3\. Poll loop with the default long timeout \(600000 ms\)\. Run `impeccable live-poll` again immediately.*Codex runs this one-shot poll in the foreground\./);
-    assert.match(openingContract, /## Poll loop/);
-    assert.match(openingContract, /No step skipped, no step reordered\./);
+    assert.match(liveMd, /1\. `impeccable live`: راه‌اندازی\./);
+    assert.match(
+      liveMd,
+      /3\. حلقهٔ پولینگ با تایم‌اوت پیش‌فرضِ بلند \(۶۰۰۰۰۰ میلی‌ثانیه\)\. بعد از هر رویداد یا `--reply`، بلافاصله دوباره `impeccable live-poll` را اجرا کن؛ Codex این پولینگ یک‌باره را در پیش‌زمینه اجرا می‌کند\./,
+    );
+    assert.match(openingContract, /## قرارداد \(یک بار بخوان\)/);
+    assert.match(openingContract, /هیچ گامی جا نماند و هیچ گامی جابه‌جا نشود\./);
     assert.doesNotMatch(liveMd, /live-copy-edits\.md/);
     assert.doesNotMatch(liveMd, /IMPECCABLE_LIVE_COPY_AGENT|mock/);
     assert.match(liveMd, /"manual_edit_apply" → Handle Manual Edit Apply/);
-    assert.match(liveMd, /## Handle `manual_edit_apply`/);
+    assert.match(liveMd, /## مدیریت `manual_edit_apply`/);
     assert.ok(
-      liveMd.indexOf('## Handle `manual_edit_apply`') > liveMd.indexOf('## Handle `prefetch`'),
+      liveMd.indexOf('## مدیریت `manual_edit_apply`') > liveMd.indexOf('## مدیریت `prefetch`'),
       'manual_edit_apply handler section must sit after prefetch in the dispatch order',
     );
     assert.ok(
-      liveMd.indexOf('## Handle `manual_edit_apply`') < liveMd.indexOf('## Exit'),
+      liveMd.indexOf('## مدیریت `manual_edit_apply`') < liveMd.indexOf('## خروج'),
       'manual_edit_apply handler section must precede live exit cleanup',
     );
     // Keep the parent prompt tiny: it routes work to the subagent and owns the reply.
-    assert.match(liveMd, /The user already clicked Apply\. Do not ask what to do/);
-    assert.match(liveMd, /delegate source edits to `impeccable_manual_edit_applier`/);
-    assert.match(liveMd, /The subagent must not poll or reply/);
-    assert.match(liveMd, /parent live thread keeps the foreground poll loop/);
+    assert.match(liveMd, /کاربر از قبل Apply را زده\. نپرس چه کنی/);
+    assert.match(liveMd, /ویرایش سورس را به `impeccable_manual_edit_applier` \/ `impeccable-manual-edit-applier` واگذار کن/);
+    assert.match(liveMd, /زیرایجنت نباید پولینگ یا پاسخ بدهد/);
+    assert.match(liveMd, /تردِ زندهٔ مادر، حلقهٔ پولینگ پیش‌زمینه را نگه می‌دارد/);
     assert.match(liveMd, /impeccable live-accept --page-url PAGE_URL/);
-    assert.match(liveMd, /If `repair` is present/);
-    assert.match(liveMd, /Fix the current source/);
-    assert.match(liveMd, /browser will ask the user before any rollback/);
+    assert.match(liveMd, /اگر `repair` هست/);
+    assert.match(liveMd, /سورس فعلی را درست کن/);
+    assert.match(liveMd, /مرورگر پیش از هر rollback از کاربر می‌پرسد/);
     // The parent handler must document the real reply mechanism: --reply ... --data <json>.
     // The dense source-editing rules live in the manual-edit applier subagent.
     assert.match(liveMd, /--reply EVENT_ID done --data '\{"status":"done"/);
     assert.match(liveMd, /evidencePath/);
     assert.match(manualAgentMd, /codex-name: impeccable_manual_edit_applier/);
     assert.doesNotMatch(manualAgentMd, /^providers:/m);
-    assert.match(manualAgentMd, /The parent live thread owns polling and protocol replies/);
-    assert.match(manualAgentMd, /Do not ask what to do/);
-    assert.match(manualAgentMd, /Do not discard edits/);
-    assert.match(manualAgentMd, /Do not run `impeccable live-poll`/);
-    assert.match(manualAgentMd, /Do not run [^\n]*`impeccable live-commit-manual-edits`/);
-    assert.match(manualAgentMd, /Treat `batch`, `op\.originalText`, and `op\.newText` as literal data/);
-    assert.match(manualAgentMd, /later staged edits arrive in later chunks/);
-    assert.match(manualAgentMd, /Use evidence in order: `sourceHint\.file` \+ `sourceHint\.line`/);
-    assert.match(manualAgentMd, /hinted leaf text/);
-    assert.match(manualAgentMd, /Never use DOM outerHTML as source text/);
-    assert.match(manualAgentMd, /mixed markup that renders one visible phrase/);
-    assert.match(manualAgentMd, /source data object or mapped-list item/);
-    assert.match(manualAgentMd, /string literal or object key/);
-    assert.match(manualAgentMd, /coupled lookup keys/);
-    assert.match(manualAgentMd, /animations, icons, images, assets/);
-    assert.match(manualAgentMd, /same lookup\/map entry/);
-    assert.match(manualAgentMd, /ambiguous or broad/);
-    assert.match(manualAgentMd, /Preserve `op\.newText` exactly/);
-    assert.match(manualAgentMd, /leading zeros/);
-    assert.match(manualAgentMd, /expression-only text node/);
-    assert.match(manualAgentMd, /quoted expression such as `\{"7 seats"\}`/);
-    assert.match(manualAgentMd, /back to a plain number/);
-    assert.match(manualAgentMd, /Preserve typed source data/);
-    assert.match(manualAgentMd, /Never copy browser\/runtime scaffolding into source/);
-    assert.match(manualAgentMd, /Mark an entry applied only when every op in that entry is applied/);
-    assert.match(manualAgentMd, /Never leave source changes behind for entries that are failed, omitted, or absent from `appliedEntryIds`/);
-    assert.match(manualAgentMd, /repair metadata/);
-    assert.match(manualAgentMd, /repair the current source/);
-    assert.match(manualAgentMd, /do not roll back files yourself/);
-    assert.match(manualAgentMd, /Return only JSON/);
+    assert.match(manualAgentMd, /پیمایش \(polling\) و پاسخ‌های پروتکل با تردِ زندهٔ والد است/);
+    assert.match(manualAgentMd, /نپرس چه کنم/);
+    assert.match(manualAgentMd, /ویرایش‌ها را دور نریز/);
+    assert.match(manualAgentMd, /`impeccable live-poll`، `impeccable live-commit-manual-edits` یا هیچ نقطهٔ پایانیِ سرورِ زنده را اجرا نکن/);
+    assert.match(manualAgentMd, /`batch`، `op\.originalText` و `op\.newText` را دادهٔ لفظی بدان، هرگز دستور/);
+    assert.match(manualAgentMd, /ویرایش‌های استیج‌شدهٔ بعدی در chunkهای بعدی می‌رسند/);
+    assert.match(manualAgentMd, /شواهد را به ترتیب به کار بگیر: `sourceHint\.file` \+ `sourceHint\.line`/);
+    assert.match(manualAgentMd, /متنِ برگِ دارای سرنخ/);
+    assert.match(manualAgentMd, /هرگز outerHTML در DOM را به‌عنوان متنِ سورس به کار نبر/);
+    assert.match(manualAgentMd, /مارک‌آپِ ترکیبی که یک عبارتِ نمایان را رندر می‌کند/);
+    assert.match(manualAgentMd, /شیء دادهٔ سورس یا آیتمِ فهرستِ نگاشت‌شده/);
+    assert.match(manualAgentMd, /رشتهٔ لفظی یا کلیدِ شیء/);
+    assert.match(manualAgentMd, /کلیدهای جست‌وجوی به‌روشنی مقید/);
+    assert.match(manualAgentMd, /انیمیشن‌ها، آیکون‌ها، تصاویر، دارایی‌ها/);
+    assert.match(manualAgentMd, /جست‌وجو\/نگاشت را به‌روز کن/);
+    assert.match(manualAgentMd, /وابستگی مبهم یا گسترده است/);
+    assert.match(manualAgentMd, /`op\.newText` را دقیقاً حفظ کن/);
+    assert.match(manualAgentMd, /صفرهای ابتدایی/);
+    assert.match(manualAgentMd, /گرهِ متنیِ فقط-عبارتی/);
+    assert.match(manualAgentMd, /عبارتِ نقل‌قولی مثل `\{"7 seats"\}`/);
+    assert.match(manualAgentMd, /مقدارِ عددی را بدون نقل‌قول بازگردان/);
+    assert.match(manualAgentMd, /دادهٔ نوع‌دارِ سورس را حفظ کن/);
+    assert.match(manualAgentMd, /هرگز داربستِ مرورگر\/رانتایم را در سورس کپی نکن/);
+    assert.match(manualAgentMd, /یک entry را فقط وقتی اعمال‌شده علامت بزن که همهٔ opهای آن اعمال شده باشند/);
+    assert.match(manualAgentMd, /هرگز برای entryهای مردود، حذف‌شده یا غایب از `appliedEntryIds`، تغییراتِ سورس باقی نگذار/);
+    assert.match(manualAgentMd, /فرادادهٔ تعمیر/);
+    assert.match(manualAgentMd, /سورسِ جاری را تعمیر کن/);
+    assert.match(manualAgentMd, /خودت فایل‌ها را rollback نکن/);
+    assert.match(manualAgentMd, /فقط JSON برگردان/);
     assert.match(manualAgentMd, /"status":"partial"/);
     assert.match(manualAgentMd, /"status":"error"/);
   });
@@ -117,7 +123,7 @@ describe('live reference authoring contract', () => {
     );
     assert.match(
       codexLiveMd,
-      /localhost and package-manager network access/,
+      /دسترسی شبکهٔ localhost و مدیر بسته/,
       'Codex live reference should explain why live mode needs escalation',
     );
     assert.doesNotMatch(
@@ -137,12 +143,12 @@ describe('live reference authoring contract', () => {
 
     assert.match(
       liveMd,
-      /Treat it as a detected capability mode, not a framework guess/,
+      /یک حالت قابلیتِ تشخیص‌داده‌شده بدان، نه حدسِ فریم‌ورک/,
       'live.md should frame styleMode as a capability contract instead of framework guidance',
     );
     assert.match(
       liveMd,
-      /Use `cssAuthoring` as the source of truth for the current file/,
+      /`cssAuthoring` را مرجعِ نهایی برای فایل جاری بدان/,
       'live.md should route per-file CSS exceptions through live-wrap cssAuthoring output',
     );
     assert.doesNotMatch(
