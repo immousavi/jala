@@ -1,7 +1,7 @@
 {
-  "stdout": "serve-question: the question server is gone with no answer. This is a server failure, not a user decision: restart it with --start --key k1 and the same payload, reopen the URL for the user, and wait again. Never proceed without their choice while their browser session is open.\n",
+  "stdout": "WAITING: no answer yet after 2s; run --wait --key k1 again\n",
   "stderr": "",
-  "exit": 2,
+  "exit": 3,
   "signal": null,
   "files": {}
 }
