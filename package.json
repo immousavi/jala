@@ -97,13 +97,13 @@
     "@impeccable/cli-windows-x64": "0.1.18"
   },
   "devDependencies": {
-    "@ai-sdk/anthropic": "^4.0.7",
+    "@ai-sdk/anthropic": "^4.0.94",
     "@ai-sdk/google": "^4.0.8",
     "@ai-sdk/openai": "^4.0.7",
-    "@anthropic-ai/claude-agent-sdk": "^0.3.165",
+    "@anthropic-ai/claude-agent-sdk": "^0.3.316",
     "@anthropic-ai/sdk": "^1.2.0",
     "@babel/parser": "^8.0.4",
-    "ai": "^7.0.14",
+    "ai": "^7.0.159",
     "archiver": "^8.0.0",
     "playwright": "^1.59.1",
     "puppeteer": "^25.1.0",
