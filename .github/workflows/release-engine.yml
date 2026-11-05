@@ -17,6 +17,10 @@ permissions:
   contents: read
 jobs:
   build:
+    # Publishes signed engine binaries to the upstream release channel with
+    # upstream secrets and impeccable.style URLs; inert on the jala fork,
+    # which downloads the engine from the original repo's releases.
+    if: github.repository == 'pbakaus/impeccable'
     strategy:
       fail-fast: false
       matrix:

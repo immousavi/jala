@@ -27,7 +27,9 @@ concurrency:
 
 jobs:
   issue-inbox:
-    if: github.event_name == 'issues'
+    # Upstream-maintainer policy (pbakaus et al.); the jala fork keeps its own
+    # triage. Guards keep this workflow inert outside the original repo.
+    if: github.repository == 'pbakaus/impeccable' && github.event_name == 'issues'
     runs-on: ubuntu-latest
     steps:
       - name: Mark issue for triage
@@ -44,7 +46,7 @@ jobs:
           gh issue edit "$ISSUE_NUMBER" --repo "$GH_REPO" --add-label "needs triage"
 
   sheriff:
-    if: github.event_name != 'issues'
+    if: github.repository == 'pbakaus/impeccable' && github.event_name != 'issues'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
