@@ -1,5 +1,5 @@
-# Craft (deprecated alias)
+# craft (نام مستعار منسوخ)
 
-`craft` is a deprecated alias for an ordinary request to make new visual work. It adds no setup, interview, checkpoint, tool, or quality behavior. Apply SKILL.md's normal routing: create missing PRODUCT.md through [init.md](init.md), then follow [new-work.md](new-work.md) for visual authority, world and surface decisions, implementation, and finish.
+`craft` نام مستعار منسوخ‌شده برای یک درخواست معمولی کارِ بصری جدید است. هیچ رفتار راه‌اندازی، مصاحبه، نقطهٔ بازرسی، ابزار یا کیفیت اضافه‌ای ندارد. مسیریابی معمول SKILL.md را اعمال کن: PRODUCT.md غایب را از طریق [init.md](init.md) بساز، بعد برای اقتدار بصری، تصمیم‌های جهان و سطح، پیاده‌سازی و پایان‌کاری از [new-work.md](new-work.md) پیرو کن.
 
-Do not tell users they need to invoke `craft`. Natural requests such as “build this feature,” “make a landing page,” or “redesign this screen” use the same flow.
+به کاربر نگو که باید `craft` را صدا بزند. درخواست‌های طبیعی مثل «این ویژگی را بساز»، «یک صفحهٔ فرود بساز» یا «این صفحه را بازطراحی کن» از همان جریان استفاده می‌کنند.

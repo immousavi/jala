@@ -1,35 +1,36 @@
-Interactive live variant mode: select elements in the browser, pick a design action, and get AI-generated HTML+CSS variants hot-swapped via the dev server's HMR.
+حالت واریانت زندهٔ تعاملی: عناصر را در مرورگر انتخاب کن، یک کنش طراحی بردار و واریانت‌های HTML+CSS تولیدشده با هوش مصنوعی را تحویل بگیر؛ واریانت‌هایی که با HMR سرور توسعه، زنده و بدون رفرش روی صفحه جایگزین می‌شوند.
 
-## Prerequisites
+## پیش‌نیازها
 
-A running dev server with HMR (Vite, Next.js, Bun, etc.), OR a static HTML file open in the browser. If the dev server's default port is busy, the app is very likely ALREADY running; probe the default URL before spawning a second server.
+یک سرور توسعهٔ در حال اجرا با HMR (Vite، Next.js، Bun و مانند آن‌ها)، یا یک فایل HTML ایستا که در مرورگر باز است. اگر پورت پیش‌فرض سرور توسعه اشغال بود، برنامه تقریباً قطعاً از قبل در حال اجراست؛ پیش از راه‌اندازی سرور دوم، آدرس پیش‌فرض را آزمایش کن.
 
-Live editing requires a local checkout; injection into deployed production sites (including HTTPS) is unsupported. For production inspection, use `.trae/skills/impeccable/scripts/impeccable detect <url>` or the browser extension, not the live helper. Do not disable browser security or weaken production CSP to enable live mode.
+ویرایش زنده به یک نسخهٔ محلی (local checkout) نیاز دارد؛ تزریق به سایت‌های عملیاتی مستقرشده (از جمله HTTPS) پشتیبانی نمی‌شود. برای بازرسی محیط عملیاتی از `.trae/skills/impeccable/scripts/impeccable detect <url>` یا افزونهٔ مرورگر استفاده کن، نه هلپر (helper) حالت زنده. برای فعال‌کردن حالت زنده، امنیت مرورگر را غیرفعال نکن و CSP محیط عملیاتی را تضعیف نکن.
 
-## The contract (read once)
+## قرارداد (یک بار بخوان)
 
-Execute in order. No step skipped, no step reordered. Every tool output in live mode may carry an `_instructions` field: it is the authoritative next step for that exact situation, with real ids and paths substituted; when it conflicts with your recollection of this document, `_instructions` wins.
+به ترتیب اجرا کن. هیچ گامی جا نماند و هیچ گامی جابه‌جا نشود. هر خروجی ابزار در حالت زنده می‌تواند فیلد `_instructions` داشته باشد: آن، گام بعدیِ معتبر برای دقیقاً همان وضعیت است، با شناسه‌ها و مسیرهای واقعی جای‌گذاری‌شده؛ هرگاه با آنچه از این سند به یاد داری تعارض داشت، `_instructions` ملاک است.
 
-1. `impeccable live`: boot. If the request names or implies a file, route, or app inside a monorepo, infer the concrete path and run `.trae/skills/impeccable/scripts/impeccable live --target <path>` instead; then run the rest of this live session from the returned `projectRoot`. The boot resolves the app root from dev-server config files and persists it in `.impeccable/live/roots.json`; every helper re-anchors to that manifest at startup (a wrong cwd cannot fork session state), PRODUCT.md / DESIGN.md are discovered upward to the git root, and relative helper args like `--file` resolve against the app root.
-2. Open the app URL that serves `pageFile` (infer from `package.json`, docs, terminal output, or an open tab). Never use `serverPort`; it's the helper, not the app. **Cursor:** `browser_navigate` to that URL before polling; do not skip. **Other harnesses:** use the available browser tool; if the URL is uncertain, ask the user once.
-3. Poll loop with the default long timeout (600000 ms). Run `impeccable live-poll` again immediately after every event or `--reply`; Codex runs this one-shot poll in the foreground. Never pass a short `--timeout=`. The global bar's **Impeccable mark** dims with a pulsing amber dot when nothing is polling `/poll`; restart `impeccable live-poll` to reconnect.
-4. On `generate`: reuse `event.scaffold` when present; read the screenshot if present; load the action's reference; deliver variants; `--reply done`; poll again. Generate in this thread: you already hold the project's tokens and layout. The overlay preview IS the verification channel; do not screenshot, re-render, or QA variants between generate and accept. Apply craft-floor's contrast, spacing, and type floors by construction as you write; full verification runs once at accept on the chosen variant.
-5. On `steer`: read the message and `pageUrl`; do the work; `--reply steer_done`; poll again. No pickup ack.
-6. On `accept` / `discard`: the poll script runs `impeccable live-accept`, acknowledges delivery, and prints `_completionAck`. Plain accepts/discards are terminal immediately; carbonize accepts stay recoverable until `impeccable live-complete --id EVENT_ID` runs. Finish that cleanup before polling again.
-7. If interrupted, run `impeccable live-status` or `impeccable live-resume` before guessing. The journal under `.impeccable/live/sessions/` is canonical and replays unacknowledged work after a helper restart; the injected `live.js` re-attaches when the page reopens. Fall back to the direct-edit loop only when `impeccable live-resume` reports no active session, never because disconnects felt frequent.
-8. On `exit`: run the cleanup at the bottom.
+1. `impeccable live`: راه‌اندازی. اگر درخواست، فایل یا روت (route) یا برنامه‌ای درون یک مونوریپو را نام می‌برد یا بدان اشاره دارد، مسیر مشخص را استنتاج کن و به‌جایش `.trae/skills/impeccable/scripts/impeccable live --target <path>` را اجرا کن؛ سپس بقیهٔ این نشست زنده را از `projectRoot` بازگشتی اجرا کن. راه‌اندازی، ریشهٔ برنامه را از فایل‌های پیکربندی سرور توسعه می‌یابد و آن را در `.impeccable/live/roots.json` ذخیره می‌کند؛ هر هلپر در شروع به همان مانیفست لنگر می‌زند (یک cwd اشتباه نمی‌تواند وضعیت نشست را منشعب کند)، PRODUCT.md / DESIGN.md تا ریشهٔ git به بالا جست‌وجو می‌شوند، و آرگومان‌های نسبی هلپر مثل `--file` نسبت به ریشهٔ برنامه حل می‌شوند.
+2. آدرس برنامه‌ای که `pageFile` را سرو می‌کند باز کن (از `package.json`، مستندات، خروجی ترمینال یا یک تبِ باز استنتاج کن). هرگز از `serverPort` استفاده نکن؛ آن مالِ هلپر است، نه برنامه. **Cursor:** پیش از پولینگ (poll) با `browser_navigate` به آن آدرس برو؛ این گام را رد نکن. **سایر هارنس‌ها (harness):** از ابزار مرورگرِ در دسترس استفاده کن؛ اگر آدرس نامطمئن بود، یک بار از کاربر بپرس.
+3. حلقهٔ پولینگ با تایم‌اوت پیش‌فرضِ بلند (۶۰۰۰۰۰ میلی‌ثانیه). بعد از هر رویداد یا `--reply`، بلافاصله دوباره `impeccable live-poll` را اجرا کن؛ Codex این پولینگ یک‌باره را در پیش‌زمینه اجرا می‌کند. هرگز `--timeout=` کوتاه پاس نده. وقتی هیچ چیزی `/poll` را پولینگ نمی‌کند، **نشان جلا** در نوار سراسری کم‌رنگ می‌شود و نقطهٔ کهربایی تپنده می‌گیرد؛ برای اتصال مجدد، `impeccable live-poll` را دوباره راه بینداز.
+4. روی `generate`: اگر `event.scaffold` هست از آن دوباره استفاده کن؛ اگر اسکرین‌شات هست بخوانش؛ مرجع کنش را بار کن؛ واریانت‌ها را تحویل بده؛ `--reply done` بده؛ دوباره پولینگ کن. تولید در همین گفتگو انجام شود: توکن‌ها و چیدمان پروژه را همین حالا در اختیار داری. پیش‌نمایش اورلی **خودِ** کانال تأیید است؛ بین generate و accept اسکرین‌شات نگیر، رندر دوباره نکن و QA نکن. کف‌های کنتراست، فاصله‌گذاری و تایپِ خط پایه کیفیت (craft-floor) را همان هنگام نوشتن، در خودِ ساخت اعمال کن؛ تأیید کامل یک‌بار در accept و روی واریانت انتخاب‌شده اجرا می‌شود.
+5. روی `steer`: پیام و `pageUrl` را بخوان؛ کار را انجام بده؛ `--reply steer_done` بده؛ دوباره پولینگ کن. پاسخِ دریافتِ اولیه لازم نیست.
+6. روی `accept` / `discard`: اسکریپت پولینگ خودش `impeccable live-accept` را اجرا می‌کند، تحویل را تأیید و `_completionAck` را چاپ می‌کند. accept/discard ساده بلافاصله پایانی است؛ acceptهای کربنیزه (carbonize) تا اجرای `impeccable live-complete --id EVENT_ID` قابل بازیابی می‌مانند. آن پاک‌سازی را پیش از پولینگ دوباره تمام کن.
+7. اگر کار قطع شد، پیش از هر حدسی `impeccable live-status` یا `impeccable live-resume` را اجرا کن. ژورنال زیر `.impeccable/live/sessions/` مرجع معتبر است و پس از ری‌استارت هلپر، کارهای تأییدنشده را دوباره پخش می‌کند؛ `live.js` تزریق‌شده هم با بازشدن دوبارهٔ صفحه دوباره وصل می‌شود. فقط وقتی به حلقهٔ ویرایش مستقیم برگرد که `impeccable live-resume` گزارش کند نشست فعالی وجود ندارد؛ هرگز به این دلیل که قطع‌ووصل‌ها پرتکرار به نظر رسیده‌اند برگرد.
+8. روی `exit`: پاک‌سازی انتهای سند را اجرا کن.
 
-Harness policy:
-- **Claude Code**: run the poll as a **background task** (no short timeout); the harness notifies you on completion. Do not block the shell.
-- **Cursor**: **one-shot** poll in a **background terminal** with notify on `"type":"(steer|generate|accept|discard|manual_edit_apply|variant_mount_failed|prefetch|exit)"`; handle, `--reply`, restart the poll. Do **not** use `--stream` on Cursor (measured ~5s pickup vs sub-second one-shot).
-- **Codex**: default one-shot poll in a **yielded foreground exec session**. No `&`, no `--stream`, never leave Live without an active foreground poll. Starting the poll is not enough: SERVICE it (keep reading the exec session until it returns an event). Never announce "waiting for the user" and idle; a yielded poll nobody reads is a dead session, and the user's Go sits unanswered.
-- **Other harnesses**: one-shot foreground unless you know stdout reliably returns when a shell exits.
+سیاست هارنس:
 
-Delivery policy: atomic single-edit delivery everywhere; do not switch a harness to progressive publishing unless its poll loop is known not to block on the extra calls.
+- **Claude Code**: پولینگ را به‌صورت **تسک پس‌زمینه** اجرا کن (بدون تایم‌اوت کوتاه)؛ هارنس پس از پایان به تو خبر می‌دهد. شل را بلاک نکن.
+- **Cursor**: پولینگِ **یک‌باره** در یک **ترمینال پس‌زمینه** با notify روی `"type":"(steer|generate|accept|discard|manual_edit_apply|variant_mount_failed|prefetch|exit)"`؛ رویداد را هندل کن، `--reply` بده، پولینگ را دوباره راه بینداز. روی Cursor از `--stream` استفاده **نکن** (اندازه‌گیری‌شده: حدود ۵ ثانیه تا دریافت رویداد در برابرِ زیر یک ثانیه در حالت یک‌باره).
+- **Codex**: پیش‌فرض، پولینگ یک‌باره در یک **نشست exec پیش‌زمینهٔ واگذارشده** است. نه `&`، نه `--stream`، و هرگز حالت زنده را بدون یک پولینگ پیش‌زمینهٔ فعال رها نکن. شروع پولینگ کافی نیست: **به آن رسیدگی کن** (نشست exec را مدام بخوان تا رویداد برگرداند). هرگز نگو «منتظر کاربرم» و بیکار نمان؛ پولینگی که کسی نمی‌خواند، نشست مرده‌ای است و کلیکِ Go کاربر بی‌پاسخ می‌ماند.
+- **سایر هارنس‌ها**: پولینگ یک‌بارهٔ پیش‌زمینه، مگر آنکه بدانی stdout هنگام خروج شل به‌طور قابل‌اعتماد برمی‌گردد.
 
-Chat is overhead. No recap, no tutorial output, no pasting PRODUCT / DESIGN bodies. Spend tokens on tools and edits; on failure, one or two short sentences.
+سیاست تحویل: همه‌جا تحویل اتمیک با یک ویرایش واحد؛ هارنسی را به انتشار تدریجی نگذار مگر آنکه معلوم باشد حلقهٔ پولینگش روی فراخوانی‌های اضافی بلاک نمی‌شود.
 
-## Poll loop
+چت سربار است. نه بازگویی دوباره، نه خروجی آموزشی، نه چسباندن بدنهٔ PRODUCT / DESIGN. توکن را خرج ابزار و ویرایش کن؛ در خطا، یک یا دو جملهٔ کوتاه.
+
+## حلقهٔ پولینگ
 
 ```
 LOOP:
@@ -47,25 +48,25 @@ LOOP:
   "exit"      → break → Cleanup
 ```
 
-`variant_mount_failed` means the browser could not render what you published (`variant`, module `url`, `error`). The user sees a persistent error card, not variants. Fix the variant files, then `--reply EVENT_ID done --file <manifest or source path>`; the browser retries on its own.
+`variant_mount_failed` یعنی مرورگر نتوانست آنچه را منتشر کردی رندر کند (`variant`، `url` ماژول، `error`). کاربر به‌جای واریانت‌ها یک کارت خطای ماندگار می‌بیند. فایل‌های واریانت را درست کن، سپس `--reply EVENT_ID done --file <manifest or source path>` بده؛ مرورگر خودش دوباره تلاش می‌کند.
 
-**Stream mode** (`--stream`, experimental, never on Cursor): one long-lived process, one JSON line per event, `--reply` from a separate command. Only for harnesses that read incremental stdout reliably.
+**حالت استریم** (`--stream`، آزمایشی، هرگز روی Cursor): یک پروسهٔ طولانی‌عمر، یک خط JSON به‌ازای هر رویداد، `--reply` از فرمانی جداگانه. فقط برای هارنس‌هایی که stdout افزایشی را به‌طور قابل‌اعتماد می‌خوانند.
 
-## Start
+## شروع
 
 ```bash
 .trae/skills/impeccable/scripts/impeccable live
 ```
 
-Output JSON: `{ ok, serverPort, serverToken, pageFiles, roots, hasProduct, product, productPath, hasDesign, design, designPath, hasSurfaceBrief, surfaceBrief }`. `roots` is the resolved root manifest; `projectRoot` mirrors `roots.appRoot`. The surface brief rides along; do not shell out to `impeccable surface-brief` separately. Precedence for generation: **DESIGN.md wins on visual decisions; PRODUCT.md wins on durable product and voice decisions; the surface brief wins on this surface's strategy.** When DESIGN.md is missing, identity is **not** absent; extract it from CSS variables, computed styles, and sibling components (Step 4 Phase A). Identity preservation is the default; departure requires the user's explicit redesign intent.
+خروجی JSON: `{ ok, serverPort, serverToken, pageFiles, roots, hasProduct, product, productPath, hasDesign, design, designPath, hasSurfaceBrief, surfaceBrief }`. `roots` مانیفست ریشه‌های حل‌شده است؛ `projectRoot` آینهٔ `roots.appRoot` است. بریف سطح (surface brief) هم‌راه می‌آید؛ جداگانه به `impeccable surface-brief` شل نزن. اولویت برای تولید: **در تصمیم‌های بصری، DESIGN.md برنده است؛ در تصمیم‌های ماندگارِ محصول و لحن، PRODUCT.md؛ و در استراتژی همین سطح، بریف سطح.** وقتی DESIGN.md وجود ندارد، هویت **غایب نیست**؛ آن را از متغیرهای CSS، استایل‌های computed و کامپوننت‌های همسایه استخراج کن (گام ۴، فاز A). حفظ هویت پیش‌فرض است؛ خروج از آن، نیتِ بازطراحیِ صریح کاربر می‌خواهد.
 
-`serverPort`/`serverToken` belong to the small helper HTTP server (`/live.js`, SSE, `/poll`), not your dev server; the page URL is whatever origin serves a `pageFiles` entry.
+`serverPort`/`serverToken` مالِ سرور HTTP کوچک هلپرند (`/live.js`، SSE، `/poll`)، نه سرور توسعهٔ تو؛ آدرس صفحه هر اوریجینی است که یکی از مدخل‌های `pageFiles` را سرو می‌کند.
 
-If output is `{ ok: false, error: "config_missing" | "config_invalid", path }`, this project needs one-time configuration: read [live-setup.md](live-setup.md) and follow it. If the output carries a non-null `configDrift`, tell the user once which HTML files are uncovered and suggest adding them or switching `files` to a glob; never auto-edit the config.
+اگر خروجی `{ ok: false, error: "config_missing" | "config_invalid", path }` بود، این پروژه به پیکربندی یک‌باره نیاز دارد: [live-setup.md](live-setup.md) را بخوان و طبق آن پیش برو. اگر خروجی `configDrift` غیرتهی دارد، یک بار به کاربر بگو کدام فایل‌های HTML پوشش ندارند و اضافه‌کردنشان یا تغییر `files` به یک glob را پیشنهاد بده؛ هرگز پیکربندی را خودکار ویرایش نکن.
 
-## Recovery commands
+## فرمان‌های بازیابی
 
-The append-only journal under `.impeccable/live/sessions/` is canonical durable state (not project source). When the chat was interrupted, polling was missed, the helper restarted, or the browser reloaded:
+ژورنالِ فقط‌الحاقیِ زیر `.impeccable/live/sessions/` وضعیت ماندگارِ ملاک است (نه سورس پروژه). وقتی گفتگو قطع شد، پولینگ از دست رفت، هلپر ری‌استارت شد یا مرورگر ریلود شد:
 
 ```bash
 .trae/skills/impeccable/scripts/impeccable live-status      # helper state, active sessions, queued events; works with the helper down
@@ -73,112 +74,112 @@ The append-only journal under `.impeccable/live/sessions/` is canonical durable 
 .trae/skills/impeccable/scripts/impeccable live-complete --id SESSION_ID # canonical manual final acknowledgement after verified cleanup
 ```
 
-Server restart rule: start `impeccable live-server` again, then poll; startup requeues unacknowledged events, so never ask the user to click Go again unless `impeccable live-resume` says no active session exists.
+قاعدهٔ ری‌استارت سرور: `impeccable live-server` را دوباره راه بینداز، بعد پولینگ کن؛ شروع، رویدادهای تأییدنشده را دوباره صف می‌کند، پس هرگز از کاربر نخواه دوباره Go بزند، مگر آنکه `impeccable live-resume` بگوید نشست فعالی وجود ندارد.
 
-## Handle `generate`
+## مدیریت `generate`
 
-**Replace mode** (default): `{id, action, freeformPrompt?, count, pageUrl, element, screenshotPath?, comments?, strokes?}`.
+**حالت جایگزینی** (پیش‌فرض): `{id, action, freeformPrompt?, count, pageUrl, element, screenshotPath?, comments?, strokes?}`.
 
-**Insert mode** (`event.mode === "insert"`): `{id, mode: "insert", count, pageUrl, insert: { position, anchor }, placeholder: { width, height }, freeformPrompt?, screenshotPath?, comments?, strokes?}`. No `action`; requires a non-empty `freeformPrompt` **or** annotations. `placeholder` is a soft size hint.
+**حالت درج** (`event.mode === "insert"`): `{id, mode: "insert", count, pageUrl, insert: { position, anchor }, placeholder: { width, height }, freeformPrompt?, screenshotPath?, comments?, strokes?}`. `action` ندارد؛ یک `freeformPrompt` غیرخالی **یا** حاشیه‌نویسی لازم دارد. `placeholder` صرفاً راهنمای نرمِ اندازه است.
 
-Speed matters; the user is watching the selected element. Reuse preflight metadata, minimize discovery calls.
+سرعت مهم است؛ کاربر همین حالا عنصر انتخاب‌شده را تماشا می‌کند. از متادیتای preflight دوباره استفاده کن و فراخوانی‌های کشف را به حداقل برسان.
 
-### Insert mode branch
+### شاخهٔ حالت درج
 
-1. Read the screenshot if present (annotations only).
-2. If `event.scaffold` is present, use it and do **not** run the helper again. Otherwise:
+1. اگر اسکرین‌شات هست بخوان (فقط برای حاشیه‌نویسی‌ها).
+2. اگر `event.scaffold` هست، از آن استفاده کن و هلپر را **دوباره اجرا نکن**. در غیر این صورت:
 
 ```bash
 .trae/skills/impeccable/scripts/impeccable live-insert --id EVENT_ID --count EVENT_COUNT --position after \
   --element-id "ANCHOR_ID" --classes "class1,class2" --tag "section" --text "ANCHOR_TEXT"
 ```
 
-`--position` ← `event.insert.position`; anchor flags map exactly like wrap's. The scaffold has **no** `data-impeccable-variant="original"`; variants are net-new HTML+CSS at `insertLine`. On source-preview targets the scaffold carries `sourceWritten: false` with `wrapperBlock` and `replaceEndLine < replaceStartLine` (an insertion): splice variants into `wrapperBlock` at the marker and insert at `replaceStartLine` in ONE edit, exactly as the wrap section describes. Decide the visitor mode from the surface and load [craft-floor.md](craft-floor.md) before writing net-new markup. Svelte targets follow the same component flow as wrap below (`mode: "insert"` in the manifest): each variant is a real single-root component under `componentDir` with no `data-impeccable-*` attributes; never edit the route during generation; accept splices the chosen markup into `sourceFile` mechanically. For non-Svelte targets, accept/discard removes the wrapper; the anchor is untouched.
+`--position` ← `event.insert.position`؛ فلگ‌های anchor دقیقاً مثل wrap نگاشت می‌شوند. اسکافلد (scaffold) مقدار `data-impeccable-variant="original"` **ندارد**؛ واریانت‌ها HTML+CSS کاملاً تازه در `insertLine`‌اند. روی تارگت‌های source-preview، اسکافلد `sourceWritten: false` را همراه `wrapperBlock` و `replaceEndLine < replaceStartLine` (یک درج) حمل می‌کند: واریانت‌ها را در مارکرِ داخل `wrapperBlock` اسپلایس کن و در `replaceStartLine` درج کن؛ همه در **یک** ویرایش، دقیقاً همان‌طور که بخش wrap توضیح می‌دهد. حالت بازدیدکننده (visitor mode) را از سطح تشخیص بده و پیش از نوشتن مارک‌آپ تازه، [craft-floor.md](craft-floor.md) را بار کن. تارگت‌های Svelte همان جریان کامپوننتیِ wrap در پایین را دنبال می‌کنند (`mode: "insert"` در مانیفست): هر واریانت یک کامپوننت واقعیِ تک‌ریشه زیر `componentDir` است، بدون هیچ اتریبیوت `data-impeccable-*`؛ در زمان تولید هرگز روت را ویرایش نکن؛ accept مارک‌آپ انتخاب‌شده را به‌صورت مکانیکی داخل `sourceFile` اسپلایس می‌کند. برای تارگت‌های غیر-Svelte، accept/discard رپر را برمی‌دارد؛ خود anchor دست‌نخورده می‌ماند.
 
-### Replace mode (default)
+### حالت جایگزینی (پیش‌فرض)
 
-### 1. Read the screenshot (if present)
+### ۱. خواندن اسکرین‌شات (اگر هست)
 
-`event.screenshotPath` is sent **only when the user annotated before Go**; it is a PNG of the element with annotations baked in. Read it before planning. When absent, do not ask for one or screenshot the page yourself: without annotations a screenshot anchors you on the existing design and fights the three-distinct-directions brief; work from `element.outerHTML`, the computed styles, and the prompt.
+`event.screenshotPath` فقط وقتی فرستاده می‌شود که **کاربر پیش از Go حاشیه‌نویسی کرده باشد**؛ یک PNG از عنصر است که حاشیه‌نویسی‌ها در آن لحظه‌شده‌اند. پیش از برنامه‌ریزی بخوانش. وقتی نیست، نه درخواست اسکرین‌شات بده و نه خودت از صفحه بگیر: بدون حاشیه‌نویسی، اسکرین‌شات ذهن تو را روی طراحی موجود قفل می‌کند و با بریفِ «سه جهتِ متمایز» ناسازگار است؛ از `element.outerHTML`، استایل‌های computed و پرامپت کار کن.
 
-Annotation semantics: a comment's `{x, y}` is element-local and binds the text to the child under that point (a comment near the title is about the title). Comments and strokes are independent unless clearly paired. Strokes read by shape: closed loop = "this thing" (emphasis, not a clipping region); arrow = direction or movement; cross/slash = delete; scribble = emphasis or delete by context. If a stroke's intent is genuinely ambiguous and it changes the brief, ask one short question before generating; otherwise state your reading in one sentence.
+معناشناسی حاشیه‌نویسی: `{x, y}` هر کامنت نسبت به خودِ عنصر است و متن را به فرزندِ زیر آن نقطه گره می‌زند (کامنتی نزدیک تیتر، دربارهٔ تیتر است). کامنت‌ها و خط‌کشی‌ها مستقل‌اند، مگر آنکه به‌وضوح جفت شده باشند. خط‌کشی‌ها بر اساس شکل خوانده می‌شوند: حلقهٔ بسته = «همین چیز» (تأکید است، نه ناحیهٔ برش)؛ پیکان = جهت یا حرکت؛ ضربدر/خط‌خوردگی = حذف؛ خط‌خطیِ پیچان = تأکید یا حذف، بسته به بافت. اگر نیت یک خط‌کشی واقعاً مبهم است و بریف را عوض می‌کند، پیش از تولید یک پرسش کوتاه بپرس؛ در غیر این صورت برداشتت را در یک جمله اعلام کن.
 
-### 2. Wrap the element
+### ۲. رپ‌کردن عنصر
 
-When `event.scaffold` is present, the helper already found the source and computed the wrapper; treat it as the successful output and skip the command. `event.scaffoldAttempted` with `scaffoldError` means preflight could not finish; use the command below.
+وقتی `event.scaffold` هست، هلپر سورس را یافته و رپر (wrapper) را محاسبه کرده؛ آن را خروجی موفق بدان و از فرمان صرف‌نظر کن. `event.scaffoldAttempted` همراه `scaffoldError` یعنی preflight ناتمام ماند؛ از فرمان زیر استفاده کن.
 
-**On source-preview targets `event.scaffold` carries `sourceWritten: false`.** The helper did NOT write the wrapper; it hands you `scaffold.wrapperBlock` plus the picked element's source range (`replaceStartLine`, `replaceEndLine`, 1-indexed). Write the wrapper **and** all variants in ONE edit: splice your variants into `wrapperBlock` at the "Variants: insert below this line" marker, then replace lines `[replaceStartLine, replaceEndLine]` with the result. A separate scaffold write reloads the framework before your variant write lands and strands the browser at 0/N. (`replaceEndLine < replaceStartLine` means insert mode: insert, remove nothing.) The `svelte-component` path never sets `sourceWritten`.
+**روی تارگت‌های source-preview، `event.scaffold` مقدار `sourceWritten: false` دارد.** هلپر رپر را ننوشته؛ به تو `scaffold.wrapperBlock` را می‌دهد، به‌علاوهٔ بازهٔ سورسی عنصر انتخاب‌شده (`replaceStartLine`، `replaceEndLine`، شماره‌گذاری از ۱). رپر **و** همهٔ واریانت‌ها را در یک ویرایش واحد بنویس: واریانت‌هایت را در مارکر `Variants: insert below this line` داخل `wrapperBlock` اسپلایس کن، سپس خط‌های `[replaceStartLine, replaceEndLine]` را با نتیجه جایگزین کن. یک نوشتنِ جداگانهٔ اسکافلد، فریم‌ورک را پیش از فرود نوشتنِ واریانت‌ها ریلود می‌کند و مرورگر را در 0/N رها می‌کند. (`replaceEndLine < replaceStartLine` یعنی حالت درج: درج کن، چیزی حذف نکن.) مسیر `svelte-component` هرگز `sourceWritten` را ست نمی‌کند.
 
 ```bash
 .trae/skills/impeccable/scripts/impeccable live-wrap --id EVENT_ID --count EVENT_COUNT --element-id "ELEMENT_ID" --classes "class1,class2" --tag "div" --text "TEXT_SNIPPET"
 ```
 
-Flag mapping (keep separate, never collapse into `--query`): `--element-id` ← `event.element.id`; `--classes` ← classes joined with commas; `--tag` ← tagName; `--text` ← first ~80 chars of textContent, **every call**: it disambiguates repeated sibling components, without it wrap lands on the first match. If `event.pageUrl` implies the file, pass `--file PATH`. If `--text` still matches several candidates, wrap exits `{ error: "element_ambiguous", candidates, fallback: "agent-driven" }`: pick the right range from page context and write the wrapper manually per the fallback flow.
+نگاشت فلگ‌ها (جدا نگه‌شان دار، هرگز در `--query` ادغام نکن): `--element-id` ← `event.element.id`؛ `--classes` ← کلاس‌ها چسبیده با ویرگول لاتین؛ `--tag` ← tagName؛ `--text` ← حدود ۸۰ نویسهٔ اول textContent، **در هر فراخوانی**: این فلگ کامپوننت‌های همسایهٔ تکراری را تفکیک می‌کند؛ بدون آن، wrap روی نخستین تطبیق می‌نشیند. اگر `event.pageUrl` فایل را مشخص می‌کند، `--file PATH` بده. اگر `--text` هنوز چند نامزد تطبیق داد، wrap با `{ error: "element_ambiguous", candidates, fallback: "agent-driven" }` خارج می‌شود: بازهٔ درست را از بافت صفحه بردار و رپر را طبق جریان fallback دستی بنویس.
 
-Success output: `{ file, insertLine, commentSyntax, styleMode, styleTag, cssSelectorPrefixExamples, cssAuthoring }` (plus the `sourceWritten: false` fields above on source-preview targets). Run directly with no preflight scaffold, it writes the wrapper itself and you splice variants at `insertLine`. `styleMode` controls how preview CSS must be authored. Treat it as a detected capability mode, not a framework guess: `scoped` means `@scope ([data-impeccable-variant="N"])` rules; `astro-global-prefixed` means explicit `[data-impeccable-variant="N"]` prefixes with the exact returned `styleTag`. Use `cssAuthoring` as the source of truth for the current file (styleTag, selector strategy, requirements, forbidden patterns); apply no framework-specific exception unless it says to.
+خروجی موفق: `{ file, insertLine, commentSyntax, styleMode, styleTag, cssSelectorPrefixExamples, cssAuthoring }` (به‌علاوهٔ فیلدهای `sourceWritten: false` بالا، روی تارگت‌های source-preview). مستقیم و بدون اسکافلد preflight اجرا کن: خودش رپر را می‌نویسد و تو واریانت‌ها را در `insertLine` اسپلایس می‌کنی. `styleMode` تعیین می‌کند CSS پیش‌نمایش چگونه نوشته شود. آن را یک حالت قابلیتِ تشخیص‌داده‌شده بدان، نه حدسِ فریم‌ورک: `scoped` یعنی قواعد `@scope ([data-impeccable-variant="N"])`؛ `astro-global-prefixed` یعنی پیشوندهای صریح `[data-impeccable-variant="N"]` با همان `styleTag` برگشتی. `cssAuthoring` را مرجعِ نهایی برای فایل جاری بدان (styleTag، استراتژی سلکتور، الزامات، الگوهای ممنوع)؛ مگر خودش گفته باشد، هیچ استثنای خاصِ فریم‌ورکی اعمال نکن.
 
-For Svelte/SvelteKit targets, `impeccable live-wrap` returns `previewMode: "svelte-component"` with `file` pointing at a temporary `node_modules/.impeccable-live/<id>/manifest.json`, `componentDir` holding the variant components, and `sourceFile` the real route. The scaffold is AST-based: control-flow blocks (`{#each}`, `{#if}`) survive intact and a free each-collection crosses the contract as ONE structured prop (kind `collection`). The payload includes `componentStubMarkup` (the prop-substituted markup already written into every stub), so do not read the manifest or stubs back. EDIT `v1.svelte`, `v2.svelte`, ... in place; never delete and recreate them; keep the stub's control flow and `propContract` prop names; never flatten a loop into literal items. The stub `<style>` arrives seeded with the source rules that currently style the selection; restyle or delete them freely. On accept, any seeded rule your variant does not re-declare is REMOVED from the source (the preview never applied it, so the user approved a design without it). Use semantic class selectors, no `@scope`, no `data-impeccable-*`. Reply with `--file` set to the manifest path; the browser mounts the compiled components so Svelte HMR does not reset page state. Accept merges the chosen component back mechanically (markup restored to route expressions, CSS reconciled, params baked, indentation preserved); you have no post-accept cleanup on this path. When the selection contains constructs a detached preview cannot support (component tags, `bind:`/`use:`, await blocks, inline scripts, spread attributes), wrap returns the normal source-preview wrapper with `previewFallback: { from: "svelte-component", reason }`; just follow the returned shape.
+برای تارگت‌های Svelte/SvelteKit، `impeccable live-wrap` مقدار `previewMode: "svelte-component"` برمی‌گرداند که در آن `file` به `node_modules/.impeccable-live/<id>/manifest.json` موقتی اشاره می‌کند، `componentDir` کامپوننت‌های واریانت را نگه می‌دارد و `sourceFile` همان روت واقعی است. اسکافلد بر پایهٔ AST است: بلاک‌های جریان کنترل (`{#each}`، `{#if}`) سالم می‌مانند و یک مجموعهٔ each آزاد به‌شکل یک prop ساختاریافته از مرز عبور می‌کند (kind `collection`). در payload، مقدار `componentStubMarkup` هست (مارک‌آپِ جایگزین‌شده با prop که همین حالا داخل هر stub نوشته شده)، پس مانیفست و stubها را دوباره نخوان. فایل‌های `v1.svelte`، `v2.svelte` و... را **درجا ویرایش** کن؛ هرگز حذف و بازسازی‌شان نکن؛ جریان کنترل stub و نام‌های prop در `propContract` را نگه دار؛ هرگز حلقه را به آیتم‌های لیترالِ تخت تبدیل نکن. `<style>` stub با قواعد سورسی که همین حالا انتخاب را استایل می‌دهند seed می‌شود؛ آزادانه بازاستایل یا حذفشان کن. در accept، هر قاعدهٔ seedشده‌ای که واریانت تو دوباره اعلانش نکرده باشد از سورس **حذف می‌شود** (پیش‌نمایش هرگز اعمالش نکرده، پس کاربر طراحیِ بدون آن را تأیید کرده است). از سلکتورهای کلاسِ معنایی استفاده کن؛ نه `@scope`، نه `data-impeccable-*`. پاسخ را با `--file` روی مسیر مانیفست بده؛ مرورگر کامپوننت‌های کامپایل‌شده را مونت می‌کند تا HMRِ Svelte وضعیت صفحه را ریست نکند. accept کامپوننت انتخاب‌شده را به‌صورت مکانیکی ادغام می‌کند (مارک‌آپ به عبارت‌های روت برمی‌گردد، CSS آشتی داده می‌شود، پارامترها پخته می‌شوند، تورفتگی حفظ می‌شود)؛ در این مسیر پاک‌سازیِ پس از accept نداری. وقتی انتخاب شامل ساخت‌هایی است که پیش‌نمایشِ جداشده پشتیبانی نمی‌کند (تگ کامپوننت، `bind:`/`use:`، بلاک‌های await، اسکریپت‌های درون‌خطی، اتریبیوت‌های spread)، wrap رپرِ عادی source-preview را همراه `previewFallback: { from: "svelte-component", reason }` برمی‌گرداند؛ فقط به شکل برگشتی عمل کن.
 
-**Params on component-preview paths go in a sidecar, never as an attribute** (Svelte parses `{` in attribute values as an expression). Declare them in `componentDir/params.json` keyed by variant number, using the schema from section 7:
+**پارامترها روی مسیرهای component-preview در sidecar می‌روند، هرگز به‌صورت اتریبیوت** (Svelte مقدار `{` داخل مقدار اتریبیوت را عبارت می‌گیرد). آن‌ها را در `componentDir/params.json` با کلیدِ شمارهٔ واریانت اعلام کن، با اسکیمای بخش ۷:
 
 ```json
-{ "1": [ {"id":"density","kind":"steps","default":"snug","label":"Density","options":[
-    {"value":"airy","label":"Airy"},{"value":"snug","label":"Snug"} ]} ] }
+{ "1": [ {"id":"density","kind":"steps","default":"snug","label":"تراکم","options":[
+    {"value":"airy","label":"فضادار"},{"value":"snug","label":"فشرده"} ]} ] }
 ```
 
-Author the component `<style>` against `var(--p-<id>, default)` for `range`/`toggle` and `[data-p-<id>="…"]` for `steps`, wrapped in `:global(...)` so runtime knob values on the mounted root reach your rules.
+`<style>` کامپوننت را برای `range`/`toggle` روی `var(--p-<id>, default)` و برای `steps` روی `[data-p-<id>="…"]` بنویس، با پوشش `:global(...)` تا مقدارِ دستگیره‌ها در زمان اجرا روی ریشهٔ مونت‌شده به قواعد تو برسد.
 
-**Fallback errors.** Wrap refuses to write into non-source files (generated, untracked): accepting into one is silent data loss. Three shapes, all with `fallback: "agent-driven"` (see **Handle fallback**): `file_is_generated` (your `--file` points at a generated file), `element_not_in_source` with `generatedMatch` (element only exists generated), `element_not_found` (likely runtime-injected).
+**خطاهای fallback.** wrap از نوشتن در فایل‌های غیرسورسی (تولیدشده، untracked) خودداری می‌کند: accept در چنین فایلی، از دست رفتنِ بی‌سروصدای داده است. سه شکل، همه با `fallback: "agent-driven"` (بخش **مدیریت fallback** را ببین): `file_is_generated` (`--file` تو به فایل تولیدشده اشاره می‌کند)، `element_not_in_source` همراه `generatedMatch` (عنصر فقط به‌صورت تولیدشده وجود دارد)، `element_not_found` (احتمالاً در زمان اجرا تزریق شده).
 
-### 3. Load the action's reference
+### ۳. بار کردن مرجع کنش
 
-`event.action` is `impeccable` (freeform): work from SKILL.md's design rules plus [craft-floor.md](craft-floor.md); decide the visitor mode from the surface; do not load a sub-command reference. Freeform is not a pass to skip parameters: follow the budget and freeform bias in section 7. Any other action (`bolder`, `quieter`, `distill`, `polish`, `typeset`, `colorize`, `layout`, `adapt`, `animate`, `delight`, `overdrive`): read `reference/<action>.md` before planning; its MUST params layer on top of the section 7 budget.
+اگر `event.action` مقدار `impeccable` باشد (freeform): از قواعد طراحی SKILL.md به‌علاوهٔ [craft-floor.md](craft-floor.md) کار کن؛ حالت بازدیدکننده را از سطح تشخیص بده؛ مرجعِ زیرفرمانی بار نکن. freeform مجوزِ ردکردن پارامترها نیست: از بودجه و سوگیریِ freeform در بخش ۷ پیروی کن. هر کنش دیگر (`bolder`، `quieter`، `distill`، `polish`، `typeset`، `colorize`، `layout`، `adapt`، `animate`، `delight`، `overdrive`): پیش از برنامه‌ریزی `reference/<action>.md` را بخوان؛ پارامترهای MUST آن روی بودجهٔ بخش ۷ سوار می‌شوند.
 
-### 4. Plan three variants: identity first, then mode, then axes
+### ۴. برنامه‌ریزی سه واریانت: اول هویت، بعد حالت، بعد محورها
 
-Live runs on an existing surface; the brand is already chosen. The job is variation **within identity**, not selection between identities. The worst failure is three off-brand variants the user cannot accept. Four phases, in order.
+حالت زنده روی سطحی موجود اجرا می‌شود؛ برند از قبل انتخاب شده. کار، تنوع **درونِ هویت** است، نه انتخاب میان هویت‌ها. بدترین شکست، سه واریانتِ خارج از برند است که کاربر هیچ‌کدام را نمی‌تواند بپذیرد. چهار فاز، به ترتیب.
 
-#### Phase A: Extract the identity (non-skippable)
+#### فاز A: استخراج هویت (غیرقابل صرف‌نظر)
 
-Sources in priority order: DESIGN.md's visual system fields; CSS custom properties (de-facto tokens); computed styles on the picked element and parent; sibling components' visual rhetoric. Write ONE sentence recording what is actually on screen: dominant surface and accent color (real values, not "warm"), the loaded font pairing, layout topology (stacked / side-by-side / grid / asymmetric / overlay), surface treatment (corners, borders, shadows, decoration density), and the voice tone read off the copy. Be specific; skip an axis rather than fabricate; do not name an aesthetic family (a conclusion, not data). This sentence is the **identity lock**: every variant must read as the same brand side by side. Absence of DESIGN.md is never an excuse.
+منابع به ترتیب اولویت: فیلدهای سیستم بصری در DESIGN.md؛ متغیرهای سفارشی CSS (عملاً توکن‌اند)؛ استایل‌های computed روی عنصر انتخاب‌شده و والدش؛ بلاغت بصری کامپوننت‌های همسایه. یک جمله بنویس که آنچه واقعاً روی صفحه است را ثبت کند: رنگ غالبِ سطح و رنگ تأکید (مقادیر واقعی، نه «گرم»)، جفت‌فونتِ لودشده، توپولوژی چیدمان (پشته‌ای / کنارهم / گرید / نامتقارن / اورلی)، پرداخت سطح (گوشه‌ها، خطوط حاشیه، سایه‌ها، تراکم تزئین) و لحنِ صدای خوانده‌شده از متن‌ها. دقیق باش؛ محوری را صرف‌نظر کن به‌جای آنکه جعلش کنی؛ نام خانوادهٔ زیبایی‌شناختی نیاور (نتیجه‌گیری است، نه داده). این جمله همان **قفل هویت** است: هر واریانت باید کنار بقیه، همان برند دیده شود. نبودن DESIGN.md هرگز بهانه نیست.
 
-#### Phase B: Pick mode (default vs departure)
+#### فاز B: انتخاب حالت (پیش‌فرض در برابر خروج)
 
-**Default** preserves the identity and varies expression within it; right for ~90% of sessions. **Departure** rejects the identity; trigger ONLY on the user's explicit ask in the current request or prompt ("redesign this", "rebuild from scratch", "something completely different"); a stale critique or old note is not authorization. Unsure means default: wrong-default costs "three on-brand variants with similar feel" (recoverable), wrong-departure costs three off-brand variants (unrecoverable).
+**پیش‌فرض** هویت را حفظ و بیان را درون آن متنوع می‌کند؛ برای حدود ۹۰٪ نشست‌ها درست است. **خروج (departure)** هویت را رد می‌کند؛ فقط با درخواست صریح کاربر در همین درخواست یا پرامپت فعال می‌شود («این را بازطراحی کن»، «از صفر بساز»، «چیزی کاملاً متفاوت»)؛ نقدهای کهنه یا یادداشت‌های قدیمی مجوز نیستند. نامطمئنی یعنی پیش‌فرض: اشتباه در پیش‌فرض هزینه‌اش «سه واریانت هم‌برند با حس مشابه» است (قابل جبران)؛ اشتباه در خروج هزینه‌اش سه واریانت خارج از برند است (غیرقابل جبران).
 
-#### Phase C: Plan three variants
+#### فاز C: برنامه‌ریزی سه واریانت
 
-**Default mode.** Each variant commits to a different **primary axis**, preserving the identity sentence. The six axes: 1 **Hierarchy** (which element commands the eye), 2 **Layout topology** (stacked / side-by-side / grid / asymmetric / overlay), 3 **Typographic system** (pairing logic, scale ratio, case/weight, *within the available faces*), 4 **Color strategy** (which existing palette role carries the surface: Restrained / Committed / Full palette / Drenched; existing tokens only), 5 **Density** (minimal / comfortable / dense), 6 **Structural decomposition** (merge, split, progressive disclosure). Three variants, three DIFFERENT axes: the same brand at three angles. New fonts, new hues, or new aesthetic-family signals belong to departure mode only.
+**حالت پیش‌فرض.** هر واریانت به یک **محور اصلی** متفاوت پایبند می‌شود و جملهٔ هویت را حفظ می‌کند. شش محور: ۱ **سلسله‌مراتب** (کدام عنصر چشم را فرمان می‌دهد)، ۲ **توپولوژی چیدمان** (پشته‌ای / کنارهم / گرید / نامتقارن / اورلی)، ۳ **سیستم تایپوگرافیک** (منطق جفت‌فونت، نسبت مقیاس، بزرگ‌نویسی/وزن، *در میان فونت‌های موجود*)، ۴ **استراتژی رنگ** (کدام نقشِ پالتِ موجود سطح را حمل می‌کند: Restrained / Committed / Full palette / Drenched؛ فقط توکن‌های موجود)، ۵ **تراکم** (مینیمال / آسوده / متراکم)، ۶ **شکست ساختاری** (ادغام، تفکیک، افشای تدریجی). سه واریانت، سه محورِ متفاوت: همان برند از سه زاویه. فونت تازه، رنگ تازه یا نشانه‌های خانوادهٔ زیبایی‌شناختیِ تازه فقط به حالت خروج تعلق دارند.
 
-**Departure mode.** Each variant anchors to a different aesthetic direction derived from the brand, never a fixed catalog: read PRODUCT.md's Brand Personality words; derive physical, spatial, or material experiences that embody them; from those, derive three directions genuinely different from each other AND from the current surface; reject reflex choices whose rationale would fit a neighboring product. Each direction must be one concrete sentence naming a real-world referent ("a museum exhibition label system", not "clean and minimal").
+**حالت خروج.** هر واریانت به جهتی زیبایی‌شناختیِ مشتق از برند لنگر می‌زند، هرگز یک کاتالوگ ثابت: واژه‌های Brand Personality در PRODUCT.md را بخوان؛ تجربه‌های فیزیکی، فضایی یا مادیِ تجسم‌کنندهٔ آن‌ها را بیرون بکش؛ از آن‌ها سه جهت استخراج کن که هم از یکدیگر و هم از سطح فعلی واقعاً متفاوت‌اند؛ انتخاب‌های بازتابی را که توجیهشان به محصولی همسایه هم می‌خورد رد کن. هر جهت باید یک جملهٔ مشخص باشد که به مصداقی از دنیای واقعی اشاره کند («سیستم برچسب‌گذاری نمایشگاه موزه»، نه «تمیز و مینیمال»).
 
-**In both modes, name each variant's 2 or 3 parameter knobs while planning** (section 7 budget). Parameters are part of the design; deciding "what's tunable" during planning beats retrofitting.
+**در هر دو حالت، هنگام برنامه‌ریزی، ۲ یا ۳ دستگیرهٔ پارامتری هر واریانت را نام ببر** (بودجهٔ بخش ۷). پارامترها بخشی از طراحی‌اند؛ تصمیم‌گرفتن دربارهٔ «چه چیزی قابل تنظیم است» در زمان برنامه‌ریزی، بهتر از اضافه‌کردنِ پس از ساخت است.
 
-#### Phase D: Squint test
+#### فاز D: آزمون پلک‌زدن (squint test)
 
-**Default:** compare each variant against the Phase A lock; palette, type voice, or rhetoric drift means it crossed into departure by accident: rework. Then confirm three different primary axes; three "tighter density" variants is failure. **Departure:** two passes, family before sentence. Family pass (non-negotiable): label each variant with a concrete family of your own choosing; shared or interchangeable labels mean rework. Sentence pass: three one-line descriptions side by side; two that rhyme mean rework. When the primary axis is color or theme, the trio must not share theme + dominant hue: three color worlds, not three shades.
+**پیش‌فرض:** هر واریانت را با قفل فاز A مقایسه کن؛ رانشِ پالت، صدای تایپ یا بلاغت یعنی سهواً وارد خروج شده: اصلاحش کن. سپس سه محور اصلیِ متفاوت را تأیید کن؛ سه واریانتِ «تراکمِ فشرده‌تر» شکست است. **خروج:** دو دور، اول خانواده بعد جمله. دور خانواده (غیرقابل مذاکره): هر واریانت را با خانوادهٔ مشخصی که خودت برمی‌گزینی برچسب بزن؛ برچسب‌های مشترک یا قابل‌تبدیل یعنی اصلاح لازم است. دور جمله: سه توصیفِ یک‌خطی کنار هم؛ اگر دو تا هم‌آهنگ شدند یعنی اصلاح لازم است. وقتی محور اصلی رنگ یا تم است، سه‌تایی نباید تم + رنگِ غالبِ مشترک داشته باشد: سه جهانِ رنگ، نه سه سایه.
 
-**Action-specific invocations** must vary along the action's dimension; in default mode every variation stays within the available faces and existing tokens:
+**فراخوانی‌های مخصوصِ هر کنش** باید در بُعدِ همان کنش متنوع شوند؛ در حالت پیش‌فرض، هر تنوعی در میان فونت‌های موجود و توکن‌های موجود می‌ماند:
 
-- `bolder`: amplify a different dimension per variant (scale / saturation / structural change).
-- `quieter`: pull back a different dimension (color / ornament / spacing).
-- `distill`: remove a different class of excess (visual noise / redundant content / nested structure).
-- `polish`: a different refinement axis (rhythm / hierarchy / micro-details).
-- `typeset`: departure varies the pairing AND the scale ratio each; default keeps the faces and varies scale ratio, case, and weight each.
-- `colorize`: departure gives each a different hue family and varies chroma and contrast strategy; default gives each a different existing palette role carrying the surface (Restrained / Committed / Full palette / Drenched) and a different contrast strategy.
-- `layout`: different structural arrangement, not spacing tweaks.
-- `adapt`: different target context per variant (mobile-first / tablet / desktop / print or low-data).
-- `animate`: different motion vocabulary (cascade stagger / clip wipe / scale-and-focus / morph / parallax).
-- `delight`: different flavor of personality (micro-interaction / typographic surprise / illustrated accent / sonic-or-haptic / easter egg).
-- `overdrive`: different convention broken (scale / structure / motion / input model / state transitions); skip its "propose and ask" step, live is non-interactive.
+- `bolder`: در هر واریانت یک بُعدِ متفاوت را تقویت کن (مقیاس / اشباع / تغییر ساختاری).
+- `quieter`: در هر واریانت یک بُعدِ متفاوت را عقب بکش (رنگ / تزئین / فاصله‌گذاری).
+- `distill`: در هر واریانت یک کلاسِ متفاوت از اضافات را حذف کن (نوفهٔ بصری / محتوای افزونه / ساختار تودرتو).
+- `polish`: یک محورِ پالایشِ متفاوت (ریتم / سلسله‌مراتب / جزئیات خرد).
+- `typeset`: در خروج، هر واریانت هم جفت‌فونت **و** هم نسبت مقیاس را عوض می‌کند؛ در پیش‌فرض فونت‌ها ثابت می‌مانند و هر واریانت نسبت مقیاس، بزرگ‌نویسی و وزن را عوض می‌کند.
+- `colorize`: در خروج، هر واریانت خانوادهٔ رنگیِ متفاوتی دارد و کروما و استراتژی کنتراست متفاوت می‌شود؛ در پیش‌فرض، هر واریانت نقشِ متفاوتی از پالتِ موجود را برای حمل سطح برمی‌گزیند (Restrained / Committed / Full palette / Drenched) با استراتژی کنتراستِ متفاوت.
+- `layout`: چینشِ ساختاریِ متفاوت، نه دستکاری فاصله‌ها.
+- `adapt`: بافتِ هدفِ متفاوت برای هر واریانت (موبایل‌فرست / تبلت / دسکتاپ / چاپ یا داده‌کم).
+- `animate`: واژگانِ حرکتیِ متفاوت (cascade stagger / clip wipe / scale-and-focus / morph / parallax).
+- `delight`: طبعِ متفاوتی از شخصیت (میکروتعامل / غافلگیری تایپوگرافیک / تأکید تصویری / صوتی یا لمسی / ایستر اگ).
+- `overdrive`: شکستنِ قراردادِ متفاوتی (مقیاس / ساختار / حرکت / مدل ورودی / گذارهای حالت)؛ گام «پیشنهاد بده و بپرس» آن را رد کن، حالت زنده تعاملی نیست.
 
-### 5. Apply the freeform prompt (if present)
+### ۵. اعمال پرامپت freeform (اگر هست)
 
-`event.freeformPrompt` is the user's ceiling on direction: all variants honor it while exploring different interpretations within the Phase B mode. Default mode: the prompt narrows the axes, not the identity ("more confident" → one variant amplifies hierarchy, one commits the accent color, one tightens density). Departure mode: the prompt narrows the lanes, not the families ("newspaper front page" → broadsheet vs tabloid vs trade journal, then run the family pass). When the prompt conflicts with a binding brand commitment or DESIGN.md invariant, preserve the invariant unless the user explicitly revokes it.
+`event.freeformPrompt` سقفِ جهت‌گیری کاربر است: همهٔ واریانت‌ها آن را محترم می‌شمارند و هم‌زمان تفسیرهای متفاوت را درونِ حالت فاز B کاوش می‌کنند. حالت پیش‌فرض: پرامپت محورها را تنگ می‌کند، نه هویت را («اعتمادبه‌نفسِ بیشتر» → یکی سلسله‌مراتب را تقویت می‌کند، یکی رنگ تأکید را جدی می‌گیرد، یکی تراکم را فشرده‌تر می‌کند). حالت خروج: پرامپت لِین‌ها را تنگ می‌کند، نه خانواده‌ها را («صفحهٔ اول روزنامه» → برادشیت در برابر تابلوید در برابر نشریهٔ تخصصی، بعد دورِ خانواده را اجرا کن). وقتی پرامپت با تعهدی برندیِ الزام‌آور یا قاعده‌ای تغییرناپذیر از DESIGN.md در تضاد است، آن قاعده را حفظ کن، مگر آنکه کاربر صریحاً پس بگیرد.
 
-### 6. Deliver variants
+### ۶. تحویل واریانت‌ها
 
-Complete HTML replacement of the original element per variant, not a CSS-only patch. Colocate preview CSS as a `<style>` tag inside the wrapper. **Atomic default:** CSS + all variants + parameter manifests in one edit at `insertLine`.
+جایگزینی کامل HTML عنصر اصلی برای هر واریانت، نه وصلهٔ صرفاً CSS. CSS پیش‌نمایش را به‌شکل تگ `<style>` درونِ رپر هم‌جا کن. **پیش‌فرض اتمیک:** CSS + همهٔ واریانت‌ها + مانیفست‌های پارامتر، در یک ویرایش، در `insertLine`.
 
 ```html
 <!-- Variants: insert below this line -->
@@ -196,11 +197,11 @@ Complete HTML replacement of the original element per variant, not a CSS-only pa
 </div>
 ```
 
-Replace the style opening tag with `cssAuthoring.styleTag` when the tool returns a different one. **Each variant div contains exactly one top-level element**, same tag as the original; loose siblings break outline tracking and accept. First variant visible, all others `display: none`. The browser's MutationObserver accepts atomic or progressive arrival; accepting an arrived variant fences the worker, so later publications are rejected.
+وقتی ابزار تگ دیگری برگرداند، تگ آغازین استایل را با `cssAuthoring.styleTag` جایگزین کن. **هر div واریانت دقیقاً یک عنصر سطح‌بالا دارد**، هم‌تگ با عنصر اصلی؛ فرزندانِ رها، ردیابی outline و accept را می‌شکنند. واریانت اول نمایان، بقیه `display: none`. MutationObserver مرورگر، رسیدنِ اتمیک یا تدریجی را می‌پذیرد؛ accept یک واریانتِ رسیده، worker را قفل می‌کند و انتشارهای بعدی رد می‌شوند.
 
-For `styleMode: "scoped"`, author every `:scope` rule with a descendant combinator: the `@scope` boundary is the variant wrapper div, not your element, so a bare `:scope { ... }` styles a `display: contents` shell. Always step in (`:scope > .card`, `:scope .hero-title`). The fake test agent's CSS in the [repo agent template](https://github.com/pbakaus/impeccable/blob/8dac6ae7e020c43ab10ce9b41939f6fd42627b96/tests/live-e2e/agent.mjs) is a faithful template.
+برای `styleMode: "scoped"`، هر قاعدهٔ `:scope` را با ترکیب‌کنندهٔ فرزندی بنویس: مرزِ `@scope` همان div رپرِ واریانت است، نه عنصر تو؛ پس یک `:scope { ... }` لخت، پوستهٔ `display: contents` را استایل می‌دهد. همیشه یک پله داخل برو (`:scope > .card`، `:scope .hero-title`). CSS ایجنتِ تستِ ساختگی در [قالب ایجنت ریپو](https://github.com/pbakaus/impeccable/blob/8dac6ae7e020c43ab10ce9b41939f6fd42627b96/tests/live-e2e/agent.mjs) یک الگوی امین است.
 
-**JSX / TSX targets:** wrap `<style>` content in a template literal (CSS braces would parse as JSX), use `className=` / `style={{…}}`, keep `data-impeccable-*` attributes as plain strings:
+**تارگت‌های JSX / TSX:** محتوای `<style>` را در یک template literal بپیچان (آکولادهای CSS به‌عنوان JSX پارس می‌شوند)، از `className=` / `style={{…}}` استفاده کن و اتریبیوت‌های `data-impeccable-*` را رشتهٔ ساده نگه دار:
 
 ```tsx
 <style data-impeccable-css="SESSION_ID">{`
@@ -211,117 +212,117 @@ For `styleMode: "scoped"`, author every `:scope` rule with a descendant combinat
 </div>
 ```
 
-The wrap script provides a single-rooted JSX wrapper with the marker comments inside; drop the block at the marker and the source stays valid TSX.
+اسکریپت wrap یک رپر JSX تک‌ریشه با کامنت‌های مارکر داخلش فراهم می‌کند؛ بلاک را سر جای مارکر بگذار و سورس همچنان TSX معتبر می‌ماند.
 
-### 7. Parameters (composition-sized, 0-4 per variant)
+### ۷. پارامترها (اندازهٔ ترکیب، ۰ تا ۴ برای هر واریانت)
 
-Each variant can expose **coarse** knobs; the browser docks one control per parameter with zero regeneration cost (knobs drive a CSS variable or data attribute your scoped CSS is authored against). Wire an axis as soon as the user could plausibly mutter "a bit tighter" or "a touch more accent" without wanting a regeneration; micro-margins and one-off nudges are not parameters. Freeform bias: you chose the axes, so expose them; a hero with 0 params is almost always a mistake, and 1 is underweight unless the design is a genuine fixed point.
+هر واریانت می‌تواند دستگیره‌های **درشت** داشته باشد؛ مرورگر به‌ازای هر پارامتر یک کنترل سنجاق می‌کند، با هزینهٔ بازتولیدِ صفر (دستگیره‌ها یک متغیر CSS یا data attribute را می‌رانند که CSS اسکوپ‌شدهٔ تو روی آن نوشته شده). محوری را همان لحظه سیم‌کشی کن که کاربر ممکن است بدون خواستِ بازتولید زمزمه کند: «کمی فشرده‌تر» یا «ذره‌ای رنگ تأکید بیشتر»؛ حاشیه‌های میکرو و اصلاح‌های یک‌باره پارامتر نیستند. سوگیریِ freeform: محورها را خودت انتخاب کرده‌ای، پس نمایانشان کن؛ هیرویی با ۰ پارامتر تقریباً همیشه اشتباه است و ۱ پارامتر کم‌وزن است، مگر آنکه طراحی واقعاً نقطهٔ ثابتی باشد.
 
-Budget scales with the element's VISUAL weight (count visual children, not DOM depth):
+بودجه با وزنِ **بصری** عنصر مقیاس می‌گیرد (فرزندان بصری را بشمار، نه عمق DOM):
 
-- **Leaf / tiny** (button, icon, bare heading): **0 params.**
-- **Small composition** (simple card, labeled input, ≤ ~5 visual children): **0-1**.
-- **Medium composition** (section, nav cluster, 6-15 children): **target 2**; 1 if simple.
-- **Large composition** (hero, full region, 16+ children or sub-sections): **target 2-3, up to 4** when independent axes are all authored in CSS.
+- **برگ / ریز** (دکمه، آیکون، تیتر لخت): **۰ پارامتر.**
+- **ترکیب کوچک** (کارت ساده، ورودی برچسب‌دار، ≤ حدود ۵ فرزند بصری): **۰ تا ۱.**
+- **ترکیب متوسط** (section، خوشهٔ ناوبری، ۶ تا ۱۵ فرزند): **هدف ۲**؛ اگر ساده است، ۱.
+- **ترکیب بزرگ** (هیرو، ناحیهٔ کامل، ۱۶+ فرزند یا زیربخش‌ها): **هدف ۲ تا ۳، حداکثر ۴** وقتی همهٔ محورهای مستقل در CSS نوشته شده‌اند.
 
-**Hard cap: four** per variant. For named sub-commands, the action reference's MUST params are non-negotiable when expressible; respect the cap, no duplicate knobs.
+**سقف سخت: چهار** برای هر واریانت. برای زیرفرمان‌های نام‌دار، پارامترهای MUST در مرجعِ کنش، هر جا قابل بیان باشند غیرقابل‌مذاکره‌اند؛ سقف را رعایت کن و دستگیرهٔ تکراری نداشته باش.
 
-**Declare** on the HTML/JSX path as a wrapper attribute (component-preview paths use `componentDir/params.json` instead, same schema, keyed by variant number; see the wrap section):
+اعلام روی مسیر HTML/JSX به‌شکل اتریبیوتِ رپر است (مسیرهای component-preview به‌جایش از `componentDir/params.json` استفاده می‌کنند، همان اسکیما، با کلیدِ شمارهٔ واریانت؛ بخش wrap را ببین):
 
 ```html
 <div data-impeccable-variant="1" data-impeccable-params='[
-  {"id":"color-amount","kind":"range","min":0,"max":1,"step":0.05,"default":0.5,"label":"Color amount"},
-  {"id":"serif","kind":"toggle","default":false,"label":"Serif display"}
+  {"id":"color-amount","kind":"range","min":0,"max":1,"step":0.05,"default":0.5,"label":"میزان رنگ"},
+  {"id":"serif","kind":"toggle","default":false,"label":"تیتر سریف"}
 ]'>
 ```
 
-Three kinds: `range` (slider; drives `--p-<id>`; author `var(--p-color-amount, 0.5)`; fields min/max/step/default/label), `steps` (segmented radio; drives `data-p-<id>`; author `:scope[data-p-density="airy"] .grid { ... }`; fields options/default/label), `toggle` (drives both `--p-<id>: 0|1` and attribute presence; fields default/label). Reset on variant switch is a known limitation: each variant starts at its declared defaults.
+سه نوع: `range` (اسلایدر؛ `--p-<id>` را می‌راند؛ بنویس `var(--p-color-amount, 0.5)`؛ فیلدها min/max/step/default/label)، `steps` (رادیوی بخش‌بندی‌شده؛ `data-p-<id>` را می‌راند؛ بنویس `:scope[data-p-density="airy"] .grid { ... }`؛ فیلدها options/default/label)، `toggle` (هم `--p-<id>: 0|1` و هم حضور اتریبیوت را می‌راند؛ فیلدها default/label). ریست‌شدن مقادیر هنگام تعویض واریانت محدودیتِ شناخته‌شده است: هر واریانت از defaultهای اعلام‌شدهٔ خودش شروع می‌کند.
 
-**On accept**, the browser sends current values and `impeccable live-accept` writes them as a sibling comment: `<!-- impeccable-param-values SESSION_ID: {"color-amount":0.7} -->`. Carbonize cleanup bakes them: keep only the matching `steps`/`toggle` branch, drop the others, collapse `:scope[data-p-…]` to semantic rules; substitute `range` literals or update the var's default.
+**در accept**، مرورگر مقدارهای جاری را می‌فرستد و `impeccable live-accept` آن‌ها را به‌شکل کامنتِ همسایه می‌نویسد: `<!-- impeccable-param-values SESSION_ID: {"color-amount":0.7} -->`. پاک‌سازیِ کربنیزه آن‌ها را می‌پزد: فقط شاخهٔ `steps`/`toggle` منطبق را نگه دار، بقیه را حذف کن، `:scope[data-p-…]` را به قواعد معنایی فشرده کن؛ لیترال‌های `range` را جایگزین کن یا default متغیر را به‌روز کن.
 
-### 8. Signal done
+### ۸. اعلام اتمام
 
 ```bash
 .trae/skills/impeccable/scripts/impeccable live-poll --reply EVENT_ID done --file RELATIVE_PATH
 ```
 
-`RELATIVE_PATH` is relative to project root; the browser fetches source directly if the dev server lacks HMR. Then poll again immediately.
+`RELATIVE_PATH` نسبت به ریشهٔ پروژه است؛ اگر سرور توسعه HMR نداشته باشد، مرورگر سورس را مستقیم می‌گیرد. سپس بلافاصله دوباره پولینگ کن.
 
-### Aborting an in-flight session
+### ساقط‌کردن نشست در جریان
 
-If wrap or generation fails after the browser flipped to GENERATING, tell the **browser** so its bar resets: `.trae/skills/impeccable/scripts/impeccable live-poll --reply EVENT_ID error "Short reason"`. Never use `live-accept --discard` for this (pure file mutator, browser never sees it, bar sticks on dots); `--discard` is only source-side cleanup for a discard the browser itself initiated.
+اگر wrap یا تولید، پس از آنکه مرورگر به GENERATING رفت، شکست خورد، به **مرورگر** خبر بده تا نوارش ریست شود: `.trae/skills/impeccable/scripts/impeccable live-poll --reply EVENT_ID error "Short reason"`. هرگز برای این کار از `live-accept --discard` استفاده نکن (تغییردهندهٔ صرفِ فایل است، مرورگر هرگز نمی‌بیندش، نوار روی نقاط گیر می‌کند)؛ `--discard` فقط پاک‌سازیِ سمت سورس برای discardی است که خودِ مرورگر آغاز کرده.
 
-## Handle fallback
+## مدیریت fallback
 
-When wrap returns `fallback: "agent-driven"`, you pick the source file yourself; the goal is unchanged: three preview variants now, and the accepted one persisted where the next build cannot wipe it.
+وقتی wrap مقدار `fallback: "agent-driven"` را برمی‌گرداند، فایل سورس را خودت انتخاب می‌کنی؛ هدف تغییر نکرده: همین حالا سه واریانت پیش‌نمایش، و ماندگاریِ واریانت پذیرفته‌شده در جایی که بیلد بعدی نتواند پاکش کند.
 
-1. **Find where the element really lives** from the error payload: `element_not_in_source` + `generatedMatch` means the served HTML is generated, so find the generator's template or partial; `element_not_found` means runtime-injected, so find the rendering component or data source; `file_is_generated` resolves the same way. A purely visual change may belong in a shared stylesheet rather than a template.
-2. **Preview in the served file**: manually write the same wrapper scaffold `impeccable live-wrap` produces into the file the browser actually loaded, moving the element itself into the original slot: `<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents"><div data-impeccable-variant="original">THE ELEMENT, UNCHANGED</div><!-- Variants: insert below this line --></div><!-- impeccable-variants-end ID -->`. Insert your variant divs after the marker, then `--reply EVENT_ID done --file <served file>`. Never drop the original slot: discard restores the element from it and refuses a wrapper without one. This edit is temporary; a regen wiping it is fine.
-3. **On accept, write to true source** (accept refuses generated files, so `_acceptResult.handled` is usually `false` here): structural change → template/component source; visual-only → the right stylesheet; content rendered from data → the data source or render logic. Then remove the temporary wrapper from the served file.
-4. **On discard**, just remove the temporary wrapper.
+1. **از payload خطا بفهم عنصر واقعاً کجاست**: `element_not_in_source` + `generatedMatch` یعنی HTML سروشده تولیدشده است، پس قالب یا partial مولد را پیدا کن؛ `element_not_found` یعنی در زمان اجرا تزریق شده، پس کامپوننت رندرکننده یا منبع داده را پیدا کن؛ `file_is_generated` هم همین‌طور حل می‌شود. یک تغییرِ صرفاً بصری ممکن است به استایل‌شیت مشترک تعلق داشته باشد، نه به قالب.
+2. **پیش‌نمایش در فایل سروشده**: همان اسکافلد رپری را که `impeccable live-wrap` تولید می‌کند، دستی داخل فایلی که مرورگر واقعاً لود کرده بنویس و خودِ عنصر را در اسلاتِ original بگذار: `<!-- impeccable-variants-start ID --><div data-impeccable-variants="ID" data-impeccable-variant-count="3" style="display: contents"><div data-impeccable-variant="original">THE ELEMENT, UNCHANGED</div><!-- Variants: insert below this line --></div><!-- impeccable-variants-end ID -->`. divهای واریانتت را بعد از مارکر درج کن، سپس `--reply EVENT_ID done --file <served file>`. هرگز اسلاتِ original را حذف نکن: discard عنصر را از آن بازمی‌گرداند و رپرِ بدون آن را قبول نمی‌کند. این ویرایش موقتی است؛ اگر بازتولید پاکش کرد، اشکالی ندارد.
+3. **در accept، در سورس واقعی بنویس** (accept از فایل‌های تولیدشده سرباز می‌زند، پس اینجا معمولاً `_acceptResult.handled` مقدار `false` است): تغییر ساختاری → سورس قالب/کامپوننت؛ صرفاً بصری → استایل‌شیت درست؛ محتوای رندرشده از داده → منبع داده یا منطق رندر. سپس رپر موقت را از فایل سروشده بردار.
+4. **در discard**، فقط رپر موقت را بردار.
 
-## Handle `accept`
+## مدیریت `accept`
 
-Event: `{id, variantId, _acceptResult, _completionAck}`. The poll script already ran `impeccable live-accept` deterministically and acknowledged delivery; the browser DOM is already updated.
+رویداد: `{id, variantId, _acceptResult, _completionAck}`. اسکریپت پولینگ به‌طور قطعی `impeccable live-accept` را اجرا و تحویل را تأیید کرده؛ DOM مرورگر هم به‌روز شده.
 
-- The accept event includes `pageUrl`; the poll script must forward it to `impeccable live-accept --page-url PAGE_URL` so accept-time cleanup only scrubs staged copy edits for the current page.
-- `_completionAck.ok !== true`: do not poll yet. Run `impeccable live-status` / `impeccable live-resume`, finish cleanup manually if needed, then `impeccable live-complete --id EVENT_ID`.
-- `handled: true, carbonize: false`: nothing to do; poll again.
-- `handled: true, carbonize: true`: required cleanup below; `_acceptResult.todo`, `_completionAck.requiresComplete`, and the stderr banner all point at it.
-- `handled: false, mode: "fallback"`: the session lived in a generated file; you already wrote true source in fallback Step 3; clean the temporary wrapper and poll.
-- `handled: false, mode: "error"`: **do not hand-edit the file.** `source_locked`: rerun the same `impeccable live-accept` command (idempotent) until the publisher releases. `accept_receipt_conflict`: the session already resolved as `priorOperation`; run `impeccable live-status` and tell the user. Anything else: report briefly, run `impeccable live-status` first.
-- `handled: false` without `mode`: manual cleanup: read file, find markers, edit.
+- رویداد accept شامل `pageUrl` است؛ اسکریپت پولینگ باید آن را به `impeccable live-accept --page-url PAGE_URL` بفرستد تا پاک‌سازیِ زمانِ accept فقط ویرایش‌های متنِ صف‌شدهٔ همین صفحه را پاک کند.
+- `_completionAck.ok !== true`: هنوز پولینگ نکن. `impeccable live-status` / `impeccable live-resume` را اجرا کن، در صورت نیاز پاک‌سازی را دستی تمام کن، سپس `impeccable live-complete --id EVENT_ID`.
+- `handled: true, carbonize: false`: کاری نیست؛ دوباره پولینگ کن.
+- `handled: true, carbonize: true`: پاک‌سازیِ الزامیِ پایین؛ `_acceptResult.todo`، `_completionAck.requiresComplete` و بنر stderr همه به آن اشاره می‌کنند.
+- `handled: false, mode: "fallback"`: نشست در فایل تولیدشده زندگی می‌کرد؛ در گام ۳ fallback سورس واقعی را نوشته‌ای؛ رپر موقت را پاک کن و پولینگ کن.
+- `handled: false, mode: "error"`: **فایل را دستی ویرایش نکن.** `source_locked`: همان فرمان `impeccable live-accept` را (که idempotent است) تا وقتی publisher آزاد کند دوباره اجرا کن. `accept_receipt_conflict`: نشست از قبل به‌عنوان `priorOperation` حل شده؛ `impeccable live-status` را اجرا کن و به کاربر بگو. غیر از این‌ها: کوتاه گزارش بده، اول `impeccable live-status` را اجرا کن.
+- `handled: false` بدون `mode`: پاک‌سازی دستی: فایل را بخوان، مارکرها را پیدا کن، ویرایش کن.
 
-### Required after accept (carbonize)
+### الزامی پس از accept (کربنیزه)
 
-`carbonize: true` means the accepted variant is stitched into source with helper markers and inline CSS (so the browser renders with no gap). That stitch-in is temporary; rewrite it into permanent form before anything else, or dead `@scope` rules, wrapper divs, and marker comments accumulate across sessions. Five steps, synchronously, before the next poll:
+`carbonize: true` یعنی واریانت پذیرفته‌شده با مارکرهای هلپر و CSS درون‌خطی به سورس دوخته شده (تا مرورگر بدون وقفه رندر کند). این دوخت موقتی است؛ پیش از هر چیز دیگری آن را به فرم ماندگار بازنویسی کن، وگرنه قواعد مُردهٔ `@scope`، divهای رپر و کامنت‌های مارکر در طول نشست‌ها انبار می‌شوند. پنج گام، به‌صورت همگام، پیش از پولینگ بعدی:
 
-1. **Locate the carbonize block** in `_acceptResult.file`: bracketed by `<!-- impeccable-carbonize-start/end SESSION_ID -->` with a `<style data-impeccable-css>` element; read the `<!-- impeccable-param-values -->` comment first when present, it drives steps 3 and 4.
-2. **Move the CSS rules** into the project's real stylesheet (whichever already owns styling for the surrounding element).
-3. **Bake param values while rewriting selectors**: retarget `@scope ([data-impeccable-variant="N"])` to real semantic classes; keep only the `:scope[data-p-<id>="VALUE"]` branch matching the chosen value; substitute `var(--p-<id>)` literals or update the var's default.
-4. **Unwrap the accepted content**: delete the inner variant div (and on JSX the outer `data-impeccable-carbonize` div); drop `data-impeccable-params` and all `data-p-*` attributes.
-5. **Delete** the inline `<style>` block, the param-values comment, both carbonize markers, and any `@scope` rules for non-accepted variants.
+1. **بلاک کربنیزه را در `_acceptResult.file` پیدا کن**: محصور بین `<!-- impeccable-carbonize-start/end SESSION_ID -->` با یک عنصر `<style data-impeccable-css>`؛ اگر کامنت `<!-- impeccable-param-values -->` هست، اول بخوانش؛ گام‌های ۳ و ۴ با آن هدایت می‌شوند.
+2. **قواعد CSS را** به استایل‌شیت واقعی پروژه منتقل کن (همان که هم‌اکنون استایل عناصر اطراف را به عهده دارد).
+3. **مقدارهای پارامتر را هنگام بازنویسی سلکتورها بپز**: `@scope ([data-impeccable-variant="N"])` را به کلاس‌های معنایی واقعی ری‌تارگت کن؛ فقط شاخهٔ `:scope[data-p-<id>="VALUE"]` منطبق با مقدار انتخاب‌شده را نگه دار؛ لیترال‌های `var(--p-<id>)` را جایگزین کن یا default متغیر را به‌روز کن.
+4. **محتوای پذیرفته‌شده را از رپر خارج کن**: div واریانت داخلی را حذف کن (و روی JSX، div بیرونی `data-impeccable-carbonize` را)؛ `data-impeccable-params` و همهٔ اتریبیوت‌های `data-p-*` را بردار.
+5. بلاک `<style>` درون‌خطی، کامنت param-values، هر دو مارکر کربنیزه و هر قاعدهٔ `@scope` برای واریانت‌های پذیرفته‌نشده را **حذف کن**.
 
-Then run `impeccable live-complete --id SESSION_ID` and verify `phase: "completed"` before polling again. The command is a gate, not a formality: it refuses with `error: "source_dirty"` plus findings while any live-mode leftover remains; fix and rerun (`--force` only for false positives).
+سپس `impeccable live-complete --id SESSION_ID` را اجرا و پیش از پولینگ دوباره، `phase: "completed"` را تأیید کن. این فرمان یک گِیت است، نه تشریفات: تا هر بازماندهٔ حالت زنده باقی است، با `error: "source_dirty"` به‌همراه یافته‌ها سرباز می‌زند؛ درست کن و دوباره اجرا کن (`--force` فقط برای مثبت کاذب).
 
-## Handle `discard`
+## مدیریت `discard`
 
-Event: `{id, _acceptResult, _completionAck}`. The poll script already restored the original and acknowledged `discarded`. Nothing to do unless `_completionAck.ok !== true`; then `impeccable live-complete --id EVENT_ID --discarded` and poll again.
+رویداد: `{id, _acceptResult, _completionAck}`. اسکریپت پولینگ اصلی را بازگردانده و `discarded` را تأیید کرده. کاری نیست، مگر آنکه `_completionAck.ok !== true` باشد؛ در آن صورت `impeccable live-complete --id EVENT_ID --discarded` و دوباره پولینگ.
 
-## Handle `steer`
+## مدیریت `steer`
 
-Event: `{id, message, pageUrl}`: page-level direction from the global bar's Steer control (typed or spoken), no element context, no variant cycling. Read `message`, inspect the page or files as needed, make edits or answer in prose. Reply `.trae/skills/impeccable/scripts/impeccable live-poll --reply EVENT_ID steer_done ["Optional short toast"]`, or on failure `--reply EVENT_ID error "Short reason"`, then poll immediately. No separate pickup reply; the Steer bar unlocks on `steer_done` or `error`.
+رویداد: `{id, message, pageUrl}`: جهت‌دهی در سطح صفحه از کنترل Steer نوار سراسری (تایپ‌شده یا گفتاری)، بدون بافتِ عنصر، بدون چرخش واریانت. `message` را بخوان، در صورت نیاز صفحه یا فایل‌ها را بازرسی کن، ویرایش بده یا در نثر پاسخ بده. با `.trae/skills/impeccable/scripts/impeccable live-poll --reply EVENT_ID steer_done ["Optional short toast"]` پاسخ بده، یا در خطا با `--reply EVENT_ID error "Short reason"`، سپس بلافاصله پولینگ کن. پاسخِ دریافتِ جداگانه نده؛ نوار Steer با `steer_done` یا `error` باز می‌شود.
 
-## Handle `prefetch`
+## مدیریت `prefetch`
 
-Event: `{pageUrl}`: fired once per route on first selection; the user is likely about to Go on a page you have not read. Resolve the route to its file (root `/` is usually the boot's `pageFile`; multi-page sites often map `/foo` to `public/foo/index.html`; SPAs map everything to one entry), read it, poll again. No `--reply`. If you cannot resolve it confidently, skip and poll.
+رویداد: `{pageUrl}`: به‌ازای هر روت، یک بار در اولین انتخاب شلیک می‌شود؛ کاربر احتمالاً روی صفحه‌ای که تو نخوانده‌ای در آستانهٔ زدن Go است. روت را به فایلش حل کن (روت `/` معمولاً `pageFile` بوت است؛ سایت‌های چندصفحه‌ای معمولاً `/foo` را به `public/foo/index.html` نگاشت می‌کنند؛ SPAها همه‌چیز را به یک مدخل نگاشت می‌کنند)، فایل را بخوان، دوباره پولینگ کن. `--reply` نده. اگر با اطمینان نمی‌توانی حلش کنی، رد شو و پولینگ کن.
 
-## Handle `manual_edit_apply`
+## مدیریت `manual_edit_apply`
 
-Event: `{id, pageUrl, batch: {entries}, evidencePath?, chunk?, repair?, deadlineMs}`.
+رویداد: `{id, pageUrl, batch: {entries}, evidencePath?, chunk?, repair?, deadlineMs}`.
 
-The user already clicked Apply. Do not ask what to do, discard, or redirect to Go. The parent live thread keeps the foreground poll loop and sends the final `/poll --reply --data`.
+کاربر از قبل Apply را زده. نپرس چه کنی، discard نکن و به Go ارجاع نده. تردِ زندهٔ مادر، حلقهٔ پولینگ پیش‌زمینه را نگه می‌دارد و `/poll --reply --data` نهایی را می‌فرستد.
 
-When native subagents are available, delegate source edits to `impeccable_manual_edit_applier` / `impeccable-manual-edit-applier`. Pass cwd, scripts path, event id, page URL, chunk/deadline, `batch`, `evidencePath`, and the canonical JSON result schema. The subagent must not poll or reply. If unavailable, apply inline with the same contract.
+وقتی زیرایجنت‌های نیتیو در دسترس‌اند، ویرایش سورس را به `impeccable_manual_edit_applier` / `impeccable-manual-edit-applier` واگذار کن. cwd، مسیر اسکریپت‌ها، شناسهٔ رویداد، URL صفحه، chunk/deadline، `batch`، `evidencePath` و اسکیمای مرجعِ نتیجهٔ JSON را پاس بده. زیرایجنت نباید پولینگ یا پاسخ بدهد. اگر در دسترس نبود، با همان قرارداد درجا اعمال کن.
 
-An op with `deleted: true` and `removeElement: true` is the browser's Remove badge: delete that whole element from source, children included, not just its text. Locate it by `sourceHint`, then by `leaf.outerHTML` and `originalText`, and remove exactly that element's source range; leave no empty wrapper, orphaned children, or dangling markup behind.
+عملیاتی با `deleted: true` و `removeElement: true` نشانِ Remove مرورگر است: کلِ آن عنصر را از سورس حذف کن، فرزندان هم شامل، نه فقط متنش. آن را اول با `sourceHint`، سپس با `leaf.outerHTML` و `originalText` پیدا کن و دقیقاً بازهٔ سورسی همان عنصر را بردار؛ هیچ رپر خالی، فرزند بی‌سرپرست یا مارک‌آپ سرگردان باقی نگذار.
 
-If `repair` is present, the previous Apply changed source but final validation failed. Fix the current source and return the same canonical JSON result; do not roll files back yourself. The browser will ask the user before any rollback.
+اگر `repair` هست، Apply قبلی سورس را عوض کرده اما اعتبارسنجی نهایی شکست خورده. سورس فعلی را درست کن و همان نتیجهٔ مرجعِ JSON را برگردان؛ خودت فایل‌ها را rollback نکن. مرورگر پیش از هر rollback از کاربر می‌پرسد.
 
-After source edits finish, reply exactly once with `.trae/skills/impeccable/scripts/impeccable live-poll --reply EVENT_ID done --data '{"status":"done","appliedEntryIds":["8hexid"],"failed":[],"files":["src/page.html"],"notes":[]}'`. Use `status:"partial"` or `status:"error"` with `failed[]` when not every entry applied. Then poll again. Never reply without the event id; `--reply done --file ...` is invalid for manual Apply.
+پس از اتمام ویرایش سورس، دقیقاً یک بار با `.trae/skills/impeccable/scripts/impeccable live-poll --reply EVENT_ID done --data '{"status":"done","appliedEntryIds":["8hexid"],"failed":[],"files":["src/page.html"],"notes":[]}'` پاسخ بده. وقتی همهٔ مدخل‌ها اعمال نشدند، از `status:"partial"` یا `status:"error"` همراه `failed[]` استفاده کن. سپس دوباره پولینگ کن. هرگز بدون شناسهٔ رویداد پاسخ نده؛ `--reply done --file ...` برای Apply دستی نامعتبر است.
 
-## Exit
+## خروج
 
-The user stops live mode by saying so in chat, closing the tab (SSE drops; poll returns `exit` after 8s), or the browser's exit button. On `exit`, kill any still-running background poll, then clean up.
+کاربر حالت زنده را با گفتن در چت، بستن تب (SSE قطع می‌شود؛ پولینگ پس از ۸ ثانیه `exit` برمی‌گرداند) یا دکمهٔ خروج مرورگر متوقف می‌کند. روی `exit`، هر پولینگ پس‌زمینهٔ در حال اجرا را بکش، سپس پاک‌سازی کن.
 
-## Cleanup
+## پاک‌سازی
 
 ```bash
 .trae/skills/impeccable/scripts/impeccable live-server stop
 ```
 
-Stops the helper and runs `impeccable live-inject --remove` to strip the injected script (use `stop --keep-inject` to keep it for a quick restart; `.impeccable/live/config.json` persists as project config). Then search for and remove any leftover `impeccable-variants-start` wrappers and `impeccable-carbonize-start` blocks.
+هلپر را می‌ایستاند و `impeccable live-inject --remove` را اجرا می‌کند تا اسکریپت تزریق‌شده برداشته شود (برای ری‌استارت سریع از `stop --keep-inject` استفاده کن؛ `.impeccable/live/config.json` به‌عنوان پیکربندی پروژه می‌ماند). سپس هر رپر بازماندهٔ `impeccable-variants-start` و هر بلاک `impeccable-carbonize-start` را جست‌وجو و حذف کن.
 
-## First-time setup
+## راه‌اندازی نخست
 
-Only when `impeccable live` reports `config_missing` / `config_invalid`, or `configDrift` needs explaining, or the config lacks `cspChecked`: read [live-setup.md](live-setup.md). It owns the config schema, the per-framework `files` table, injection adapters, drift healing, and the CSP detection and consent flow.
+فقط وقتی `impeccable live` گزارش `config_missing` / `config_invalid` می‌دهد، یا `configDrift` نیاز به توضیح دارد، یا پیکربندی `cspChecked` ندارد: [live-setup.md](live-setup.md) را بخوان. live-setup.md مرجعِ اسکیمای پیکربندی، جدول `files` هر فریم‌ورک، آداپتورهای تزریق، ترمیم drift و جریان تشخیص CSP و گرفتن رضایت است.

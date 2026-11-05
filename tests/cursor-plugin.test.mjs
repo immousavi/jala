@@ -115,6 +115,8 @@ describe('Cursor native plugin', () => {
     assert.ok(links > 20);
     assert.equal(fs.existsSync(path.join(output, 'skills/impeccable/scripts/bin')), false);
     const entrypoint = fs.readFileSync(path.join(output, 'skills/impeccable/SKILL.md'), 'utf8');
-    assert.match(entrypoint, /Run `"<skill-base-dir>\/scripts\/impeccable" context` once per session/);
+    // jala fork: Setup step 1 is Persian; the launcher keeps its quoted
+    // <skill-base-dir> form after the plugin rewrite.
+    assert.match(entrypoint, /در هر نشست یک بار `"<skill-base-dir>\/scripts\/impeccable" context` را اجرا کن/);
   });
 });

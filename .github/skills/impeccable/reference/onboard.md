@@ -1,234 +1,234 @@
-> **Additional context needed**: the "aha moment" you want users to reach, and users' experience level.
+> **زمینهٔ اضافی لازم است**: «لحظهٔ آها»یی که می‌خواهی کاربران به آن برسند، و سطح تجربهٔ کاربران.
 
-Get users to first value as fast as possible. Onboarding's job is not to teach the product. Its job is to get people to the moment that proves the product is worth their time.
+کاربران را در سریع‌ترین زمان ممکن به نخستین ارزش برسان. کار آنبوردینگ (onboarding) آموزش محصول نیست. کار آن رساندن افراد به لحظه‌ای است که ثابت می‌کند محصول ارزشِ وقتشان را دارد. در سطوح فارسی، [fa-rtl.md](fa-rtl.md) را بر هر جریان مرحله‌ای اعمال کن و [fa-numbers-dates.md](fa-numbers-dates.md) را بر ورودی‌های تلفن/OTP.
 
-## Assess Onboarding Needs
+## سنجش نیازهای آنبوردینگ
 
-Understand what users need to learn and why:
+بفهم کاربران چه چیزی باید بیاموزند و چرا:
 
-1. **Identify the challenge**:
-   - What are users trying to accomplish?
-   - What's confusing or unclear about current experience?
-   - Where do users get stuck or drop off?
-   - What's the "aha moment" we want users to reach?
+1. **چالش را شناسایی کن**:
+   - کاربران می‌خواهند به چه هدفی برسند؟
+   - در تجربهٔ فعلی چه چیزی گیج‌کننده یا مبهم است؟
+   - کاربران کجا گیر می‌کنند یا رها می‌کنند؟
+   - «لحظهٔ آها»یی که می‌خواهیم کاربران به آن برسند کدام است؟
 
-2. **Understand the users**:
-   - What's their experience level? (Beginners, power users, mixed?)
-   - What's their motivation? (Excited and exploring? Required by work?)
-   - What's their time commitment? (5 minutes? 30 minutes?)
-   - What alternatives do they know? (Coming from competitor? New to category?)
+2. **کاربران را بشناس**:
+   - سطح تجربه‌شان چیست؟ (مبتدی، کاربر حرفه‌ای، ترکیبی؟)
+   - انگیزه‌شان چیست؟ (هیجان‌زده و در حال کاوش؟ الزام کاری؟)
+   - چه مقدار وقت می‌گذارند؟ (۵ دقیقه؟ ۳۰ دقیقه؟)
+   - چه جایگزین‌هایی می‌شناسند؟ (از محصول رقیب آمده‌اند؟ تازه‌وارد این دسته‌اند؟)
 
-3. **Define success**:
-   - What's the minimum users need to learn to be successful?
-   - What's the key action we want them to take? (First project? First invite?)
-   - How do we know onboarding worked? (Completion rate? Time to value?)
+3. **موفقیت را تعریف کن**:
+   - حداقل چیزی که کاربران برای موفقیت باید بیاموزند چیست؟
+   - کنش کلیدی‌ای که می‌خواهیم انجام دهند چیست؟ (نخستین پروژه؟ نخستین دعوت؟)
+   - از کجا بفهمیم آنبوردینگ جواب داده؟ (نرخ تکمیل؟ زمان تا ارزش؟)
 
-Onboarding should get users to value as quickly as possible, not teach everything possible.
+آنبوردینگ باید کاربران را هرچه سریع‌تر به ارزش برساند، نه اینکه همه‌چیزِ ممکن را آموزش دهد.
 
-## Onboarding Principles
+## اصول آنبوردینگ
 
-Follow these core principles:
+این اصول اصلی را دنبال کن:
 
-### Show, Don't Tell
-- Demonstrate with working examples, not just descriptions
-- Provide real functionality in onboarding, not separate tutorial mode
-- Use progressive disclosure, teach one thing at a time
+### نشان بده، نگو
+- با نمونه‌های کارا نشان بده، نه صرفاً توصیف
+- در آنبوردینگ قابلیت واقعی بده، نه یک حالت آموزشی جدا
+- از افشای تدریجی استفاده کن؛ هر بار یک چیز بیاموز
 
-### Make It Optional (When Possible)
-- Let experienced users skip onboarding
-- Don't block access to product
-- Provide "Skip" or "I'll explore on my own" options
+### اختیاری کن (تا جای ممکن)
+- به کاربران باتجربه اجازه بده آنبوردینگ را رد کنند
+- دسترسی به محصول را نبند
+- گزینه‌های «رد کردن» یا «خودم کاوش می‌کنم» بگذار
 
-### Time to Value
-- Get users to their "aha moment" ASAP
-- Front-load most important concepts
-- Teach 20% that delivers 80% of value
-- Save advanced features for contextual discovery
+### زمان تا ارزش
+- کاربران را در اسرع وقت به «لحظهٔ آها»شان برسان
+- مهم‌ترین مفاهیم را به ابتدا بیاور
+- آن ۲۰٪ای را بیاموز که ۸۰٪ ارزش را می‌دهد
+- قابلیت‌های پیشرفته را برای کشفِ در بستر مناسب نگه دار
 
-### Context Over Ceremony
-- Teach features when users need them, not upfront
-- Empty states are onboarding opportunities
-- Tooltips and hints at point of use
+### بستر مقدم بر تشریفات
+- قابلیت‌ها را وقتی کاربر به آن‌ها نیاز دارد بیاموز، نه از ابتدا
+- حالت‌های خالی فرصت آنبوردینگ‌اند
+- تولتیپ و سرنخ، درست در نقطهٔ استفاده
 
-### Respect User Intelligence
-- Don't patronize or over-explain
-- Be concise and clear
-- Assume users can figure out standard patterns
+### هوش کاربر را محترم بشمار
+- کاربر را کوچک نشمار و بیش از حد توضیح نده
+- کوتاه و شفاف باش
+- فرض کن کاربران الگوهای استاندارد را خودشان درمی‌یابند
 
-## Design Onboarding Experiences
+## طراحی تجربه‌های آنبوردینگ
 
-Create appropriate onboarding for the context:
+آنبوردینگ متناسب با بستر بساز:
 
-### Initial Product Onboarding
+### آنبوردینگ اولیهٔ محصول
 
-**Welcome Screen**:
-- Clear value proposition (what is this product?)
-- What users will learn/accomplish
-- Time estimate (honest about commitment)
-- Option to skip (for experienced users)
+**صفحهٔ خوش‌آمد**:
+- ارزش پیشنهادیِ روشن (این محصول چیست؟)
+- کاربران چه خواهند آموخت / به چه نتیجه‌ای می‌رسند
+- برآورد زمان (صادق باش دربارهٔ میزان زمان لازم)
+- امکان رد کردن (برای کاربران باتجربه)
 
-**Account Setup**:
-- Minimal required information (collect more later)
-- Explain why you're asking for each piece of information
-- Smart defaults where possible
-- Social login when appropriate
+**راه‌اندازی حساب**:
+- حداقل اطلاعاتِ لازم (بقیه را بعداً جمع کن)
+- برای هر داده‌ای که می‌خواهی، دلیلش را توضیح بده
+- تا جایی که می‌شود، پیش‌فرض‌های هوشمند
+- در جای خود، ورود با شبکهٔ اجتماعی
 
-**Core Concept Introduction**:
-- Introduce 1-3 core concepts (not everything)
-- Use simple language and examples
-- Interactive when possible (do, don't just read)
-- Progress indication (step 1 of 3)
+**معرفی مفاهیم اصلی**:
+- ۱ تا ۳ مفهوم اصلی معرفی کن (نه همه‌چیز)
+- زبان و مثال‌های ساده
+- تا جایی که ممکن است تعاملی (انجام بده، فقط نخوان)
+- نمایش پیشرفت (مرحلهٔ ۱ از ۳)
 
-**First Success**:
-- Guide users to accomplish something real
-- Pre-populated examples or templates
-- Celebrate completion (but don't overdo it)
-- Clear next steps
+**نخستین موفقیت**:
+- کاربران را به انجام یک کار واقعی هدایت کن
+- مثال‌ها یا قالب‌های از پیش پرشده
+- تکمیل را جشن بگیر (اما زیاده‌روی نکن)
+- گام‌های بعدیِ روشن
 
-### Feature Discovery & Adoption
+### کشف و پذیرش قابلیت‌ها
 
-**Empty States**:
-Instead of blank space, show:
-- What will appear here (description + screenshot/illustration)
-- Why it's valuable
-- Clear CTA to create first item
-- Example or template option
+**حالت‌های خالی**:
+به جای فضای خالی، نشان بده:
+- چه چیزی اینجا ظاهر خواهد شد (توضیح + اسکرین‌شات/تصویر)
+- چرا ارزشمند است
+- CTA روشن برای ساختن نخستین آیتم
+- گزینهٔ مثال یا قالب
 
-Example:
+مثال:
 ```
 No projects yet
 Projects help you organize your work and collaborate with your team.
 [Create your first project] or [Start from template]
 ```
 
-**Contextual Tooltips**:
-- Appear at relevant moment (first time user sees feature)
-- Point directly at relevant UI element
-- Brief explanation + benefit
-- Dismissable (with "Don't show again" option)
-- Optional "Learn more" link
+**تولتیپ‌های بافتی**:
+- در لحظهٔ مرتبط ظاهر شوند (نخستین باری که کاربر قابلیت را می‌بیند)
+- مستقیماً به عنصر مرتبط رابط اشاره کنند
+- توضیح کوتاه + منفعت
+- قابل بستن (با گزینهٔ «دیگر نشان نده»)
+- لینک اختیاری «بیشتر بدانید»
 
-**Feature Announcements**:
-- Highlight new features when they're released
-- Show what's new and why it matters
-- Let users try immediately
-- Dismissable
+**اعلام قابلیت‌ها**:
+- قابلیت‌های جدید را هنگام انتشار برجسته کن
+- نشان بده چه چیز جدید است و چرا مهم است
+- بگذار کاربران همان لحظه امتحان کنند
+- قابل بستن
 
-**Progressive Onboarding**:
-- Teach features when users encounter them
-- Badges or indicators on new/unused features
-- Unlock complexity gradually (don't show all options immediately)
+**آنبوردینگ تدریجی**:
+- قابلیت‌ها را وقتی کاربر با آن‌ها روبه‌رو می‌شود بیاموز
+- نشان یا نشانگر روی قابلیت‌های جدید/استفاده‌نشده
+- پیچیدگی را به‌تدریج باز کن (همهٔ گزینه‌ها را فوراً نشان نده)
 
-### Guided Tours & Walkthroughs
+### تورهای راهنما و مرورهای گام‌به‌گام
 
-**When to use**:
-- Complex interfaces with many features
-- Significant changes to existing product
-- Industry-specific tools needing domain knowledge
+**چه زمانی استفاده کنی**:
+- رابط‌های پیچیده با قابلیت‌های زیاد
+- تغییرات اساسی در محصول موجود
+- ابزارهای مخصوص یک صنعت که دانش حوزه می‌خواهند
 
-**How to design**:
-- Spotlight specific UI elements (dim rest of page)
-- Keep steps short (3-7 steps max per tour)
-- Allow users to click through tour freely
-- Include "Skip tour" option
-- Make replayable (help menu)
+**چگونه طراحی کنی**:
+- عناصر مشخصی از رابط را نورافکن کن (بقیهٔ صفحه را کم‌نور کن)
+- گام‌ها را کوتاه نگه دار (حداکثر ۳ تا ۷ گام در هر تور)
+- بگذار کاربر آزادانه در تور جابه‌جا شود
+- گزینهٔ «رد کردن تور» بگذار
+- قابل تکرار باشد (منوی راهنما)
 
-**Best practices**:
-- Interactive over passive (let users click real buttons)
-- Focus on workflow, not features ("Create a project" not "This is the project button")
-- Provide sample data so actions work
+**بهترین رویه‌ها**:
+- تعاملی، نه منفعل (بگذار کاربر روی دکمه‌های واقعی کلیک کند)
+- تمرکز بر جریان کار، نه قابلیت‌ها («یک پروژه بساز»، نه «این دکمهٔ پروژه است»)
+- دادهٔ نمونه بده تا کنش‌ها واقعاً کار کنند
 
-### Interactive Tutorials
+### آموزش‌های تعاملی
 
-**When to use**:
-- Users need hands-on practice
-- Concepts are complex or unfamiliar
-- High stakes (better to practice in safe environment)
+**چه زمانی استفاده کنی**:
+- کاربران به تمرین عملی نیاز دارند
+- مفاهیم پیچیده یا ناآشنا هستند
+- ریسک بالاست (بهتر است در محیط امن تمرین شود)
 
-**How to design**:
-- Sandbox environment with sample data
-- Clear objectives ("Create a chart showing sales by region")
-- Step-by-step guidance
-- Validation (confirm they did it right)
-- Graduation moment (you're ready!)
+**چگونه طراحی کنی**:
+- محیط سندباکس با دادهٔ نمونه
+- اهداف روشن («نموداری بساز که فروش بر اساس منطقه را نشان دهد»)
+- راهنمایی گام‌به‌گام
+- اعتبارسنجی (تأیید کن که درست انجام داده‌اند)
+- لحظهٔ فارغ‌التحصیلی (آماده‌ای!)
 
-### Documentation & Help
+### مستندات و راهنما
 
-**In-product help**:
-- Contextual help links throughout interface
-- Keyboard shortcut reference
-- Search-able help center
-- Video tutorials for complex workflows
+**راهنمای درون‌محصولی**:
+- لینک‌های راهنمای بافتی در سراسر رابط
+- مرجع کلیدهای میان‌بر
+- مرکز راهنمای قابل جست‌وجو
+- آموزش ویدیویی برای جریان‌های کاری پیچیده
 
-**Help patterns**:
-- `?` icon near complex features
-- "Learn more" links in tooltips
-- Keyboard shortcut hints (`⌘K` shown on search box)
+**الگوهای راهنما**:
+- آیکون `?` کنار قابلیت‌های پیچیده
+- لینک‌های «بیشتر بدانید» در تولتیپ‌ها
+- سرنخ کلید میان‌بر (نمایش `⌘K` روی جعبهٔ جست‌وجو)
 
-## Empty State Design
+## طراحی حالت خالی
 
-Every empty state needs:
+هر حالت خالی به این‌ها نیاز دارد:
 
-### What Will Be Here
-"Your recent projects will appear here"
+### چه چیزی اینجا خواهد بود
+«پروژه‌های اخیر شما اینجا ظاهر می‌شوند»
 
-### Why It Matters
-"Projects help you organize your work and collaborate with your team"
+### چرا اهمیت دارد
+«پروژه‌ها به شما کمک می‌کنند کارتان را سازماندهی کنید و با تیم‌تان همکاری کنید»
 
-### How to Get Started
-[Create project] or [Import from template]
+### چگونه شروع کنی
+[ساخت پروژه] یا [وارد کردن از قالب]
 
-### Visual Interest
-Illustration or icon (not just text on blank page)
+### جذابیت بصری
+تصویرسازی یا آیکون (نه فقط متن روی صفحهٔ خالی)
 
-### Contextual Help
-"Need help getting started? [Watch 2-min tutorial]"
+### راهنمای بافتی
+«برای شروع کمک لازم دارید؟ [تماشای آموزش ۲ دقیقه‌ای]»
 
-**Empty state types**:
-- **First use**: Never used this feature (emphasize value, provide template)
-- **User cleared**: Intentionally deleted everything (light touch, easy to recreate)
-- **No results**: Search or filter returned nothing (suggest different query, clear filters)
-- **No permissions**: Can't access (explain why, how to get access)
-- **Error state**: Failed to load (explain what happened, retry option)
+**انواع حالت خالی**:
+- **نخستین استفاده**: هرگز از این قابلیت استفاده نشده (روی ارزش تأکید کن، قالب بده)
+- **پاک‌سازی توسط کاربر**: کاربر عمداً همه‌چیز را حذف کرده (ملایم برخورد کن، بازسازی را آسان کن)
+- **بدون نتیجه**: جست‌وجو یا فیلتر نتیجه‌ای برنگردانده (پرس‌وجوی دیگری پیشنهاد بده، فیلترها را پاک کن)
+- **بدون مجوز**: دسترسی ممکن نیست (توضیح بده چرا و چگونه دسترسی بگیرد)
+- **حالت خطا**: بارگذاری شکست خورده (توضیح بده چه اتفاقی افتاده، گزینهٔ تلاش دوباره بده)
 
-## Implementation Patterns
+## الگوهای پیاده‌سازی
 
-### Technical approaches:
+### رویکردهای فنی:
 
-**Tooltip libraries**: Tippy.js, Popper.js
-**Tour libraries**: Intro.js, Shepherd.js, React Joyride
-**Modal patterns**: Focus trap, backdrop, ESC to close
-**Progress tracking**: LocalStorage for "seen" states
-**Analytics**: Track completion, drop-off points
+**کتابخانه‌های تولتیپ**: Tippy.js، Popper.js
+**کتابخانه‌های تور**: Intro.js، Shepherd.js، React Joyride
+**الگوهای مودال**: تلهٔ فوکوس (focus trap)، پس‌زمینهٔ تیره، بستن با ESC
+**ردیابی پیشرفت**: LocalStorage برای وضعیت‌های «دیده‌شده»
+**تحلیل**: ردیابی تکمیل و نقاط رها کردن
 
-**Storage patterns**:
+**الگوهای ذخیره‌سازی**:
 ```javascript
 // Track which onboarding steps user has seen
 localStorage.setItem('onboarding-completed', 'true');
 localStorage.setItem('feature-tooltip-seen-reports', 'true');
 ```
 
-Show onboarding once: track completion and respect dismissals.
+آنبوردینگ را یک‌بار نشان بده: تکمیل را ردیابی کن و به بسته‌شدن‌ها احترام بگذار.
 
-**Avoid**:
-- Force users through long onboarding before they can use product
-- Patronize users with obvious explanations
-- Show same tooltip repeatedly (respect dismissals)
-- Block all UI during tour (let users explore)
-- Create separate tutorial mode disconnected from real product
-- Overwhelm with information upfront (progressive disclosure!)
-- Hide "Skip" or make it hard to find
-- Forget about returning users (don't show initial onboarding again)
+**از این‌ها پرهیز کن**:
+- وادار کردن کاربران به گذراندن آنبوردینگ طولانی پیش از آنکه بتوانند از محصول استفاده کنند
+- کوچک شمردن کاربران با توضیح‌های بدیهی
+- نشان دادن مکرر یک تولتیپ (به بسته‌شدن‌ها احترام بگذار)
+- بستن تمام رابط در طول تور (بگذار کاربر کاوش کند)
+- ساختن حالت آموزشی جدا و بی‌اتصال به محصول واقعی
+- غرق کردن کاربر در اطلاعات از همان ابتدا (افشای تدریجی!)
+- پنهان کردن گزینهٔ «رد کردن» یا سخت کردن پیدا کردنش
+- فراموش کردن کاربران بازگشتی (آنبوردینگ اولیه را دوباره نشان نده)
 
-## Verify Onboarding Quality
+## راستی‌آزمایی کیفیت آنبوردینگ
 
-Test with real users:
+با کاربران واقعی تست کن:
 
-- **Time to completion**: Can users complete onboarding quickly?
-- **Comprehension**: Do users understand after completing?
-- **Action**: Do users take desired next step?
-- **Skip rate**: Are too many users skipping? (Maybe it's too long or not valuable)
-- **Completion rate**: Are users completing? (If low, simplify)
-- **Time to value**: How long until users get first value?
+- **زمان تا تکمیل**: کاربران می‌توانند آنبوردینگ را سریع کامل کنند؟
+- **فهم**: کاربران پس از تکمیل، مفاهیم را فهمیده‌اند؟
+- **کنش**: کاربران گام بعدیِ مطلوب را انجام می‌دهند؟
+- **نرخ رد کردن**: آیا تعداد زیادی کاربر رد می‌کنند؟ (شاید بیش از حد طولانی است یا ارزشی ندارد)
+- **نرخ تکمیل**: کاربران تکمیل می‌کنند؟ (اگر کم است، ساده‌ترش کن)
+- **زمان تا ارزش**: چقدر طول می‌کشد تا کاربر نخستین ارزش را دریافت کند؟
 
-When users hit the aha moment fast and don't drop off, hand off to `/impeccable polish` for the final pass.
+وقتی کاربران سریع به لحظهٔ آها می‌رسند و رها نمی‌کنند، برای پالایش نهایی کار را به `/jala polish` بسپار.

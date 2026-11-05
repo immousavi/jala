@@ -1,98 +1,98 @@
 {
   "craft": {
-    "description": "Deprecated compatibility alias for an ordinary Impeccable new-work request. It adds no behavior; natural build and redesign requests use the same flow.",
-    "argumentHint": "[feature description]"
+    "description": "نام مستعارِ سازگاریِ منسوخ‌شده برای یک درخواست معمولی new-work جلا. رفتاری اضافه نمی‌کند؛ درخواست‌های طبیعیِ ساخت و بازطراحی از همان جریان استفاده می‌کنند.",
+    "argumentHint": "[توضیح ویژگی]"
   },
   "init": {
-    "description": "Sets up a project for impeccable. Runs a multi-round discovery interview when context is missing and writes PRODUCT.md (strategic: users, brand, principles); pre-configures live mode; then recommends the best commands to run next. Every other command reads these files before doing work. Use once per project.",
+    "description": "پروژه را برای جلا راه می‌اندازد. وقتی context غایب است، مصاحبهٔ کشفِ چندمرحله‌ای اجرا می‌کند و PRODUCT.md می‌نویسد (راهبردی: کاربران، برند، اصول)؛ حالت زنده را پیش‌تنظیم می‌کند؛ بعد بهترین فرمان‌های بعدی را پیشنهاد می‌دهد. هر فرمان دیگر قبل از کار این فایل‌ها را می‌خواند. در هر پروژه یک‌بار.",
     "argumentHint": ""
   },
   "document": {
-    "description": "Generate a DESIGN.md file that captures the current visual design system. Auto-extracts colors, typography, spacing, radii, and component patterns from the codebase, then asks the user to confirm descriptive language for atmosphere and color character. Follows the Google Stitch DESIGN.md format so the file is tool-compatible. Use when you need a visual design spec an AI agent can follow to stay on-brand.",
+    "description": "فایل DESIGN.md می‌سازد که سیستم طراحی بصریِ فعلی را ثبت می‌کند. رنگ‌ها، تایپوگرافی، فاصله‌گذاری، شعاع‌ها و الگوهای کامپوننت را خودکار از کدبیس استخراج می‌کند، بعد از کاربر می‌خواهد زبان توصیفیِ حس‌وحال و شخصیت رنگ را تأیید کند. قالب Google Stitch DESIGN.md را رعایت می‌کند تا فایل با ابزارها سازگار بماند. وقتی به یک سند طراحی بصری نیاز داری که ایجنت AI بتواند از آن پیروی کند و برند حفظ شود.",
     "argumentHint": ""
   },
   "extract": {
-    "description": "Pull reusable patterns, components, and design tokens into the design system. Identifies repeated patterns and consolidates them. Use when you have drift across the codebase and want to bring things back to a consistent system.",
-    "argumentHint": "[target]"
+    "description": "الگوها، کامپوننت‌ها و توکن‌های طراحیِ تکرارشونده را به سیستم طراحی می‌کشد. الگوهای تکراری را شناسایی و یکپارچه می‌کند. وقتی در کدبیس drift داری و می‌خواهی همه‌چیز به سیستم یکدستی برگردد.",
+    "argumentHint": "[هدف]"
   },
   "live": {
-    "description": "Interactive live variant mode. Select elements in the browser, pick a design action, and get AI-generated HTML+CSS variants hot-swapped via HMR. Requires a running dev server. Use when you want to visually experiment with design alternatives in real time.",
+    "description": "حالت تعاملی واریانت زنده. عناصر را در مرورگر انتخاب می‌کنی، یک کنش طراحی برمی‌داری و واریانت‌های HTML+CSS تولید هوش مصنوعی را با HMR سر جایشان عوض‌شده می‌گیری. به سرور توسعهٔ در حال اجرا نیاز دارد. وقتی می‌خواهی با گزینه‌های طراحی در لحظه آزمایش کنی.",
     "argumentHint": ""
   },
   "generate": {
-    "description": "Agent-driven live variant generation. Boots live mode, finds the named element on the open page, scrolls the browser to it, and delivers N variants in the requested direction for the user to cycle and accept. Use for requests that name an element and a direction, like 'generate 3 bold variants of the pricing cards', skipping manual element picking.",
-    "argumentHint": "[count] [direction] variants of [element]"
+    "description": "تولید واریانتِ زندهٔ رانده‌شده توسط ایجنت. حالت زنده را بالا می‌آورد، عنصر نام‌برده را در صفحهٔ باز پیدا می‌کند، مرورگر را به آن می‌برد و N واریانت در جهت خواسته‌شده تحویل می‌دهد تا کاربر بچرخاند و قبول کند. برای درخواست‌هایی که عنصر و جهت را نام می‌برند، مثل «۳ واریانت جسور از کارت‌های قیمت‌گذاری»، بدون انتخاب دستی.",
+    "argumentHint": "[تعداد] [جهت] واریانت از [عنصر]"
   },
   "adapt": {
-    "description": "Adapt designs to work across different screen sizes, devices, contexts, or platforms. Implements breakpoints, fluid layouts, and touch targets. Use when the user mentions responsive design, mobile layouts, breakpoints, viewport adaptation, or cross-device compatibility.",
-    "argumentHint": "[target] [context (mobile, tablet, print...)]"
+    "description": "طراحی را برای اندازه‌های صفحه، دستگاه‌ها، بافت‌ها یا پلتفرم‌های مختلف وفق می‌دهد. بریک‌پوینت، چیدمان سیال و اهداف لمسی پیاده می‌کند. وقتی کاربر از طراحی واکنش‌گرا، چیدمان موبایل، بریک‌پوینت، وفق‌دادن ویوپورت یا سازگاری بین‌دستگاهی حرف می‌زند.",
+    "argumentHint": "[هدف] [بافت (موبایل، تبلت، چاپ...)]"
   },
   "animate": {
-    "description": "Review a feature and enhance it with purposeful animations, micro-interactions, and motion effects that improve usability and delight. Use when the user mentions adding animation, transitions, micro-interactions, motion design, hover effects, or making the UI feel more alive.",
-    "argumentHint": "[target]"
+    "description": "یک ویژگی را بازبینی و با انیمیشن‌های هدفمند، تعامل‌های ریز و افکت‌های حرکتیِ استفاده‌پذیری‌افزا غنی می‌کند. وقتی کاربر از افزودن انیمیشن، ترنزیشن، تعامل ریز، طراحی حرکت، افکت هاور یا زنده‌شدن UI حرف می‌زند.",
+    "argumentHint": "[هدف]"
   },
   "audit": {
-    "description": "Run technical quality checks across accessibility, performance, theming, responsive design, and anti-patterns. Generates a scored report with P0-P3 severity ratings and actionable plan. Use when the user wants an accessibility check, performance audit, or technical quality review.",
-    "argumentHint": "[area (feature, page, component...)]"
+    "description": "چک‌های کیفیت فنی را روی دسترس‌پذیری، کارایی، تم، طراحی واکنش‌گرا و الگوهای ضدطراحی اجرا می‌کند. گزارش نمره‌دار با شدت‌های P0 تا P3 و برنامهٔ عملی می‌سازد. وقتی کاربر چک دسترس‌پذیری، ممیزی کارایی یا بازبینی کیفیت فنی می‌خواهد.",
+    "argumentHint": "[ناحیه (ویژگی، صفحه، کامپوننت...)]"
   },
   "bolder": {
-    "description": "Amplify safe or boring designs to make them more visually interesting and stimulating. Increases impact while maintaining usability. Use when the user says the design looks bland, generic, too safe, lacks personality, or wants more visual impact and character.",
-    "argumentHint": "[target]"
+    "description": "طراحی‌های محافظه‌کار یا بی‌روح را پرقدرت می‌کند تا بصری‌تر و تحریک‌کننده‌تر شوند. اثرگذاری را با حفظ استفاده‌پذیری بالا می‌برد. وقتی کاربر می‌گوید طراحی ساده/بی‌شخصیت/بی‌خطر است یا اثر بصری و شخصیت بیشتری می‌خواهد.",
+    "argumentHint": "[هدف]"
   },
   "clarify": {
-    "description": "Improve unclear UX copy, error messages, microcopy, labels, and instructions to make interfaces easier to understand. Use when the user mentions confusing text, unclear labels, bad error messages, hard-to-follow instructions, or wanting better UX writing.",
-    "argumentHint": "[target]"
+    "description": "متن UX نامفهوم، پیام‌های خطا، ریزمتن‌ها، لیبل‌ها و دستورالعمل‌ها را بهتر می‌کند تا رابط راحت‌تر فهمیده شود. وقتی کاربر از متن گیج‌کننده، لیبل مبهم، پیام خطای بد، دستورالعمل سخت‌دنبال‌شونده یا متن UX بهتر حرف می‌زند.",
+    "argumentHint": "[هدف]"
   },
   "colorize": {
-    "description": "Add strategic color to features that are too monochromatic or lack visual interest, making interfaces more engaging and expressive. Use when the user mentions the design looking gray, dull, lacking warmth, needing more color, or wanting a more vibrant or expressive palette.",
-    "argumentHint": "[target]"
+    "description": "به ویژگی‌هایی که بیش‌ازحد تک‌رنگ‌اند یا جذابیت بصری ندارند رنگِ راهبردی می‌افزاید و رابط را زنده‌تر و پرشخصیت‌تر می‌کند. وقتی کاربر می‌گوید طراحی خاکستری، کدر، بی‌گرمی است، رنگ کم دارد، یا پالتی پرجان‌تر و پرشخصیت‌تر می‌خواهد.",
+    "argumentHint": "[هدف]"
   },
   "critique": {
-    "description": "Evaluate design from a UX perspective, assessing visual hierarchy, information architecture, emotional resonance, cognitive load, and overall quality with quantitative scoring, persona-based testing, automated anti-pattern detection, and actionable feedback. Use when the user asks to review, critique, evaluate, or give feedback on a design or component.",
-    "argumentHint": "[area (feature, page, component...)]"
+    "description": "طراحی را از منظر UX ارزیابی می‌کند: سلسله‌مراتب بصری، معماری اطلاعات، طنین احساسی، بار شناختی و کیفیت کلی — با نمره‌دهی کمّی، تست شخصا-محور، دیتکتور خودکار الگوهای ضدطراحی و بازخورد عملی. وقتی کاربر بازبینی، نقد، ارزیابی یا بازخورد روی طراحی یا کامپوننت می‌خواهد.",
+    "argumentHint": "[ناحیه (ویژگی، صفحه، کامپوننت...)]"
   },
   "delight": {
-    "description": "Add moments of joy, personality, and unexpected touches that make interfaces memorable and enjoyable to use. Elevates functional to delightful. Use when the user asks to add polish, personality, animations, micro-interactions, delight, or make an interface feel fun or memorable.",
-    "argumentHint": "[target]"
+    "description": "لحظه‌های شادی، شخصیت و لمس‌های غیرمنتظره اضافه می‌کند که رابط را به‌یادماندنی و لذت‌بخش می‌کنند. کارکردی را دلپذیر بالا می‌برد. وقتی کاربر پالایش، شخصیت، انیمیشن، تعامل ریز، دلپذیری می‌خواهد یا می‌گوید رابط سرگرم‌کننده یا به‌یادماندنی شود.",
+    "argumentHint": "[هدف]"
   },
   "distill": {
-    "description": "Strip designs to their essence by removing unnecessary complexity. Great design is simple, powerful, and clean. Use when the user asks to simplify, declutter, reduce noise, remove elements, or make a UI cleaner and more focused.",
-    "argumentHint": "[target]"
+    "description": "طراحی را با حذف پیچیدگیِ غیرلازم به جوهره‌اش می‌رساند. طراحیِ خوب ساده، قدرتمند و تمیز است. وقتی کاربر ساده‌سازی، جمع‌وجورسازی، کم‌کردن نوفه، حذف عناصر یا UI تمیزتر و متمرکزتر می‌خواهد.",
+    "argumentHint": "[هدف]"
   },
   "harden": {
-    "description": "Make interfaces production-ready: error handling, i18n, text overflow, edge case management, and resilience under real-world data. Use when the user asks to harden, make production-ready, handle edge cases, add error states, or fix overflow and i18n issues.",
-    "argumentHint": "[target]"
+    "description": "رابط را آمادهٔ پروداکشن می‌کند: مدیریت خطا، بومی‌سازی، سرریز متن، حالت‌های مرزی و تاب‌آوری در برابر دادهٔ واقعی. وقتی کاربر سخت‌سازی، آماده‌سازی برای پروداکشن، حالت‌های مرزی، حالت‌های خطا، یا رفع سرریز و مسائل بومی‌سازی می‌خواهد. روی سطح‌های فارسی، قرارداد locale ایرانی (تقویم جلالی، ارقام فارسی، تومان، شناسه‌های ایرانی) را هم پوشش می‌دهد.",
+    "argumentHint": "[هدف]"
   },
   "onboard": {
-    "description": "Design onboarding flows, first-run experiences, and empty states that guide new users to value. Covers welcome screens, account setup, progressive disclosure, contextual tooltips, feature announcements, and activation moments. Use when the user mentions onboarding, first-time users, empty states, activation, getting started, new user flows, or the aha moment.",
-    "argumentHint": "[target]"
+    "description": "جریان‌های آنبوردینگ، تجربه‌های اولین‌اجراء و حالت‌های خالی طراحی می‌کند که کاربر جدید را به ارزش برساند. صفحهٔ خوش‌آمد، راه‌اندازی حساب، افشای تدریجی، تولتیپ بافتی، اعلام ویژگی و لحظه‌های فعال‌سازی. وقتی کاربر از آنبوردینگ، کاربر اول‌باری، حالت خالی، فعال‌سازی، شروع‌به‌کار یا لحظهٔ آها حرف می‌زند.",
+    "argumentHint": "[هدف]"
   },
   "layout": {
-    "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak visual hierarchy. Use when the user mentions layout feeling off, spacing issues, visual hierarchy, crowded UI, alignment problems, or wanting better composition.",
-    "argumentHint": "[target]"
+    "description": "چیدمان، فاصله‌گذاری و ریتم بصری را بهتر می‌کند. گریدهای یکنواخت، فاصله‌گذاری‌های ناسازگار و سلسله‌مراتب بصری ضعیف را درست می‌کند. وقتی کاربر از چیدمانِ بی‌قواره، مشکل فاصله‌گذاری، سلسله‌مراتب بصری، UI شلوغ، مشکل تراز یا ترکیب‌بندی بهتر حرف می‌زند.",
+    "argumentHint": "[هدف]"
   },
   "optimize": {
-    "description": "Diagnoses and fixes UI performance across loading speed, rendering, animations, images, and bundle size. Use when the user mentions slow, laggy, janky, performance, bundle size, load time, or wants a faster, smoother experience.",
-    "argumentHint": "[target]"
+    "description": "کارایی UI را در سرعت لود، رندر، انیمیشن‌ها، تصاویر و حجم باندل تشخیص و رفع می‌کند. وقتی کاربر از کندی، لَگی، پرش، کارایی، حجم باندل یا زمان لود حرف می‌زند یا تجربه‌ای سریع‌تر و نرم‌تر می‌خواهد.",
+    "argumentHint": "[هدف]"
   },
   "overdrive": {
-    "description": "Pushes interfaces past conventional limits with technically ambitious implementations — shaders, spring physics, scroll-driven reveals, 60fps animations. Use when the user wants to wow, impress, go all-out, or make something that feels extraordinary.",
-    "argumentHint": "[target]"
+    "description": "رابط‌ها را با پیاده‌سازی‌های فنیِ بلندپروازانه از مرزهای متعارف عبور می‌دهد — شیدر، فیزیک فنری، revealهای scroll-driven، انیمیشن‌های 60fps. وقتی کاربر می‌خواهد چشمک بزند، تحت تأثیر بگذارد، تمام‌قد برود یا چیزی فرا-معمول بسازد.",
+    "argumentHint": "[هدف]"
   },
   "polish": {
-    "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before shipping. Use when the user mentions polish, finishing touches, pre-launch review, something looks off, or wants to go from good to great.",
-    "argumentHint": "[target]"
+    "description": "آخرین پاسِ کیفیت را اجرا می‌کند: تراز، فاصله‌گذاری، یکدستی و ریزجزئیات، قبل از عرضه. وقتی کاربر از پالایش، لمس‌های پایانی، بازبینی پیش از انتشار، «یک‌چیزی می‌زند» یا رساندن خوب به عالی حرف می‌زند.",
+    "argumentHint": "[هدف]"
   },
   "quieter": {
-    "description": "Tones down visually aggressive or overstimulating designs, reducing intensity while preserving quality. Use when the user mentions too bold, too loud, overwhelming, aggressive, garish, or wants a calmer, more refined aesthetic.",
-    "argumentHint": "[target]"
+    "description": "طراحی‌های بصریِ تهاجمی یا پرتحریک را آرام می‌کند؛ شدت را با حفظ کیفیت پایین می‌آورد. وقتی کاربر می‌گوید زیادی جسور، زیادی پرصدا، زیادی شلوغ، تهاجمی، جیغ است یا زیبایی‌شناسی آرام‌تر و پخته‌تری می‌خواهد.",
+    "argumentHint": "[هدف]"
   },
   "shape": {
-    "description": "Plan UX and UI before code. Runs a discovery interview (one round by default), uses visual probes when available, and produces a user-confirmed design brief for implementation.",
-    "argumentHint": "[feature to shape]"
+    "description": "قبل از کد، UX و UI را برنامه می‌ریزد. مصاحبهٔ کشف اجرا می‌کند (به‌صورت پیش‌فرض یک مرحله)، وقتی ممکن است پروب‌های بصری می‌گیرد و بریفِ طراحیِ تأییدشدهٔ کاربر برای پیاده‌سازی تولید می‌کند.",
+    "argumentHint": "[ویژگی برای شکل‌دهی]"
   },
   "typeset": {
-    "description": "Improves typography by fixing font choices, hierarchy, sizing, weight, and readability so text feels intentional. Use when the user mentions fonts, type, readability, text hierarchy, sizing looks off, or wants more polished, intentional typography.",
-    "argumentHint": "[target]"
+    "description": "تایپوگرافی را بهتر می‌کند: انتخاب فونت، سلسله‌مراتب، سایز، وزن و خوانایی تا متنِ عمدی حس شود. روی سطح‌های فارسی، مرجع fa-typography (فونت‌های فارسی، ارتفاع خط، نیم‌فاصله، ارقام) را اعمال می‌کند. وقتی کاربر از فونت، تایپ، خوانایی، سلسله‌مراتب متن، سایزِ بی‌قواره یا تایپوگرافی پخته‌تر حرف می‌زند.",
+    "argumentHint": "[هدف]"
   }
 }

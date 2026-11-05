@@ -1,61 +1,61 @@
-# Init flow
+# جریان init
 
-`init` captures durable product truth in PRODUCT.md. It does not invent a visual world and does not write DESIGN.md; [new-work.md](new-work.md) creates or expands one, and [document.md](document.md) records an incumbent one. Existing runnable web projects may also receive `.impeccable/live/config.json`.
+`init` حقیقتِ ماندگارِ محصول را در PRODUCT.md ثبت می‌کند. نه جهان بصری می‌سازد و نه DESIGN.md می‌نویسد؛ [new-work.md](new-work.md) یکی می‌سازد یا گسترش می‌دهد و [document.md](document.md) سیستمِ برجا را ثبت می‌کند. پروژه‌های وبِ اجراشدنیِ موجود ممکن است `.impeccable/live/config.json` هم بگیرند.
 
-## Step 1: Load current state
+## گام ۱: وضعیت فعلی را بار کن
 
-Use the PRODUCT.md path resolved by `impeccable context`. Update it instead of creating a competing authority. In a child app inheriting root context, confirm shared versus app-specific scope before writing.
+مسیر PRODUCT.md را که `impeccable context` حل کرده به کار ببر. به‌جای ساختن مرجعی رقیب، همان را به‌روز کن. در اپ فرزندی که بافت ریشه را به ارث برده، پیش از نوشتن، دامنهٔ مشترک یا مخصوصِ اپ را قطعی کن.
 
-- **No PRODUCT.md:** explore, interview, and write it.
-- **PRODUCT.md exists:** ask what product knowledge is stale or missing; do not reopen confirmed fields without a reason.
-- **Legacy PRODUCT.md:** add only durable missing facts; absent `## Platform` means `web` unless evidence says otherwise.
-- **Only DESIGN.md exists:** leave it untouched and create PRODUCT.md.
-- **Redesign/rebrand request:** preserve confirmed product truth unless the user changes it. Visual replacement happens later in new-work, not here.
+- **PRODUCT.md نیست:** پروژه را بکاو، مصاحبه کن و آن را بنویس.
+- **PRODUCT.md هست:** بپرس کدام دانشِ محصول کهنه یا ناقص است؛ فیلدهای تأییدشده را بدون دلیل دوباره باز نکن.
+- **PRODUCT.md قدیمی (legacy):** فقط واقعیت‌های ماندگارِ جاافتاده را اضافه کن؛ نبودِ `## Platform` یعنی `web`، مگر شواهد خلافش را بگویند.
+- **فقط DESIGN.md هست:** دست‌نخورده بگذار و PRODUCT.md را بساز.
+- **درخواست بازطراحی/تغییر هویت:** حقیقتِ تأییدشدهٔ محصول را تا وقتی کاربر تغییرش نداده حفظ کن. جایگزینی بصری بعداً در new-work می‌افتد، نه اینجا.
 
-Never silently overwrite an existing file or offer DESIGN.md during init. If another request invoked init, finish PRODUCT.md and resume it. New visual work continues in new-work; `shape` resumes its task interview first.
+هرگز فایل موجود را بی‌سروصدا بازنویسی نکن و در init پیشنهاد DESIGN.md نده. اگر درخواست دیگری init را فراخوانده بود، PRODUCT.md را تمام کن و آن درخواست را از سر بگیر. کار بصری تازه در new-work ادامه می‌یابد؛ `shape` اول مصاحبهٔ وظیفه‌ای خودش را از سر می‌گیرد.
 
-## Step 2: Explore the project
+## گام ۲: پروژه را بکاو
 
-Before asking, scan enough to avoid making the user repeat known facts: product docs and copy; package/config and app boundaries; features, workflows, routes, and roles; names, logos, legal/proof assets, and brand commitments; platform/accessibility signals; and the dev command/entry when live mode applies.
+پیش از پرسیدن، آن‌قدر اسکن کن که کاربر مجبور نشود واقعیت‌های شناخته‌شده را تکرار کند: مستندها و متن‌های محصول؛ package/config و مرزهای اپ؛ قابلیت‌ها، جریان‌های کاری، روت‌ها و نقش‌ها؛ نام‌ها، لوگوها، دارایی‌های حقوقی/اثباتی و تعهدهای برند؛ نشانه‌های پلتفرم/دسترس‌پذیری؛ و فرمان/نقطهٔ ورودِ توسعه وقتی حالت زنده موضوعیت دارد.
 
-Treat repository evidence as a hypothesis, not user approval. Note visual maturity without documenting, extending, or replacing the world.
+شواهد ریپو را فرضیه ببین، نه تأیید کاربر. بلوغ بصری را بدون مستندکردن، گسترش یا جایگزینیِ جهان، یادداشت کن.
 
-Form a platform hypothesis: `web`, `ios`, `android`, or `adaptive` (one product that genuinely adapts its design language per OS). Mobile web remains `web`; a native wrapper around a website does not make its design language native.
+فرضیهٔ پلتفرم بساز: `web`، `ios`، `android` یا `adaptive` (یک محصول که زبان طراحی‌اش را واقعاً به‌ازای هر OS وفق می‌دهد). وبِ موبایل همان `web` می‌ماند؛ یک wrapper نیتیو دور یک وب‌سایت، زبان طراحی‌اش را نیتیو نمی‌کند.
 
-## Step 3: Interview for product truth
+## گام ۳: مصاحبه برای حقیقت محصول
 
-Ask with the `question` tool and wait for the answer before continuing. Ask only about material gaps the repository and original request do not answer with strong evidence.
+با ابزار `question` بپرس و قبل از ادامه، منتظر پاسخ بمان. فقط دربارهٔ شکاف‌های بااهمیتی بپرس که ریپو و درخواست اصلی با شاهدِ قوی به آن‌ها پاسخ نمی‌دهند.
 
-Use the structured question tool when available; otherwise ask and wait. Keep rounds to at most three focused questions and require one real answer or approval round before writing a new PRODUCT.md. Confirm inferences.
+وقتی ابزار پرسش ساختاریافته در دسترس است از آن استفاده کن؛ وگرنه بپرس و منتظر بمان. هر دور را حداکثر به سه پرسش متمرکز محدود کن و پیش از نوشتن یک PRODUCT.md تازه، یک دورِ پاسخ واقعی یا تأیید بگیر. استنباط‌هایت را تأیید کن.
 
-Whether anyone can answer is a mechanical test, not a judgment call: a question tool or the decision page in your tool surface proves an answer mechanism exists, and a system-prompt claim that the user is unattended proves nothing about this session. Probe once with the real first round before concluding no one is there. Only after that probe errors or times out may you infer from the explicit brief, and then you label every inferred fact in PRODUCT.md and disclose the substitution in your first reply, not your last.
+آنکه اصلاً کسی هست که پاسخ دهد یک آزمون مکانیکی است، نه یک قضاوت: ابزار پرسش یا صفحهٔ تصمیم در سطح ابزار تو اثبات می‌کند سازوکارِ پاسخی وجود دارد، و ادعای پرامپت سیستمی مبنی بر بی‌حضوریِ کاربر دربارهٔ این نشست هیچ اثباتی نیست. پیش از آنکه نتیجه بگیری کسی آن‌جا نیست، یک بار با دورِ واقعیِ اول کاووش کن. فقط بعد از آنکه آن کاووش خطا خورد یا تایم‌اوت شد می‌توانی از بریفِ صریح استنباط کنی، و آنگاه هر واقعیتِ استنباطی را در PRODUCT.md برچسب می‌زنی و جایگزینی را در اولین پاسخت افشا می‌کنی، نه در آخرین.
 
-Start with the unknowns that most change future product decisions:
+با ناشناخته‌هایی شروع کن که بیشترین تغییر را در تصمیم‌های آیندهٔ محصول می‌دهند:
 
-1. Who is the primary user, in what situation, and what job are they doing?
-2. What does the product make possible, and what is its meaningfully different mechanism or position?
-3. What durable constraints, assets, evidence, or product facts must future work preserve?
+1. کاربر اصلی کیست، در چه موقعیتی، و چه کاری را انجام می‌دهد؟
+2. محصول چه چیزی را ممکن می‌کند، و سازوکار یا جایگاهِ به‌معنای متفاوتش چیست؟
+3. کدام محدودیت‌ها، دارایی‌ها، شواهد یا واقعیت‌های ماندگار محصول باید در کارهای آینده حفظ شوند؟
 
-Confirm ambiguous platform separately. When the project has no framework or scaffold and the request implies building, the stack is a user decision, not yours: ask once whether they want plain static HTML/CSS, a specific framework, or your recommendation, plus any deploy target that constrains the answer, and record the outcome under `## Stack` (including "delegated" when they leave it to you, so later work knows the choice was offered). Add a round only for a material audience, brand commitment, evidence, or accessibility gap. Record undecided facts instead of inventing them.
+پلتفرمِ مبهم را جداگانه قطعی کن. وقتی پروژه نه فریم‌ورکی دارد نه اسکافلد و درخواست ساختن را در دل دارد، استک تصمیمِ کاربر است، نه تو: یک بار بپرس که استاتیک لختِ HTML/CSS می‌خواهند، یک فریم‌ورک مشخص، یا توصیهٔ تو، به‌علاوهٔ هر تارگت دیپلوی که پاسخ را محدود می‌کند، و نتیجه را زیر `## Stack` ثبت کن (از جمله "delegated" وقتی کار را به تو واگذار کردند، تا کارهای بعدی بدانند انتخاب پیشنهاد شده بود). فقط برای شکافِ بااهمیتِ مخاطب، تعهد برند، شواهد یا دسترس‌پذیری یک دور دیگر اضافه کن. واقعیت‌های تصمیم‌نگرفته را ثبت کن به‌جای آنکه از خودت بسازی.
 
-Do not ask for an aesthetic direction, emotional feel, visual references, colors, typography, or style during init. If the user volunteers a binding visual constraint, record it without expanding it.
+در init دربارهٔ جهت زیبایی‌شناختی، حس عاطفی، مرجع‌های بصری، رنگ‌ها، تایپوگرافی یا استایل نپرس. اگر کاربر خودش یک محدودیت بصری الزام‌آور داد، بدون گسترش‌دادنش ثبتش کن.
 
-### What belongs here
+### آنچه به اینجا تعلق دارد
 
-- users, jobs, workflows, purpose, success, positioning, and operating context;
-- capabilities, constraints, terminology, evidence, platform, and accessibility;
-- confirmed voice, assets, and brand commitments.
+- کاربران، کارها، جریان‌های کاری، هدف، موفقیت، جایگاه‌یابی و بافتِ بهره‌برداری؛
+- قابلیت‌ها، محدودیت‌ها، واژگان، شواهد، پلتفرم و دسترس‌پذیری؛
+- لحن تأییدشده، دارایی‌ها و تعهدهای برند.
 
-### What does not belong here
+### آنچه به اینجا تعلق ندارد
 
-- visual worlds, palettes, typography, components, or page concepts;
-- visitor mode, narrative, CTA/proof sequence, or other surface strategy;
-- invented testimonials, customers, benchmarks, pricing, licensing, or deployment claims;
-- a requirement to decide every optional field.
+- جهان‌های بصری، پالت‌ها، تایپوگرافی، کامپوننت‌ها یا مفهوم صفحه‌ها؛
+- حالت بازدیدکننده، روایت، توالی CTA/اثبات یا دیگر راهبردهای سطح؛
+- گواهی‌های ساختگی، مشتری‌ها، بنچمارک‌ها، قیمت‌گذاری، مجوزدهی یا ادعاهای استقرار؛
+- الزامِ تصمیم‌گرفتن دربارهٔ هر فیلد اختیاری.
 
-## Step 4: Write PRODUCT.md
+## گام ۴: PRODUCT.md را بنویس
 
-Write only confirmed facts and explicitly marked open decisions. Omit irrelevant sections rather than filling them with generic prose.
+فقط واقعیت‌های تأییدشده و تصمیم‌های بازِ صریحاً برچسب‌خورده را بنویس. بخش‌های بی‌ربط را حذف کن به‌جای آنکه با نثر عمومی پرشان کنی.
 
 ```markdown
 # Product
@@ -97,35 +97,35 @@ web
 [Known user needs or required standard. Omit when no product-specific requirement was established.]
 ```
 
-Platform is the bare value `web`, `ios`, `android`, or `adaptive`. Preserve useful legacy headings. New files go at `PROJECT_ROOT/PRODUCT.md`; otherwise update the resolved file. Write it before any visual-world or surface-concept work.
+Platform مقدار لختِ `web`، `ios`، `android` یا `adaptive` است. عنوان‌های قدیمیِ مفید را حفظ کن. فایل‌های تازه در `PROJECT_ROOT/PRODUCT.md` می‌روند؛ وگرنه فایلِ حل‌شده را به‌روز کن. آن را پیش از هر کارِ جهان‌بصری یا مفهوم‌سطح بنویس.
 
-Copy the `impeccable:product-schema` comment verbatim, including when you update an older file. It records which version of the product record this file follows, so later versions can tell a deliberately short record from one written before a section existed, and never propose an interview the user has already sat through. Update the number only when this reference's template changes it. Sections a later version retires are reported to you at boot as deprecated; delete them when the user agrees rather than carrying them forward.
+کامنتِ `impeccable:product-schema` را کلمه‌به‌کلمه کپی کن، از جمله وقتی فایل قدیمی‌تری را به‌روز می‌کنی. این کامنت ثبت می‌کند این فایل از کدام نسخهٔ رکورد محصول پیروی می‌کند، تا نسخه‌های بعدی بتوانند یک رکوردِ عمداً کوتاه را از رکوردی که پیش از به‌وجودآمدنِ بخشی نوشته شده تشخیص دهند و هرگز مصاحبه‌ای را پیشنهاد نکنند که کاربر از قبل پشتش نشسته. عدد را فقط وقتی به‌روز کن که قالبِ همین مرجع تغییرش داده باشد. بخش‌هایی که نسخهٔ بعدی بازنشسته می‌کند در بوت به‌عنوان deprecated به تو گزارش می‌شوند؛ با موافقت کاربر آن‌ها را حذف کن به‌جای حمل‌کردنشان به جلو.
 
-When the platform you just recorded is `ios`, `android`, or `adaptive`, load [ios.md](ios.md), [android.md](android.md), or both before any design work. On a project that had no PRODUCT.md, `impeccable context` could not know the platform and so never loaded them; init is the only place that learns the answer.
+وقتی پلتفرمی که همین حالا ثبت کردی `ios`، `android` یا `adaptive` است، پیش از هر کار طراحی [ios.md](ios.md) یا [android.md](android.md) یا هر دو را بار کن. در پروژه‌ای که PRODUCT.md نداشت، `impeccable context` نمی‌توانست پلتفرم را بداند و پس هرگز آن‌ها را بار نکرده بود؛ init تنها جایی است که پاسخ را می‌آموزد.
 
-### Completion gate
+### گیت تکمیل
 
-Before loading new-work or resuming shape/build, verify that PRODUCT.md exists at the resolved path and contains the confirmed product record. If the file is absent, init is incomplete. Do not substitute interview notes, a planning packet, or later design prose for the file.
+پیش از بارکردن new-work یا ازسرگیری shape/build، راستی‌آزمایی کن که PRODUCT.md در مسیر حل‌شده وجود دارد و رکورد تأییدشدهٔ محصول را در خود دارد. اگر فایل غایب است، init ناقص است. یادداشت‌های مصاحبه، بستهٔ برنامه‌ریزی یا نثر طراحیِ بعدی را جایگزین فایل نکن.
 
-## Step 5: Record workflow defaults
+## گام ۵: پیش‌فرض‌های جریان کار را ثبت کن
 
-When image generation is available and no `buildPath` is recorded yet, ask once how new surfaces should be built. Availability means a harness-native image tool or the API fallback that `impeccable context` reports as `IMAGE_GEN_AVAILABLE`, and the first of those leaves no trace in the boot output: `impeccable context` only sees the key, so a silent boot on a harness that generates images is not evidence there is nothing to ask about. This is its own question, never a clause riding inside another one. The stack round asks what to build with; this asks how the building starts, and an answer to the first carries no consent about the second. State the trade in the question the user actually reads, because the two names mean nothing to someone meeting them for the first time: **comp-first** (an image sets the bar before any code; bolder composition, slower, and the build must match the image) or **code-first** (build directly; the ambition is written into the direction contract and audited at the finish; leaner, faster). Say in the same question what the choice covers: landing pages and showcase surfaces. App screens and documents are built code-first either way.
+وقتی تولید تصویر در دسترس است و هنوز `buildPath` ثبت نشده، یک بار بپرس سطح‌های تازه چگونه ساخته شوند. دردسترس‌بودن یعنی یک ابزار تصویرِ بومیِ هارنس یا جایگزین (fallback) API که `impeccable context` آن را به‌صورت `IMAGE_GEN_AVAILABLE` گزارش می‌کند، و موردِ اول هیچ ردپایی در خروجی بوت نمی‌گذارد: `impeccable context` فقط کلید را می‌بیند، پس یک بوتِ بی‌صدا روی هارنسی که تصویر تولید می‌کند، مدرکی نیست که چیزی برای پرسیدن نباشد. این یک پرسش مستقل است، هرگز بندهایی که داخل پرسشی دیگر سوار شده نیست. دورِ استک می‌پرسد با چه بسازی؛ این می‌پرسد ساختن چگونه آغاز شود، و پاسخ به اولی هیچ رضایتی دربارهٔ دومی حمل نمی‌کند. معامله را در همان پرسشی که کاربر واقعاً می‌خواند بگو، چون این دو نام برای کسی که اولین بار با آن‌ها روبه‌رو می‌شود هیچ معنایی ندارد: **کامپ‌محور (comp-first)** (یک تصویر پیش از هر کدی خطِ ملاک را تعیین می‌کند؛ ترکیب‌بندی جسورتر، کندتر، و ساخت باید با تصویر بخواند) یا **کدمحور (code-first)** (مستقیم بساز؛ جاه‌طلبی در قرارداد جهت نوشته می‌شود و در پایان ممیزی می‌شود؛ سبک‌تر، سریع‌تر). در همان پرسش بگو این انتخاب چه چیزی را می‌پوشاند: صفحه‌های فرود و سطح‌های نمایشی. صفحه‌های اپ و اسناد در هر دو حالت کدمحور ساخته می‌شوند.
 
-Write the answer to `.impeccable/config.json` as `"buildPath": "comp"` or `"buildPath": "code"`, merging with the keys already there. Write only the value the user chose. A recommendation you made is not an answer you received, and a value taken from silence is a standing default nobody set: it then rides every future round in the project, which is the opposite of asking once. When the question goes unanswered, record nothing and say in one line which path this session is taking and that it is not stored. That path is comp-first on a landing page or showcase surface, the default new-work applies wherever image generation exists and nothing is recorded, and code-first on an app screen or document; name it rather than choosing a quieter one, because a silent default invented here is the same failure as a value written without an answer. Unset is a working state, not a gap: the decision page's toggle governs each session, and new-work's one-time offer records the answer the first time the user flips it. The config is the only place this lives. It is a workflow setting, not product truth, so it never joins `## Stack` or any other PRODUCT.md section, where a second copy would outlive the setting and steer rounds nobody could trace back to it.
+پاسخ را به‌شکل `"buildPath": "comp"` یا `"buildPath": "code"` در `.impeccable/config.json` بنویس و با کلیدهای موجود ادغام کن. فقط مقداری را که کاربر برگزیده بنویس. توصیه‌ای که کرده‌ای پاسخی نیست که گرفته‌ای، و مقداری که از سکوت برداشته شود پیش‌فرضی ماندگار است که هیچ‌کس تعیینش نکرده: بعد از آن روی هر دورِ آیندهٔ پروژه سوار می‌شود، که همان ضدِ یک‌بارپرسیدن است. وقتی پرسش بی‌پاسخ ماند، چیزی ثبت نکن و در یک خط بگو این نشست کدام مسیر را می‌رود و اینکه ذخیره نمی‌شود. آن مسیر روی صفحهٔ فرود یا سطح نمایشی کامپ‌محور است، پیش‌فرضِ new-work هرجا تولید تصویر باشد و چیزی ثبت نشده باشد، و روی صفحهٔ اپ یا سند کدمحور؛ نامش را بگو به‌جای آنکه گزینهٔ آرام‌تری برگزینی، چون پیش‌فرضِ بی‌صدایی که اینجا ساخته می‌شود همان شکستِ نوشتنِ مقدار بدون پاسخ است. ثبت‌نشدن یک وضعیتِ کاری است، نه یک شکاف: کلیدِ صفحهٔ تصمیم بر هر نشست حکم می‌راند و پیشنهادِ یک‌بارهٔ new-work اولین باری که کاربر آن را می‌چرخاند پاسخ را ثبت می‌کند. config تنها جای این ماندن است. این یک تنظیمِ جریان کار است، نه حقیقت محصول، پس هرگز به `## Stack` یا بخش دیگری از PRODUCT.md نمی‌پیوندد، جایی که نسخهٔ دوم از خودِ تنظیم فراتر می‌ماند و دورهایی را هدایت می‌کند که کسی نمی‌تواند به منشأشان رد بزند.
 
-A value already recorded in `.impeccable/config.json` or the gitignored `.impeccable/config.local.json` is a confirmed answer: on a re-run, honor it in silence rather than asking again. This is a default, not a lock: the decision page renders a toggle whose flip binds a single session and is never written back. Without image generation there is no choice to record; code-first is the only path.
+مقداری که از قبل در `.impeccable/config.json` یا `.impeccable/config.local.json`ِ gitignore‌شده ثبت شده یک پاسخِ تأییدشده است: در اجرای دوباره، بی‌سروصدا به احترامش عمل کن به‌جای پرسیدن دوباره. این یک پیش‌فرض است، نه یک قفل: صفحهٔ تصمیم کلیدی را رندر می‌کند که چرخاندنش فقط یک نشست را می‌بندد و هرگز برگشت‌نوشته نمی‌شود. بدون تولید تصویر انتخابی برای ثبت نیست؛ کدمحور تنها مسیر است.
 
-Then configure live mode when useful: skip native or non-runnable projects and leave existing config untouched. Otherwise follow [live.md](live.md)'s first-time setup. Any CSP source edit still requires its stated consent.
+سپس حالت زنده را وقتی مفید است پیکربندی کن: از پروژه‌های نیتیو یا غیراجراشدنی بگذر و config موجود را دست‌نخورده بگذار. وگرنه راه‌اندازیِ اولیهٔ [live.md](live.md) را دنبال کن. هر ویرایش منبع CSP همچنان رضایتِ اعلام‌شدهٔ خودش را می‌خواهد.
 
-## Step 6: Wrap up or resume
+## گام ۶: جمع‌بندی یا ادامه
 
-Summarize captured and deliberately undecided facts. Do not offer DESIGN.md merely because it is missing.
+واقعیت‌های ثبت‌شده و عمداً تصمیم‌گرفته‌نشده را خلاصه کن. DESIGN.md را صرفاً به‌آن دلیل که غایب است پیشنهاد نده.
 
-Recommend the next action from the actual project state:
+کنش بعدی را از وضعیت واقعی پروژه پیشنهاد بده:
 
-- Empty or early project: ask naturally for the surface to be built, or use `/impeccable shape <surface>` when the user wants a confirmed brief without implementation. New-work will establish a visual world only when the requested work needs one.
-- Existing coherent interface without DESIGN.md: `/impeccable document` if the user wants the incumbent system recorded independently of a new build.
-- Existing surface needing work: name the most relevant scoped command.
-- Web project ready for visual iteration: `/impeccable live` when configured.
+- پروژهٔ خالی یا اولیه: به‌طور طبیعی برای ساختنِ سطح بپرس، یا وقتی کاربر بریفِ تأییدشده‌ای بدون پیاده‌سازی می‌خواهد از `/jala shape <surface>` استفاده کن. new-work تنها وقتی کارِ درخواست‌شده به جهان بصری نیاز دارد، یکی برقرار می‌کند.
+- رابطِ منسجمِ موجود بدون DESIGN.md: `/jala document` اگر کاربر می‌خواهد سیستم برجا مستقل از یک ساختِ تازه ثبت شود.
+- سطحِ موجودِ نیازمند کار: مرتبط‌ترین فرمان محدودشده را نام ببر.
+- پروژهٔ وبِ آمادهٔ تکرار بصری: `/jala live` وقتی پیکربندی شده است.
 
-If init was invoked by another request, resume without rerunning `impeccable context`; the native reference above is the one thing that run could not have given you, and new-work owns later visual decisions.
+اگر init توسط درخواست دیگری فراخوانده شده بود، بدون اجرای دوبارهٔ `impeccable context` ادامه بده؛ مرجعِ نیتیوِ بالا تنها چیزی است که آن اجرا نمی‌توانسته به تو بدهد، و تصمیم‌های بصری بعدی با new-work است.

@@ -85,6 +85,12 @@ Sentences that delay the point. Cut them; almost nothing of value is lost.
 | Em dash `—` (and HTML entities `&mdash;`, `&#8212;`, `&#x2014;`) | Decision-avoidance: writer didn't pick a relationship between the clauses. | Comma, colon, semicolon, period, parentheses. Pick the relationship. |
 | ` -- ` (double hyphen as em-dash substitute) | Worse than the em dash. Signals failed cleanup. | Real punctuation. |
 
+> **جلا (jala) fork policy:** the em-dash ban targets English AI-prose tells and
+> does not transfer to Persian — «—» (خط پیوند) is standard Persian punctuation
+> with no "AI wrote this" signal. Both prose validators therefore exempt lines
+> that contain Persian characters from the em-dash rule only; the ` -- `
+> substitute and every English phrase rule stay unconditional for all lines.
+
 ## Patterns the validator can't catch
 
 The above are the easy wins. The deeper issues require human judgment on every paragraph.

@@ -1,94 +1,94 @@
-> **Additional context needed**: audience knowledge and emotional state.
+> **context اضافه لازم است**: دانش مخاطب و حالت احساسی.
 
-Rewrite unclear interface text so users understand what happened, what matters, and what to do next. Preserve factual meaning, product terminology, and brand voice.
+متنِ نامفهومِ رابط را بازنویسی کن تا کاربر بفهمد چه شد، چه چیز مهم است و بعدش چه کند. معنای واقعی، اصطلاح‌شناسی محصول و صدای برند حفظ شود.
 
-## Audit the language
+## ممیزی زبان
 
-Read the entire interaction path, not isolated strings. Identify:
+کل مسیر تعامل را بخوان، نه رشته‌های پراکنده. شناسایی کن:
 
-- ambiguous nouns, verbs, and actions;
-- internal jargon or assumed knowledge;
-- vague labels, outcomes, and system states;
-- missing consequences, recovery, or timing;
-- inconsistent terminology and capitalization;
-- redundant headings, intros, helper text, and confirmations;
-- text that breaks at realistic widths or in translation;
-- tone that ignores stress, risk, success, or urgency.
+- اسم‌ها، فعل‌ها و کنش‌های مبهم؛
+- زورگوییِ تخصصی یا دانشِ مفروض؛
+- لیبل‌ها، نتایج و حالت‌های سیستمیِ مبهم؛
+- پیامد، بازیابی یا زمان‌بندیِ غایب؛
+- اصطلاح‌شناسی و بزرگ‌نویسیِ ناسازگار؛
+- عنوان‌ها، مقدمه‌ها، متن‌های کمکی و تأییدیه‌های افزونه؛
+- متنی که در عرض‌های واقعی یا در ترجمه بد می‌شکند؛
+- لحنی که استرس، ریسک، موفقیت یا فوریت را نادیده می‌گیرد.
 
-Infer audience and task from product context and surrounding UI. Ask before changing factual claims, legal meaning, or a term that may be domain-specific.
+مخاطب و کار را از بافت محصول و UI اطراف استنتاج کن. قبل از تغییرِ ادعاهای واقعی، معنای حقوقی یا اصطلاحی که ممکن است مخصوصِ حوزه باشد بپرس.
 
-## Set the message hierarchy
+## سلسله‌مراتب پیام را بچین
 
-For each state, decide:
+برای هر حالت تصمیم بگیر:
 
-1. the one fact the user needs now;
-2. the action available next;
-3. supporting context that changes the decision;
-4. the appropriate tone for this moment.
+1. آن یک واقعیتی که کاربر همین حالا لازم دارد؛
+2. کنشی که بعد در دسترس است؛
+3. بافتی پشتیبان که تصمیم را تغییر می‌دهد؛
+4. لحنِ مناسب این لحظه.
 
-Say each idea once. If the heading already explains the state, the introduction should add new information or disappear.
+هر ایده را یک‌بار بگو. اگر عنوان خودش حالت را توضیح داده، مقدمه یا اطلاعات جدید اضافه کند یا حذف شود.
 
-## Rewrite by function
+## بر اساس کارکرد بازنویسی کن
 
-### Actions and navigation
+### کنش‌ها و ناوبری
 
-Use a specific verb and object when the outcome is not already obvious. Labels should describe what will happen, not the gesture used to trigger it. Keep the same noun and verb for the same concept throughout the product.
+وقتی نتیجه از قبل بدیهی نیست، فعل و مفعولِ مشخص استفاده کن. لیبل باید بگوید چه اتفاقی می‌افتد، نه ژستی که برای فعال‌سازی به کار می‌رود. همان اسم و همان فعل را برای یک مفهوم در سراسر محصول نگه دار.
 
-For destructive actions, name the object and consequence. Prefer undo over confirmation when recovery is safe. When confirmation is necessary, name the action on both the message and button instead of using `Yes`, `No`, `OK`, or `Submit`.
+برای کنش‌های مخرب، مفعول و پیامد را نام ببر. وقتی بازیابی امن است، undo را به تأیید ترجیح بده. وقتی تأیید لازم است، کنش را هم روی پیام هم روی دکمه نام ببر، به‌جای `بله`، `نه`، `OK` یا `ثبت`.
 
-### Forms
+### فرم‌ها
 
-Use persistent labels; placeholders are examples, not labels. Put format and eligibility requirements before submission. Explain why information is requested only when it is not obvious. Required and optional treatment should be consistent.
+لیبلِ ماندگار استفاده کن؛ placeholderها مثال‌اند، نه لیبل. الزامات قالب و صلاحیت را قبل از ارسال بگو. چراییِ درخواست اطلاعات را فقط وقتی توضیح بده که بدیهی نیست. پرداختِ الزامی و اختیاری یکدست باشد.
 
-Validation says what needs attention and how to correct it without blaming the user. Keep related instructions near the field and announce errors accessibly.
+اعتبارسنجی می‌گوید چه چیزی نیاز به توجه دارد و چطور اصلاحش کن، بدون ملامتِ کاربر. دستورالعمل‌های مرتبط را نزدیک فیلد نگه دار و خطاها را به‌شکل دسترس‌پذیر اعلام کن.
 
-### Errors and permissions
+### خطاها و مجوزها
 
-An actionable error answers:
+خطای کنش‌پذیر جواب این‌ها را می‌دهد:
 
-1. what failed;
-2. why, when known and useful;
-3. how to recover or what alternative remains.
+1. چه چیزی شکست خورد؛
+2. چرا، وقتی معلوم و مفید است؛
+3. چطور بازیابی کنم یا چه جایگزینی باقی است.
 
-Do not expose internal codes as the primary message. Do not promise a cause or resolution the system cannot know. Treat privacy, payment, deletion, access loss, and blocked work seriously; warmth is welcome, jokes are not.
+کدهای داخلی را به‌عنوان پیام اصلی نشان نده. علت یا حلی را وعده نده که سیستم نمی‌تواند بداندد. حریم خصوصی، پرداخت، حذف، از‌دست‌دادنِ دسترسی و کارِ مسدودشده را جدی بگیر؛ گرما خوش‌آمد است، شوخی نه.
 
-### Loading, empty, and success states
+### حالت‌های بارگذاری، خالی و موفقیت
 
-Loading text names the real operation and sets an honest expectation when the wait is meaningful. Show determinate progress when available; never invent progress.
+متنِ بارگذاری عملِ واقعی را نام می‌برد و وقتی انتظارِ معنادار است، انتظارِ صادقانه می‌سازد. پیشرفتِ معلوم را وقتی در دسترس است نشان بده؛ هرگز پیشرفت از خود نساز.
 
-An empty state distinguishes first use, no results, filters, permissions, and failure. Explain the state and provide the next useful action.
+حالت خالی، اولین‌استفاده، بدون-نتیجه، فیلتر، مجوز و شکست را از هم تشخیص می‌دهد. حالت را توضیح بده و کنشِ بعدیِ مفید بده.
 
-Success confirms the completed outcome and mentions the next consequence only when it changes what the user should do. Routine success should be brief.
+موفقیت نتیجهٔ انجام‌شده را تأیید می‌کند و پیامدِ بعدی را فقط وقتی می‌گوید که کاری که کاربر باید بکند را عوض کند. موفقیتِ روتین کوتاه بماند.
 
-### Help and instructional text
+### متن کمک و آموزشی
 
-Helper text answers an implicit question instead of restating the control. Use progressive disclosure for uncommon detail. Link text must make sense out of context; icon-only controls need accessible names.
+متنِ کمکی به پرسشِ ضمنی جواب می‌دهد نه بازگوییِ کنترل. برای جزئیات غیررایج از افشای تدریجی استفاده کن. متن لینک باید بیرون از بافت هم معنا داشته باشد؛ کنترل‌های فقط-آیکن به نامِ دسترس‌پذیر نیاز دارند.
 
-## Voice, accessibility, and localization
+## صدا، دسترس‌پذیری و بومی‌سازی
 
-Voice stays consistent; tone adapts to the moment. Use plain language without flattening terminology the audience genuinely knows.
+صدا یکدست می‌ماند؛ لحن با لحظه وفق می‌کند. زبان ساده استفاده کن بدون تخت‌کردنِ اصطلاحاتی که مخاطب واقعاً می‌شناسد.
 
-- Write complete translatable messages rather than concatenated fragments.
-- Keep variables and numbers structured so translators can reorder them.
-- Allow expansion instead of abbreviating prematurely.
-- Make alt text convey the image's information; use empty alt for decoration.
-- Keep screen-reader names aligned with visible labels and outcomes.
-- Do not rely on punctuation, color, or iconography to carry the message alone.
+- پیام‌های کاملِ قابل‌ترجمه بنویس نه قطعات به‌هم‌چسبیده.
+- متغیرها و اعداد را ساختارمند نگه دار تا مترجم‌ها بتوانند ترتیبشان را عوض کنند.
+- رشدِ متن را جای بده به‌جای کوته‌نویسیِ زودهنگام.
+- alt text اطلاعات تصویر را برساند؛ برای تزئین alt خالی.
+- نام‌های صفحه‌خوان با لیبل‌های نمایان و نتایج هم‌تراز بمانند.
+- روی علائم نگارشی، رنگ یا آیکونوگرافیِ تنها برای حملِ پیام تکیه نکن.
 
-Maintain a short terminology glossary when inconsistency spans the product. Do not vary words for literary effect in an interface.
+وقتی ناسازگاری در کل محصول پخش است، واژه‌نامهٔ اصطلاحات کوتاهی نگه دار. برای اثر ادبی، در رابط واژه‌ها را متنوع نکن.
 
-## Verify
+## راستی‌آزمایی
 
-Read the flow in context and test:
+جریان را در بافت بخوان و تست کن:
 
-- comprehension without hidden product knowledge;
-- actionability at errors, empty states, and decision points;
-- factual accuracy and consistent terminology;
-- scanability at target widths and 200% zoom;
-- long names, localization expansion, pluralization, and dynamic values;
-- accessible names and announced state changes;
-- tone appropriate to consequence and emotional context.
+- فهم بدون دانشِ پنهانِ محصول؛
+- کنش‌پذیری در خطاها، حالت‌های خالی و نقطه‌های تصمیم؛
+- دقت واقعی و اصطلاح‌شناسی یکدست؛
+- اسکن‌پذیری در عرض‌های هدف و زوم ۲۰۰٪؛
+- نام‌های بلند، رشد بومی‌سازی، جمع‌بندی و مقدارهای پویا؛
+- نام‌های دسترس‌پذیر و اعلام تغییر حالت؛
+- لحنِ متناسب با پیامد و بافت احساسی.
 
-The final copy is as short as it can be without removing meaning or recovery.
+متن نهایی به‌اندازه‌ای کوتاه است که بدون از‌دست‌دادنِ معنا یا بازیابی ممکن بود.
 
-When the language reads cleanly, hand off to `/impeccable polish` for the final pass.
+وقتی زبان تمیز می‌خواند، پاسِ نهایی را به `/jala polish` بسپار.

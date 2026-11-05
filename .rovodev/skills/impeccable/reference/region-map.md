@@ -1,26 +1,26 @@
-# Region map
+# نقشهٔ ناحیه
 
-A region map names what is actually visible in the approved comp before asset production. It is not a page build or an asset approval.
+نقشهٔ ناحیه، آنچه واقعاً در کامپ تأییدشده دیده می‌شود را قبل از تولید asset نام‌گذاری می‌کند. نه یک بیلدِ صفحه است و نه تأییدِ asset.
 
-1. Run `.rovodev/skills/impeccable/scripts/impeccable comp-spec --comp <comp.png> --grid` and open the original and gridded images.
-2. Run `.rovodev/skills/impeccable/scripts/impeccable comp-spec --schema` for the JSON fields. Write `regions.json` with a `regions` array. Each region needs a stable `id`, `kind`, `note`, and exactly one of `pixelBox`, normalized `box`, or `grid`. Use the original comp’s dimensions.
-3. Run `.rovodev/skills/impeccable/scripts/impeccable comp-spec --comp <comp.png> --regions regions.json --inspect-map`. The output points to a report, overlay, exact crops and `COMPARE` sheets of masked references. The default prints findings; `--json` prints the entire report, with sheet paths in `comparisonSheets`.
-4. Open the comparison sheets first to inspect affected crops together, then open individual crops where more detail is needed. Compare their bounds with the original. Inspect excluded foreground pixels as well as geometry errors. Every overlapping non-container code box is masked in full, including empty space inside it. Bound separate text elements separately so artwork in the gaps stays visible; a container describes their layout extent and never replaces its children. Correct the map and inspect again; use a new output directory each time. Zero errors does not certify crop accuracy. Coverage warnings are hints, not proof of completeness.
+1. `.rovodev/skills/impeccable/scripts/impeccable comp-spec --comp <comp.png> --grid` را اجرا کن و تصویر اصلی و گریدخورده را باز کن.
+2. `.rovodev/skills/impeccable/scripts/impeccable comp-spec --schema` را برای فیلدهای JSON اجرا کن. `regions.json` را با آرایهٔ `regions` بنویس. هر ناحیه به `id` پایدار، `kind`، `note` و دقیقاً یکی از `pixelBox`، `box` نرمال‌شده یا `grid` نیاز دارد. از ابعاد کامپِ اصلی استفاده کن.
+3. `.rovodev/skills/impeccable/scripts/impeccable comp-spec --comp <comp.png> --regions regions.json --inspect-map` را اجرا کن. خروجی به یک گزارش، اورلی، برش‌های دقیق و شیت‌های `COMPARE` از مرجع‌های ماسک‌شده اشاره می‌کند. حالت پیش‌فرض یافته‌ها را چاپ می‌کند؛ `--json` کل گزارش را چاپ می‌کند با مسیر شیت‌ها در `comparisonSheets`.
+4. اول شیت‌های مقایسه را باز کن تا برش‌های تأثیرگرفته را با هم ببینی، بعد برش‌های تکی را جایی که جزئیات بیشتری لازم است. مرزشان را با اصل مقایسه کن. پیکسل‌های پیش‌زمینهٔ مستثنا را هم بازرسی کن به‌علاوهٔ خطاهای هندسه. هر جعبهٔ کدِ غیر-ظرفِ هم‌پوشان کامل ماسک می‌شود، شامل فضای خالی داخلش. عناصر متنیِ جداگانه را جداگانه محدود کن تا artwork موجود در فاصله‌ها نمایان بماند؛ یک ظرف، گسترهٔ چیدمانِ فرزندانش را توصیف می‌کند و هرگز جایگزینشان نمی‌شود. نقشه را اصلاح کن و دوباره بازرسی کن؛ هر بار از یک پوشهٔ خروجی جدید استفاده کن. صفرِ خطا، دقتِ برش را گواهی نمی‌کند. هشدارهای پوشش، تلمیح‌اند نه اثبات کامل‌بودن.
 
-If the request ends at mapping, stop with the map, inspection report and unresolved findings. To continue a build, measure the inspected map with `comp-spec --comp <comp.png> --regions regions.json` and follow [new-work.md](new-work.md).
+اگر درخواست در همین نقشه‌کشی تمام می‌شود، با نقشه، گزارش بازرسی و یافته‌های حل‌نشده متوقف شو. برای ادامهٔ بیلد، نقشهٔ بازرسی‌شده را با `comp-spec --comp <comp.png> --regions regions.json` اندازه بگیر و [new-work.md](new-work.md) را دنبال کن.
 
-`--auto` produces horizontal band scaffolding, not element identification. It is optional and does not replace authoring a map.
+`--auto` داربستِ باندهای افقی می‌سازد، نه شناساییِ عناصر. اختیاری است و جای نگارشِ دستیِ نقشه را نمی‌گیرد.
 
-## Containment
+## دربرگیرندگی
 
-`parentId` identifies an enclosing `container: true` region. Parent and children keep separate IDs and crops. Containment never transfers approval.
+`parentId` یک ناحیهٔ `container: true` دربرگیرنده را شناسایی می‌کند. والد و فرزندان IDها و برش‌های جدا نگه می‌دارند. دربرگیرندگی هرگز تأیید را منتقل نمی‌کند.
 
-## What varies independently
+## چه چیزی مستقل تغییر می‌کند
 
-Split regions by what varies independently: content the site swaps (room photos, products, people), moving parts (anything a hover or the signature interaction moves), and structure (frames, surrounds, ornament). A window with open shutters onto a room is three kinds of region: the surround as a plate with a transparent opening, the room as an image region beneath it, and each shutter as its own plate. Overlapping regions are composited in the page. `comp-spec` flags a raster region whose note names a frame and the view it opens onto (`baked-composite`), and the plan and asset review shows it to the user first.
+ناحیه‌ها را بر اساس آنچه مستقل تغییر می‌کند بشکن: محتوایی که سایت جابه‌جایش می‌کند (عکس‌های اتاق، محصولات، آدم‌ها)، قطعات متحرک (هرچه هاور یا تعاملِ امضادار تکانش می‌دهد)، و ساختار (قاب‌ها، قاب‌گِردی‌ها، تزئینات). پنجره‌ای با کرکرهٔ باز رو به اتاق، سه نوع ناحیه است: قاب‌گِرد به‌عنوان یک پلیت با دهانهٔ شفاف، اتاق به‌عنوان یک ناحیهٔ تصویری زیرش، و هر کرکره به‌عنوان پلیت خودش. ناحیه‌های هم‌پوشان در صفحه کامپوزیت می‌شوند. `comp-spec` ناحیهٔ raster‌ای که note‌اش نامِ قاب و منظره‌ای را که باز می‌کند می‌گوید پرچم می‌زند (`baked-composite`)، و برنامه و بازبینی asset اول به کاربر نشانش می‌دهد.
 
-## Painted material
+## متریال رنگ‌شده
 
-When measuring, `comp-spec` flags a `text`, `control` or `chrome` region, containers included, whose crop looks painted (`painted-pixels`: many colours, soft gradients) and lists it in its summary. The plan and asset review shows flagged regions, and those marked `codeDrawn` (painted material you chose to draw in code), to the user first. Do not leave the catch to them: if a region is painted material (a figure, a photograph, a metal or paper surface), classify it `plate`, `image` or `texture` now.
+هنگام اندازه‌گیری، `comp-spec` ناحیه‌های `text`، `control` یا `chrome` — ظرف‌ها هم شامل — که برششان رنگ‌شده به نظر می‌رسد پرچم می‌زند (`painted-pixels`: رنگ‌های زیاد، گرادیان‌های نرم) و در خلاصه‌اش فهرست می‌کند. برنامه و بازبینی asset، ناحیه‌های پرچم‌خورده و آن‌هایی را که `codeDrawed` علامت خورده‌اند (متریال رنگ‌شده‌ای که تو انتخاب کردی در کد بکشی) اول به کاربر نشان می‌دهد. شکار را به او واگذار نکن: اگر ناحیه‌ای متریال رنگ‌شده است (یک فیگور، عکس، سطح فلزی یا کاغذی)، همان حالا کلاس‌بندی‌اش کن به `plate`، `image` یا `texture`.
 
-Comp crops are reference evidence only, never production assets. The map inspector marks its PNGs as comp-derived.
+برش‌های کامپ فقط شاهدِ مرجع‌اند، هرگز asset پروداکشن نیستند. بازرسِ نقشه، PNGهایش را comp-مبنا علامت می‌زند.

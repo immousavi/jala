@@ -4,9 +4,9 @@
   "version": "4.8.0",
   "author": {
     "name": "Jala (based on Impeccable by Paul Bakaus)",
-    "email": "paul@paulbakaus.com"
+    "email": "immousavi@users.noreply.github.com"
   },
-  "homepage": "https://impeccable.style",
-  "repository": "https://github.com/pbakaus/impeccable",
+  "homepage": "https://github.com/immousavi/jala",
+  "repository": "https://github.com/immousavi/jala",
   "skills": "./.claude/skills/"
 }

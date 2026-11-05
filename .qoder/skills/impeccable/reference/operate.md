@@ -1,61 +1,61 @@
-# Operate mode depth (and Read notes)
+# عمق حالت عملیات (و یادداشت‌های خواندن)
 
-When design SERVES the product: app UIs, admin dashboards, settings panels, data tables, tools, authenticated surfaces, anything where the user is in a task. The essentials live in SKILL.md's modes and [craft-floor.md](craft-floor.md); this file is extended depth, written for Operate surfaces. Read surfaces (docs, guides, long-form) take SKILL.md's Read mode plus this file's typography and consistency rules; their prose measure and navigation matter more than component density.
+وقتی طراحی به محصول **خدمت می‌کند**: UI اپ‌ها، داشبوردهای ادمین، پنل‌های تنظیمات، جدول‌های داده، ابزارها، سطح‌های وارد‌شده، هرجایی که کاربر درگیر یک کار است. ضروریات در حالت‌های SKILL.md و [craft-floor.md](craft-floor.md) است؛ این فایل عمقِ گسترده است و برای سطح‌های Operate نوشته شده. سطح‌های خواندن (مستندات، راهنما، متن‌های بلند) حالت Read در SKILL.md را به‌علاوهٔ قواعد تایپوگرافی و یکدستیِ این فایل می‌گیرند؛ در آن‌ها طول خطِ نثر و ناوبری مهم‌تر از تراکم کامپوننت است.
 
-## The product slop test
+## تست اسلاپِ محصول
 
-Familiarity is often a feature here. The test is whether a category-fluent user can trust the interface immediately or must pause at every subtly-off component.
+آشنایی اینجا اغلب یک ویژگی است. تست این است که آیا کاربرِ روانِ آن دسته می‌تواند فوراً به رابط اعتماد کند یا در هر کامپوننتِ کمی-خارج‌از-معمول باید مکث کند.
 
-Product UI's failure mode isn't flatness, it's strangeness without purpose: over-decorated buttons, mismatched form controls, gratuitous motion, display fonts where labels should be, invented affordances for standard tasks. The bar is earned familiarity. The tool should disappear into the task.
+حالتِ شکستِ UI محصول تخت‌بودن نیست، عجیب‌بودنِ بی‌هدف است: دکمه‌های بیش‌ازحد تزئین‌شده، کنترل‌های فرمِ ناهماهنگ، حرکتِ بی‌دلیل، فونت نمایشی جایی که لیبل باید باشد، امکان‌های ازخودساخته برای کارهای استاندارد. معیار، آشناییِ مستحق‌گرفته است. ابزار باید در کار محو شود.
 
-## Typography
+## تایپوگرافی
 
-- **One family is often right.** Product UIs don't need display/body pairing. A well-tuned sans carries headings, buttons, labels, body, data.
-- **Fixed rem scale, not fluid.** Clamp-sized headings don't serve product UI. Users view at consistent DPI, and a fluid h1 that shrinks in a sidebar looks worse, not better.
-- **Tighter scale ratio.** 1.125–1.2 between steps is typical. More type elements here than on brand surfaces; exaggerated contrast creates noise.
-- **Line length still applies for prose** (65–75ch). Data and compact UI can run denser; tables at 120ch+ are fine.
+- **یک خانواده اغلب درست است.** UI محصول به جفت‌نویسیِ display/بدنه نیاز ندارد. یک سانسِ خوش‌تنظیم، عنوان‌ها، دکمه‌ها، لیبل‌ها، بدنه و داده را حمل می‌کند.
+- **مقیاس rem ثابت، نه سیال.** عنوان‌های سایز-clamp به UI محصول خدمت نمی‌کنند. کاربران با DPI یکسان می‌بینند و h1 سیالی که در سایدبار کوچک می‌شود بدتر دیده می‌شود، نه بهتر.
+- **نسبت مقیاس تنگ‌تر.** ۱٫۱۲۵–۱٫۲ بین پله‌ها معمول است. اینجا عناصر تایپی بیشتری از سطح‌های برند هست؛ کنتراستِ اغراق‌شده نوفه می‌سازد.
+- **طول خط برای نثر همچنان برقرار است** (۶۵–۷۵ch). داده و UI فشرده می‌توانند متراکم‌تر باشند؛ جدول‌های ۱۲۰ch+ اشکال ندارند.
 
-## Color
+## رنگ
 
-Product defaults to Restrained. A single surface can earn Committed (a dashboard where one category color carries a report, an onboarding flow with a drenched welcome screen), but Restrained is the floor.
+پیش‌فرضِ محصول، خویشتن‌دار است. یک سطح تکی می‌تواند متعهدشده برود (داشبوردی که یک رنگ دسته‌ای گزارشی را حمل می‌کند، جریان آنبوردینگی با صفحهٔ خوش‌آمدِ غرق‌شده)، ولی خویشتن‌داری کف است.
 
-- State-rich semantic vocabulary: hover, focus, active, disabled, selected, loading, error, warning, success, info. Standardize these.
-- Accent color used for primary actions, current selection, and state indicators only, not decoration.
-- A second neutral layer for sidebars, toolbars, and panels (slightly cooler or warmer than the content surface).
+- واژگان معناییِ پرقامت: hover، focus، active، disabled، selected، loading، error، warning، success، info. این‌ها را استاندارد کن.
+- رنگ تاکیدی فقط برای کنش‌های اصلی، انتخابِ فعلی و نشانگرهای وضعیت، نه تزئین.
+- لایهٔ خنثیٔ دوم برای سایدبارها، toolbarها و پنل‌ها (کمی سردتر یا گرم‌تر از سطح محتوا).
 
-## Layout
+## چیدمان
 
-- Responsive behavior is structural (collapse sidebar, responsive table, breakpoint-driven columns), not fluid typography.
+- رفتار واکنش‌گرا ساختاری است (جمع‌شدن سایدبار، جدول واکنش‌گرا، ستون‌های برخاسته از بریک‌پوینت)، نه تایپوگرافی سیال.
 
-## Components
+## کامپوننت‌ها
 
-Every interactive component has: default, hover, focus, active, disabled, loading, error. Don't ship with half of these.
+هر کامپوننت تعاملی این‌ها را دارد: default، hover، focus، active، disabled، loading، error. نصف این‌ها را عرضه نکن.
 
-- Skeleton states for loading, not spinners in the middle of content.
-- Empty states that teach the interface, not "nothing here."
-- Consistent affordances across the surface. Same button shape. Same form-control vocabulary. Same icon style.
-- Overlays escape their container. An absolutely positioned dropdown inside an `overflow: hidden` or `overflow: auto` ancestor gets clipped; reach for `<dialog>`, the popover API, `position: fixed`, or a portal.
+- حالت‌های اسکلتون برای بارگذاری، نه اسپینر وسط محتوا.
+- حالت‌های خالی که رابط را آموزش می‌دهند، نه «اینجا چیزی نیست».
+- امکان‌های یکدست در کل سطح. شکل دکمه همان. واژگان فرم‌کنترل همان. سبک آیکن همان.
+- اورلی‌ها از ظرفشان فرار می‌کنند. فهرست کشوییِ absolute-position شده داخل نیای `overflow: hidden` یا `overflow: auto` بریده می‌شود؛ سراغ `<dialog>`، API پاپ‌آور، `position: fixed` یا portal برو.
 
-## Motion
+## حرکت
 
-- 150–250 ms on most transitions. Users are in flow; don't make them wait for choreography.
-- Motion conveys state, not decoration. State change, feedback, loading, reveal: nothing else.
-- No orchestrated page-load sequences. Product loads into a task; users don't want to watch it load.
+- ۱۵۰–۲۵۰ ms برای بیشتر ترنزیشن‌ها. کاربران در جریان‌اند؛ برای کُرئوگرافی منتظرشان نگذار.
+- حرکت وضعیت را می‌رساند، نه تزئین. تغییر حالت، بازخورد، بارگذاری، آشکارسازی: هیچ‌چیز دیگر.
+- هیچ توالیِ بارگذاریِ صفحه‌ایِ ارکسترشده. محصول در دلِ یک کار لود می‌شود؛ کاربر نمی‌خواهد لودشدنش را تماشا کند.
 
-## Product constraints
+## ممنوعیت‌های محصول
 
-- Decorative motion that doesn't convey state.
-- Inconsistent component vocabulary across screens. If the "save" button looks different in two places, one is wrong.
-- Display fonts in UI labels, buttons, data.
-- Reinventing standard affordances for flavor (custom scrollbars, weird form controls, non-standard modals).
-- Heavy color or full-saturation accents on inactive states.
-- Modal as first thought. Modals are usually laziness. Exhaust inline / progressive alternatives first.
+- حرکت تزئینی که حالت را نمی‌رساند.
+- واژگان کامپوننتیِ ناسازگار بین صفحه‌ها. اگر دکمهٔ «ذخیره» در دو جا فرق کند، یکی غلط است.
+- فونت نمایشی در لیبل‌های UI، دکمه‌ها، داده.
+- بازاختراعِ امکان‌های استاندارد برای طعم (اسکرول‌بار سفارشی، فرم‌کنترل عجیب، مودال غیراستاندارد).
+- رنگ سنگین یا تاکید کاملاً-اشباع روی حالت‌های غیرفعال.
+- مودال به‌عنوان اولین فکر. مودال‌ها معمولاً تنبل‌اند. اول جایگزین‌های درون‌خطی / تدریجی را ته کش.
 
-## Product permissions
+## مجوزهای محصول
 
-Product can afford things brand surfaces can't.
+محصول چیزهایی را می‌تواند که سطح‌های برند نمی‌توانند.
 
-- System fonts and familiar sans defaults.
-- Standard navigation patterns: top bar + side nav, breadcrumbs, tabs, command palettes.
-- Density. Tables with many rows, panels with many labels, dense information when users need it.
-- Consistency over surprise. The same visual vocabulary screen to screen is a virtue; delight is saved for moments, not pages.
+- فونت‌های سیستمی و پیش‌فرض‌های سانسِ آشنا.
+- الگوهای ناوبری استاندارد: نوار بالا + ناوبری کناری، بردکرامب، تب‌ها، پالت‌های فرمان.
+- تراکم. جدول‌های پرردیف، پنل‌های پُرلیبل، اطلاعات متراکم وقتی کاربر لازمش دارد.
+- یکدستی به‌جای غافلگیری. همان واژگان بصری صفحه‌به‌صفحه یک فضیلت است؛ دلپذیری برای لحظه‌ها نگه داشته می‌شود، نه صفحه‌ها.

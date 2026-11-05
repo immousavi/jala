@@ -109,12 +109,12 @@ describe('rewritePluginMarkdown', () => {
     const input =
       '1. Run `node <skill-base-dir>/scripts/context.mjs` once per session, where `<skill-base-dir>` is the ' +
       "loaded base directory the runtime reports for this skill; keep cwd at the user's project. " +
-      'That base directory resolves every `.claude/skills/impeccable/scripts/impeccable <verb>` command in this skill ' +
-      'and its references, and `.claude/skills/impeccable/scripts` is the fallback only when the runtime ' +
-      'reports no base directory. Pass a named source file or route as `--target <path>`.';
+      "این پوشهٔ پایه، همهٔ فرمان‌های `.claude/skills/impeccable/scripts/impeccable <verb>` در این اسکیل و مرجع‌هایش را حل می‌کند و `.claude/skills/impeccable/scripts` فقط وقتی استفاده می‌شود که runtime دایرکتوری پایه گزارش نکند؛" +
+      " اگر `.claude/skills/impeccable/scripts` را در متنِ حل‌نشده دیدی، آن را با مسیر پوشهٔ `scripts/` کنار همین SKILL.md جایگزین کن." +
+      ' Pass a named source file or route as `--target <path>`.';
     const output = rewritePluginMarkdown(input);
     expect(output).toContain(
-      'Every `"${CLAUDE_SKILL_DIR}/scripts/impeccable" <verb>` command in this skill and its references resolves against that base directory.',
+      "هر فرمانِ `\"${CLAUDE_SKILL_DIR}/scripts/impeccable\" <verb>` در این اسکیل و مرجع‌هایش نسبت به همین پوشهٔ پایه حل می‌شود. در فایل‌های مرجع، نشانهٔ skill-base-dir را پیش از اجرای فرمان‌ها با همین پوشه جایگزین کن؛ این نشانه متغیر شل نیست.",
     );
     // The naive rewrite would keep the fallback clause and name the token as
     // its own fallback for when there is no base directory to resolve it.
@@ -302,9 +302,8 @@ describe('verifyPluginSkillRewrite', () => {
   const goodSkill = [
     '1. Run `<skill-base-dir>/scripts/impeccable context` once per session, where `<skill-base-dir>` is the ' +
       "loaded base directory the runtime reports for this skill; keep cwd at the user's project. " +
-      'That base directory resolves every `.claude/skills/impeccable/scripts/impeccable <verb>` command in this skill ' +
-      'and its references, and `.claude/skills/impeccable/scripts` is the fallback only when the runtime ' +
-      'reports no base directory.',
+      "این پوشهٔ پایه، همهٔ فرمان‌های `.claude/skills/impeccable/scripts/impeccable <verb>` در این اسکیل و مرجع‌هایش را حل می‌کند و `.claude/skills/impeccable/scripts` فقط وقتی استفاده می‌شود که runtime دایرکتوری پایه گزارش نکند؛" +
+      " اگر `.claude/skills/impeccable/scripts` را در متنِ حل‌نشده دیدی، آن را با مسیر پوشهٔ `scripts/` کنار همین SKILL.md جایگزین کن.",
   ].join('\n');
 
   test('accepts a correctly rewritten SKILL.md', () => {
@@ -316,7 +315,7 @@ describe('verifyPluginSkillRewrite', () => {
   test('fails the build when the Setup fallback sentence no longer matched', () => {
     // Simulate SKILL.src.md rewording step 1: the sentence replacement
     // no-ops, so the plugin copy keeps the project path as its fallback.
-    const reworded = goodSkill.replace('is the fallback only when', 'is used only when');
+    const reworded = goodSkill.replace('فقط وقتی استفاده می‌شود', 'فقط وقتی به‌کار گرفته می‌شود');
     const p = writeSkill(rewritePluginMarkdown(reworded));
     expect(() => verifyPluginSkillRewrite(p)).toThrow(/Setup step 1 fallback sentence/);
   });
@@ -396,6 +395,6 @@ describe('SKILL.src.md Setup step 1 authoring contract (issue #744)', () => {
       'utf-8',
     ).replace(/\r\n?/g, '\n');
     const step1 = setup.match(/^1\. .+$/m)?.[0] ?? '';
-    expect(step1).toMatch(/skill folder, not a plugin root/);
+    expect(step1).toMatch(/پوشهٔ اسکیل، نه ریشهٔ پلاگین/);
   });
 });

@@ -1,220 +1,220 @@
-> **Additional context needed**: target platforms/devices and usage contexts.
+> **به بستر اضافی نیاز است**: پلتفرم/دستگاه‌های هدف و بافت‌های استفاده.
 
-Adapt an existing design to a different context: another screen size, device, platform, or use case. The trap is treating adaptation as scaling. The job is rethinking the experience for the new context.
+یک طراحی موجود را با بستری دیگر تطبیق بده: اندازهٔ صفحهٔ دیگر، دستگاه دیگر، پلتفرم دیگر، یا کاربردِ دیگر. دام، رفتارکردن با تطبیق مثل مقیاس‌دادن است. کارِ اصلی، بازاندیشیدنِ تجربه برای بسترِ تازه است. برای سطوح فارسی، [fa-rtl.md](fa-rtl.md) بر هر بریک‌پوینت حکم می‌راند: آینه‌سازیِ راست‌به‌چپ (RTL) باید در هر عرض برقرار بماند.
 
-**Web only** (mobile web included). Native platforms (`ios` / `android` / `adaptive`) route to [adapt.native.md](adapt.native.md) instead; if the project is native, switch to it now.
-
----
-
-## Assess Adaptation Challenge
-
-Understand what needs adaptation and why:
-
-1. **Identify the source context**:
-   - What was it designed for originally? (Desktop web? Mobile app?)
-   - What assumptions were made? (Large screen? Mouse input? Fast connection?)
-   - What works well in current context?
-
-2. **Understand target context**:
-   - **Device**: Mobile, tablet, desktop, TV, watch, print?
-   - **Input method**: Touch, mouse, keyboard, voice, gamepad?
-   - **Screen constraints**: Size, resolution, orientation?
-   - **Connection**: Fast wifi, slow 3G, offline?
-   - **Usage context**: On-the-go vs desk, quick glance vs focused reading?
-   - **User expectations**: What do users expect on this platform?
-
-3. **Identify adaptation challenges**:
-   - What won't fit? (Content, navigation, features)
-   - What won't work? (Hover states on touch, tiny touch targets)
-   - What's inappropriate? (Desktop patterns on mobile, mobile patterns on desktop)
-
-Adaptation is rethinking the experience for the new context, not scaling pixels.
-
-## Plan Adaptation Strategy
-
-Create context-appropriate strategy:
-
-### Mobile Adaptation (Desktop → Mobile)
-
-**Layout Strategy**:
-- Single column instead of multi-column
-- Vertical stacking instead of side-by-side
-- Full-width components instead of fixed widths
-- Bottom navigation instead of top/side navigation
-
-**Interaction Strategy**:
-- Touch targets 44x44px minimum (not hover-dependent)
-- Swipe gestures where appropriate (lists, carousels)
-- Bottom sheets instead of dropdowns
-- Thumbs-first design (controls within thumb reach)
-- Larger tap areas with more spacing
-
-**Content Strategy**:
-- Progressive disclosure (don't show everything at once)
-- Prioritize primary content (secondary content in tabs/accordions)
-- Shorter text (more concise)
-- Larger text (16px minimum)
-
-**Navigation Strategy**:
-- Hamburger menu or bottom navigation
-- Reduce navigation complexity
-- Sticky headers for context
-- Back button in navigation flow
-
-### Tablet Adaptation (Hybrid Approach)
-
-**Layout Strategy**:
-- Two-column layouts (not single or three-column)
-- Side panels for secondary content
-- Master-detail views (list + detail)
-- Adaptive based on orientation (portrait vs landscape)
-
-**Interaction Strategy**:
-- Support both touch and pointer
-- Touch targets 44x44px but allow denser layouts than phone
-- Side navigation drawers
-- Multi-column forms where appropriate
-
-### Desktop Adaptation (Mobile → Desktop)
-
-**Layout Strategy**:
-- Multi-column layouts (use horizontal space)
-- Side navigation always visible
-- Multiple information panels simultaneously
-- Fixed widths with max-width constraints (don't stretch to 4K)
-
-**Interaction Strategy**:
-- Hover states for additional information
-- Keyboard shortcuts
-- Right-click context menus
-- Drag and drop where helpful
-- Multi-select with Shift/Cmd
-
-**Content Strategy**:
-- Show more information upfront (less progressive disclosure)
-- Data tables with many columns
-- Richer visualizations
-- More detailed descriptions
-
-### Print Adaptation (Screen → Print)
-
-**Layout Strategy**:
-- Page breaks at logical points
-- Remove navigation, footer, interactive elements
-- Black and white (or limited color)
-- Proper margins for binding
-
-**Content Strategy**:
-- Expand shortened content (show full URLs, hidden sections)
-- Add page numbers, headers, footers
-- Include metadata (print date, page title)
-- Convert charts to print-friendly versions
-
-### Email Adaptation (Web → Email)
-
-**Layout Strategy**:
-- Narrow width (600px max)
-- Single column only
-- Inline CSS (no external stylesheets)
-- Table-based layouts (for email client compatibility)
-
-**Interaction Strategy**:
-- Large, obvious CTAs (buttons not text links)
-- No hover states (not reliable)
-- Deep links to web app for complex interactions
-
-## Implement Adaptations
-
-Apply changes systematically:
-
-### Responsive Breakpoints
-
-Choose appropriate breakpoints:
-- Mobile: 320px-767px
-- Tablet: 768px-1023px
-- Desktop: 1024px+
-- Or content-driven breakpoints (where design breaks)
-
-### Layout Adaptation Techniques
-
-- **CSS Grid/Flexbox**: Reflow layouts automatically
-- **Container Queries**: Adapt based on container, not viewport
-- **`clamp()`**: Fluid sizing between min and max
-- **Media queries**: Different styles for different contexts
-- **Display properties**: Show/hide elements per context
-
-### Touch Adaptation
-
-- Increase touch target sizes (44x44px minimum)
-- Add more spacing between interactive elements
-- Remove hover-dependent interactions
-- Add touch feedback (ripples, highlights)
-- Consider thumb zones (easier to reach bottom than top)
-
-### Content Adaptation
-
-- Use `display: none` sparingly (still downloads)
-- Progressive enhancement (core content first, enhancements on larger screens)
-- Lazy loading for off-screen content
-- Responsive images (`srcset`, `picture` element)
-
-### Navigation Adaptation
-
-- Transform complex nav to hamburger/drawer on mobile
-- Bottom nav bar for mobile apps
-- Persistent side navigation on desktop
-- Breadcrumbs on smaller screens for context
-
-Test on real devices. DevTools emulation is a useful first pass but misses real touch, performance, and browser chrome.
-
-**Avoid**:
-- Hide core functionality on mobile (if it matters, make it work)
-- Assume desktop = powerful device (consider accessibility, older machines)
-- Use different information architecture across contexts (confusing)
-- Break user expectations for platform (mobile users expect mobile patterns)
-- Forget landscape orientation on mobile/tablet
-- Use generic breakpoints blindly (use content-driven breakpoints)
-- Ignore touch on desktop (many desktop devices have touch)
-
-## Verify Adaptations
-
-Test thoroughly across contexts:
-
-- **Real devices**: Test on actual phones, tablets, desktops
-- **Different orientations**: Portrait and landscape
-- **Different browsers**: Safari, Chrome, Firefox, Edge
-- **Different OS**: iOS, Android, Windows, macOS
-- **Different input methods**: Touch, mouse, keyboard
-- **Edge cases**: Very small screens (320px), very large screens (4K)
-- **Slow connections**: Test on throttled network
-
-**Custom controls** (sliders, drag surfaces, scrollable control strips): a before/after slider can pass every width check above and still refuse to drag on iOS, so exercise each one in scope in the same batched round as the checks above:
-
-- **Primary gesture**: Tap it and confirm it responds as designed, then drag it with the target input method; the drag must complete, not just start
-- **Scroll across it**: A swipe along the page's scroll axis across the control scrolls the page or container without activating it; a drag that starts on the control along its axis moves the control, not the page. Neither failure throws an error, so try both
-- **Evidence**: Say what produced the evidence: an emulated viewport, synthesized touch input through a browser tool, which engine ran it (Chromium is not Safari), or a physical device. Screenshots and resized viewports verify layout, never a gesture. Name what stayed untested and move on; unreachable hardware is a reported gap, not a blocker
-
-When the adaptation feels native to each context, hand off to `/impeccable polish` for the final pass.
+**فقط وب** (وبِ موبایل هم شامل است). پلتفرم‌های بومی (`ios` / `android` / `adaptive`) به [adapt.native.md](adapt.native.md) مسیریابی می‌شوند؛ اگر پروژه بومی است، همین حالا به آن برو.
 
 ---
 
-## Reference Material
+## سنجش چالشِ تطبیق
 
-The sections below were previously `responsive-design.md` and live inline now so the adapt flow has its deep responsive reference in one place.
+بفهم چه چیزی به تطبیق نیاز دارد و چرا:
 
-### Responsive Design
+1. **بسترِ مبدأ را شناسایی کن**:
+   - اصلاً برای چه طراحی شده بود؟ (وب دسکتاپ؟ اپ موبایل؟)
+   - چه فرض‌هایی در کار بود؟ (صفحهٔ بزرگ؟ ورودی ماوس؟ اتصال سریع؟)
+   - در بسترِ فعلی چه چیزی خوب کار می‌کند؟
 
-#### Mobile-First: Write It Right
+2. **بسترِ هدف را بفهم**:
+   - **دستگاه**: موبایل، تبلت، دسکتاپ، تلویزیون، ساعت، چاپ؟
+   - **روش ورودی**: لمس، ماوس، کیبورد، صدا، دستهٔ بازی؟
+   - **محدودیت‌های صفحه**: اندازه، رزولوشن، جهت؟
+   - **اتصال**: وای‌فای سریع، 3G کند، آفلاین؟
+   - **بسترِ استفاده**: در حرکت یا پشت میز، نگاهِ سریع یا خواندنِ متمرکز؟
+   - **انتظارات کاربر**: کاربران روی این پلتفرم چه انتظاری دارند؟
 
-Start with base styles for mobile, use `min-width` queries to layer complexity. Desktop-first (`max-width`) means mobile loads unnecessary styles first.
+3. **چالش‌های تطبیق را شناسایی کن**:
+   - چه چیزی جا نمی‌شود؟ (محتوا، ناوبری، قابلیت‌ها)
+   - چه چیزی کار نمی‌کند؟ (حالت‌های هاور روی لمس، اهدافِ لمسیِ ریز)
+   - چه چیزی نامناسب است؟ (الگوهای دسکتاپ روی موبایل، الگوهای موبایل روی دسکتاپ)
 
-#### Breakpoints: Content-Driven
+تطبیق یعنی بازاندیشیدنِ تجربه برای بسترِ تازه، نه مقیاس‌دادنِ پیکسل‌ها.
 
-Don't chase device sizes; let content tell you where to break. Start narrow, stretch until design breaks, add breakpoint there. Three breakpoints usually suffice (640, 768, 1024px). Use `clamp()` for fluid values without breakpoints.
+## تدوین راهبردِ تطبیق
 
-#### Detect Input Method, Not Just Screen Size
+راهبردی هماهنگ با بستر تدوین کن:
 
-**Screen size doesn't tell you input method.** A laptop with touchscreen, a tablet with keyboard. Use pointer and hover queries:
+### تطبیق موبایل (از دسکتاپ به موبایل)
+
+**راهبرد چیدمان**:
+- تک‌ستون به‌جای چندستون
+- چیدمان عمودی به‌جای کنارِ هم
+- کامپوننت‌های تمام‌عرض به‌جای عرض‌های ثابت
+- ناوبری پایین به‌جای ناوبری بالا/کنار
+
+**راهبرد تعامل**:
+- اهدافِ لمسی حداقل 44x44px (بدون وابستگی به هاور)
+- ژست‌های سوایپ هر جا مناسب بود (فهرست‌ها، اسلایدرها)
+- شیت‌های پایین به‌جای فهرست‌های کشویی
+- طراحیِ اول‌شست (کنترل‌ها در دسترسِ شست)
+- ناحیه‌های ضربهٔ بزرگ‌تر با فاصله‌گذاریِ بیشتر
+
+**راهبرد محتوا**:
+- افشای تدریجی (همه‌چیز را یک‌جا نشان نده)
+- اولویت‌دادن به محتوای اصلی (محتوای ثانویه در تب‌ها/آکاردئون‌ها)
+- متنِ کوتاه‌تر (موجزتر)
+- متنِ بزرگ‌تر (حداقل 16px)
+
+**راهبرد ناوبری**:
+- منوی همبرگری یا ناوبری پایین
+- کاهش پیچیدگی ناوبری
+- هدرهای چسبان برای حفظ بستر
+- دکمهٔ بازگشت در جریان ناوبری
+
+### تطبیق تبلت (رویکرد ترکیبی)
+
+**راهبرد چیدمان**:
+- چیدمان‌های دوستونه (نه تک‌ستون و نه سه‌ستونه)
+- پنل‌های کناری برای محتوای ثانویه
+- نماهای master-detail (فهرست به‌علاوهٔ جزئیات)
+- انطباق با جهت (عمودی یا افقی)
+
+**راهبرد تعامل**:
+- پشتیبانی هم از لمس هم از اشاره‌گر
+- اهدافِ لمسی 44x44px اما با اجازهٔ چیدمان‌های متراکم‌تر از گوشی
+- کشوهای ناوبری کناری
+- فرم‌های چندستونه هر جا مناسب بود
+
+### تطبیق دسکتاپ (از موبایل به دسکتاپ)
+
+**راهبرد چیدمان**:
+- چیدمان‌های چندستونه (از فضای افقی استفاده کن)
+- ناوبری کناری همیشه مرئی
+- چندین پنل اطلاعاتی هم‌زمان
+- عرض‌های ثابت با محدودیتِ max-width (تا 4K نکش)
+
+**راهبرد تعامل**:
+- حالت‌های هاور برای اطلاعات بیشتر
+- میان‌برهای کیبورد
+- منوهای راست‌کلیک
+- کشیدن و رها کردن هر جا مفید بود
+- چندانتخابی با Shift/Cmd
+
+**راهبرد محتوا**:
+- نمایش اطلاعات بیشتر از همان ابتدا (افشای تدریجیِ کمتر)
+- جدول‌های داده با ستون‌های زیاد
+- تجسم‌های غنی‌تر
+- توصیف‌های باجزئیات‌تر
+
+### تطبیق چاپ (از نمایشگر به چاپ)
+
+**راهبرد چیدمان**:
+- شکست صفحه در نقاط منطقی
+- حذف ناوبری، فوتر و عناصر تعاملی
+- سیاه‌وسفید (یا رنگِ محدود)
+- حاشیه‌های درست برای صحافی
+
+**راهبرد محتوا**:
+- بسطِ محتوای کوتاه‌شده (نمایش URLهای کامل، بخش‌های پنهان)
+- افزودن شماره صفحه، سرصفحه و پاصفحه
+- درج فراداده (تاریخ چاپ، عنوان صفحه)
+- تبدیل نمودارها به نسخه‌های مناسب چاپ
+
+### تطبیق ایمیل (از وب به ایمیل)
+
+**راهبرد چیدمان**:
+- عرض باریک (حداکثر 600px)
+- فقط تک‌ستون
+- CSS درون‌خطی (بدون استایل‌شیت خارجی)
+- چیدمان جدول‌محور (برای سازگاری با کلاینت‌های ایمیل)
+
+**راهبرد تعامل**:
+- CTAهای بزرگ و بدیهی (دکمه، نه لینک متنی)
+- بدون حالت هاور (قابل‌اتکا نیست)
+- دیپ‌لینک به اپ وب برای تعامل‌های پیچیده
+
+## پیاده‌سازی تطبیق‌ها
+
+تغییرات را سامان‌مند اعمال کن:
+
+### بریک‌پوینت‌های واکنش‌گرا
+
+بریک‌پوینت‌های مناسب انتخاب کن:
+- موبایل: 320px-767px
+- تبلت: 768px-1023px
+- دسکتاپ: 1024px+
+- یا بریک‌پوینت‌های محتوامحور (جایی که طراحی می‌شکند)
+
+### تکنیک‌های تطبیق چیدمان
+
+- **CSS Grid/Flexbox**: بازآراییِ خودکار چیدمان‌ها
+- **Container Queries**: انطباق بر پایهٔ ظرف، نه ویوپورت
+- **`clamp()`**: اندازه‌گیریِ سیال میان کمینه و بیشینه
+- **Media queries**: استایل‌های متفاوت برای بسترهای متفاوت
+- **پراپرتی‌های display**: نمایش/پنهان‌سازی عناصر بر حسب بستر
+
+### تطبیق لمسی
+
+- بزرگ‌کردن اهداف لمسی (حداقل 44x44px)
+- فاصله‌گذاری بیشتر میان عناصر تعاملی
+- حذف تعامل‌های وابسته به هاور
+- افزودن بازخورد لمسی (ریپل، روشن‌شدگی)
+- منطقه‌های شست را در نظر بگیر (رسیدن به پایین آسان‌تر از بالاست)
+
+### تطبیق محتوا
+
+- `display: none` را به‌اندازه به کار ببر (با این حال دانلود می‌شود)
+- ارتقای تدریجی (اول محتوای اصلی، امکاناتِ اضافه روی صفحه‌های بزرگ‌تر)
+- بارگذاری تنبل برای محتوای بیرون از دید
+- تصاویر واکنش‌گرا (`srcset`، عنصر `picture`)
+
+### تطبیق ناوبری
+
+- تبدیل ناوبریِ پیچیده به همبرگری/کشو روی موبایل
+- نوار ناوبری پایین برای اپ‌های موبایل
+- ناوبری کناری ماندگار روی دسکتاپ
+- بردکرامب روی صفحه‌های کوچک‌تر برای حفظ بستر
+
+روی دستگاه‌های واقعی تست کن. شبیه‌سازی DevTools گذرِ اولِ مفیدی است اما لمسِ واقعی، کارایی و پوستهٔ مرورگر را از قلم می‌اندازد.
+
+**بپرهیز از**:
+- پنهان‌کردن قابلیت‌های اصلی روی موبایل (اگر مهم است، کاری کن کار کند)
+- فرضِ اینکه دسکتاپ یعنی دستگاهِ توانمند (دسترس‌پذیری و ماشین‌های قدیمی را در نظر بگیر)
+- معماری اطلاعاتِ متفاوت میان بسترها (گیج‌کننده است)
+- شکستن انتظارات کاربر از پلتفرم (کاربر موبایل، الگوهای موبایل انتظار دارد)
+- فراموش‌کردن جهت افقی روی موبایل/تبلت
+- استفادهٔ کورکورانه از بریک‌پوینت‌های عمومی (بریک‌پوینت‌های محتوامحور را به کار ببر)
+- نادیده‌گرفتن لمس روی دسکتاپ (بسیاری از دستگاه‌های دسکتاپ لمس دارند)
+
+## راستی‌آزمایی تطبیق‌ها
+
+در سراسر بسترها کامل آزمون بده:
+
+- **دستگاه‌های واقعی**: روی گوشی، تبلت و دسکتاپِ واقعی تست کن
+- **جهت‌های متفاوت**: عمودی و افقی
+- **مرورگرهای متفاوت**: Safari، Chrome، Firefox، Edge
+- **سیستم‌عامل‌های متفاوت**: iOS، Android، Windows، macOS
+- **روش‌های ورودی متفاوت**: لمس، ماوس، کیبورد
+- **حالت‌های مرزی**: صفحه‌های خیلی کوچک (320px)، خیلی بزرگ (4K)
+- **اتصال‌های کند**: روی شبکهٔ محدودشده تست کن
+
+**کنترل‌های سفارشی** (اسلایدرها، سطوحِ کشیدنی، نوارهای کنترلیِ اسکرول‌شدنی): اسلایدرِ قبل/بعد می‌تواند از همهٔ چک‌های عرضیِ بالا سربلند بیرون بیاید و باز هم روی iOS حاضر به کشیده‌شدن نباشد؛ پس هر یک را در چارچوبِ همین بررسی، در همان دورِ دسته‌ایِ چک‌های بالا آزمایش کن:
+
+- **ژست اصلی**: رویش ضربه بزن و تأیید کن طبق طراحی پاسخ می‌دهد، بعد با روشِ ورودیِ هدفش بکش؛ کشیدن باید کامل شود، نه فقط شروع
+- **اسکرول روی آن**: سوایپی در راستای اسکرولِ صفحه که از روی کنترل بگذرد، صفحه یا ظرف را اسکرول می‌کند بدون آنکه کنترل را فعال کند؛ کشیدنی که روی خودِ کنترل و در راستای محورش آغاز شود، کنترل را جابه‌جا می‌کند، نه صفحه را. هیچ‌کدام از این دو شکست خطا نمی‌اندازد، پس هر دو را امتحان کن
+- **شاهد**: بگو چه چیزی شاهد را تولید کرده: یک ویوپورت شبیه‌سازی‌شده، ورودی لمسِ ساختگی از طریق ابزار مرورگر، کدام موتور آن را اجرا کرد (Chromium همان Safari نیست)، یا یک دستگاه فیزیکی. اسکرین‌شات و ویوپورت‌های تغییراندازه‌شده چیدمان را راستی‌آزمایی می‌کنند، هرگز یک ژست را. آنچه آزموده نماند را نام ببر و ادامه بده؛ سخت‌افزارِ دست‌نیافتنی، شکافی گزارش‌شده است، نه مسدودکننده
+
+وقتی تطبیق در هر بستر بومی حس شد، برای گذرِ نهایی به `/jala polish` بسپار.
+
+---
+
+## مواد مرجع
+
+بخش‌های زیر پیش‌تر `responsive-design.md` بودند و اکنون درون‌خطی زندگی می‌کنند تا جریانِ adapt مرجعِ عمیقِ واکنش‌گرای خودش را یک‌جا داشته باشد.
+
+### طراحی واکنش‌گرا
+
+#### موبایل‌محور: درست بنویسش
+
+با استایل‌های پایه برای موبایل شروع کن و با کوئری‌های `min-width` پیچیدگی را لایه‌لایه بیفزا. دسکتاپ‌محور بودن (`max-width`) یعنی موبایل اول استایل‌های غیرلازم را بار می‌کند.
+
+#### بریک‌پوینت‌ها: محتوامحور
+
+دنبال اندازه‌های دستگاه نرو؛ بگذار محتوا بگوید کجا باید بشکند. باریک شروع کن، بکش تا طراحی بشکند، همان‌جا بریک‌پوینت بگذار. معمولاً سه بریک‌پوینت کافی است (640، 768، 1024px). برای مقادیر سیالِ بدون بریک‌پوینت از `clamp()` استفاده کن.
+
+#### روش ورودی را تشخیص بده، نه فقط اندازهٔ صفحه را
+
+**اندازهٔ صفحه روش ورودی را نمی‌گوید.** لپ‌تاپِ صفحه‌لمسی، تبلتِ کیبورددار. از کوئری‌های pointer و hover استفاده کن:
 
 ```css
 /* Fine pointer (mouse, trackpad) */
@@ -238,11 +238,11 @@ Don't chase device sizes; let content tell you where to break. Start narrow, str
 }
 ```
 
-**Critical**: Don't rely on hover for functionality. Touch users can't hover.
+**حیاتی**: برای کارکرد به هاور تکیه نکن. کاربران لمسی هاور ندارند.
 
-#### Safe Areas: Handle the Notch
+#### نواحی امن: ناچ را مدیریت کن
 
-Modern phones have notches, rounded corners, and home indicators. Use `env()`:
+گوشی‌های مدرن ناچ، گوشه‌های گرد و نشانگرِ خانه دارند. از `env()` استفاده کن:
 
 ```css
 body {
@@ -258,14 +258,14 @@ body {
 }
 ```
 
-**Enable viewport-fit** in your meta tag:
+**viewport-fit** را در تگ متا فعال کن:
 ```html
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ```
 
-#### Responsive Images: Get It Right
+#### تصاویر واکنش‌گرا: درست پیاده کن
 
-##### srcset with Width Descriptors
+##### srcset با توصیفگرهای عرض
 
 ```html
 <img
@@ -280,14 +280,14 @@ body {
 >
 ```
 
-**How it works**:
-- `srcset` lists available images with their actual widths (`w` descriptors)
-- `sizes` tells the browser how wide the image will display
-- Browser picks the best file based on viewport width AND device pixel ratio
+**چطور کار می‌کند**:
+- `srcset` تصاویرِ موجود را با عرض واقعی‌شان فهرست می‌کند (توصیفگرهای `w`)
+- `sizes` به مرورگر می‌گوید تصویر با چه عرضی نمایش داده می‌شود
+- مرورگر بر پایهٔ هم عرض ویوپورت، هم نسبت پیکسلِ دستگاه بهترین فایل را انتخاب می‌کند
 
-##### Picture Element for Art Direction
+##### عنصر picture برای آرت‌دیرکشن
 
-When you need different crops/compositions (not just resolutions):
+وقتی به کراپ/ترکیب‌بندی‌های متفاوت نیاز داری (نه فقط رزولوشن‌های متفاوت):
 
 ```html
 <picture>
@@ -297,22 +297,22 @@ When you need different crops/compositions (not just resolutions):
 </picture>
 ```
 
-#### Layout Adaptation Patterns
+#### الگوهای تطبیق چیدمان
 
-**Navigation**: Three stages: hamburger + drawer on mobile, horizontal compact on tablet, full with labels on desktop. **Tables**: Transform to cards on mobile using `display: block` and `data-label` attributes. **Progressive disclosure**: Use `<details>/<summary>` for content that can collapse on mobile.
+**ناوبری**: سه مرحله: همبرگری + کشو روی موبایل، افقیِ فشرده روی تبلت، کامل با برچسب روی دسکتاپ. **جدول‌ها**: روی موبایل با `display: block` و اتریبیوت‌های `data-label` به کارت تبدیل شوند. **افشای تدریجی**: برای محتوایی که روی موبایل می‌تواند جمع شود از `<details>/<summary>` استفاده کن.
 
-#### Testing: Don't Trust DevTools Alone
+#### تست: به DevTools تنها اعتماد نکن
 
-DevTools device emulation is useful for layout but misses:
+شبیه‌سازی دستگاه در DevTools برای چیدمان مفید است اما این‌ها را از قلم می‌اندازد:
 
-- Actual touch interactions
-- Real CPU/memory constraints
-- Network latency patterns
-- Font rendering differences
-- Browser chrome/keyboard appearances
+- تعامل‌های لمسیِ واقعی
+- محدودیت‌های واقعی CPU/حافظه
+- الگوهای تأخیر شبکه
+- تفاوت‌های رندر فونت
+- پوستهٔ مرورگر/شکلِ کیبورد
 
-**Test on at least**: One real iPhone, one real Android, a tablet if relevant. Cheap Android phones reveal performance issues you'll never see on simulators.
+**حداقل تست کن روی**: یک iPhone واقعی، یک Android واقعی، و اگر مربوط است یک تبلت. گوشی‌های Android ارزان مشکلات کارایی را آشکار می‌کنند که هرگز در شبیه‌سازها نمی‌بینی.
 
 ---
 
-**Avoid**: Desktop-first design. Device detection instead of feature detection. Separate mobile/desktop codebases. Ignoring tablet and landscape. Assuming all mobile devices are powerful.
+**بپرهیز از**: طراحی دسکتاپ‌محور. تشخیص دستگاه به‌جای تشخیص قابلیت. ریپوهای جداگانهٔ موبایل/دسکتاپ. نادیده‌گرفتن تبلت و حالت افقی. فرضِ قدرتمندبودنِ همهٔ دستگاه‌های موبایل.

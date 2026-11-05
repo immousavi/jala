@@ -1,42 +1,42 @@
-Designs that only work with perfect data aren't production-ready. Harden the interface against the inputs, errors, languages, and network conditions that real users will throw at it.
+طراحی‌ای که فقط با دادهٔ بی‌نقص کار می‌کند آمادهٔ پروداکشن نیست. رابط را در برابر ورودی‌ها، خطاها، زبان‌ها و شرایط شبکه‌ای که کاربران واقعی به طرفش پرتاب می‌کنند سخت کن. برای سطح‌های فارسی، [fa-numbers-dates.md](fa-numbers-dates.md) قرارداد locale را حمل می‌کند: تقویم جلالی، ارقام فارسی، تومان و شناسه‌های ایرانی (کد ملی، شماره کارت، شبا).
 
-## Assess Hardening Needs
+## سنجش نیازهای سخت‌سازی
 
-Identify weaknesses and edge cases:
+ضعف‌ها و حالت‌های مرزی را شناسایی کن:
 
-1. **Test with extreme inputs**:
-   - Very long text (names, descriptions, titles)
-   - Very short text (empty, single character)
-   - Special characters (emoji, RTL text, accents)
-   - Large numbers (millions, billions)
-   - Many items (1000+ list items, 50+ options)
-   - No data (empty states)
+1. **تست با ورودی‌های افراطی**:
+   - متن خیلی بلند (نام‌ها، توضیحات، عنوان‌ها)
+   - متن خیلی کوتاه (خالی، تک‌نویسه)
+   - نویسه‌های خاص (ایموجی، متن RTL، اعراب)
+   - اعداد بزرگ (میلیون‌ها، میلیاردها)
+   - آیتم‌های زیاد (۱۰۰۰+ آیتم فهرست، ۵۰+ گزینه)
+   - بدون داده (حالت‌های خالی)
 
-2. **Test error scenarios**:
-   - Network failures (offline, slow, timeout)
-   - API errors (400, 401, 403, 404, 500)
-   - Validation errors
-   - Permission errors
-   - Rate limiting
-   - Concurrent operations
+2. **تست سناریوهای خطا**:
+   - شکست‌های شبکه (آفلاین، کند، timeout)
+   - خطاهای API (۴۰۰، ۴۰۱، ۴۰۳، ۴۰۴، ۵۰۰)
+   - خطاهای اعتبارسنجی
+   - خطاهای مجوز
+   - محدودسازی نرخ
+   - عملیات‌های هم‌زمان
 
-3. **Test internationalization**:
-   - Long translations (German is often 30% longer than English)
-   - RTL languages (Arabic, Hebrew)
-   - Character sets (Chinese, Japanese, Korean, emoji)
-   - Date/time formats
-   - Number formats (1,000 vs 1.000)
-   - Currency symbols
+3. **تست بومی‌سازی**:
+   - ترجمه‌های بلند (آلمانی اغلب ۳۰٪ بلندتر از انگلیسی است)
+   - زبان‌های RTL (عربی، عبری)
+   - مجموعه‌نویسه‌ها (چینی، ژاپنی، کره‌ای، ایموجی)
+   - قالب‌های تاریخ/زمان
+   - قالب‌های عدد (۱٬۰۰۰ در برابر 1.000)
+   - نمادهای ارز
 
-Designs that only work with perfect data aren't production-ready.
+طراحی‌ای که فقط با دادهٔ بی‌نقص کار می‌کند آمادهٔ پروداکشن نیست.
 
-## Hardening Dimensions
+## ابعاد سخت‌سازی
 
-Systematically improve resilience:
+تاب‌آوری را سیستماتیک بهبود بده:
 
-### Text Overflow & Wrapping
+### سرریز و شکستن متن
 
-**Long text handling**:
+**مدیریت متن بلند**:
 ```css
 /* Single line with ellipsis */
 .truncate {
@@ -61,7 +61,7 @@ Systematically improve resilience:
 }
 ```
 
-**Flex/Grid overflow**:
+**سرریز Flex/Grid**:
 ```css
 /* Prevent flex items from overflowing */
 .flex-item {
@@ -76,19 +76,19 @@ Systematically improve resilience:
 }
 ```
 
-**Responsive text sizing**:
-- Use `clamp()` for fluid typography
-- Set minimum readable sizes (16px body on mobile, the same floor the typography guidance sets; 14px only for genuinely secondary text. iOS Safari force-zooms focused inputs under 16px, which breaks form layouts)
-- Test text scaling (zoom to 200%)
-- Ensure containers expand with text
+**سایزبندی واکنش‌گرای متن**:
+- برای تایپ سیال از `clamp()` استفاده کن
+- کف خوانایی حداقلی بگذار (۱۶px بدنه روی موبایل، همان کفی که راهنمای تایپوگرافی تعیین می‌کند؛ ۱۴px فقط برای متن واقعاً ثانویه. iOS Safari ورودی‌های فوکوس‌شده زیر ۱۶px را اجباری زوم می‌کند و چیدمان فرم را می‌شکند)
+- مقیاس متن را تست کن (زوم به ۲۰۰٪)
+- مطمئن شو ظرف‌ها با متن باز می‌شوند
 
-### Internationalization (i18n)
+### بومی‌سازی (i18n)
 
-**Text expansion**:
-- Add 30-40% space budget for translations
-- Use flexbox/grid that adapts to content
-- Test with longest language (usually German)
-- Avoid fixed widths on text containers
+**رشد متن**:
+- ۳۰-۴۰٪ بودجهٔ فضا برای ترجمه‌ها بگذار
+- از flexbox/grid که به محتوا وفق می‌یابد استفاده کن
+- با بلندترین زبان (معمولاً آلمانی) تست کن
+- عرض ثابت روی ظرف‌های متن نگذار
 
 ```jsx
 // ❌ Bad: Assumes short English text
@@ -98,7 +98,7 @@ Systematically improve resilience:
 <button className="px-4 py-2">Submit</button>
 ```
 
-**RTL (Right-to-Left) support**:
+**پشتیبانی RTL (راست‌به‌چپ)**:
 ```css
 /* Use logical properties */
 margin-inline-start: 1rem; /* Not margin-left */
@@ -109,10 +109,10 @@ border-inline-end: 1px solid; /* Not border-right */
 [dir="rtl"] .arrow { transform: scaleX(-1); }
 ```
 
-**Arabic-script specifics** (Arabic, Persian, Urdu, Pashto, Kurdish):
-- Preserve Zero-Width Non-Joiner (U+200C). Persian and Kurdish use ZWNJ between compound-word parts to break cursive joining while keeping the word together. A filter or sanitizer that strips it changes meaning. Never normalize it away.
-- Handle Yeh and Kaf variants. Persian uses ی (U+06CC) and ک (U+06A9), while Arabic uses ي (U+064A) and ك (U+0643). Preserve the original form in storage. For search and validation, treat the corresponding letters as equivalent so that Arabic-keyboard input matches Persian text. Rejecting one variant locks out users whose keyboard sends the other.
-- Support locale-aware digits. Persian (`fa-IR`) and Arabic locales use Eastern Arabic-Indic numerals (۰-۹ and ٠-٩). Use `Intl.NumberFormat` with the correct locale rather than hardcoding Western digits.
+**جزئیات اسکریپت عربی** (عربی، فارسی، اردو، پشتو، کردی):
+- نیم‌فاصله (U+200C) را حفظ کن. فارسی و کردی بین اجزای کلمه‌های مرکب از ZWNJ استفاده می‌کنند تا چسبندگی کرسی بشکند ولی کلمه یکپارچه بماند. فیلتر یا sanitizerی که آن را حذف کند معنا را عوض می‌کند. هرگز نرمال‌سازی‌اش نکن.
+- واریانت‌های یه و کاف را مدیریت کن. فارسی ی (U+06CC) و ک (U+06A9) استفاده می‌کند، در حالی که عربی ي (U+064A) و ك (U+0643). فرم اصلی را در ذخیره‌سازی حفظ کن. برای جست‌وجو و اعتبارسنجی، حروف متناظر را هم‌ارز در نظر بگیر تا ورودیِ کیبورد عربی با متن فارسی بخواند. رد‌کردن یک واریانت، کاربرانی را که کیبوردشان واریانت دیگر می‌فرستد قفل می‌کند.
+- ارقام آگاه-از-locale را پشتیبانی کن. localeهای فارسی (`fa-IR`) و عربی از ارقام شرقی هندو-عربی (۰-۹ و ٠-٩) استفاده می‌کنند. از `Intl.NumberFormat` با locale درست استفاده کن، نه هاردکدِ ارقام غربی.
 
 ```javascript
 // ✅ Locale-aware digit formatting
@@ -120,7 +120,7 @@ new Intl.NumberFormat('fa-IR').format(1234); // ۱٬۲۳۴
 new Intl.NumberFormat('ar-SA').format(1234); // ١٬٢٣٤
 ```
 
-- Respect calendar systems. Persian users expect the Solar Hijri (Jalali) calendar; many Arabic-speaking users expect the Hijri (Islamic) calendar. Use `Intl.DateTimeFormat` with the appropriate locale or calendar parameter.
+- سیستم‌های تقویم را محترم بشمار. کاربران فارسی تقویم هجری شمسی (جلالی) را انتظار دارند؛ خیلی از کاربران عربی‌زبان تقویم هجری قمری را. از `Intl.DateTimeFormat` با پارامتر locale یا calendar مناسب استفاده کن.
 
 ```javascript
 // ✅ Locale-appropriate calendar
@@ -128,13 +128,13 @@ new Intl.DateTimeFormat('fa-IR').format(new Date());
 new Intl.DateTimeFormat('ar-SA-u-ca-islamic').format(new Date());
 ```
 
-**Character set support**:
-- Use UTF-8 encoding everywhere
-- Test with Chinese/Japanese/Korean (CJK) characters
-- Test with emoji (they can be 2-4 bytes)
-- Handle different scripts (Latin, Cyrillic, Arabic, etc.)
+**پشتیبانی مجموعه‌نویسه**:
+- همه‌جا UTF-8
+- با نویسه‌های چینی/ژاپنی/کره‌ای (CJK) تست کن
+- با ایموجی تست کن (می‌توانند ۲-۴ بایت باشند)
+- اسکریپت‌های مختلف را مدیریت کن (لاتین، سیریلیک، عربی و...)
 
-**Date/Time formatting**:
+**قالب‌بندی تاریخ/زمان**:
 ```javascript
 // ✅ Use Intl API for proper formatting
 new Intl.DateTimeFormat('en-US').format(date); // 1/15/2024
@@ -146,7 +146,7 @@ new Intl.NumberFormat('en-US', {
 }).format(1234.56); // $1,234.56
 ```
 
-**Pluralization**:
+**جمع‌بندی**:
 ```javascript
 // ❌ Bad: Assumes English pluralization
 `${count} item${count !== 1 ? 's' : ''}`
@@ -155,14 +155,14 @@ new Intl.NumberFormat('en-US', {
 t('items', { count }) // Handles complex plural rules
 ```
 
-### Error Handling
+### مدیریت خطا
 
-**Network errors**:
-- Show clear error messages
-- Provide retry button
-- Explain what happened
-- Offer offline mode (if applicable)
-- Handle timeout scenarios
+**خطاهای شبکه**:
+- پیام خطای شفاف نشان بده
+- دکمهٔ تلاش‌دوباره بده
+- توضیح بده چه شد
+- حالت آفلاین پیشنهاد کن (در صورت امکان)
+- سناریوهای timeout را مدیریت کن
 
 ```jsx
 // Error states with recovery
@@ -174,89 +174,89 @@ t('items', { count }) // Handles complex plural rules
 )}
 ```
 
-**Form validation errors**:
-- Inline errors near fields
-- Clear, specific messages
-- Suggest corrections
-- Don't block submission unnecessarily
-- Preserve user input on error
+**خطاهای اعتبارسنجی فرم**:
+- خطای درون‌خطی کنار فیلدها
+- پیام‌های شفاف و مشخص
+- پیشنهاد اصلاح
+- ارسال را بی‌دلیل مسدود نکن
+- ورودی کاربر را در خطا حفظ کن
 
-**API errors**:
-- Handle each status code appropriately
-  - 400: Show validation errors
-  - 401: Redirect to login
-  - 403: Show permission error
-  - 404: Show not found state
-  - 429: Show rate limit message
-  - 500: Show generic error, offer support
+**خطاهای API**:
+- هر کد وضعیت را متناسب مدیریت کن
+  - ۴۰۰: خطاهای اعتبارسنجی را نشان بده
+  - ۴۰۱: به لاگین ریدایرکت کن
+  - ۴۰۳: خطای مجوز را نشان بده
+  - ۴۰۴: حالت پیدا-نشده را نشان بده
+  - ۴۲۹: پیام محدودیت نرخ را نشان بده
+  - ۵۰۰: خطای عمومی نشان بده، پشتیبانی پیشنهاد کن
 
-**Graceful degradation**:
-- Core functionality works without JavaScript
-- Images have alt text
-- Progressive enhancement
-- Fallbacks for unsupported features
+**تخریب نرم**:
+- کارکرد اصلی بدون جاوااسکریپت کار کند
+- تصاویر alt text داشته باشند
+- بهبود تدریجی
+- fallback برای قابلیت‌های پشتیبانی‌نشده
 
-### Edge Cases & Boundary Conditions
+### حالت‌های مرزی و شرایط مرزی
 
-**Empty states**:
-- No items in list
-- No search results
-- No notifications
-- No data to display
-- Provide clear next action
+**حالت‌های خالی**:
+- هیچ آیتمی در فهرست
+- بدون نتیجهٔ جست‌وجو
+- بدون اعلان
+- داده‌ای برای نمایش نیست
+- کنش بعدیِ شفاف بده
 
-**Loading states**:
-- Initial load
-- Pagination load
-- Refresh
-- Show what's loading ("Loading your projects...")
-- Time estimates for long operations
+**حالت‌های بارگذاری**:
+- لود اولیه
+- لود صفحه‌بندی
+- نوسازی
+- نشان بده چه چیزی در حال لود است («در حال بارگذاری پروژه‌های شما...»)
+- برآورد زمان برای عملیات‌های بلند
 
-**Large datasets**:
-- Pagination or virtual scrolling
-- Search/filter capabilities
-- Performance optimization
-- Don't load all 10,000 items at once
+**مجموعه‌داده‌های بزرگ**:
+- صفحه‌بندی یا اسکرول مجازی
+- قابلیت جست‌وجو/فیلتر
+- بهینه‌سازی کارایی
+- هر ۱۰٬۰۰۰ آیتم را یک‌جا لود نکن
 
-**Concurrent operations**:
-- Prevent double-submission (disable button while loading)
-- Handle race conditions
-- Optimistic updates with rollback
-- Conflict resolution
+**عملیات‌های هم‌زمان**:
+- جلوگیری از دوبار-ارسال (غیرفعال‌کردن دکمه حین لود)
+- مدیریت شرایط رقابتی (race)
+- به‌روزرسانی‌های خوش‌بینانه با rollback
+- حل تعارض
 
-**Interrupted gestures** (custom sliders, drag surfaces, scrollable control strips):
-- A second finger or pointer lands mid-drag: the first drag keeps its pointer or ends cleanly, never jumps to the new one
-- The browser cancels the gesture to scroll (`pointercancel`), capture is lost (`lostpointercapture`), the pointer is released outside the control, or the window loses focus (`blur`) mid-drag: clear the dragging state and release capture
-- After each of these, the next tap or drag works without a reload
+**ژست‌های قطع‌شده** (اسلایدرهای سفارشی، سطوح درگ، نوارهای کنترلیِ اسکرول‌شونده):
+- انگشت یا اشاره‌گر دوم وسط درگ فرود می‌آید: درگ اول اشاره‌گرش را نگه می‌دارد یا تمیز تمام می‌شود، هرگز به جدیدی نمی‌پرد
+- مرورگر ژست را برای اسکرول لغو می‌کند (`pointercancel`)، capture گم می‌شود (`lostpointercapture`)، اشاره‌گر بیرون کنترل رها می‌شود، یا پنجره فوکوس را در میانهٔ درگ از دست می‌دهد (`blur`): وضعیت dragging را پاک کن و capture را آزاد کن
+- بعد از هرکدام، تپ یا درگ بعدی بدون reload کار می‌کند
 
-**Permission states**:
-- No permission to view
-- No permission to edit
-- Read-only mode
-- Clear explanation of why
+**حالت‌های مجوز**:
+- مجوز دیدن ندارد
+- مجوز ویرایش ندارد
+- حالت فقط-خواندنی
+- توضیح شفاف چرا
 
-**Browser compatibility**:
-- Polyfills for modern features
-- Fallbacks for unsupported CSS
-- Feature detection (not browser detection)
-- Test in target browsers
+**سازگاری مرورگر**:
+- Polyfill برای قابلیت‌های مدرن
+- fallback برای CSS پشتیبانی‌نشده
+- تشخیص قابلیت (نه تشخیص مرورگر)
+- در مرورگرهای هدف تست کن
 
-### Input Validation & Sanitization
+### اعتبارسنجی و پاک‌سازی ورودی
 
-**Client-side validation**:
-- Required fields
-- Format validation (email, phone, URL)
-- Length limits
-- Pattern matching
-- Custom validation rules
+**اعتبارسنجی سمت کلاینت**:
+- فیلدهای الزامی
+- اعتبارسنجی قالب (ایمیل، تلفن، URL)
+- محدودیت طول
+- تطبیق الگو
+- قواعد اعتبارسنجی سفارشی
 
-**Server-side validation** (always):
-- Never trust client-side only
-- Validate and sanitize all inputs
-- Protect against injection attacks
-- Rate limiting
+**اعتبارسنجی سمت سرور** (همیشه):
+- هرگز فقط به سمت کلاینت اعتماد نکن
+- همهٔ ورودی‌ها را اعتبارسنجی و پاک کن
+- در برابر حملات تزریق محافظت کن
+- محدودسازی نرخ
 
-**Constraint handling**:
+**مدیریت محدودیت‌ها**:
 ```html
 <!-- Set clear constraints -->
 <input 
@@ -271,40 +271,40 @@ t('items', { count }) // Handles complex plural rules
 </small>
 ```
 
-### Accessibility Resilience
+### تاب‌آوری دسترس‌پذیری
 
-**Keyboard navigation**:
-- All functionality accessible via keyboard
-- Logical tab order
-- Focus management in modals
-- Skip links for long content
+**ناوبری کیبورد**:
+- همهٔ کارکرد با کیبورد قابل‌دسترس
+- ترتیب tab منطقی
+- مدیریت فوکوس در مودال‌ها
+- لینک‌های skip برای محتوای بلند
 
-**Screen reader support**:
-- Proper ARIA labels
-- Announce dynamic changes (live regions)
-- Descriptive alt text
-- Semantic HTML
+**پشتیبانی صفحه‌خوان**:
+- لیبل‌های ARIA درست
+- اعلام تغییرهای پویا (live regionها)
+- alt text توصیفی
+- HTML معنایی
 
-**High contrast mode**:
-- Test in Windows high contrast mode
-- Don't rely only on color
-- Provide alternative visual cues
+**حالت کنتراست بالا**:
+- در حالت کنتراست بالای ویندوز تست کن
+- فقط روی رنگ تکیه نکن
+- نشانه‌های بصری جایگزین بده
 
-### Performance Resilience
+### تاب‌آوری کارایی
 
-**Slow connections**:
-- Progressive image loading
-- Skeleton screens
-- Optimistic UI updates
-- Offline support (service workers)
+**اتصال‌های کند**:
+- لود تدریجی تصویر
+- صفحه‌های اسکلتون
+- به‌روزرسانی‌های خوش‌بینانهٔ UI
+- پشتیبانی آفلاین (service workerها)
 
-**Memory leaks**:
-- Clean up event listeners
-- Cancel subscriptions
-- Clear timers/intervals
-- Abort pending requests on unmount
+**نشت حافظه**:
+- event listenerها را پاک کن
+- subscriptionها را لغو کن
+- تایمرها/intervalها را پاک کن
+- درخواست‌های در‌جریان را روی unmount لغو کن
 
-**Throttling & Debouncing**:
+**Throttle و Debounce**:
 ```javascript
 // Debounce search input
 const debouncedSearch = debounce(handleSearch, 300);
@@ -313,50 +313,50 @@ const debouncedSearch = debounce(handleSearch, 300);
 const throttledScroll = throttle(handleScroll, 100);
 ```
 
-## Testing Strategies
+## راهبردهای تست
 
-**Manual testing**:
-- Test with extreme data (very long, very short, empty)
-- Test in different languages
-- Test offline
-- Test slow connection (throttle to 3G)
-- Test with screen reader
-- Test keyboard-only navigation
-- Test on old browsers
+**تست دستی**:
+- با دادهٔ افراطی تست کن (خیلی بلند، خیلی کوتاه، خالی)
+- به زبان‌های مختلف تست کن
+- آفلاین تست کن
+- با اتصال کند تست کن (محدود به 3G)
+- با صفحه‌خوان تست کن
+- ناوبریِ فقط-کیبورد تست کن
+- روی مرورگرهای قدیمی تست کن
 
-**Automated testing**:
-- Unit tests for edge cases
-- Integration tests for error scenarios
-- E2E tests for critical paths
-- A behavioral regression for each confirmed gesture fix, when the project's test runner can drive input
-- Visual regression tests
-- Accessibility tests (axe, WAVE)
+**تست خودکار**:
+- تست واحد برای حالت‌های مرزی
+- تست یکپارچگی برای سناریوهای خطا
+- تست E2E برای مسیرهای حیاتی
+- یک رگرسیون رفتاری برای هر ژستِ تأییدشده، وقتی تست‌رانر پروژه می‌تواند ورودی براند
+- تست‌های رگرسیون بصری
+- تست‌های دسترس‌پذیری (axe، WAVE)
 
-**Avoid**:
-- Assume perfect input (validate everything)
-- Ignore internationalization (design for global)
-- Leave error messages generic ("Error occurred")
-- Forget offline scenarios
-- Trust client-side validation alone
-- Use fixed widths for text
-- Assume English-length text
-- Block entire interface when one component errors
+**بپرهیز از**:
+- فرضِ ورودی بی‌نقص (همه‌چیز را اعتبارسنجی کن)
+- نادیده‌گرفتن بومی‌سازی (برای جهان طراحی کن)
+- رها‌کردن پیام‌های خطای عمومی («خطایی رخ داد»)
+- فراموش‌کردن سناریوهای آفلاین
+- اعتمادِ تنها به اعتبارسنجی سمت کلاینت
+- عرض ثابت برای متن
+- فرضِ طولِ متنِ انگلیسی
+- مسدودکردن کل رابط وقتی یک کامپوننت خطا می‌دهد
 
-## Verify Hardening
+## سخت‌سازی را راستی‌آزمایی کن
 
-Test thoroughly with edge cases:
+کامل با حالت‌های مرزی تست کن:
 
-- **Long text**: Try names with 100+ characters
-- **Emoji**: Use emoji in all text fields
-- **RTL**: Test with Arabic or Hebrew
-- **CJK**: Test with Chinese/Japanese/Korean
-- **Network issues**: Disable internet, throttle connection
-- **Large datasets**: Test with 1000+ items
-- **Concurrent actions**: Click submit 10 times rapidly
-- **Interrupted gestures**: Add a second finger mid-drag, scroll across the control, release outside it, switch windows mid-drag; then drag again
-- **Errors**: Force API errors, test all error states
-- **Empty**: Remove all data, test empty states
+- **متن بلند**: نام‌های ۱۰۰+ نویسه‌ای را امتحان کن
+- **ایموجی**: ایموجی را در همهٔ فیلدهای متنی بگذار
+- **RTL**: با عربی یا عبری تست کن — و برای سطح فارسی با چک‌لیست [fa-rtl.md](fa-rtl.md)
+- **CJK**: با چینی/ژاپنی/کره‌ای تست کن
+- **مشکلات شبکه**: اینترنت را قطع کن، اتصال را محدود کن
+- **مجموعه‌داده‌های بزرگ**: با ۱۰۰۰+ آیتم تست کن
+- **کنش‌های هم‌زمان**: ۱۰ بار پشت‌سرهم submit را کلیک کن
+- **ژست‌های قطع‌شده**: وسط درگ انگشت دوم بگذار، روی کنترل اسکرول کن، بیرونش رها کن، وسط درگ پنجره را عوض کن؛ بعد دوباره درگ کن
+- **خطاها**: خطاهای API را اجباری کن، همهٔ حالت‌های خطا را تست کن
+- **خالی**: همهٔ داده را بردار، حالت‌های خالی را تست کن
 
-For gestures, say what produced the evidence (emulated viewport, synthesized touch, which engine, physical device) and name what stayed untested.
+برای ژست‌ها بگو چه چیزی شاهد را تولید کرده (ویوپورت شبیه‌سازی‌شده، لمس سنتزشده، کدام موتور، دستگاه فیزیکی) و بگو چه چیزی تست‌نشده ماند.
 
-When edge cases are covered, hand off to `/impeccable polish` for the final pass.
+وقتی حالت‌های مرزی پوشش یافتند، پاسِ نهایی را به `/jala polish` بسپار.

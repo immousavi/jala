@@ -1,99 +1,99 @@
-Quiet design is harder than bold design. Subtlety needs precision. Reduce visual intensity in designs that are too loud, aggressive, or overstimulating without losing personality or making the result generic.
+طراحیِ آرام از طراحیِ جسور سخت‌تر است. ظرافت دقت می‌خواهد. شدت بصری را در طراحی‌هایی که زیادی پرصدا، تهاجمی یا پرتحریک‌اند کم کن، بدون از‌دست‌دادنِ شخصیت یا عمومی‌شدنِ نتیجه.
 
 ---
 
-## Visitor mode
+## حالت بازدیدکننده
 
-Persuade + Experience: "quieter" means more restrained palette, more whitespace, more typographic air. Drama is reduced, not eliminated; the POV stays intact.
+اقناع + تجربه: «آرام‌تر» یعنی پالت خویشتن‌دارتر، فضای سفید بیشتر، هوای تایپوگرافیک بیشتر. درام کم می‌شود، حذف نمی‌شود؛ دیدگاه دست‌نخورده می‌ماند.
 
-Operate + Read: "quieter" means reducing visual noise. Fewer background accents, flatter cards, less color, less motion. The tool should disappear more completely into the task.
+عملیات + خواندن: «آرام‌تر» یعنی کم‌کردن نوفهٔ بصری. تاکید پس‌زمینه‌ای کمتر، کارت‌های تخت‌تر، رنگ کمتر، حرکت کمتر. ابزار باید کامل‌تر در کار محو شود.
 
 ---
 
-## Assess Current State
+## سنجش وضعیت فعلی
 
-Analyze what makes the design feel too intense:
+تحلیل کن چه چیزی طراحی را بیش‌ازحد شدید حس می‌کند:
 
-1. **Identify intensity sources**:
-   - **Color saturation**: Overly bright or saturated colors
-   - **Contrast extremes**: Too much high-contrast juxtaposition
-   - **Visual weight**: Too many bold, heavy elements competing
-   - **Animation excess**: Too much motion or overly dramatic effects
-   - **Complexity**: Too many visual elements, patterns, or decorations
-   - **Scale**: Everything is large and loud with no hierarchy
+1. **شناسایی منابع شدت**:
+   - **اشباع رنگ**: رنگ‌های زیادی روشن یا اشباع
+   - **افراط کنتراست**: همنشینیِ پرکنتراستِ خیلی زیاد
+   - **وزن بصری**: عنصرهای ضخیم و سنگینِ زیادی که با هم رقابت می‌کنند
+   - **اضافهٔ انیمیشن**: حرکت خیلی زیاد یا افکت‌های خیلی پرنمایش
+   - **پیچیدگی**: عنصر، الگو یا تزئینِ بصریِ خیلی زیاد
+   - **مقیاس**: همه‌چیز بزرگ و پرصدا بدون سلسله‌مراتب
 
-2. **Understand the context**:
-   - What's the purpose? (Marketing vs tool vs reading experience)
-   - Who's the audience? (Some contexts need energy)
-   - What's working? (Don't throw away good ideas)
-   - What's the core message? (Preserve what matters)
+2. **بافت را بفهم**:
+   - هدف چیست؟ (بازاریابی در برابر ابزار در برابر تجربهٔ خواندن)
+   - مخاطب کیست؟ (بعضی بافت‌ها انرژی می‌خواهند)
+   - چه چیزی کار می‌کند؟ (ایده‌های خوب را دور نریز)
+   - پیام اصلی چیست؟ (آنچه مهم است حفظ کن)
 
-If any of these are unclear from the codebase, do not guess. Ask with the AskUserQuestion tool and wait for the answer before continuing.
+اگر هرکدام از این‌ها از کدبیس روشن نیست، حدس نزن. با ابزار AskUserQuestion بپرس و قبل از ادامه، منتظر پاسخ بمان.
 
-"Quieter" means refined and easier on the eyes, not generic. Generic quiet looks like gray text on white, one sans at a uniform weight, and a grid of identical cards; restraint still needs a point of view.
+«آرام‌تر» یعنی پخته و راحت‌تر برای چشم، نه عمومی. آرامیِ عمومی یعنی متن خاکستری روی سفید، یک سانس با وزن یکنواخت، و گرید کارت‌های یکسان؛ خویشتن‌داری هم دیدگاه می‌خواهد.
 
-## Plan Refinement
+## برنامه‌ریزی پالایش
 
-Create a strategy to reduce intensity while maintaining impact:
+راهبردی بساز که شدت را با حفظ اثر کم کند:
 
-- **Color approach**: Desaturate or shift to more restrained tones?
-- **Hierarchy approach**: Which elements should stay bold (very few), which should recede?
-- **Simplification approach**: What can be removed entirely?
-- **Sophistication approach**: How can we signal quality through restraint?
+- **رویکرد رنگ**: اشباع‌زدایی یا رفتن به لحن‌های خویشتن‌دارتر؟
+- **رویکرد سلسله‌مراتب**: کدام عناصر باید ضخیم بمانند (خیلی کم)، کدام پس بروند؟
+- **رویکرد ساده‌سازی**: چه چیزی کاملاً قابل‌حذف است؟
+- **رویکرد پیچیدگی‌آگاهی**: چطور می‌شود از خویشتن‌داری کیفیت را فهماند؟
 
-Subtlety requires precision. Quiet without intent collapses to generic.
+ظرافت دقت می‌خواهد. آرامیِ بی‌نیت به عمومی فرومی‌ریزد.
 
-## Refine the Design
+## طراحی را پالایش کن
 
-Systematically reduce intensity across these dimensions:
+شدت را سیستماتیک در این ابعاد کم کن:
 
-### Color Refinement
-- **Reduce saturation**: Shift from fully saturated to 70-85% saturation
-- **Soften palette**: Replace bright colors with muted tones
-- **Reduce color variety**: Use fewer colors more thoughtfully
-- **Neutral dominance**: Let neutrals do more work, use color as accent (10% rule)
-- **Gentler contrasts**: High contrast only where it matters most
-- **Tinted grays**: Use warm or cool tinted grays instead of pure gray. Adds depth without loudness
-- **Never gray on color**: If you have gray text on a colored background, use a darker shade of that color or transparency instead
+### پالایش رنگ
+- **اشباع را کم کن**: از کاملاً اشباع به ۷۰-۸۵٪ اشباع
+- **پالت را نرم کن**: رنگ‌های پرروشن را با لحن‌های خاموش جایگزین کن
+- **تنوع رنگ را کم کن**: رنگ‌های کمتر با تفکر بیشتر
+- **سیطرهٔ خنثی‌ها**: بگذار خنثی‌ها کار بیشتری بکنند، رنگ به‌عنوان تاکید (قاعدهٔ ۱۰٪)
+- **کنتراست‌های نرم‌تر**: کنتراست بالا فقط جایی که بیشترین اهمیت را دارد
+- **خاکستری‌های رنگ‌مایه‌دار**: به‌جای خاکستری خالص، خاکستری با رنگ‌مایهٔ گرم یا سرد. عمق می‌دهد بدون پرصدا بودن
+- **هرگز خاکستری روی رنگ نه**: اگر متن خاکستری روی پس‌زمینهٔ رنگی داری، به‌جایش سایهٔ تیره‌تر همان رنگ یا شفافیت
 
-### Visual Weight Reduction
-- **Typography**: Reduce font weights (900 → 600, 700 → 500), decrease sizes where appropriate
-- **Hierarchy through subtlety**: Use weight, size, and space instead of color and boldness
-- **White space**: Increase breathing room, reduce density
-- **Borders & lines**: Reduce thickness, decrease opacity, or remove entirely
+### کاهش وزن بصری
+- **تایپوگرافی**: وزن‌های فونت را کم کن (۹۰۰ → ۶۰۰، ۷۰۰ → ۵۰۰)، سایزها را جایی که مناسب است کوچک کن
+- **سلسله‌مراتب از راه ظرافت**: به‌جای رنگ و ضخامت، از وزن، سایز و فضا استفاده کن
+- **فضای سفید**: فضای نفس بیشتر، تراکم کمتر
+- **حاشیه‌ها و خط‌ها**: ضخامت کمتر، شفافیت کمتر، یا حذف کامل
 
-### Simplification
-- **Remove decorative elements**: Gradients, shadows, patterns, textures that don't serve purpose
-- **Simplify shapes**: Reduce border radius extremes, simplify custom shapes
-- **Reduce layering**: Flatten visual hierarchy where possible
-- **Clean up effects**: Reduce or remove blur effects, glows, multiple shadows
+### ساده‌سازی
+- **عناصر تزئینی را حذف کن**: گرادیان‌ها، سایه‌ها، الگوها و بافت‌هایی که کارکرد ندارند
+- **شکل‌ها را ساده کن**: افراط شعاع گوشه را کم کن، شکل‌های سفارشی را ساده کن
+- **لایه‌بندی را کم کن**: جایی که ممکن است سلسله‌مراتب بصری را تخت کن
+- **افکت‌ها را تمیز کن**: بلور، درخشش، سایه‌های چندگانه را کم یا حذف کن
 
-### Motion Reduction
-- **Reduce animation intensity**: Shorter distances (10-20px instead of 40px), gentler easing
-- **Remove decorative animations**: Keep functional motion, remove flourishes
-- **Subtle micro-interactions**: Replace dramatic effects with gentle feedback
-- **Refined easing**: Use ease-out-quart for smooth, understated motion. Never bounce or elastic
-- **Remove animations entirely** if they're not serving a clear purpose
+### کاهش حرکت
+- **شدت انیمیشن را کم کن**: مسافت‌های کوتاه‌تر (۱۰-۲۰px به‌جای ۴۰px)، ایزینگ نرم‌تر
+- **انیمیشن‌های تزئینی را حذف کن**: حرکت کارکردی بماند، پرشورها برود
+- **تعامل‌های ریزِ ظریف**: افکت‌های پرنمایش را با بازخورد ملایم جایگزین کن
+- **ایزینگ پخته**: برای حرکتِ نرم و کم‌ادعا از ease-out-quart استفاده کن. هرگز جهش یا فنر
+- **انیمیشن‌ها را کامل حذف کن** اگر هدف روشنی ندارند
 
-### Composition Refinement
-- **Reduce scale jumps**: Smaller contrast between sizes creates calmer feeling
-- **Align to grid**: Bring rogue elements back into systematic alignment
-- **Even out spacing**: Replace extreme spacing variations with consistent rhythm
+### پالایش ترکیب‌بندی
+- **پرش‌های مقیاس را کم کن**: کنتراست کوچک‌تر بین سایزها حس آرام‌تری می‌سازد
+- **به گرید تراز کن**: عناصر سرکش را به ترازِ سیستماتیک برگردان
+- **فاصله‌گذاری را یکنواخت کن**: تغییرهای افراطی فاصله را با ریتم یکدست جایگزین کن
 
-**Avoid**:
-- Make everything the same size/weight (hierarchy still matters)
-- Remove all color (quiet ≠ grayscale)
-- Eliminate all personality (maintain character through refinement)
-- Sacrifice usability for aesthetics (functional elements still need clear affordances)
-- Make everything small and light (some anchors needed)
+**بپرهیز از**:
+- یکسان‌کردن همه‌چیز در سایز/وزن (سلسله‌مراتب همچنان مهم است)
+- حذف همهٔ رنگ (آرام ≠ سیاه‌وسفید)
+- حذف همهٔ شخصیت (کاراکتر را از راه پالایش حفظ کن)
+- قربانی‌کردن استفاده‌پذیری برای زیبایی‌شناسی (عناصر کارکردی همچنان امکانِ شفاف می‌خواهند)
+- کوچک‌و‌سبک‌کردن همه‌چیز (بعضی لنگرها لازم‌اند)
 
-## Verify Quality
+## کیفیت را راستی‌آزمایی کن
 
-Ensure refinement maintains quality:
+مطمئن شو پالایش کیفیت را حفظ کرده:
 
-- **Still functional**: Can users still accomplish tasks easily?
-- **Still distinctive**: Does it have character, or is it generic now?
-- **Better reading**: Is text easier to read for extended periods?
-- **Restrained, not absent**: Does the POV survive the cuts?
+- **هنوز کارا**: کاربران هنوز راحت کارهایشان را انجام می‌دهند؟
+- **هنوز متمایز**: شخصیت دارد یا حالا عمومی شده؟
+- **خواندن بهتر**: متن برای خواندنِ طولانی راحت‌تر شده؟
+- **خویشتن‌دار، نه غایب**: دیدگاه از برش‌ها جان سالم به در برده؟
 
-When the result feels right, hand off to `/impeccable polish` for the final pass.
+وقتی نتیجه درست حس می‌شود، پاسِ نهایی را به `/jala polish` بسپار.

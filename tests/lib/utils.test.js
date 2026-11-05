@@ -620,10 +620,10 @@ describe('replacePlaceholders', () => {
 
   test('should replace {{ask_instruction}} with provider-specific value', () => {
     const result = replacePlaceholders('{{ask_instruction}}', 'claude-code');
-    expect(result).toBe('Ask with the AskUserQuestion tool and wait for the answer before continuing.');
+    expect(result).toBe("با ابزار AskUserQuestion بپرس و قبل از ادامه، منتظر پاسخ بمان.");
 
     const cursorResult = replacePlaceholders('{{ask_instruction}}', 'cursor');
-    expect(cursorResult).toBe('Ask the user directly to clarify what you cannot infer.');
+    expect(cursorResult).toBe("آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس.");
   });
 
   test('should replace {{available_commands}} with command list', () => {
@@ -652,7 +652,7 @@ describe('replacePlaceholders', () => {
 
   test('should replace multiple placeholders in the same string', () => {
     const result = replacePlaceholders('{{model}} uses {{config_file}} and {{ask_instruction}}', 'claude-code');
-    expect(result).toBe('Claude uses CLAUDE.md and Ask with the AskUserQuestion tool and wait for the answer before continuing.');
+    expect(result).toBe('Claude uses CLAUDE.md and ' + "با ابزار AskUserQuestion بپرس و قبل از ادامه، منتظر پاسخ بمان.");
   });
 
   test('should replace multiple occurrences of the same placeholder', () => {

@@ -1,24 +1,24 @@
-# Command guidance
+# راهنمای فرمان‌ها
 
-## Workflow questions
+## سؤال‌های گردش‌کار
 
-Give advice without executing commands; the menu below is only for bare invocations. Consult relevant command references as needed for prerequisites and scope. Link to the [docs](https://impeccable.style/docs/) for the broader workflow guide. If the user also requests execution, follow that request.
+مشاوره بده بدون اجرای فرمان؛ منوی پایین فقط برای فراخوانیِ لخت است. برای پیش‌نیازها و دامنه، در صورت نیاز مرجع فرمان‌های مرتبط را ببین. برای راهنمای جامع‌تر گردش‌کار به [مستندات](https://impeccable.style/docs/) لینک بده. اگر کاربر هم‌زمان اجرا را هم خواسته، همان درخواست را دنبال کن.
 
-## No-argument routing: the context-aware menu
+## مسیریابی بدون آرگومان: منوی آگاه‌ازبافت
 
-Read this when the user invokes `/impeccable` with no argument. They are asking "what should I do?" Make the menu context-aware instead of static.
+وقتی کاربر `/jala` را بدون آرگومان صدا زد این را بخوان. او می‌پرسد «چه کار کنم؟» منو را به‌جای ایستا، آگاه‌ازبافت بساز.
 
-Setup has already run `impeccable context`. If that reported `NO_PRODUCT_MD`, the project has no captured context yet: lead the menu with `/impeccable init` as the top recommendation (one line on why) and still show the rest below; don't silently jump into init. Otherwise run `.omp/skills/impeccable/scripts/impeccable signals` once and read its JSON, then lead with the **2-3 highest-value next commands**, each with a one-line reason pulled from the signals, followed by the full menu (the Commands table in SKILL.md, grouped by category). **Never auto-run a command; the recommendation is a suggestion the user confirms.**
+Setup از قبل `impeccable context` را اجرا کرده. اگر `NO_PRODUCT_MD` گزارش شده، پروژه هنوز context ثبت‌شده‌ای ندارد: منو را با `/jala init` به‌عنوان توصیهٔ اول شروع کن (یک خط دربارهٔ چرا) و بقیه را پایین نشان بده؛ بی‌سروصدا وارد init نپر. در غیر این صورت یک‌بار `.omp/skills/impeccable/scripts/impeccable signals` را اجرا کن و JSON‌اش را بخوان، بعد با **۲-۳ فرمانِ بعدیِ پربارترین** شروع کن — هر کدام با یک خط دلیل که از سیگنال‌ها گرفته شده — و بعد منوی کامل (جدول فرمان‌ها در SKILL.md، گروه‌بندی‌شده بر اساس دسته). **هرگز فرمانی را خودکار اجرا نکن؛ توصیه پیشنهادی است که کاربر تأییدش می‌کند.**
 
-Reason over the signals; there is no score to obey:
+روی سیگنال‌ها استدلال کن؛ نمره‌ای برای اطاعت وجود ندارد:
 
-- `setup.hasDesign` false while `setup.hasCode` true → `document` (capture the visual system).
-- `critique.latest` is `null` → the project has never been critiqued; for a set-up project with a real surface, offering `/impeccable critique <surface>` is a strong default.
-- `critique.latest` with a low `score` or non-zero `p0` / `p1` → `polish` (it reads that snapshot as its backlog and closes it when stale or cleared).
-- `git.changedFiles` pointing at one surface → scope `audit` or `polish` to those files specifically, naming them.
-- `devServer.running` true → `live` is available for in-browser iteration, and `generate` for one-shot variant runs on a named element; if false, don't lead with either. **`live`, `generate`, and the bundled `impeccable detect` are web-only.** If `setup.platform` is `ios`, `android`, or `adaptive`, don't lead with any of them; the browser overlay and the HTML rule engine don't apply to native app code.
-- Otherwise group by intent (build new / improve what's there / iterate visually), tailored to the current surface and `setup.platform`.
+- `setup.hasDesign` نادرست در حالی که `setup.hasCode` درست است → `document` (ثبت سیستم بصری).
+- `critique.latest` برابر `null` است → پروژه هرگز نقد نشده؛ برای پروژهٔ راه‌اندازی‌شده با سطح واقعی، پیشنهادِ `/jala critique <surface>` پیش‌فرضِ قوی‌ای است.
+- `critique.latest` با نمرهٔ پایین یا `p0` / `p1` غیرصفر → `polish` (آن اسنپ‌شات را به‌عنوان بک‌لاگ می‌خواند و وقتی کهنه یا پاک شد می‌بنددش).
+- `git.changedFiles` که به یک سطح اشاره می‌کند → `audit` یا `polish` را مخصوص همان فایل‌ها محدود کن و نامشان را ببر.
+- `devServer.running` درست → `live` برای تکرار درون‌مرورگری در دسترس است و `generate` برای اجرای واریانتِ یک‌باره روی عنصر نام‌دار؛ اگر نادرست است، هیچ‌کدام را جلوی منو نگذار. **`live`، `generate` و `impeccable detect`ِ باندل‌شده فقط وب‌اند.** اگر `setup.platform` برابر `ios` یا `android` یا `adaptive` است، هیچ‌کدام را جلو نگذار؛ اورلی مرورگر و موتور قواعد HTML به کد اپ نیتیو نمی‌خورند.
+- در غیر این صورت بر اساس نیت گروه‌بندی کن (ساختِ جدید / بهبودِ موجود / تکرار بصری)، متناسب با سطح فعلی و `setup.platform`.
 
-**If `scan.targets` is non-empty and `setup.platform` is not `ios`/`android`/`adaptive`, run `.omp/skills/impeccable/scripts/impeccable detect --json <scan.targets joined by spaces>` once** (the bundled detector over local files: no network, no npx; it reads HTML/CSS, so skip it for native projects). `scan.via` tells you what they are: `git-changes` (the markup/style files in your dirty tree, the most relevant set), `source-dir` (e.g. `src`, `app`), `html`, or `root`. Fold the hits into your picks: many quality / contrast hits → `audit` or `polish`; a specific slop family → the matching command (gradient text or eyebrows → `quieter` / `typeset`, flat or gray palette → `colorize`, and so on). It's a real, current signal that beats guessing. If detect errors or the tree is large and slow, skip it and recommend the user run `audit` themselves; never block the suggestion on it.
+**اگر `scan.targets` خالی نیست و `setup.platform` یکی از `ios`/`android`/`adaptive` نیست، یک‌بار `.omp/skills/impeccable/scripts/impeccable detect --json <scan.targets joined by spaces>` را اجرا کن** (دیتکتورِ باندل‌شده روی فایل‌های لوکال: بدون شبکه، بدون npx؛ HTML/CSS می‌خواند، پس برای پروژه‌های نیتیو ازش بگذر). `scan.via` می‌گوید این‌ها چه‌اند: `git-changes` (فایل‌های markup/style درخت کثیف تو، مرتبط‌ترین مجموعه)، `source-dir` (مثل `src`، `app`)، `html` یا `root`. برخوردها را در انتخاب‌هایت ادغام کن: برخوردهای زیاد کیفیت/کنتراست → `audit` یا `polish`؛ یک خانوادهٔ مشخص اسلاپ → فرمان متناظر (متن گرادیانی یا ابروها → `quieter` / `typeset`، پالت تخت یا خاکستری → `colorize` و الی آخر). این سیگنال واقعی و فعلی است و حدس را می‌زند. اگر detect خطا داد یا درخت بزرگ و کند است، ازش بگذر و به کاربر پیشنهاد بده خودش `audit` را اجرا کند؛ هرگز پیشنهاد را روی آن قفل نکن.
 
-Keep it to 2-3 pointed picks with the exact command to type. The menu stays the fallback; the recommendation is the lede.
+حاصل را در ۲-۳ انتخابِ نیش‌دار با فرمانِ دقیقِ قابل‌تایپ خلاصه کن. منو fallback می‌ماند؛ توصیه، لیدِ ماجراست.

@@ -1,37 +1,37 @@
-Performance is a feature. Identify the actual bottleneck for THIS interface, fix it, then measure. Don't optimize what isn't slow.
+کارایی یک قابلیت است. گلوگاه واقعیِ همین رابط را شناسایی کن، رفعش کن، سپس اندازه بگیر. چیزی که کند نیست را بهینه نکن.
 
-## Assess Performance Issues
+## سنجش مشکلات کارایی
 
-Understand current performance and identify problems:
+کارایی فعلی را بفهم و مشکلات را شناسایی کن:
 
-1. **Measure current state**:
-   - **Core Web Vitals**: LCP, INP, CLS scores
-   - **Load time**: Time to interactive, first contentful paint
-   - **Bundle size**: JavaScript, CSS, image sizes
-   - **Runtime performance**: Frame rate, memory usage, CPU usage
-   - **Network**: Request count, payload sizes, waterfall
+1. **وضعیت فعلی را اندازه بگیر**:
+   - **Core Web Vitals**: نمره‌های LCP، INP، CLS
+   - **زمان بارگذاری**: زمان تا تعاملی شدن، نخستین رنگ‌آمیزی محتوا
+   - **حجم باندل**: حجم JavaScript، CSS، تصاویر
+   - **کارایی اجرا**: نرخ فریم، مصرف حافظه، مصرف CPU
+   - **شبکه**: تعداد درخواست‌ها، حجم payloadها، واترفال
 
-2. **Identify bottlenecks**:
-   - What's slow? (Initial load? Interactions? Animations?)
-   - What's causing it? (Large images? Expensive JavaScript? Layout thrashing?)
-   - How bad is it? (Perceivable? Annoying? Blocking?)
-   - Who's affected? (All users? Mobile only? Slow connections?)
+2. **گلوگاه‌ها را شناسایی کن**:
+   - چه چیزی کند است؟ (بارگذاری اولیه؟ تعامل‌ها؟ انیمیشن‌ها؟)
+   - چه چیزی باعثش می‌شود؟ (تصاویر بزرگ؟ JavaScript پرهزینه؟ آشفتگی چیدمان (layout thrashing)؟)
+   - چقدر بد است؟ (محسوس؟ آزاردهنده؟ مسدودکننده؟)
+   - چه کسانی تحت تأثیرند؟ (همهٔ کاربران؟ فقط موبایل؟ اتصال‌های کند؟)
 
-Measure before and after. Optimizing without a measurement spends effort on things that do not matter.
+قبل و بعد اندازه بگیر. بهینه‌سازی بدون اندازه‌گیری، انرژی را صرف چیزهایی می‌کند که اهمیتی ندارند.
 
-## Optimization Strategy
+## استراتژی بهینه‌سازی
 
-Create systematic improvement plan:
+یک پلن بهبود نظام‌مند بساز:
 
-### Loading Performance
+### کارایی بارگذاری
 
-**Optimize Images**:
-- Use modern formats (WebP, AVIF)
-- Proper sizing (don't load 3000px image for 300px display)
-- Lazy loading for below-fold images
-- Responsive images (`srcset`, `picture` element)
-- Compress images (80-85% quality is usually imperceptible)
-- Use CDN for faster delivery
+**بهینه‌سازی تصاویر**:
+- از قالب‌های مدرن استفاده کن (WebP، AVIF)
+- اندازهٔ درست (برای نمایش ۳۰۰ پیکسلی، تصویر ۳۰۰۰ پیکسلی بارگذاری نکن)
+- بارگذاری تنبل برای تصاویر زیر خط دید
+- تصاویر واکنش‌گرا (`srcset`، عنصر `picture`)
+- تصاویر را فشرده کن (کیفیت ۸۰ تا ۸۵٪ معمولاً محسوس نیست)
+- برای تحویل سریع‌تر از CDN استفاده کن
 
 ```html
 <img
@@ -42,30 +42,30 @@ Create systematic improvement plan:
 />
 ```
 
-**Reduce JavaScript Bundle**:
-- Code splitting (route-based, component-based)
-- Tree shaking (remove unused code)
-- Remove unused dependencies
-- Lazy load non-critical code
-- Use dynamic imports for large components
+**کاهش باندل JavaScript**:
+- تقسیم کد (بر پایهٔ مسیر، بر پایهٔ کامپوننت)
+- تری‌شیکینگ (حذف کد استفاده‌نشده)
+- حذف وابستگی‌های استفاده‌نشده
+- بارگذاری تنبل کدهای غیرحیاتی
+- برای کامپوننت‌های بزرگ از import پویا استفاده کن
 
 ```javascript
 // Lazy load heavy component
 const HeavyChart = lazy(() => import('./HeavyChart'));
 ```
 
-**Optimize CSS**:
-- Remove unused CSS
-- Critical CSS inline, rest async
-- Minimize CSS files
-- Use CSS containment for independent regions
+**بهینه‌سازی CSS**:
+- CSS استفاده‌نشده را حذف کن
+- CSS حیاتی را درون‌خطی کن، بقیه را ناهمگام بارگذاری کن
+- فایل‌های CSS را کوچک (minify) کن
+- برای ناحیه‌های مستقل از CSS containment استفاده کن
 
-**Optimize Fonts**:
-- Use `font-display: swap` or `optional`
-- Subset fonts (only characters you need)
-- Preload critical fonts
-- Use system fonts when appropriate
-- Limit font weights loaded
+**بهینه‌سازی فونت‌ها**:
+- از `font-display: swap` یا `optional` استفاده کن
+- فونت‌ها را ساب‌ست کن (فقط نویسه‌های لازم)
+- فونت‌های حیاتی را پیش‌بارگذاری کن
+- در جای خود از فونت‌های سیستمی استفاده کن
+- تعداد وزن‌های بارگذاری‌شدهٔ فونت را محدود کن
 
 ```css
 @font-face {
@@ -76,16 +76,16 @@ const HeavyChart = lazy(() => import('./HeavyChart'));
 }
 ```
 
-**Optimize Loading Strategy**:
-- Critical resources first (async/defer non-critical)
-- Preload critical assets
-- Prefetch likely next pages
-- Service worker for offline/caching
-- HTTP/2 or HTTP/3 for multiplexing
+**بهینه‌سازی استراتژی بارگذاری**:
+- منابع حیاتی اول (غیرحیاتی‌ها با async/defer)
+- دارایی‌های حیاتی را پیش‌بارگذاری کن
+- صفحات بعدیِ محتمل را پیش‌واکشی کن
+- سرویس‌ورکر برای آفلاین/کش
+- HTTP/2 یا HTTP/3 برای مالتی‌پلکس
 
-### Rendering Performance
+### کارایی رندر
 
-**Avoid Layout Thrashing**:
+**از آشفتگی چیدمان (layout thrashing) پرهیز کن**:
 ```javascript
 // ❌ Bad: Alternating reads and writes (causes reflows)
 elements.forEach(el => {
@@ -100,22 +100,22 @@ elements.forEach((el, i) => {
 });
 ```
 
-**Optimize Rendering**:
-- Use CSS `contain` property for independent regions
-- Minimize DOM depth (flatter is faster)
-- Reduce DOM size (fewer elements)
-- Use `content-visibility: auto` for long lists
-- Virtual scrolling for very long lists (react-window, TanStack Virtual)
+**بهینه‌سازی رندر**:
+- برای ناحیه‌های مستقل از پراپرتی `contain` در CSS استفاده کن
+- عمق DOM را به حداقل برسان (تخت‌تر سریع‌تر است)
+- حجم DOM را کم کن (عناصر کمتر)
+- برای فهرست‌های طولانی از `content-visibility: auto` استفاده کن
+- اسکرول مجازی برای فهرست‌های خیلی طولانی (react-window، TanStack Virtual)
 
-**Reduce Paint & Composite**:
-- Use `transform` and `opacity` for reliable movement, but allow blur, filters, masks, clip paths, shadows, and color shifts when they create meaningful polish
-- Avoid casual animation of layout-driving properties (`width`, `height`, `top`, `left`, margins)
-- Use `will-change` sparingly for known expensive operations
-- Bound expensive paint areas for blur/filter/shadow effects (smaller and isolated is faster)
+**کاهش رنگ‌آمیزی و کامپوزیت**:
+- برای حرکتِ قابل‌اعتماد از `transform` و `opacity` استفاده کن، اما blur، فیلترها، ماسک‌ها، مسیرهای برش، سایه‌ها و تغییر رنگ‌ها را وقتی پالایشِ معناداری می‌آفرینند مجاز بدان
+- از انیمیشن‌کردنِ سرسریِ پراپرتی‌های مؤثر بر چیدمان (`width`، `height`، `top`، `left`، حاشیه‌ها) پرهیز کن
+- `will-change` را به‌ندرت و فقط برای عملیات‌های گرانِ شناخته‌شده به کار ببر
+- ناحیهٔ رنگ‌آمیزیِ گرانِ افکت‌های blur/فیلتر/سایه را محدود کن (کوچک‌تر و مجزا، سریع‌تر است)
 
-### Animation Performance
+### کارایی انیمیشن
 
-**GPU Acceleration**:
+**شتاب‌دهی GPU**:
 ```css
 /* ✅ GPU-accelerated (fast) */
 .animated {
@@ -130,12 +130,12 @@ elements.forEach((el, i) => {
 }
 ```
 
-**Smooth 60fps**:
-- Target 16ms per frame (60fps)
-- Use `requestAnimationFrame` for JS animations
-- Debounce/throttle scroll handlers
-- Use CSS animations when possible
-- Avoid long-running JavaScript during animations
+**روانی در ۶۰fps**:
+- هدف، ۱۶ میلی‌ثانیه در هر فریم است (۶۰fps)
+- برای انیمیشن‌های JS از `requestAnimationFrame` استفاده کن
+- هندلرهای اسکرول را debounce/throttle کن
+- تا جایی که می‌شود از انیمیشن‌های CSS استفاده کن
+- از اجرای طولانی JavaScript در حین انیمیشن‌ها پرهیز کن
 
 **Intersection Observer**:
 ```javascript
@@ -149,64 +149,64 @@ const observer = new IntersectionObserver((entries) => {
 });
 ```
 
-### React/Framework Optimization
+### بهینه‌سازی React/فریم‌ورک
 
-**React-specific**:
-- Use `memo()` for expensive components
-- `useMemo()` and `useCallback()` for expensive computations
-- Virtualize long lists
-- Code split routes
-- Avoid inline function creation in render
-- Use React DevTools Profiler
+**مخصوص React**:
+- برای کامپوننت‌های پرهزینه از `memo()` استفاده کن
+- `useMemo()` و `useCallback()` برای محاسبات پرهزینه
+- فهرست‌های طولانی را مجازی کن
+- مسیرها را code split کن
+- از ساختن تابع درون‌خطی در render پرهیز کن
+- از React DevTools Profiler استفاده کن
 
-**Framework-agnostic**:
-- Minimize re-renders
-- Debounce expensive operations
-- Memoize computed values
-- Lazy load routes and components
+**مستقل از فریم‌ورک**:
+- رندرهای مجدد را به حداقل برسان
+- عملیات‌های پرهزینه را debounce کن
+- مقادیر محاسبه‌شده را memoize کن
+- مسیرها و کامپوننت‌ها را تنبل بارگذاری کن
 
-### Network Optimization
+### بهینه‌سازی شبکه
 
-**Reduce Requests**:
-- Combine small files
-- Use SVG sprites for icons
-- Inline small critical assets
-- Remove unused third-party scripts
+**کاهش درخواست‌ها**:
+- فایل‌های کوچک را ترکیب کن
+- برای آیکون‌ها از SVG اسپرایت استفاده کن
+- دارایی‌های کوچکِ حیاتی را درون‌خطی کن
+- اسکریپت‌های شخص ثالثِ استفاده‌نشده را حذف کن
 
-**Optimize APIs**:
-- Use pagination (don't load everything)
-- GraphQL to request only needed fields
-- Response compression (gzip, brotli)
-- HTTP caching headers
-- CDN for static assets
+**بهینه‌سازی APIها**:
+- از صفحه‌بندی استفاده کن (همه‌چیز را بارگذاری نکن)
+- با GraphQL فقط فیلدهای لازم را درخواست کن
+- فشرده‌سازی پاسخ (gzip، brotli)
+- هدرهای کش HTTP
+- CDN برای دارایی‌های استاتیک
 
-**Optimize for Slow Connections**:
-- Adaptive loading based on connection (navigator.connection)
-- Optimistic UI updates
-- Request prioritization
-- Progressive enhancement
+**بهینه‌سازی برای اتصال‌های کند**:
+- بارگذاری تطبیقی بر اساس اتصال (navigator.connection)
+- به‌روزرسانی‌های خوش‌بینانهٔ UI
+- اولویت‌بندی درخواست‌ها
+- بهبود تدریجی (progressive enhancement)
 
-## Core Web Vitals Optimization
+## بهینه‌سازی Core Web Vitals
 
-### Largest Contentful Paint (LCP < 2.5s)
-- Optimize hero images
-- Inline critical CSS
-- Preload key resources
-- Use CDN
-- Server-side rendering
+### بزرگ‌ترین رنگ‌آمیزی محتوا (LCP < 2.5s)
+- تصاویر هیرو را بهینه کن
+- CSS حیاتی را درون‌خطی کن
+- منابع کلیدی را پیش‌بارگذاری کن
+- از CDN استفاده کن
+- رندر سمت سرور
 
-### Interaction to Next Paint (INP < 200ms)
-- Break up long tasks
-- Defer non-critical JavaScript
-- Use web workers for heavy computation
-- Reduce JavaScript execution time
+### تعامل تا رنگ‌آمیزی بعدی (INP < 200ms)
+- تسک‌های طولانی را بشکن
+- JavaScript غیرحیاتی را به تعویق بینداز
+- محاسبات سنگین را به وب‌ورکر بسپار
+- زمان اجرای JavaScript را کم کن
 
-### Cumulative Layout Shift (CLS < 0.1)
-- Set dimensions on images and videos
-- Don't inject content above existing content
-- Use `aspect-ratio` CSS property
-- Reserve space for ads/embeds
-- Avoid animations that cause layout shifts
+### شیفت تجمعی چیدمان (CLS < 0.1)
+- برای تصاویر و ویدیوها ابعاد تعیین کن
+- محتوایی را بالای محتوای موجود تزریق نکن
+- از پراپرتی `aspect-ratio` در CSS استفاده کن
+- برای تبلیغات/امبد‌ها فضا رزرو کن
+- از انیمیشن‌هایی که شیفت چیدمان می‌دهند پرهیز کن
 
 ```css
 /* Reserve space for image */
@@ -215,43 +215,43 @@ const observer = new IntersectionObserver((entries) => {
 }
 ```
 
-## Performance Monitoring
+## پایش کارایی
 
-**Tools to use**:
-- Chrome DevTools (Lighthouse, Performance panel)
+**ابزارها**:
+- Chrome DevTools (Lighthouse، پنل Performance)
 - WebPageTest
 - Core Web Vitals (Chrome UX Report)
-- Bundle analyzers (webpack-bundle-analyzer)
-- Performance monitoring (Sentry, DataDog, New Relic)
+- تحلیلگرهای باندل (webpack-bundle-analyzer)
+- پایش کارایی (Sentry، DataDog، New Relic)
 
-**Key metrics**:
-- LCP, INP, CLS (Core Web Vitals; INP replaced FID in March 2024)
+**شاخص‌های کلیدی**:
+- LCP، INP، CLS (Core Web Vitals؛ INP در مارس ۲۰۲۴ جایگزین FID شد)
 - Time to Interactive (TTI)
 - First Contentful Paint (FCP)
 - Total Blocking Time (TBT)
-- Bundle size
-- Request count
+- حجم باندل
+- تعداد درخواست‌ها
 
-Measure on real devices with real network conditions. Desktop Chrome on a fast connection isn't representative.
+روی دستگاه‌های واقعی و با شرایط شبکهٔ واقعی اندازه بگیر. Chrome دسکتاپ روی اتصال سریع، نمایندهٔ واقعیت نیست.
 
-**Avoid**:
-- Optimize without measuring (premature optimization)
-- Sacrifice accessibility for performance
-- Break functionality while optimizing
-- Use `will-change` everywhere (creates new layers, uses memory)
-- Lazy load above-fold content
-- Optimize micro-optimizations while ignoring major issues (optimize the biggest bottleneck first)
-- Forget about mobile performance (often slower devices, slower connections)
+**از این‌ها پرهیز کن**:
+- بهینه‌سازی بدون اندازه‌گیری (بهینه‌سازی زودهنگام)
+- قربانی کردن دسترس‌پذیری برای کارایی
+- خراب کردن عملکرد در حین بهینه‌سازی
+- استفاده از `will-change` همه‌جا (لایهٔ جدید می‌سازد، حافظه مصرف می‌کند)
+- بارگذاری تنبل محتوای بالای خط دید
+- بهینه‌سازی‌های ریز در حالی که مشکلات بزرگ نادیده می‌مانند (اول گلوگاه بزرگ‌تر را بهینه کن)
+- فراموش کردن کارایی موبایل (معمولاً دستگاه‌های کندتر، اتصال‌های کندتر)
 
-## Verify Improvements
+## راستی‌آزمایی بهبودها
 
-Test that optimizations worked:
+تست کن که بهینه‌سازی‌ها جواب داده‌اند:
 
-- **Before/after metrics**: Compare Lighthouse scores
-- **Real user monitoring**: Track improvements for real users
-- **Different devices**: Test on low-end Android, not just flagship iPhone
-- **Slow connections**: Throttle to 3G, test experience
-- **No regressions**: Ensure functionality still works
-- **User perception**: Does it *feel* faster?
+- **شاخص‌های قبل/بعد**: نمره‌های Lighthouse را مقایسه کن
+- **پایش کاربر واقعی**: بهبودها را برای کاربران واقعی ردیابی کن
+- **دستگاه‌های متفاوت**: روی اندروید ضعیف تست کن، نه فقط آیفون پرچم‌دار
+- **اتصال‌های کند**: به 3G محدود کن و تجربه را تست کن
+- **بدون پس‌رفتگی**: مطمئن شو عملکرد همچنان کار می‌کند
+- **ادراک کاربر**: *حس* می‌شود سریع‌تر است؟
 
-When the user-facing numbers move, hand off to `/impeccable polish` for the final pass.
+وقتی اعدادِ روبه‌روی کاربر جابه‌جا شدند، برای پالایش نهایی کار را به `/jala polish` بسپار.

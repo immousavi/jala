@@ -1,6 +1,6 @@
 ---
-name: impeccable
-description: "Use when the user wants to design, redesign, shape, critique, audit, polish, simplify, harden, animate, or otherwise improve a frontend interface: websites, landing pages, dashboards, product UI, components, forms, settings, onboarding, empty states, and native iOS or Android screens. Handles UX review, hierarchy, layout, typography, color, motion, UX copy, accessibility, responsive behavior, edge cases, and capturing or documenting design systems (DESIGN.md, tokens). Also for making bland UI bolder, loud UI quieter, or ambitious visual effects. Not for backend-only or non-UI tasks."
+name: jala
+description: "وقتی کاربر می‌خواهد یک رابط کاربری را طراحی، بازطراحی، شکل‌دهی، نقد، ممیزی، پالایش، ساده‌سازی، سخت‌سازی، انیمیت یا به‌هرشکلی بهبود دهد: وب‌سایت‌ها، صفحه‌های فرود، داشبوردها، UI محصول، کامپوننت‌ها، فرم‌ها، تنظیمات، آنبوردینگ، حالت‌های خالی، و صفحه‌های iOS یا Android. پوشش می‌دهد: بازبینی UX، سلسله‌مراتب، چیدمان، تایپوگرافی فارسی (فونت‌های فارسی، نیم‌فاصله، ارقام فارسی)، رنگ، حرکت، متن UX، دسترس‌پذیری، رفتار واکنش‌گرا، حالت‌های مرزی، طراحی راست‌به‌چپ (RTL)، تقویم جلالی، و ثبت یا مستندسازی سیستم طراحی (DESIGN.md، توکن‌ها). منابع فارسی مثل vibefarsi.ir برای کامپوننت‌های آماده. برای سطح‌های انگلیسی هم واژگان کامل طراحی را فراهم می‌کند. Not for backend-only or non-UI tasks."
 version: 4.8.0
 license: Apache 2.0
 allowed-tools:
@@ -8,82 +8,84 @@ allowed-tools:
   - Bash(.agent/skills/impeccable/scripts/impeccable *)
 ---
 
-This skill gives you the tools and permission to make design that earns the name out-of-distribution craft. Work as an award-winning design director would: production-grade code, a clear POV, a deep grasp of what the client and its users need, and exceptional craft.
+این اسکیل به تو ابزار و اجازه می‌دهد طراحی‌ای بسازی که حِرفگی‌اش واقعاً از خارجِ توزیعِ عادی بیرون بزند. مثل یک مدیر خلاقِ برندهٔ جشنواره کار کن: کد در سطح پروداکشن، نگاهِ مشخص و شخصی‌دار، درک عمیق از آنچه مشتری و کاربرانش لازم دارند، و اجرای بی‌نقص.
 
-Core principles:
-- Finish the job. No hedging, no shortcuts: the deliverable is complete, except assets the user must provide.
-- Scale ambition to the surface's mode (see Modes). Persuade and Experience get full commitment: bold, distinct work with a point of view. On Operate and Read, ambition shows as precision and restraint, and patterns the visitor already knows earn their place.
-- Verify by looking at the rendered result at the sizes it ships at, and batch the checks: fix what one look shows before looking again, rather than screenshotting after every tweak.
+اصول اصلی:
+- کار را تمام کن. بی‌تعهدی و میان‌بر ممنوع: تحویل‌دادنی کامل است، به‌جز assetهایی که کاربر باید بدهد.
+- بلندپروازی را با حالتِ سطح تنظیم کن (بخش حالت‌ها را ببین). اقناع و تجربه تعهد کامل می‌خواهند: کارِ جسور و متمایز با دیدگاه مشخص. در عملیات و خواندن، بلندپروازی در دقت و ظرافت خودش را نشان می‌دهد و الگوهایی که بازدیدکننده از قبل می‌شناسد جای خودشان را دارند.
+- با نگاه‌کردن به نتیجهٔ رندرشده در همان اندازه‌هایی که عرضه می‌شود راستی‌آزمایی کن، و چک‌ها را دسته‌ای بزن: هرچه یک نگاه نشان داد را قبل از نگاه بعدی درست کن، نه بعد از هر تنظیم کوچک یک اسکرین‌شات.
 
-## Setup
+## راه‌اندازی
 
-1. Run `<skill-base-dir>/scripts/impeccable context` once per session, where `<skill-base-dir>` is the directory that contains this SKILL.md (the skill folder, not a plugin root two levels above it); keep cwd at the user's project. That base directory resolves every `.agent/skills/impeccable/scripts/impeccable <verb>` command in this skill and its references, and `.agent/skills/impeccable/scripts` is the fallback only when the runtime reports no base directory. On a Windows shell without `sh`, call `.agent/skills/impeccable/scripts/impeccable.cmd` instead. The launcher runs a self-contained binary that ships next to it or is downloaded once on first run; no Node or other runtime is required. Pass a named source file or route as `--target <path>`. It loads PRODUCT.md, DESIGN.md, the matching surface brief, and native-platform guidance when applicable; follow its directives and do not rerun it.
-2. Load the request's playbook: its Commands-table reference for an explicit/implied sub-command, or [reference/new-work.md](reference/new-work.md) for a new surface or replacement visual world. Inspect target and incumbent visual truth before editing. When the app cannot run, start with committed visual-regression goldens or screenshot fixtures; verify target and freshness against current tokens, CSS, components, or assets, resolve conflicts, and compare theme/variant captures.
-3. After resolving analysis and direction, read [reference/craft-floor.md](reference/craft-floor.md) immediately before any UI edit, including small refinements. It carries the quality floor, the absolute bans, and the reflexes no detector catches. Do not load it for planning-only work.
+1. در هر نشست یک بار `<skill-base-dir>/scripts/impeccable context` را اجرا کن؛ `<skill-base-dir>` پوشه‌ای است که همین SKILL.md در آن است (پوشهٔ اسکیل، نه ریشهٔ پلاگین دو سطح بالاتر)؛ cwd روی پروژهٔ کاربر بماند. این پوشهٔ پایه، همهٔ فرمان‌های `.agent/skills/impeccable/scripts/impeccable <verb>` در این اسکیل و مرجع‌هایش را حل می‌کند و `.agent/skills/impeccable/scripts` فقط وقتی استفاده می‌شود که runtime دایرکتوری پایه گزارش نکند؛ اگر `.agent/skills/impeccable/scripts` را در متنِ حل‌نشده دیدی، آن را با مسیر پوشهٔ `scripts/` کنار همین SKILL.md جایگزین کن. در شل ویندوزی بدون `sh` به‌جایش `.agent/skills/impeccable/scripts/impeccable.cmd` را صدا بزن. لانچر یک باینری خودکفا را اجرا می‌کند که کنار خودش هست یا در اولین اجرا یک‌بار دانلود می‌شود؛ به Node یا runtime دیگری نیاز ندارد. اگر کاربر فایل یا مسیر مشخصی را خواست، به‌عنوان `--target <path>` بده. این فرمان PRODUCT.md، DESIGN.md، بریفِ سطحِ مربوطه و در صورت لزوم راهنمای پلتفرم نیتیو را لود می‌کند؛ دستورالعمل‌هایش را دنبال کن و دوباره اجرایش نکن.
+2. پلی‌بوکِ درخواست را لود کن: برای زیرفرمانِ صریح یا ضمنی، مرجعش را از جدول فرمان‌ها؛ برای سطح جدید یا جهان بصری جایگزین، [reference/new-work.md](reference/new-work.md) را. قبل از ویرایش، حقیقت بصریِ هدف و طراحی موجود را ببین. وقتی اپ قابل اجرا نیست، از نمونه‌های مرجع (golden)ِ تست رگرسیون بصریِ کامیت‌شده یا فیکیستورهای اسکرین‌شات شروع کن؛ تازگی و هم‌خوانی آن‌ها را با توکن‌ها، CSS، کامپوننت‌ها یا assetهای فعلی بسنج، تعارض‌ها را حل کن، و کپچرهای تم/واریانت را مقایسه کن.
+3. بعد از حلِ تحلیل و جهت، بلافاصله قبل از هر ویرایش UI — حتی اصلاح کوچک — [reference/craft-floor.md](reference/craft-floor.md) را بخوان. این فایل خط پایه کیفیت، ممنوعیت‌های مطلق و غریزه‌هایی را دارد که هیچ دیتکتوری نمی‌گیرد. برای کارِ فقط-برنامه‌ریزی لودش نکن.
 
-**Launcher unavailable:** On refusal or failure, send a separate message **before the next tool call**: “Context loading did not run; I’ll read the existing project context directly.” Then read existing PRODUCT.md and DESIGN.md without inventing missing context, follow applicable steps 2–3, including reading [reference/craft-floor.md](reference/craft-floor.md) immediately before any UI edit, and continue through permitted tools. This applies to planning and editing; launcher failure alone does not block either.
+**سطوح فارسی:** وقتی محتوای سطح، برند یا زبان محصول فارسی است، پیش از اولین ویرایش UI این مرجع‌ها را هم بخوان: [fa-typography.md](reference/fa-typography.md) برای تایپوگرافی فارسی (ارتفاع خط، نیم‌فاصله، ارقام، ممنوعیت ایتالیک)، [fa-rtl.md](reference/fa-rtl.md) برای چیدمان راست‌به‌چپ، [fa-numbers-dates.md](reference/fa-numbers-dates.md) برای ارقام فارسی، تقویم جلالی، تومان و شناسه‌های ایرانی، و [fa-components.md](reference/fa-components.md) برای منابع فارسی و کامپوننت‌های آمادهٔ آزموده.
 
-## How to design
+**اگر لانچر در دسترس نبود:** در صورت رد شدن یا خطا، در یک پیام جداگانه **قبل از فراخوانی ابزار بعدی** بگو: «بارگذاری context اجرا نشد؛ مستقیم context موجود پروژه را می‌خوانم.» بعد PRODUCT.md و DESIGN.md موجود را بدون ازخوددرگذشتی دربارهٔ context غایب بخوان، مراحل ۲–۳ بالا شامل خواندن [reference/craft-floor.md](reference/craft-floor.md) قبل از هر ویرایش UI را دنبال کن، و با ابزارهای مجاز ادامه بده. این هم برای برنامه‌ریزی است هم برای ویرایش؛ خرابیِ لانچر به‌تنهایی هیچ‌کدام را متوقف نمی‌کند.
 
-- **The brief wins.** Honor pinned aesthetics, eras, materials, fonts, and palettes even when they conflict with a saturated-pattern warning. Redirecting a clear brief toward your taste is failure.
-- **Refinement preserves; redesign replaces.** Refinement keeps the incumbent identity, behavior, copy, and everything outside scope. Ask before replacing factual copy or adding claims. Redesign keeps product truth, content, function, native affordances, and constraints, but treats the old look as evidence and anti-reference; choose a replacement world in new-work and replace DESIGN.md. Never split the difference into polish on the discarded look.
-- **Loaded symbols stay out of the decoration.** A subject's world does not license emblems tied to militarism, supremacy, or hate movements as motifs, badges, or ornament, such as the Rising Sun flag's rays, the Confederate battle flag, or Nazi-era insignia and their stylised variants; reach for that world's neutral forms instead. Content that documents such a symbol as fact stays as it is.
-- **Visual authority is evidence, not a filename.** Missing DESIGN.md alone does not make a project greenfield; new-work decides whether to preserve, expand, or replace the incumbent world.
+## چطور طراحی کنیم
 
-## Modes
+- **بریف حرف آخر را می‌زند.** زیبایی‌شناسیِ پین‌شده، دوره، متریال، فونت و پالت را حتی وقتی با هشدار الگوی اشباع‌شده در تعارض‌اند محترم بشمار. کج‌کردن بریفِ شفاف به سمت سلیقهٔ خودت شکست است.
+- **پالایش حفظ می‌کند؛ بازطراحی جایگزین می‌کند.** پالایش، هویت برجا، رفتار، متن و هرچیز خارج از دامنه را نگه می‌دارد. پیش از جایگزینی متنِ واقعی یا افزودن ادعای جدید بپرس. بازطراحی حقیقت محصول، محتوا، کارکرد، امکانات نیتیو و محدودیت‌ها را نگه می‌دارد، اما نگاه قدیمی را شاهد می‌داند و ضد-مرجع است؛ در new-work جهانِ جایگزین را انتخاب کن و DESIGN.md را بازنویسی کن. هرگز وسط راه نمان و به نگاهِ کنارگذاشته پالایش نچسبان.
+- **نمادهای بارگذاری‌شده وارد تزئین نمی‌شوند.** جهانِ یک سوژه، مجوز نمادهای گره‌خورده به نظامی‌گری، برتری‌جویی یا جنبش‌های نفرت به‌عنوان موتیف، نشان یا تزئین نیست: مثل پرتوهای پرچم خورشیدِ تابان، پرچم نبرد کنفدراسیون، یا نشان‌های دورهٔ نازی و واریانت‌های استیلیزشده‌شان؛ به‌جایش فرم‌های خنثیِ همان جهان را بردار. محتوایی که چنین نمادی را به‌عنوان واقعیت مستند می‌کند، همان‌طور می‌ماند.
+- **اقتدار بصری شاهد است، نه نام فایل.** نبودِ DESIGN.md به‌تنهایی پروژه را سبز (greenfield) نمی‌کند؛ new-work تصمیم می‌گیرد جهان برجا حفظ شود، گسترش یابد یا جایگزین شود.
 
-The mode names what the visitor's success looks like on this surface.
+## حالت‌ها
 
-- **Persuade:** the visitor decides and acts; design is the product. Landing pages, marketing, campaigns, pricing. Earn attention and action. Ship real imagery when the brief needs it; follow the committed world, not category habit.
-- **Operate:** the visitor completes a task. App UI, dashboards, editors, admin, settings, tools. Scanability, consistency, native expectations, and the real usage scene outrank expression. Brand lives in precise details.
-- **Read:** the visitor understands something. Docs, articles, guides, help, changelogs. Structure for comprehension, then make the reading experience worth staying in.
-- **Experience:** the visitor is inside the work itself. Portfolios, galleries, showcases. Let the artifact lead from the first viewport; the interface recedes.
+حالت نام‌گذاری می‌کند که موفقیت بازدیدکننده روی این سطح چه شکلی است.
 
-Choose the mode from the requested surface, not the product, and persist it only in that surface brief. A tool's landing page is still Persuade; a fashion house's documentation is still Read; a docs index is Read, not Persuade. See [new-work.md](reference/new-work.md) for new surfaces and [operate.md](reference/operate.md) for deeper Operate/Read guidance.
+- **اقناع:** بازدیدکننده تصمیم می‌گیرد و اقدام می‌کند؛ طراحی خودِ محصول است. صفحه‌های فرود، بازاریابی، کمپین، قیمت‌گذاری. توجه و اقدام را بگیر. اگر بریف تصویر واقعی می‌خواهد، تصویر واقعی عرضه کن؛ به جهانِ متعهدشده پایبند باش، نه عادتِ دسته‌بندی.
+- **عملیات:** بازدیدکننده کاری را تمام می‌کند. UI اپ، داشبورد، ویرایشگر، ادمین، تنظیمات، ابزارها. اسکن‌پذیری، یکدستی، انتظارات نیتیو و صحنهٔ واقعی استفاده از ابراز سبقت می‌گیرند. برند در جزئیاتِ دقیق زندگی می‌کند.
+- **خواندن:** بازدیدکننده چیزی را می‌فهمد. مستندات، مقاله، راهنما، help، changelog. اول برای فهم ساختار بده، بعد تجربهٔ خواندن را ارزش ماندن کن.
+- **تجربه:** بازدیدکننده داخل خودِ اثر است. پورتفولیو، گالری، شوکیس. بگذار آرتیفکت از اولین ویوپورت رهبری کند؛ رابط پس می‌نشیند.
 
-## Commands
+حالت را از سطحِ درخواست‌شده انتخاب کن، نه از محصول؛ و فقط در بریفِ همان سطح نگه‌ش دار. صفحهٔ فرودِ یک ابزار همچنان اقناع است؛ مستندات یک خانهٔ مد همچنان خواندن؛ نمایهٔ مستندات خواندن است، نه اقناع. برای سطح‌های جدید [new-work.md](reference/new-work.md) و برای راهنمای عمیق‌تر عملیات/خواندن [operate.md](reference/operate.md) را ببین.
 
-| Command | Category | Description | Reference |
+## فرمان‌ها
+
+| فرمان | دسته | توضیح | مرجع |
 |---|---|---|---|
-| `craft [feature]` | Build | Deprecated alias for an ordinary new-work request | [reference/craft.md](reference/craft.md) |
-| `shape [feature]` | Build | Plan UX/UI before writing code | [reference/shape.md](reference/shape.md) |
-| `init` | Build | Capture durable product context in PRODUCT.md | [reference/init.md](reference/init.md) |
-| `document` | Build | Generate DESIGN.md from existing project code | [reference/document.md](reference/document.md) |
-| `extract [target]` | Build | Pull reusable tokens and components into design system | [reference/extract.md](reference/extract.md) |
-| `critique [target]` | Evaluate | UX design review with heuristic scoring | [reference/critique.md](reference/critique.md) |
-| `audit [target]` | Evaluate | Technical quality checks (a11y, perf, responsive) | [reference/audit.md](reference/audit.md) · native: [reference/audit.native.md](reference/audit.native.md) |
-| `polish [target]` | Refine | Final quality pass before shipping | [reference/polish.md](reference/polish.md) |
-| `bolder [target]` | Refine | Amplify safe or bland designs | [reference/bolder.md](reference/bolder.md) |
-| `quieter [target]` | Refine | Tone down aggressive or overstimulating designs | [reference/quieter.md](reference/quieter.md) |
-| `distill [target]` | Refine | Strip to essence, remove complexity | [reference/distill.md](reference/distill.md) |
-| `harden [target]` | Refine | Production-ready: errors, i18n, edge cases | [reference/harden.md](reference/harden.md) |
-| `onboard [target]` | Refine | Design first-run flows, empty states, activation | [reference/onboard.md](reference/onboard.md) |
-| `animate [target]` | Enhance | Add purposeful animations and motion | [reference/animate.md](reference/animate.md) |
-| `colorize [target]` | Enhance | Add strategic color to monochromatic UIs | [reference/colorize.md](reference/colorize.md) |
-| `typeset [target]` | Enhance | Improve typography hierarchy and fonts | [reference/typeset.md](reference/typeset.md) |
-| `layout [target]` | Enhance | Fix spacing, rhythm, and visual hierarchy | [reference/layout.md](reference/layout.md) |
-| `delight [target]` | Enhance | Add personality and memorable touches | [reference/delight.md](reference/delight.md) |
-| `overdrive [target]` | Enhance | Push past conventional limits | [reference/overdrive.md](reference/overdrive.md) |
-| `clarify [target]` | Fix | Improve UX copy, labels, and error messages | [reference/clarify.md](reference/clarify.md) |
-| `adapt [target]` | Fix | Adapt for different devices and screen sizes | [reference/adapt.md](reference/adapt.md) · native: [reference/adapt.native.md](reference/adapt.native.md) |
-| `optimize [target]` | Fix | Diagnose and fix UI performance | [reference/optimize.md](reference/optimize.md) |
-| `live` | Iterate | Visual variant mode: pick elements in the browser, iterate on alternatives | [reference/live.md](reference/live.md) |
-| `generate [n] [action] [element]` | Iterate | Variants, versions, or alternatives of a named element to choose from in the live browser; no manual picking | [reference/generate.md](reference/generate.md) |
+| `craft [feature]` | ساخت | نام مستعار منسوخ‌شده برای یک درخواست معمولی new-work | [reference/craft.md](reference/craft.md) |
+| `shape [feature]` | ساخت | برنامه‌ریزی UX/UI قبل از نوشتن کد | [reference/shape.md](reference/shape.md) |
+| `init` | ساخت | ثبت context پایدار محصول در PRODUCT.md | [reference/init.md](reference/init.md) |
+| `document` | ساخت | تولید DESIGN.md از کد موجود پروژه | [reference/document.md](reference/document.md) |
+| `extract [target]` | ساخت | برداشتن توکن‌ها و کامپوننت‌های تکرارشونده به سیستم طراحی | [reference/extract.md](reference/extract.md) |
+| `critique [target]` | ارزیابی | نقد طراحی UX با امتیازدهی اکتشافی | [reference/critique.md](reference/critique.md) |
+| `audit [target]` | ارزیابی | چک‌های کیفیت فنی (دسترس‌پذیری، کارایی، واکنش‌گرایی) | [reference/audit.md](reference/audit.md) · نیتیو: [reference/audit.native.md](reference/audit.native.md) |
+| `polish [target]` | پالایش | آخرین پاس کیفیت قبل از عرضه | [reference/polish.md](reference/polish.md) |
+| `bolder [target]` | پالایش | پرقدرت‌کردن طراحی‌های محافظه‌کار یا بی‌روح | [reference/bolder.md](reference/bolder.md) |
+| `quieter [target]` | پالایش | آرام‌کردن طراحی‌های تهاجمی یا پرتحریک | [reference/quieter.md](reference/quieter.md) |
+| `distill [target]` | پالایش | رساندن به جوهره، حذف پیچیدگی | [reference/distill.md](reference/distill.md) |
+| `harden [target]` | پالایش | آماده‌سازی برای پروداکشن: خطاها، بومی‌سازی، حالت‌های مرزی | [reference/harden.md](reference/harden.md) |
+| `onboard [target]` | پالایش | طراحی جریان‌های اولیه، حالت‌های خالی، فعال‌سازی | [reference/onboard.md](reference/onboard.md) |
+| `animate [target]` | تقویت | افزودن انیمیشن‌های هدفمند و حرکت | [reference/animate.md](reference/animate.md) |
+| `colorize [target]` | تقویت | افزودن رنگ راهبردی به UIهای تک‌رنگ | [reference/colorize.md](reference/colorize.md) |
+| `typeset [target]` | تقویت | بهبود سلسله‌مراتب تایپوگرافی و فونت‌ها | [reference/typeset.md](reference/typeset.md) |
+| `layout [target]` | تقویت | اصلاح فاصله‌گذاری، ریتم و سلسله‌مراتب بصری | [reference/layout.md](reference/layout.md) |
+| `delight [target]` | تقویت | افزودن شخصیت و لحظه‌های به‌یادماندنی | [reference/delight.md](reference/delight.md) |
+| `overdrive [target]` | تقویت | عبور از مرزهای متعارف | [reference/overdrive.md](reference/overdrive.md) |
+| `clarify [target]` | اصلاح | بهبود متن UX، لیبل‌ها و پیام‌های خطا | [reference/clarify.md](reference/clarify.md) |
+| `adapt [target]` | اصلاح | وفق‌دادن برای دستگاه‌ها و اندازه‌های صفحهٔ مختلف | [reference/adapt.md](reference/adapt.md) · نیتیو: [reference/adapt.native.md](reference/adapt.native.md) |
+| `optimize [target]` | اصلاح | تشخیص و رفع افت کارایی UI | [reference/optimize.md](reference/optimize.md) |
+| `live` | تکرار | حالت واریانت بصری: انتخاب عناصر در مرورگر و تکرار روی گزینه‌ها | [reference/live.md](reference/live.md) |
+| `generate [n] [action] [element]` | تکرار | واریانت، نسخه یا جایگزینِ یک عنصر نام‌دار برای انتخاب در مرورگر زنده؛ بدون انتخاب دستی | [reference/generate.md](reference/generate.md) |
 
-Routing:
+مسیریابی:
 
-- **No argument:** read [routing.md](reference/routing.md) and present its context-aware menu; never auto-run a command.
-- **Explicit or clearly implied request to run a command:** load its reference (native variant on native platforms) and follow it. Ask once if two commands fit.
-- **Workflow or command-selection question:** read [Workflow questions](reference/routing.md#workflow-questions).
-- **Otherwise:** treat the request as general design work. Missing PRODUCT.md routes a new surface or replacement world through init, then new-work; a narrow refinement of existing code proceeds on the incumbent implementation as `impeccable context` directs, offering init afterward rather than blocking on it.
-- `teach` aliases `init`. `craft` is a deprecated alias for ordinary new-work and adds nothing. `shape` owns task discovery, then enters new-work only for visual-world and surface-concept decisions.
+- **بدون آرگومان:** [routing.md](reference/routing.md) را بخوان و منوی آگاه‌ازبافتِ آن را ارائه کن؛ هرگز فرمانی را خودکار اجرا نکن.
+- **درخواست صریح یا شفافاً ضمنی برای اجرای یک فرمان:** مرجعش را لود کن (روی پلتفرم نیتیو، واریانت نیتیو) و دنبالش کن. اگر دو فرمان جا می‌گیرد، یک‌بار بپرس.
+- **سؤال دربارهٔ گردش‌کار یا انتخاب فرمان:** [سؤال‌های گردش‌کار](reference/routing.md#workflow-questions) را بخوان.
+- **غیر از این‌ها:** درخواست را کارِ طراحی عمومی تلقی کن. نبودِ PRODUCT.md، سطح جدید یا جهانِ جایگزین را از init عبور می‌دهد، بعد new-work؛ پالایش محدودِ کد موجود روی پیاده‌سازی برجا ادامه می‌یابد، همان‌طور که `.agent/skills/impeccable/scripts/impeccable context` هدایت می‌کند، و بعدش init را پیشنهاد می‌دهد بدون آنکه روی آن قفل شود.
+- `teach` نام مستعار `init` است. `craft` نام مستعارِ منسوخِ new-work معمولی است و چیزی نمی‌افزاید. `shape` مالک کشفِ کار است و فقط برای تصمیم‌های جهان بصری و مفهومِ سطح وارد new-work می‌شود.
 
-After init writes PRODUCT.md, resume without rerunning `impeccable context`; init loads the native platform reference itself when the platform it recorded is `ios`, `android`, or `adaptive`.
+بعد از init که PRODUCT.md را نوشت، بدون اجرای دوبارهٔ `.agent/skills/impeccable/scripts/impeccable context` ادامه بده؛ init خودش مرجع پلتفرم نیتیو را لود می‌کند وقتی پلتفرم ثبت‌شده `ios`، `android` یا `adaptive` است.
 
-**Pin / Unpin:** `.agent/skills/impeccable/scripts/impeccable pin <pin|unpin> <command>` creates or removes a standalone `/<command>` shortcut. Report the script's result concisely; relay stderr verbatim on error.
+**Pin / Unpin:** `.agent/skills/impeccable/scripts/impeccable pin <pin|unpin> <command>` میان‌برِ مستقلِ `/<command>` می‌سازد یا حذف می‌کند. نتیجهٔ اسکریپت را مختصر گزارش کن؛ stderr را در خطا کلمه‌به‌کلمه منتقل کن.
 
-**Hooks:** `/impeccable hooks <on|off|status|ignore-rule|ignore-file|ignore-value|reset>` manages the design detector hook for this project (auto-runs the detector after UI file edits and surfaces findings). Load [reference/hooks.md](reference/hooks.md) when the user invokes it with any argument.
+**هوک‌ها:** `/jala hooks <on|off|status|ignore-rule|ignore-file|ignore-value|reset>` هوک دیتکتور طراحیِ این پروژه را مدیریت می‌کند (بعد از ویرایش فایل‌های UI، خودکار دیتکتور را اجرا و یافته‌ها را گزارش می‌کند). وقتی کاربر با هر آرگومانی صدا زد، [reference/hooks.md](reference/hooks.md) را لود کن.
 
-**Doctor:** `/impeccable doctor` reports and repairs drift between this project's Impeccable artifacts (PRODUCT.md, DESIGN.md and its sidecar, config, surface briefs, the hook) and what this version reads. Load [reference/doctor.md](reference/doctor.md) when the user invokes it, or when they ask what is out of date, stale, or needs refreshing. A `CONTEXT_STALE` directive in Setup's output is the cheap subset of the same report; act on it there per its own instructions rather than running doctor unasked.
+**داکتر:** `/jala doctor` فاصله (drift) بین آرتیفکت‌های جلا این پروژه (PRODUCT.md، DESIGN.md و سایدکارش، config، بریف‌های سطح، هوک) و آنچه این نسخه می‌خواند را گزارش و ترمیم می‌کند. وقتی کاربر صدا زد، یا پرسید چه چیزی قدیمی، کهنه یا نیازمند نوسازی است، [reference/doctor.md](reference/doctor.md) را لود کن. یافتهٔ `CONTEXT_STALE` در خروجی Setup، زیرمجموعهٔ ارزانِ همان گزارش است؛ طبق دستور خودش همان‌جا عمل کن، بدون اجرای داکترِ بی‌درخواست.
 
-**Never repair drift as a side effect of a design task.** A `CONTEXT_STALE` finding is reported, not acted on, unless the user asks. The one exception is a finding marked `auto`, which the next write to that file performs anyway.
+**هرگز drift را به‌عنوان اثر جانبیِ کارِ طراحی ترمیم نکن.** یافتهٔ `CONTEXT_STALE` گزارش می‌شود، نه اجرا، مگر کاربر بخواهد. تنها استثنا یافتهٔ علامت‌خوردهٔ `auto` است که نوشتن بعدیِ همان فایل خودش انجامش می‌دهد.

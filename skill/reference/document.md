@@ -367,7 +367,7 @@ colors:
 فایل را با این آغاز کن:
 
 ```markdown
-<!-- SEED: established with the user before implementation; re-run /impeccable document once there's code to capture the actual tokens and components. -->
+<!-- SEED: established with the user before implementation; re-run /jala document once there's code to capture the actual tokens and components. -->
 ```
 
 راهنمای هر بخش در حالت بذر:

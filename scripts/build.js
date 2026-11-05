@@ -285,8 +285,13 @@ function validateProse(rootDir) {
   let errors = 0;
 
   const checkLine = (line, rel, lineNum) => {
+    // jala fork: «—» is standard Persian punctuation (خط پیوند) and the
+    // English AI-tell rationale does not transfer to Persian prose, so lines
+    // carrying Persian text are exempt from the em-dash rule. The ` -- `
+    // substitute and the English phrase rules stay unconditional.
+    const hasPersian = /[\u0600-\u06FF]/.test(line);
     for (const re of emDashPatterns) {
-      if (re.test(line)) {
+      if (!hasPersian && re.test(line)) {
         console.error(`  ❌ ${rel}:${lineNum}: em dash → ${line.trim().slice(0, 120)}`);
         console.error(`        Use commas, colons, semicolons, periods, or parentheses.`);
         errors++;
@@ -379,8 +384,13 @@ function validateSkillProse(rootDir) {
   let errors = 0;
 
   const checkLine = (line, rel, lineNum) => {
+    // jala fork: «—» is standard Persian punctuation (خط پیوند) and the
+    // English AI-tell rationale does not transfer to Persian prose, so lines
+    // carrying Persian text are exempt from the em-dash rule. The ` -- `
+    // substitute and the English phrase rules stay unconditional.
+    const hasPersian = /[\u0600-\u06FF]/.test(line);
     for (const re of emDashPatterns) {
-      if (re.test(line)) {
+      if (!hasPersian && re.test(line)) {
         console.error(`  ❌ ${rel}:${lineNum}: em dash → ${line.trim().slice(0, 120)}`);
         console.error(`        Use commas, colons, semicolons, periods, or parentheses.`);
         errors++;

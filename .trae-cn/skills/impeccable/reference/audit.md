@@ -1,139 +1,139 @@
-Run systematic **technical** quality checks and generate a comprehensive report. Don't fix issues; document them for other commands to address.
+چک‌های کیفیت **فنی** سیستماتیک اجرا کن و گزارش جامع بساز. مشکلات را درست نکن؛ برای فرمان‌های دیگر مستندشان کن.
 
-This is a code-level audit, not a design critique. Check what's measurable and verifiable in the implementation.
+این ممیزی سطح-کد است، نه نقد طراحی. آنچه در پیاده‌سازی قابل‌اندازه‌گیری و قابل‌تأیید است را چک کن. روی سطح‌های فارسی، ممیزی را با [fa-rtl.md](fa-rtl.md) (آینه‌سازی، پراپرتی‌های منطقی، bidi)، [fa-typography.md](fa-typography.md) (ایتالیک مصنوعی، letter-spacing روی خط چسبان، ارقام مخلوط) و [fa-numbers-dates.md](fa-numbers-dates.md) (ارقام عربی در برابر فارسی، تاریخ میلادی در UI جلالی، نبودِ واحد تومان) گسترش بده.
 
-**Web only.** Native platforms (`ios` / `android` / `adaptive`) route to [audit.native.md](audit.native.md) instead; if the project is native, switch to it now.
+**فقط وب.** پلتفرم‌های نیتیو (`ios` / `android` / `adaptive`) به‌جایش به [audit.native.md](audit.native.md) می‌روند؛ اگر پروژه نیتیو است، همین حالا به آن برو.
 
-## Diagnostic Scan
+## اسکن تشخیصی
 
-Run comprehensive checks across 5 dimensions. Score each dimension 0-4 using the criteria below.
+چک‌های جامع را در ۵ بعد اجرا کن. هر بعد را با معیارهای پایین از ۰ تا ۴ نمره بده.
 
-### 1. Accessibility (A11y)
+### ۱. دسترس‌پذیری (A11y)
 
-**Check for**:
-- **Contrast issues**: Text contrast ratios < 4.5:1, or < 3:1 for large text (or 7:1 for AAA)
-- **Motion sensitivity**: `prefers-reduced-motion` needs an intentional alternative that preserves state change and hierarchy; flag a global `0.01ms` kill that destroys useful feedback, flashing above threshold, and motion that blocks focus, reading, or task completion
-- **Missing ARIA**: Interactive elements without proper roles, labels, or states
-- **Keyboard navigation**: Missing focus indicators, illogical tab order, keyboard traps
-- **Semantic HTML**: Improper heading hierarchy, missing landmarks, divs instead of buttons
-- **Alt text**: Missing or poor image descriptions
-- **Form issues**: Inputs without labels, poor error messaging, missing required indicators
+**چک کن**:
+- **مشکلات کنتراست**: نسبت کنتراست متن < 4.5:1، یا < 3:1 برای متن درشت (یا 7:1 برای AAA)
+- **حساسیت به حرکت**: `prefers-reduced-motion` به جایگزینی آگاهانه نیاز دارد که تغییر حالت و سلسله‌مراتب را حفظ کند؛ کشتارِ سراسری `0.01ms` که بازخورد مفید را نابود می‌کند، چشمک‌زدن بالای آستانه، و حرکتی که فوکوس، خواندن یا اتمام کار را مسدود می‌کند را پرچم بزن
+- **ARIA غایب**: عناصر تعاملی بدون نقش، لیبل یا حالتِ درست
+- **ناوبری کیبورد**: نشانگر فوکوس غایب، ترتیب tab بی‌منطق، تله‌های کیبورد
+- **HTML معنایی**: سلسله‌مراتب عنوانِ نادرست، landmarkهای غایب، div به‌جای button
+- **Alt text**: توصیف تصویرِ غایب یا ضعیف
+- **مشکلات فرم**: ورودی‌های بدون لیبل، پیام‌رسانی خطای ضعیف، نشانگرِ الزامی غایب
 
-**Score 0-4**: 0=Inaccessible (fails WCAG A), 1=Major gaps (few ARIA labels, no keyboard nav), 2=Partial (some a11y effort, significant gaps), 3=Good (WCAG AA mostly met, minor gaps), 4=Excellent (WCAG AA fully met, approaches AAA)
+**نمره ۰-۴**: ۰=دسترس‌ناپذیر (WCAG A را رد می‌کند)، ۱=شکاف‌های بزرگ (چند لیبل ARIA، بدون ناوبری کیبورد)، ۲=جزئی (تلاش a11y هست، شکاف‌های بزرگ)، ۳=خوب (WCAG AA عمدتاً برقرار، شکاف‌های ریز)، ۴=عالی (WCAG AA کامل، نزدیک AAA)
 
-### 2. Performance
+### ۲. کارایی
 
-**Check for**:
-- **Layout thrashing**: Reading/writing layout properties in loops
-- **Expensive animations**: Casual layout-property animation, unbounded blur/filter/shadow effects, or effects that visibly drop frames
-- **Missing optimization**: Images without lazy loading, unoptimized assets
-- **will-change overuse**: `will-change` applied broadly or left on at rest (it is a targeted hint for known expensive animations, not a baseline requirement)
-- **Bundle size**: Unnecessary imports, unused dependencies
-- **Render performance**: Unnecessary re-renders, missing memoization
+**چک کن**:
+- **ضرب‌و‌شتم چیدمان**: خواندن/نوشتن پراپرتی‌های layout در حلقه‌ها
+- **انیمیشن‌های گران**: انیمیت سرسریِ پراپرتی‌های layout، افکت‌های blur/filter/shadow بی‌سقف، یا افکت‌هایی که فریم‌ها را آشکارا می‌اندازند
+- **بهینه‌سازی غایب**: تصاویر بدون lazy loading، assetهای بهینه‌نشده
+- **سوءاستفاده از will-change**: `will-change` گسترده یا روشن‌مانده در حالت آرام (hint هدفمند برای انیمیشن‌های گرانِ معلوم است، نه الزام پایه)
+- **حجم باندل**: importهای غیرلازم، وابستگی‌های بی‌استفاده
+- **کارایی رندر**: re-renderهای غیرلازم، memoization غایب
 
-**Score 0-4**: 0=Severe issues (layout thrash, unoptimized everything), 1=Major problems (no lazy loading, expensive animations), 2=Partial (some optimization, gaps remain), 3=Good (mostly optimized, minor improvements possible), 4=Excellent (fast, lean, well-optimized)
+**نمره ۰-۴**: ۰=مشکلات شدید (thrash چیدمان، هیچ‌چیز بهینه نیست)، ۱=مشکلات بزرگ (بدون lazy loading، انیمیشن‌های گران)، ۲=جزئی (بعضی بهینه‌سازی، شکاف باقی)، ۳=خوب (عمدتاً بهینه، بهبودهای ریز ممکن)، ۴=عالی (سریع، لاغر، بهینه)
 
-### 3. Theming
+### ۳. تم‌بندی
 
-**Check for**:
-- **Hard-coded colors**: Colors not using design tokens
-- **Broken dark mode**: Missing dark mode variants, poor contrast in dark theme
-- **Inconsistent tokens**: Using wrong tokens, mixing token types
-- **Theme switching issues**: Values that don't update on theme change
+**چک کن**:
+- **رنگ‌های هاردکد**: رنگ‌هایی که از توکن‌های طراحی استفاده نمی‌کنند
+- **حالت تیره شکسته**: واریانت‌های حالت تیره غایب، کنتراست ضعیف در تم تیره
+- **توکن‌های ناسازگار**: استفاده از توکن غلط، قاطی‌کردن انواع توکن
+- **مشکلات تعویض تم**: مقدارهایی که در تغییر تم به‌روز نمی‌شوند
 
-**Score 0-4**: 0=No theming (hard-coded everything), 1=Minimal tokens (mostly hard-coded), 2=Partial (tokens exist but inconsistently used), 3=Good (tokens used, minor hard-coded values), 4=Excellent (full token system, dark mode works perfectly)
+**نمره ۰-۴**: ۰=بدون تم (همه‌چیز هاردکد)، ۱=حداقل توکن (عمدتاً هاردکد)، ۲=جزئی (توکن هست ولی ناسازگار استفاده می‌شود)، ۳=خوب (توکن استفاده می‌شود، مقادیر هاردکد ریز)، ۴=عالی (سیستم توکن کامل، حالت تیره بی‌نقص کار می‌کند)
 
-### 4. Responsive Design
+### ۴. طراحی واکنش‌گرا
 
-**Check for**:
-- **Fixed widths**: Hard-coded widths that break on mobile
-- **Touch targets**: Interactive elements < 44x44px. WCAG AA (SC 2.5.8) requires at least 24x24 CSS px unless an exception applies: spacing, an equivalent control, inline text, user-agent styling, or an essential size. Spacing passes when a 24 CSS px circle centered on the target's bounding box overlaps no other target and no other undersized target's circle
-- **Broken touch interaction**: Custom sliders, drag surfaces, and scrollable control strips whose primary gesture fails under touch, that swallow page scroll or lose the drag to it, or that stay stuck after an interrupted gesture. Code tells: mouse-only handlers, no `touch-action` on a pointer-event drag surface, drag state that nothing clears on cancel, lost capture, or blur. Exercise the gesture when a browser tool can synthesize touch (a rendered viewport proves layout, not the gesture), then say what produced the evidence (emulated viewport, synthesized touch, which engine, physical device) and what stayed untested
-- **Horizontal scroll**: Content overflow on narrow viewports
-- **Text scaling**: Layouts that break when text size increases
-- **Missing breakpoints**: No mobile/tablet variants
+**چک کن**:
+- **عرض‌های ثابت**: عرض‌های هاردکد که روی موبایل می‌شکنند
+- **اهداف لمسی**: عناصر تعاملی < ۴۴x44px. WCAG AA (SC 2.5.8) دست‌کم ۲۴x24 CSS px می‌خواهد مگر استثنایی برقرار باشد: فاصله، کنترل معادل، متن درون‌خطی، استایل user-agent، یا سایز حیاتی. فاصله وقتی پاس می‌شود که دایرهٔ ۲۴ CSS px وسط‌چین روی bounding box هدف با هیچ هدف دیگری و هیچ دایرهٔ هدفِ زیراندازهٔ دیگری هم‌پوشان نشود
+- **تعامل لمسی شکسته**: اسلایدرهای سفارشی، سطوح درگ و نوارهای کنترلیِ اسکرول‌شونده که ژست اصلی‌شان زیر لمس شکست می‌خورد، اسکرول صفحه را قورت می‌دهند یا درگ را به آن می‌بازند، یا بعد از ژستِ قطع‌شده گیر می‌کنند. نشانه‌های کد: هندلرهای فقط-ماوس، نبودِ `touch-action` روی سطح درگِ pointer-event، وضعیت درگ که هیچ‌چیز در cancel پاکش نمی‌کند، capture گم‌شده، یا blur. ژست را وقتی ابزار مرورگر می‌تواند لمس سنتز کند ورزش بده (ویوپورت رندرشده چیدمان را ثابت می‌کند، نه ژست را)، بعد بگو چه چیزی شاهد را تولید کرده (ویوپورت شبیه‌سازی‌شده، لمس سنتزشده، کدام موتور، دستگاه فیزیکی) و چه چیزی تست‌نشده ماند
+- **اسکرول افقی**: سرریز محتوا در ویوپورت‌های باریک
+- **مقیاس متن**: چیدمان‌هایی که با بزرگ‌شدن متن می‌شکنند
+- **بریک‌پوینت غایب**: بدون واریانت موبایل/تبلت
 
-**Score 0-4**: 0=Desktop-only (breaks on mobile), 1=Major issues (some breakpoints, many failures), 2=Partial (works on mobile, rough edges), 3=Good (responsive, minor touch target or overflow issues), 4=Excellent (fluid, all viewports, proper touch targets, gestures work under touch)
+**نمره ۰-۴**: ۰=فقط-دسکتاپ (روی موبایل می‌شکند)، ۱=مشکلات بزرگ (بعضی بریک‌پوینت، شکست‌های زیاد)، ۲=جزئی (روی موبایل کار می‌کند، لبه‌های زبر)، ۳=خوب (واکنش‌گرا، مشکلات ریزِ هدف لمسی یا سرریز)، ۴=عالی (سیال، همهٔ ویوپورت‌ها، اهداف لمسی درست، ژست‌ها زیر لمس کار می‌کنند)
 
-### 5. Implementation Integrity (CRITICAL)
+### ۵. درستیِ پیاده‌سازی (بحرانی)
 
-Run the bundled detector and verify each finding in context. Look for repeated implementation shortcuts, design-system drift, misleading or decorative content, and structure that is interchangeable with an unrelated product. Keep deterministic findings separate from visual judgment and call out false positives.
+دیتکتورِ باندل‌شده را اجرا کن و هر یافته را در بافت تأیید کن. دنبال میان‌برهای پیاده‌سازیِ تکرارشونده، drift از سیستم طراحی، محتوای گمراه‌کننده یا تزئینی، و ساختاری بگرد که با یک محصول بی‌ربط جابه‌جاشدنی است. یافته‌های قطعی را از داوری بصری جدا نگه دار و false positiveها را اعلام کن.
 
-**Desktop apps** (Electron, NW.js, CEF, WebView2): launch the app with a local DevTools port (`--remote-debugging-port=9222`, or `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222` for WebView2; keep it on 127.0.0.1, never exposed), seed the state to audit, keep the window on screen (a hidden one skips the pixel contrast reads), then run `.trae-cn/skills/impeccable/scripts/impeccable detect --cdp 9222 --target <part of the page URL or title> --json`. It returns the same JSON as a URL scan and leaves the window as found. Take screenshots through the harness's CDP tooling, and leave the window as you found it too. Tauri on macOS (WKWebView) and on Linux (WebKitGTK) expose no CDP: scan the source and say the rendered check did not run.
+**اپ‌های دسکتاپ** (Electron، NW.js، CEF، WebView2): اپ را با پورت DevTools لوکال بالا بیاور (`--remote-debugging-port=9222`، یا برای WebView2 `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222`؛ روی 127.0.0.1 نگه دار، هرگز exposed نه)، وضعیتِ ممیزی را بکار، پنجره را روی صفحه نگه دار (پنجرهٔ پنهان خواندن‌های کنتراستِ پیکسلی را skip می‌کند)، بعد `.trae-cn/skills/impeccable/scripts/impeccable detect --cdp 9222 --target <بخشی از URL یا عنوان صفحه> --json` را اجرا کن. همان JSON اسکن URL را برمی‌گرداند و پنجره را همان‌طور که بود رها می‌کند. اسکرین‌شات‌ها از ابزار CDP هارنس بگیر، و پنجره را هم همان‌طور که بود رها کن. Tauri روی macOS (WKWebView) و Linux (WebKitGTK) هیچ CDP ندارند: سورس را اسکن کن و بگو چکِ رندرشده اجرا نشد.
 
-**Score 0-4**: 0=systemic drift, 1=major repeated failures, 2=several verified issues, 3=minor isolated issues, 4=coherent and intentional
+**نمره ۰-۴**: ۰=drift سیستمیک، ۱=شکست‌های تکراری بزرگ، ۲=چند مشکل تأییدشده، ۳=مشکلات ریزِ منفرد، ۴=منسجم و آگاهانه
 
-## Generate Report
+## گزارش بساز
 
-### Audit Health Score
+### نمرهٔ سلامت ممیزی
 
-| # | Dimension | Score | Key Finding |
+| # | بُعد | نمره | یافتهٔ کلیدی |
 |---|-----------|-------|-------------|
-| 1 | Accessibility | ? | [most critical a11y issue or "--"] |
-| 2 | Performance | ? | |
-| 3 | Theming | ? | |
-| 4 | Responsive Design | ? | |
-| 5 | Implementation Integrity | ? | |
-| **Total** | | **??/20** | **[Rating band]** |
+| 1 | دسترس‌پذیری | ? | [بحرانی‌ترین مشکل a11y یا "--"] |
+| 2 | کارایی | ? | |
+| 3 | تم‌بندی | ? | |
+| 4 | طراحی واکنش‌گرا | ? | |
+| 5 | درستیِ پیاده‌سازی | ? | |
+| **مجموع** | | **??/20** | **[باند رتبه‌بندی]** |
 
-**Rating bands**: 18-20 Excellent (minor polish), 14-17 Good (address weak dimensions), 10-13 Acceptable (significant work needed), 6-9 Poor (major overhaul), 0-5 Critical (fundamental issues)
+**باندهای رتبه‌بندی**: 18-20 عالی (پالایش ریز)، 14-17 خوب (ابعاد ضعیف را رسیدگی کن)، 10-13 قابل‌قبول (کارِ قابل‌توجه لازم)، 6-9 ضعیف (بازسازی بزرگ)، 0-5 بحرانی (مشکلات بنیادین)
 
-### Implementation Integrity Verdict
-**Start here.** Pass/fail: does the implementation express a coherent product-specific system? Cite verified evidence and detector findings.
+### حکم درستیِ پیاده‌سازی
+**از اینجا شروع کن.** قبول/رد: آیا پیاده‌سازی سیستمیِ منسجمِ مخصوصِ-همین-محصول را بیان می‌کند؟ شاهد تأییدشده و یافته‌های دیتکتور را ارجاع بده.
 
-### Executive Summary
-- Audit Health Score: **??/20** ([rating band])
-- Total issues found (count by severity: P0/P1/P2/P3)
-- Top 3-5 critical issues
-- Recommended next steps
+### خلاصهٔ اجرایی
+- نمرهٔ سلامت ممیزی: **??/20** ([باند رتبه‌بندی])
+- مجموع مشکلات یافت‌شده (شمارش بر اساس شدت: P0/P1/P2/P3)
+- ۳ تا ۵ مشکل بحرانیِ اول
+- گام‌های بعدی پیشنهادی
 
-### Detailed Findings by Severity
+### یافته‌های تفصیلی بر اساس شدت
 
-Tag every issue with **P0-P3 severity**:
-- **P0 Blocking**: Prevents task completion. Fix immediately
-- **P1 Major**: Significant difficulty or WCAG AA violation. Fix before release
-- **P2 Minor**: Annoyance, workaround exists. Fix in next pass
-- **P3 Polish**: Nice-to-fix, no real user impact. Fix if time permits
+هر مشکل را با **شدت P0-P3** تگ کن:
+- **P0 مسدودکننده**: مانع اتمام کار. فوری درست کن
+- **P1 بزرگ**: سختیِ قابل‌توجه یا نقض WCAG AA. قبل از عرضه درست کن
+- **P2 ریز**: مزاحمت، workaround وجود دارد. در پاس بعدی درست کن
+- **P3 پالایش**: بهتر است درست شود، اثر واقعی کاربری ندارد. اگر وقت بود
 
-For each issue, document:
-- **[P?] Issue name**
-- **Location**: Component, file, line
-- **Category**: Accessibility / Performance / Theming / Responsive / Implementation Integrity
-- **Impact**: How it affects users
-- **WCAG/Standard**: Which standard it violates (if applicable)
-- **Recommendation**: How to fix it
-- **Suggested command**: Which command to use (prefer: /impeccable adapt, /impeccable animate, /impeccable audit, /impeccable bolder, /impeccable clarify, /impeccable colorize, /impeccable critique, /impeccable delight, /impeccable distill, /impeccable document, /impeccable harden, /impeccable layout, /impeccable onboard, /impeccable optimize, /impeccable overdrive, /impeccable polish, /impeccable quieter, /impeccable shape, /impeccable typeset)
+برای هر مشکل مستند کن:
+- **[P?] نام مشکل**
+- **محل**: کامپوننت، فایل، خط
+- **دسته**: دسترس‌پذیری / کارایی / تم‌بندی / واکنش‌گرا / درستیِ پیاده‌سازی
+- **اثر**: چطور روی کاربران اثر می‌گذارد
+- **WCAG/استاندارد**: کدام استاندارد را نقض می‌کند (در صورت وجود)
+- **توصیه**: چطور درستش کنی
+- **فرمان پیشنهادی**: کدام فرمان (ترجیح: /jala adapt, /jala animate, /jala audit, /jala bolder, /jala clarify, /jala colorize, /jala critique, /jala delight, /jala distill, /jala document, /jala harden, /jala layout, /jala onboard, /jala optimize, /jala overdrive, /jala polish, /jala quieter, /jala shape, /jala typeset)
 
-### Patterns & Systemic Issues
+### الگوها و مشکلات سیستمیک
 
-Identify recurring problems that indicate systemic gaps rather than one-off mistakes:
-- "Hard-coded colors appear in 15+ components, should use design tokens"
-- "Touch targets consistently too small (<44px) throughout mobile experience"
+مشکلات تکرارشونده‌ای را شناسایی کن که شکافِ سیستمیک را نشان می‌دهند نه اشتباهِ یک‌باره:
+- «رنگ‌های هاردکد در ۱۵+ کامپوننت ظاهر می‌شوند، باید از توکن‌های طراحی استفاده شود»
+- «اهداف لمسی به‌طور یکدست خیلی کوچک‌اند (<۴۴px) در کل تجربهٔ موبایل»
 
-### Positive Findings
+### یافته‌های مثبت
 
-Note what's working well: good practices to maintain and replicate.
+آنچه خوب کار می‌کند را بنویس: شیوه‌های خوبی که باید حفظ و تکرار شوند.
 
-## Recommended Actions
+## کنش‌های پیشنهادی
 
-List recommended commands in priority order (P0 first, then P1, then P2):
+فرمان‌های پیشنهادی را به ترتیب اولویت فهرست کن (اول P0، بعد P1، بعد P2):
 
-1. **[P?] `/command-name`**: Brief description (specific context from audit findings)
-2. **[P?] `/command-name`**: Brief description (specific context)
+1. **[P?] `/command-name`**: توضیح کوتاه (بافتِ مشخص از یافته‌های ممیزی)
+2. **[P?] `/command-name`**: توضیح کوتاه (بافتِ مشخص)
 
-**Rules**: Only recommend commands from: /impeccable adapt, /impeccable animate, /impeccable audit, /impeccable bolder, /impeccable clarify, /impeccable colorize, /impeccable critique, /impeccable delight, /impeccable distill, /impeccable document, /impeccable harden, /impeccable layout, /impeccable onboard, /impeccable optimize, /impeccable overdrive, /impeccable polish, /impeccable quieter, /impeccable shape, /impeccable typeset. Map findings to the most appropriate command. End with `/impeccable polish` as the final step if any fixes were recommended.
+**قواعد**: فقط از /jala adapt, /jala animate, /jala audit, /jala bolder, /jala clarify, /jala colorize, /jala critique, /jala delight, /jala distill, /jala document, /jala harden, /jala layout, /jala onboard, /jala optimize, /jala overdrive, /jala polish, /jala quieter, /jala shape, /jala typeset فرمان پیشنهاد بده. یافته‌ها را به مناسب‌ترین فرمان نگاشت کن. اگر درستی پیشنهاد شد، با `/jala polish` به‌عنوان گام نهایی تمام کن.
 
-After presenting the summary, tell the user:
+بعد از ارائهٔ خلاصه، به کاربر بگو:
 
-> You can ask me to run these one at a time, all at once, or in any order you prefer.
+> می‌توانی بخواهی این‌ها را یکی‌یکی، همه‌با‌هم، یا به هر ترتیبی که می‌پسندی اجرا کنم.
 >
-> Re-run `/impeccable audit` after fixes to see your score improve.
+> بعد از درست‌کرده‌ها، `/jala audit` را دوباره اجرا کن تا نمره‌ات را بهتر ببینی.
 
-Keep P3s few: a long tail of minor issues buries the ones that matter.
+P3ها را کم نگه دار: دنبالهٔ بلندِ مشکلات ریز، مهم‌ها را دفن می‌کند.
 
-**Avoid**:
-- Report issues without explaining impact (why does this matter?)
-- Provide generic recommendations (be specific and actionable)
-- Skip positive findings (celebrate what works)
-- Forget to prioritize (everything can't be P0)
-- Report false positives without verification
+**بپرهیز از**:
+- گزارش مشکل بدون توضیح اثر (چرا این مهم است؟)
+- توصیه‌های عمومی (مشخص و عملی باش)
+- رد‌کردن یافته‌های مثبت (آنچه کار می‌کند را جشن بگیر)
+- فراموش‌کردن اولویت‌بندی (همه‌چیز نمی‌تواند P0 باشد)
+- گزارش false positive بدون تأیید

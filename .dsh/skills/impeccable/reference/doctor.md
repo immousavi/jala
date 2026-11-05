@@ -1,54 +1,54 @@
-Report and repair drift between this project's Impeccable artifacts and what the installed version reads: PRODUCT.md, DESIGN.md and its `.impeccable/design.json` sidecar, `.impeccable/config.json`, persisted surface briefs, and the design hook.
+فاصله (drift) میان آرتیفکت‌های جلا این پروژه و آنچه نسخهٔ نصب‌شده می‌خواند را گزارش بده و ترمیم کن: PRODUCT.md، DESIGN.md و سایدکارش `.impeccable/design.json`، `.impeccable/config.json`، بریف‌های سطحِ ذخیره‌شده، و هوک طراحی.
 
-This is maintenance, not design. Do not redesign anything, do not open files outside the ones the report names, and do not run any other command as a side effect.
+این کار نگه‌داری است، نه طراحی. هیچ چیزی را بازطراحی نکن، فایلی بیرون از آنچه گزارش نام می‌برد باز نکن، و هیچ فرمان دیگری را به‌عنوان اثر جانبی اجرا نکن.
 
-## What this owns, and what it does not
+## آنچه به این فرمان تعلق دارد و آنچه تعلق ندارد
 
-Three kinds of drift travel under "out of date". Keep them apart:
+سه نوع فاصله (drift) خود را زیر عنوان «به‌روز نیست» جا می‌دهند. آن‌ها را از هم تفکیک کن:
 
-- **Tool version.** The installed skill is older than the published one. `impeccable context` reports that at boot as `UPDATE_AVAILABLE` and `npx impeccable update` fixes it, or the harness's plugin manager for a plugin install. Not this command's job.
-- **Schema drift.** An artifact was written by an older Impeccable: fields nothing reads, fields now expected, files in retired locations. Mechanical, and this command repairs most of it.
-- **Truth drift.** The code moved on and the document no longer describes it. No file comparison settles this. `document` owns DESIGN.md, `init` owns PRODUCT.md, and this command's job is to hand them a specific gap rather than a vague suspicion.
+- **نسخهٔ ابزار.** اسکیل نصب‌شده از نسخهٔ منتشرشده قدیمی‌تر است. `impeccable context` این را در بوت به‌صورت `UPDATE_AVAILABLE` گزارش می‌کند و `npx impeccable update` آن را می‌سازد، یا برای نصبِ پلاگینی، مدیر پلاگینِ هارنس. کارِ این فرمان نیست.
+- **فاصلهٔ اسکیما (schema drift).** آرتیفکتی توسط یک جلاِ قدیمی‌تر نوشته شده: فیلدهایی که هیچ‌چیز نمی‌خواند، فیلدهایی که حالا انتظار می‌رود، فایل‌هایی در مکان‌های بازنشسته. مکانیکی است و این فرمان بیشترش را ترمیم می‌کند.
+- **فاصلهٔ حقیقت (truth drift).** کد جلو رفته و سند دیگر آن را توصیف نمی‌کند. هیچ مقایسهٔ فایلی این را حل نمی‌کند. DESIGN.md با `document` است و PRODUCT.md با `init`، و کارِ این فرمان آن است که به آن‌ها یک شکافِ مشخص بدهد، نه یک ظنِ مبهم.
 
-## Step 1: Run the pass
+## گام ۱: گذر را اجرا کن
 
 ```
 .dsh/skills/impeccable/scripts/impeccable doctor --json
 ```
 
-Add `--target <path>` when the user named a workspace, file, or route in a monorepo. Without it the report describes the repo root, and in a monorepo that is often the wrong project.
+وقتی کاربر در یک مونوریپو نامی از یک ورک‌اسپیس، فایل یا روت برده، `--target <path>` را اضافه کن. بدون آن، گزارش ریشهٔ ریپو را توصیف می‌کند، و در مونوریپو آن اغلب پروژهٔ اشتباهی است.
 
-The output carries `findings` (each with `id`, `artifact`, `path`, `severity`, `summary`, `fix`) and, in a monorepo, `workspaces` with each app's product and design resolution. `ruleRegistryAvailable: false` means ignored rule ids could not be validated; say so rather than implying that list is clean.
+خروجی `findings` را حمل می‌کند (هر یک با `id`، `artifact`، `path`، `severity`، `summary` و `fix`) و در مونوریپو، `workspaces` را با حل‌شدنِ محصول و طراحیِ هر اپ. `ruleRegistryAvailable: false` یعنی idهای قاعده‌های نادیده‌گرفته اعتبارسنجی نشدند؛ همین را بگو به‌جای آنکه القا کنی آن فهرست پاک است.
 
-An empty `findings` array is the good outcome. Say so in one line and stop.
+آرایهٔ خالیِ `findings` همان نتیجهٔ خوب است. در یک خط بگو و متوقف شو.
 
-## Step 2: Act by severity
+## گام ۲: بر اساس شدت عمل کن
 
-The severity says what should happen, not how bad it is.
+شدت می‌گوید چه باید بشود، نه اینکه چقدر بد است.
 
-- **`auto`** carries no decision. Run `.dsh/skills/impeccable/scripts/impeccable doctor --fix` once to apply these, then report what it moved in one line. Do not ask permission first, and do not ask about them afterward.
-- **`mention`** needs the user to know but not to decide anything now. State each one in a sentence with its offered fix.
-- **`route`** needs a specific command. Name the command and the gap it would close. Run it only if the user asks in this turn; `init` and `document` are conversations, not repairs you perform unattended.
+- **`auto`** هیچ تصمیمی با خود حمل نمی‌کند. `.dsh/skills/impeccable/scripts/impeccable doctor --fix` را یک بار اجرا کن تا اعمال شوند، سپس در یک خط گزارش بده چه جابه‌جا کرد. اول اجازه نپرس و بعدش هم درباره‌شان نپرس.
+- **`mention`** باید کاربر بداند، ولی لازم نیست حالا چیزی تصمیم بگیرد. هر یک را در یک جمله با رفعِ پیشنهادی‌اش بگو.
+- **`route`** به یک فرمان مشخص نیاز دارد. فرمان را نام ببر و شکافی را که می‌بندد. فقط اگر کاربر در همین نوبت خواست اجرایش کن؛ `init` و `document` گفتگو هستند، نه ترمیم‌هایی که بدون حضور انجام دهی.
 
-Report all three groups in one pass. Findings are not errors and the command does not fail on them.
+هر سه گروه را در یک گذر گزارش کن. یافته‌ها خطا نیستند و فرمان به‌خاطر آن‌ها شکست نمی‌خورد.
 
-## Step 3: Deprecated fields are binding
+## گام ۳: فیلدهای منسوخ الزام‌آورند
 
-A finding that reports a deprecated field (`## Register` is the current one) is not a style note. Treat that field as absent for every decision from here on, whatever value it holds, and offer to delete the section. Preserving it "just in case" is how a retired axis keeps steering current output.
+یافته‌ای که فیلدی منسوخ را گزارش می‌کند (`## Register` نمونهٔ فعلی است) یک یادداشت سبک‌شناسانه نیست. آن فیلد را از این به بعد برای هر تصمیمی غایب در نظر بگیر، فارغ از مقداری که دارد، و حذف بخش را پیشنهاد بده. نگه‌داشتنش «برای احتیاط» همان چیزی است که یک محورِ بازنشسته را همچنان بر خروجی فعلی حاکم نگه می‌دارد.
 
-## Step 4: Do not overclaim on truth drift
+## گام ۴: دربارهٔ فاصلهٔ حقیقت ادعای بیش از حد نکن
 
-`design-md-drift` counts commits to the visual source directories since DESIGN.md was last edited. A commit count is not a contradiction. Report the number, say what it measures, and if the user wants to know whether the document is actually wrong, read DESIGN.md against the current tokens and components and answer from that. Never assert that DESIGN.md is stale because the number is large.
+`design-md-drift` کامیت‌های دایرکتوری‌های منبع بصری را از آخرین ویرایش DESIGN.md می‌شمارد. تعداد کامیت تناقض نیست. عدد را گزارش بده، بگو چه چیزی را می‌سنجد، و اگر کاربر خواست بداند سند واقعاً غلط است یا نه، DESIGN.md را در برابر توکن‌ها و کامپوننت‌های فعلی بخوان و از روی آن پاسخ بده. هرگز به این دلیل که عدد بزرگ است ادعا نکن DESIGN.md کهنه است.
 
-The same restraint applies to `workspace-context-inherited`. Inheritance is a designed behavior. Whether one product record truthfully describes several apps is a question for the user, not a defect to fix.
+همان خویشتن‌داری دربارهٔ `workspace-context-inherited` هم صدق می‌کند. ارث‌بردگی یک رفتارِ طراحی‌شده است. اینکه یک رکورد محصول چند اپ را به‌درستی توصیف می‌کند یا نه، پرسشِ کاربر است، نه نقصی برای رفع.
 
-## Monorepo notes
+## نکته‌های مونوریپو
 
-- `workspace-platform-native-evidence` is the finding that matters most here: a workspace carrying native build files while inheriting a root record that resolves to web gets web guidance for its whole life and never loads [ios.md](ios.md) or [android.md](android.md). The repair is a child PRODUCT.md in that workspace, because one inherited record cannot hold two platforms.
-- `config-project-roots-match-nothing` means every `projectRoots` glob missed, so the repo root is silently standing in as the active project. A renamed workspace directory is the usual cause. Report the patterns and ask which directories they should name.
-- `config-invalid-build-path` and `config-build-path-unset` both concern one key, `buildPath` in `.impeccable/config.json` (or the gitignored `.impeccable/config.local.json`, which wins for that developer). It holds `comp` or `code` and sets whether new Persuade and Experience surfaces are built from a generated comp or straight in code; Operate and Read surfaces are code-led whatever it holds. An unread value does not fall back to the opposite path, so a project meaning `code` has been building comp-led; report the exact value. The unset finding fires only where a project has done direction work and never recorded a preference, and the offer belongs in it only when image generation exists in your tool surface. Without image generation there is nothing to choose and nothing to say.
-- Use the `workspaces` table to show the user which apps carry their own context, which inherit, and which have none, before proposing any change.
+- `workspace-platform-native-evidence` یافته‌ای است که اینجا از همه بااهمیت‌تر است: ورک‌اسپیسی که فایل‌های ساختِ نیتیو حمل می‌کند ولی رکورد ریشه‌ای را به ارث برده که به web حل می‌شود، تمام عمرش راهنمای web می‌گیرد و هرگز [ios.md](ios.md) یا [android.md](android.md) را بار نمی‌کند. ترمیم، یک PRODUCT.md فرزند در همان ورک‌اسپیس است، چون یک رکوردِ به‌ارث‌رسیده نمی‌تواند دو پلتفرم را در خود نگه دارد.
+- `config-project-roots-match-nothing` یعنی هیچ‌کدام از globهای `projectRoots` به چیزی نخورده‌اند، پس ریشهٔ ریپو بی‌سروصدا به‌جای پروژهٔ فعال ایستاده است. تغییرنام دایرکتوری ورک‌اسپیس علتِ معمول است. الگوها را گزارش بده و بپرس باید کدام دایرکتوری‌ها را نام ببرند.
+- `config-invalid-build-path` و `config-build-path-unset` هر دو به یک کلید مربوط‌اند، `buildPath` در `.impeccable/config.json` (یا `.impeccable/config.local.json`ِ gitignore‌شده، که برای همان توسعه‌دهنده حاکم است). مقدارش `comp` یا `code` است و تعیین می‌کند سطح‌های تازهٔ اقناع (Persuade) و تجربه (Experience) از یک کامپِ تولیدشده ساخته شوند یا مستقیم در کد؛ سطح‌های عملیات (Operate) و خواندن (Read) فارغ از مقدارش کدمحورند. مقدارِ ناخوانده به مسیر مخالف برنمی‌گردد، پس پروژه‌ای که منظورش `code` بوده کامپ‌محور ساخته است؛ مقدار دقیق را گزارش بده. یافتهٔ unset فقط جایی شلیک می‌شود که پروژه کارِ جهتِ انجام داده ولی هرگز ترجیحی ثبت نکرده، و پیشنهاد فقط وقتی داخل آن جا دارد که تولید تصویر در سطح ابزار تو موجود باشد. بدون تولید تصویر نه چیزی برای انتخاب هست و نه چیزی برای گفتن.
+- پیش از پیشنهاد هر تغییری، از جدول `workspaces` استفاده کن تا به کاربر نشان بدهی کدام اپ‌ها بافت خودشان را حمل می‌کنند، کدام به ارث می‌برند و کدام هیچ ندارند.
 
-## Opting out of the boot check
+## کنارگذاشتن چک بوت
 
-`impeccable context` reports the cheap subset of these findings at session start, throttled to once a week per project. Set `"stalenessCheck": false` in `.impeccable/config.json` to silence that, or `IMPECCABLE_NO_STALENESS_CHECK=1` for one session. This command still works with the check disabled, and that is the combination to suggest for a user who wants the report only when they ask for it.
+`impeccable context` در آغاز نشست، زیرمجموعهٔ ارزانِ همین یافته‌ها را گزارش می‌کند، محدودشده به هفته‌ای یک بار برای هر پروژه. برای بی‌صداکردن آن، `"stalenessCheck": false` را در `.impeccable/config.json` تنظیم کن، یا `IMPECCABLE_NO_STALENESS_CHECK=1` را برای یک نشست. این فرمان با غیرفعال‌بودن چک همچنان کار می‌کند، و همین ترکیبی است که برای کاربری که گزارش را فقط وقتی خودش بخواهد پیشنهاد می‌دهی.

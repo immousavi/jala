@@ -14,6 +14,16 @@ import {
 import { SKILL_CATEGORIES, CATEGORY_ORDER } from '../skill-categories.js';
 import { hooksJsonFor } from './hooks.js';
 
+// The emitted skill FOLDER name comes from `dir-name` when the source sets
+// one, falling back to the skill `name`. The jala fork sets
+// `dir-name: impeccable` while the command identity stays `jala` (/jala):
+// hook manifests, plugin staging, engine staging, cursor-plugin paths and
+// the test suite hardcode skills/impeccable/ (see lib/plugin-paths.js and
+// README «نکته‌ها»). Deriving the folder from `name` alone silently breaks
+// hooks and the release build. Command identity (frontmatter name, OpenCode
+// command file) keeps using skill.name.
+const skillDirNameOf = (skill) => skill.dirName || skill.name;
+
 // Preamble prepended to every generated degraded-mode fallback reference file.
 // These files are single-sourced from skill/agents/ so a harness with no
 // subagent capability runs each role inline from the same specialized text.
@@ -272,7 +282,7 @@ export function createTransformer(config) {
 
     for (const skill of skills) {
       const skillName = skill.name;
-      const skillDir = path.join(skillsDir, skillName);
+      const skillDir = path.join(skillsDir, skillDirNameOf(skill));
 
       // Build frontmatter
       const frontmatterObj = {
@@ -322,7 +332,7 @@ export function createTransformer(config) {
       skillBody = stripRuleMarkers(skillBody);
 
       // Replace {{scripts_path}} with provider-aware path to skill's scripts directory
-      const scriptsPath = `${configDir}/skills/${skillName}/scripts`;
+      const scriptsPath = `${configDir}/skills/${skillDirNameOf(skill)}/scripts`;
       skillBody = skillBody.replace(/\{\{scripts_path\}\}/g, scriptsPath);
       if (bodyTransform) skillBody = bodyTransform(skillBody, skill);
 
@@ -423,12 +433,12 @@ export function createTransformer(config) {
     if (config.agentFormat) {
       const agentsDir = path.join(providerDir, `${configDir}/agents`);
       for (const skill of skills) {
-        const scriptsPath = `${configDir}/skills/${skill.name}/scripts`;
+        const scriptsPath = `${configDir}/skills/${skillDirNameOf(skill)}/scripts`;
         for (const agent of skill.agents || []) {
           // Agents can declare `providers: <list>` to limit which harnesses
           // they emit to. Default (no field) ships everywhere with agentFormat.
           if (agent.providers && !agent.providers.includes(provider)) continue;
-          const body = renderAgentBody(agent, { providerTags, placeholderKey, allSkillNames, scriptsPath, emitDir: agentsDir, skillDir: path.join(skillsDir, skill.name) });
+          const body = renderAgentBody(agent, { providerTags, placeholderKey, allSkillNames, scriptsPath, emitDir: agentsDir, skillDir: path.join(skillsDir, skillDirNameOf(skill)) });
           const agentFile = buildAgentFile(config, agent, body);
           if (!agentFile) continue;
           ensureDir(agentsDir);

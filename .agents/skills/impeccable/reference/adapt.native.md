@@ -1,58 +1,58 @@
-> **Additional context needed**: target platforms/devices and usage contexts.
+> **context اضافه لازم است**: پلتفرم/دستگاه‌های هدف و بافت‌های استفاده.
 
-Adapt an existing **native** design (`ios` / `android` / `adaptive`) to a different context: another device class, orientation, platform, or origin. The trap is treating adaptation as scaling. The job is rethinking the experience for the new context, inside the platform conventions of [ios.md](ios.md) / [android.md](android.md); read the target platform's reference before planning if Setup hasn't already.
+یک طراحی **نیتیو** موجود (`ios` / `android` / `adaptive`) را به بافت دیگری وفق بده: کلاس دستگاه دیگر، جهت، پلتفرم یا خاستگاه. تله، تلقیِ وفق‌دادن به‌شکل مقیاس‌دادن است. کار، بازاندیشیِ تجربه برای بافت جدید است، درون عرف‌های پلتفرمیِ [ios.md](ios.md) / [android.md](android.md)؛ مرجع پلتفرمِ هدف را قبل از برنامه‌ریزی بخوان اگر Setup خودش نخوانده.
 
-## Assess Adaptation Challenge
+## سنجش چالش وفق‌دادن
 
-1. **Source context**: what was it designed for, and what assumptions did it make? (Phone-only? Portrait-only? One platform's idioms? A website?)
-2. **Target context**: which device class (phone, tablet, foldable), orientation, platform, and usage posture (one-handed on the go vs two-handed at rest)?
-3. **What breaks**: navigation that doesn't fit the target, layouts that stretch instead of restructure, gestures or controls that don't exist there?
+1. **بافت مبدأ**: برای چه طراحی شده بود و چه فرض‌هایی داشت؟ (فقط-موبایل؟ فقط-عمودی؟ اصطلاحات یک پلتفرم؟ یک وب‌سایت؟)
+2. **بافت هدف**: کدام کلاس دستگاه (موبایل، تبلت، تاشو)، جهت، پلتفرم و وضعیتِ استفاده (یک‌دستی در حرکت در برابر دودستی در سکون)؟
+3. **چه چیزی می‌شکند**: ناوبری‌ای که در هدف جا نمی‌شود، چیدمان‌هایی که به‌جای بازساختگی کش می‌آیند، ژست‌ها یا کنترل‌هایی که آنجا وجود ندارند؟
 
-## Adaptation Strategies
+## راهبردهای وفق‌دادن
 
-### Phone → Tablet (iPad / large screens)
+### موبایل → تبلت (iPad / صفحه‌های بزرگ)
 
-- **Restructure, don't stretch.** A scaled-up phone UI on a tablet is the failure mode. Use size classes (iOS) / window size classes (Android) to switch structure.
-- **Navigation changes shape**: tab bar stays or becomes a sidebar on iPad; Android navigation bar becomes a rail or drawer on expanded width.
-- **Use the width**: split view / master-detail (list + detail side by side), multi-column grids, popovers where phones used sheets.
-- **Multitasking is a size, not an edge case**: iPad Split View and Android multi-window can hand you a phone-width window on a tablet; size-class-driven layout handles both for free.
+- **بازساخت کن، نکِش.** UI موبایلِ مقیاس‌شده روی تبلت، حالتِ شکست است. از size classها (iOS) / window size classها (Android) برای تعویض ساختار استفاده کن.
+- **ناوبری شکل عوض می‌کند**: tab bar می‌ماند یا در iPad سایدبار می‌شود؛ نوار ناوبری اندروید در عرضِ باز، rail یا drawer می‌شود.
+- **از عرض استفاده کن**: split view / master-detail (فهرست + جزئیات کنار هم)، گریدهای چندستونه، popoverها جایی که موبایل sheet داشت.
+- **چندوظیفه‌ای یک سایز است، نه حالت مرزی**: iPad Split View و مولتی‌ویندوز اندروید می‌توانند در تبلت پنجره‌ای به-عرضِ-موبایل بهت بدهند؛ چیدمانِ برخاسته از size-class هر دو را مجاناً پوشش می‌دهد.
 
-### Orientation & foldables
+### جهت و تاشوها
 
-- Landscape restructures (side-by-side panes, repositioned controls); never clip or letterbox. Lock orientation only when the task truly demands it.
-- Foldables (Android): react to posture and hinge via window size classes; test folded, unfolded, and tabletop.
+- افقی بازساخت می‌کند (پنل‌های کنارهم، کنترل‌های جابه‌جاشده)؛ هرگز برش (clip) یا نوارسیاه (letterbox) نه. قفلِ جهت فقط وقتی که کار واقعاً می‌طلبد.
+- تاشوها (اندروید): به posture و لولا از طریق window size classها واکنش نشان بده؛ حالت تاشده، باز و میز-مانند را تست کن.
 
-### Platform → platform (iOS ↔ Android)
+### پلتفرم → پلتفرم (iOS ↔ Android)
 
-Translate idioms; never transplant them:
+اصطلاحات را ترجمه کن؛ هرگز پیوندشان نزن:
 
 | iOS | Android |
 |---|---|
 | Tab bar | Navigation bar / rail / drawer |
-| Edge-swipe back, back chevron | Predictive Back gesture / button |
-| Switch, segmented control, system pickers | Material switch, chips, Material pickers |
-| Action sheet | Bottom sheet / Material dialog |
-| SF Symbols, SF Pro, Dynamic Type | Material Symbols, Roboto, sp scaling |
-| Semantic system colors, materials | Material color roles, tonal elevation |
-| System push/sheet transitions | Container transform, shared-axis, fade-through |
+| برگشت با کشیدن از لبه، chevron برگشت | ژست Predictive Back / دکمه |
+| Switch، segmented control، pickerهای سیستمی | Material switch، chips، pickerهای Material |
+| Action sheet | Bottom sheet / دیالوگ Material |
+| SF Symbols، SF Pro، Dynamic Type | Material Symbols، Roboto، مقیاس sp |
+| رنگ‌های سیستمی معنایی، متریال‌ها | نقش‌های رنگی Material، ارتفاع تونال |
+| ترنزیشن‌های سیستمی push/sheet | Container transform، shared-axis، fade-through |
 
-Rebuild navigation and controls in the target's vocabulary; carry over the brand's expressive layer (palette intent, type accent, motion personality) through the target's theming system.
+ناوبری و کنترل‌ها را در واژگان هدف باز بساز؛ لایهٔ بیانی برند (نیت پالت، تاکید تایپ، شخصیت حرکت) را از طریق سیستم تم‌بندیِ هدف حمل کن.
 
-### Web → native (porting a website or web app)
+### وب → نیتیو (پورت وب‌سایت یا وب‌اپ)
 
-Reconform, don't reflow. Replace web navigation with the platform's model, HTML-shaped controls with platform controls, hover affordances with touch-first ones, and px-based type with Dynamic Type / sp. Then treat the result to the full platform reference; the slop test there is the acceptance bar.
+بازهم‌شکل بده، reflow نکن. ناوبری وب را با مدل پلتفرم جایگزین کن، کنترل‌های شکل-HTML را با کنترل‌های پلتفرم، امکان‌های هاور را با لمس‌محور، و تایپ مبتنی بر px را با Dynamic Type / sp. بعد نتیجه را تمام‌قد به مرجع پلتفرم بده؛ تستِ اسلاپ آنجا معیارِ پذیرش است.
 
-## Implement & Verify
+## پیاده‌سازی و راستی‌آزمایی
 
-- Drive structure from **size classes / window size classes**, never from device-model checks.
-- Respect safe areas and window insets in every new configuration (notch, hinge, status bar, keyboard).
-- Test on simulators for breadth, then real hardware for truth: at least one phone and one tablet per shipped platform, both orientations, split-screen where supported.
+- ساختار را از **size classها / window size classها** بران، هرگز از چکِ مدلِ دستگاه.
+- safe areaها و window insetها را در هر پیکربندی جدید رعایت کن (ناچ، لولا، نوار وضعیت، کیبورد).
+- روی شبیه‌سازها برای پوشش، بعد روی سخت‌افزار واقعی برای حقیقت تست کن: دست‌کم یک موبایل و یک تبلت به‌ازای هر پلتفرم عرضه‌شده، هر دو جهت، و split-screen جایی که پشتیبانی می‌شود.
 
-When the adaptation feels native to each context, hand off to `$impeccable polish` for the final pass.
+وقتی وفق‌دادن در هر بافت نیتیو حس شد، پاسِ نهایی را به `$jala polish` بسپار.
 
-**Avoid**:
-- Ship a stretched phone layout on a tablet
-- Port one platform's controls or navigation onto the other
-- Hide core functionality on smaller devices (if it matters, make it work)
-- Lock orientation to dodge a layout bug
-- Trust simulators alone (posture, gestures, and performance need hardware)
+**بپرهیز از**:
+- عرضهٔ چیدمان موبایلیِ کش‌آمده روی تبلت
+- پیوندزدن کنترل‌ها یا ناوبری یک پلتفرم به دیگری
+- پنهان‌کردن کارکرد اصلی روی دستگاه‌های کوچک‌تر (اگر مهم است، کارایش کن)
+- قفل جهت برای فرار از یک باگ چیدمان
+- اعتمادِ تنها به شبیه‌سازها (posture، ژست‌ها و کارایی سخت‌افزار می‌خواهند)

@@ -47,7 +47,7 @@ Inter برای همه‌چیز. گرادیان بنفش‌به‌آبی. کار�
 
 - **کلمه‌ها برای چیزی که می‌خواهی.** «جذابش کن» ایجنت را در حدس رها می‌کند. `/jala bolder the pricing cards` پلی‌بوکِ مخصوص همان حرکت را لود می‌کند و به یک هدف مشخص نشانه می‌رود.
 - **یک بازبین.** `critique` طراحی را با اصول استفاده‌پذیری نمره می‌دهد و اولویت درست‌کردن‌ها را می‌چیند. `audit` دسترس‌پذیری، کارایی، تم و رفتار واکنش‌گرا را چک می‌کند با یافته‌های رده‌بندی‌شده از P0 (مسدودکننده) تا P3 (پالایش) — و روی سطوح فارسی، چک‌های RTL و فارسی را هم اضافه می‌کند.
-- **دیتکتور اسلاپ.** ۶۲ قاعدهٔ قطعی نشانه‌های بالا را می‌گیرد، به‌علاوهٔ مشکلات کیفی مثل پدینگ خفه و پرش سطح عنوان. بدون LLM، بدون کلید API. توضیحات قواعد در این فورک فارسی شده‌اند.
+- **دیتکتور اسلاپ.** ۶۲ قاعدهٔ قطعی نشانه‌های بالا را می‌گیرد، به‌علاوهٔ مشکلات کیفی مثل پدینگ خفه و پرش سطح عنوان. بدون LLM، بدون کلید API. متن اسکیل و توضیح فرمان‌ها در این فورک فارسی است؛ باینری موتور از ریلیزهای پروژهٔ اصلی می‌آید و توضیح قواعدش انگلیسی می‌ماند.
 
 ## چطور کار می‌کند
 
@@ -98,10 +98,10 @@ npx impeccable detect src/                   # اسکن یک پوشه
 npx impeccable detect https://example.com    # اسکن صفحهٔ رندرشده (از Chrome یا Edge نصب‌شده استفاده می‌کند)
 npx impeccable detect --json .               # خروجی ماشین‌خوان
 npx impeccable detect --github src/          # انوتیشن GitHub Actions
-npx impeccable detect --list-rules           # همهٔ قواعد با id و توضیح (فارسی)
+npx impeccable detect --list-rules           # همهٔ قواعد با id و توضیح (توضیح‌ها انگلیسی‌اند — از باینری آپ‌استریم)
 ```
 
-**در مرورگرت.** [پسوند Chrome](https://chromewebstore.google.com/detail/impeccable/bdkgmiklpdmaojlpflclinlofgjfpabf) همان یافته‌ها را روی هر صفحهٔ زنده نمایش می‌دهد — با توضیحات فارسیِ قواعد در این فورک.
+**در مرورگرت.** [پسوند Chrome](https://chromewebstore.google.com/detail/impeccable/bdkgmiklpdmaojlpflclinlofgjfpabf) همان یافته‌ها را روی هر صفحهٔ زنده نمایش می‌دهد — این لینک نسخهٔ انگلیسیِ پروژهٔ اصلی است؛ سورس فارسی‌شدهٔ اکستنشن در پوشهٔ `extension/` همین ریپو هست ولی هنوز در استور منتشر نشده.
 
 کد خروجی `2` یعنی یافته وجود دارد، `1` یعنی هدف قابل اسکن نبود. برای معاف‌کردن فونت برند: `npx impeccable ignores add-value overused-font Inter --reason "Brand font"`.
 
@@ -116,7 +116,31 @@ npx impeccable detect --list-rules           # همهٔ قواعد با id و ت
 
 ## فایل‌های پروژه و git
 
-جلا فایل‌های کاری‌اش را زیر `.impeccable/` می‌نویسد. چند مورد آرتیفکتِ مشترکِ پروژه‌اند و جای‌شان ریپوست: `config.json`، `live/config.json`، `design.json`، `surfaces/*.md` و `critique/*.md`. `PRODUCT.md` و `DESIGN.md` را هم در ریپو نگه دار. بقیه اسکرین‌شات، کش و وضعیت runtime است — الگوی `.gitignore` کامل در [README پروژهٔ اصلی](https://github.com/pbakaus/impeccable#project-files-and-git).
+جلا فایل‌های کاری‌اش را زیر `.impeccable/` می‌نویسد. چند مورد آرتیفکتِ مشترکِ پروژه‌اند و جای‌شان ریپوست: `config.json`، `live/config.json`، `design.json`، `surfaces/*.md` و `critique/*.md`. `PRODUCT.md` و `DESIGN.md` را هم در ریپو نگه دار. بقیه اسکرین‌شات، کش و وضعیت runtime است — این الگو را در `.gitignore` پروژه‌ات بگذار (توضیح خطوط داخل کامنت‌ها؛ محتوای الگو قرارداد موتور است و ترجمه نمی‌شود):
+
+```gitignore
+# impeccable-ignore-start
+# Ephemeral output, runtime state, and per-dev overrides.
+# The **/ prefix covers .impeccable at the repo root or in a nested workspace.
+# Shared artifacts stay tracked: config.json, live/config.json,
+# design.json, surfaces/*.md, critique/*.md.
+**/.impeccable/config.local.json
+**/.impeccable/hook.cache.json
+**/.impeccable/hook.pending.json
+**/.impeccable/*.png
+**/.impeccable/review/
+**/.impeccable/questions/
+**/.impeccable/live/server.json
+**/.impeccable/live/sessions/
+**/.impeccable/live/previews/
+**/.impeccable/live/annotations/
+**/.impeccable/live/cache/
+**/.impeccable/live/manual-edit-apply-transaction.json
+**/.impeccable/live/manual-edit-events.jsonl
+**/.impeccable/live/manual-edit-evidence/
+**/.impeccable/live/*.png
+# impeccable-ignore-end
+```
 
 ## توسعه
 

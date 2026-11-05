@@ -1,5 +1,6 @@
 ---
 name: jala
+dir-name: impeccable
 description: "وقتی کاربر می‌خواهد یک رابط کاربری را طراحی، بازطراحی، شکل‌دهی، نقد، ممیزی، پالایش، ساده‌سازی، سخت‌سازی، انیمیت یا به‌هرشکلی بهبود دهد: وب‌سایت‌ها، صفحه‌های فرود، داشبوردها، UI محصول، کامپوننت‌ها، فرم‌ها، تنظیمات، آنبوردینگ، حالت‌های خالی، و صفحه‌های iOS یا Android. پوشش می‌دهد: بازبینی UX، سلسله‌مراتب، چیدمان، تایپوگرافی فارسی (فونت‌های فارسی، نیم‌فاصله، ارقام فارسی)، رنگ، حرکت، متن UX، دسترس‌پذیری، رفتار واکنش‌گرا، حالت‌های مرزی، طراحی راست‌به‌چپ (RTL)، تقویم جلالی، و ثبت یا مستندسازی سیستم طراحی (DESIGN.md، توکن‌ها). منابع فارسی مثل vibefarsi.ir برای کامپوننت‌های آماده. برای سطح‌های انگلیسی هم واژگان کامل طراحی را فراهم می‌کند. Not for backend-only or non-UI tasks."
 argument-hint: "[{{command_hint}}] [target]"
 user-invocable: true
@@ -83,7 +84,7 @@ license: Apache 2.0
 
 بعد از init که PRODUCT.md را نوشت، بدون اجرای دوبارهٔ `{{scripts_path}}/impeccable context` ادامه بده؛ init خودش مرجع پلتفرم نیتیو را لود می‌کند وقتی پلتفرم ثبت‌شده `ios`، `android` یا `adaptive` است.
 
-**Pin / Unpin:** `{{scripts_path}}/impeccable pin <pin|unpin> <command>` میان‌برِ مستقلِ `{{command_prefix}}jala<command>` می‌سازد یا حذف می‌کند. نتیجهٔ اسکریپت را مختصر گزارش کن؛ stderr را در خطا کلمه‌به‌کلمه منتقل کن.
+**Pin / Unpin:** `{{scripts_path}}/impeccable pin <pin|unpin> <command>` میان‌برِ مستقلِ `{{command_prefix}}<command>` می‌سازد یا حذف می‌کند. نتیجهٔ اسکریپت را مختصر گزارش کن؛ stderr را در خطا کلمه‌به‌کلمه منتقل کن.
 
 **هوک‌ها:** `{{command_prefix}}jala hooks <on|off|status|ignore-rule|ignore-file|ignore-value|reset>` هوک دیتکتور طراحیِ این پروژه را مدیریت می‌کند (بعد از ویرایش فایل‌های UI، خودکار دیتکتور را اجرا و یافته‌ها را گزارش می‌کند). وقتی کاربر با هر آرگومانی صدا زد، [reference/hooks.md](reference/hooks.md) را لود کن.
 

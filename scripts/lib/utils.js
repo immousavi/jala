@@ -329,6 +329,11 @@ export function readSourceFiles(rootDir) {
 
   skills.push({
     name: frontmatter.name || 'impeccable',
+    // Install FOLDER name, decoupled from the slash-command identity. The
+    // jala fork sets `dir-name: impeccable` so the skill installs into
+    // skills/impeccable/ (the path hooks, plugin staging and the engine
+    // launcher hardcode) while the command stays /jala.
+    dirName: frontmatter['dir-name'] || frontmatter.name || 'impeccable',
     description: frontmatter.description || '',
     license: frontmatter.license || '',
     compatibility: frontmatter.compatibility || '',
@@ -686,15 +691,18 @@ export function replacePlaceholders(content, provider, commandNames = [], allSki
   const cmdPrefix = placeholders.command_prefix || '/';
 
   // Build the available_commands list.
-  // After the v3.0 consolidation, commands are sub-commands of /impeccable.
-  // If there's only one user-invocable skill (impeccable), generate sub-command references.
-  // Otherwise fall back to listing skill names (backwards compat for forks).
-  const nonExcluded = commandNames.filter(n => !EXCLUDED_FROM_SUGGESTIONS.has(n));
+  // After the v3.0 consolidation, commands are sub-commands of the single
+  // skill. Its slash-command identity is the first skill's `name` (jala in
+  // this fork), NOT the install folder name (impeccable) — the menu must
+  // list commands that actually exist. With no skill names (unit tests,
+  // legacy callers) fall back to the upstream `impeccable` identity.
+  const commandBase = allSkillNames[0] || 'impeccable';
+  const nonExcluded = commandNames.filter(n => !EXCLUDED_FROM_SUGGESTIONS.has(n) && n !== commandBase);
   let commandList;
   if (nonExcluded.length === 0) {
-    // Single-skill architecture: list sub-commands as /impeccable <sub>
+    // Single-skill architecture: list sub-commands as /<skill> <sub>
     commandList = IMPECCABLE_SUB_COMMANDS
-      .map(n => `${cmdPrefix}impeccable ${n}`)
+      .map(n => `${cmdPrefix}${commandBase} ${n}`)
       .join(', ');
   } else {
     // Multi-skill architecture (backwards compat)

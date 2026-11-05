@@ -190,39 +190,47 @@ function execBash(workspace, command, timeoutMs = 20_000, extraEnv = {}) {
       // requests as test traffic so they stay out of the choice dataset.
       env: { ...shellEnv, ...(ENGINE_BIN ? { IMPECCABLE_BIN: ENGINE_BIN } : {}), IMPECCABLE_QUESTION_DISABLED: '1', IMPECCABLE_TELEMETRY_CHANNEL: 'test' },
     });
-    let stdout = '';
-    let stderr = '';
+    // Collect raw Buffers and decode once at the end: string-decoding each
+    // chunk corrupts multi-byte UTF-8 (Persian) characters that straddle a
+    // chunk boundary into U+FFFD, and cat of a translated reference then no
+    // longer equals the read tool's content.
+    const stdoutParts = [];
+    const stderrParts = [];
+    let stdoutBytes = 0;
+    let stderrBytes = 0;
     const truncatedFlag = { val: false };
     const onChunk = (which) => (chunk) => {
-      const str = chunk.toString();
-      if (which === 'out') {
-        if (stdout.length + str.length > MAX_BASH_OUTPUT_BYTES) {
-          stdout += str.slice(0, MAX_BASH_OUTPUT_BYTES - stdout.length);
-          truncatedFlag.val = true;
-        } else {
-          stdout += str;
-        }
+      const parts = which === 'out' ? stdoutParts : stderrParts;
+      let total = which === 'out' ? stdoutBytes : stderrBytes;
+      if (total + chunk.length > MAX_BASH_OUTPUT_BYTES) {
+        parts.push(chunk.subarray(0, MAX_BASH_OUTPUT_BYTES - total));
+        truncatedFlag.val = true;
+        total = MAX_BASH_OUTPUT_BYTES;
       } else {
-        if (stderr.length + str.length > MAX_BASH_OUTPUT_BYTES) {
-          stderr += str.slice(0, MAX_BASH_OUTPUT_BYTES - stderr.length);
-          truncatedFlag.val = true;
-        } else {
-          stderr += str;
-        }
+        parts.push(chunk);
+        total += chunk.length;
       }
+      if (which === 'out') stdoutBytes = total; else stderrBytes = total;
     };
     proc.stdout.on('data', onChunk('out'));
     proc.stderr.on('data', onChunk('err'));
+    const finish = () => ({
+      stdout: Buffer.concat(stdoutParts).toString('utf8'),
+      stderr: Buffer.concat(stderrParts).toString('utf8'),
+    });
     const timer = setTimeout(() => {
       proc.kill('SIGKILL');
+      const { stdout, stderr } = finish();
       resolve({ exitCode: null, stdout, stderr: stderr + '\n[TIMED OUT]', truncated: truncatedFlag.val });
     }, timeoutMs);
     proc.on('exit', (code) => {
       clearTimeout(timer);
+      const { stdout, stderr } = finish();
       resolve({ exitCode: code, stdout, stderr, truncated: truncatedFlag.val });
     });
     proc.on('error', (err) => {
       clearTimeout(timer);
+      const { stdout, stderr } = finish();
       resolve({ exitCode: null, stdout, stderr: stderr + `\n[SPAWN ERROR] ${String(err)}`, truncated: truncatedFlag.val });
     });
   });

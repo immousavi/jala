@@ -1,89 +1,89 @@
-> **Additional context needed**: performance constraints.
+> **context اضافه لازم است**: محدودیت‌های کارایی.
 
-Use motion to explain state, relationship, and hierarchy, or to create one authored moment the surface has earned. Decoration without purpose is animation debt.
+حرکت را برای توضیحِ وضعیت، رابطه و سلسله‌مراتب استفاده کن، یا برای ساختنِ یک لحظهٔ نویسنده‌دار که سطح لیاقتش را گرفته. تزئین بدون هدف، بدهیِ انیمیشن است.
 
 ---
 
-## Visitor mode
+## حالت بازدیدکننده
 
-- **Persuade + Experience:** motion may carry the voice. Prefer one rehearsed focal sequence to repeated section reveals.
-- **Operate + Read:** motion serves feedback, state, and continuity. Keep routine transitions fast and do not make users wait through page-load choreography.
-- **Native (`ios` / `android` / `adaptive`):** follow the Motion section of [ios.md](ios.md) or [android.md](android.md), including the platform's Reduce Motion behavior. Do not apply the web tooling below.
+- **اقناع (Persuade) + تجربه (Experience):** حرکت می‌تواند صدا را حمل کند. یک توالیِ کانونیِ تمرین‌شده را به revealهای تکرارشوندهٔ بخش‌ها ترجیح بده.
+- **عملیات (Operate) + خواندن (Read):** حرکت به بازخورد، وضعیت و پیوستگی خدمت می‌کند. ترنزیشن‌های روتین را سریع نگه دار و کاربر را منتظر کُرئوگرافیِ لود صفحه نگذار.
+- **نیتیو (`ios` / `android` / `adaptive`):** بخش Motion در [ios.md](ios.md) یا [android.md](android.md) را دنبال کن، شامل رفتار Reduce Motion پلتفرم. ابزارهای وبِ پایین را اعمال نکن.
 
-## Find the job
+## کار را پیدا کن
 
-Inspect the existing motion language, interaction states, target devices, and performance budget. Find only the places where motion would:
+زبان حرکتِ موجود، حالت‌های تعاملی، دستگاه‌های هدف و بودجهٔ کارایی را بازرسی کن. فقط جاهایی را پیدا کن که حرکت:
 
-- acknowledge an action;
-- make a state change or spatial relationship legible;
-- preserve continuity through navigation or layout change;
-- direct attention at a meaningful moment;
-- embody the selected visual world.
+- یک کنش را تأیید کند؛
+- تغییر حالت یا رابطهٔ فضایی را خوانا کند؛
+- پیوستگی را در ناوبری یا تغییر چیدمان حفظ کند؛
+- در لحظه‌ای معنادار توجه را هدایت کند؛
+- جهان بصریِ انتخاب‌شده را تجسم کند.
 
-Ask only when a material constraint cannot be inferred. Do not animate a static area merely because it exists.
+فقط وقتی بپرس که محدودیتِ مادی استنتاج‌نپذیر باشد. ناحیهٔ ایستا را فقط به این دلیل که وجود دارد انیمیت نکن.
 
-## Set the motion thesis
+## تز حرکت را تعیین کن
 
-Write a short plan before implementation:
+قبل از پیاده‌سازی یک برنامهٔ کوتاه بنویس:
 
-- **Focal moment:** the one sequence or interaction that deserves authorship, if any.
-- **Continuity:** the state, layout, or navigation changes that need explanation.
-- **Feedback:** the controls and outcomes that need acknowledgment.
-- **Budget:** which effects may be expensive and how often they run.
+- **لحظهٔ کانونی:** آن یک توالی یا تعامل که لیاقت نویسندگی دارد، اگر وجود دارد.
+- **پیوستگی:** تغییرهای حالت، چیدمان یا ناوبری که توضیح می‌خواهند.
+- **بازخورد:** کنترل‌ها و نتایجی که تأیید می‌خواهند.
+- **بودجه:** کدام افکت‌ها می‌توانند گران باشند و چه‌قدر تکرار می‌شوند.
 
-The focal moment must come from this product and surface concept. A generic fade-and-rise, hover lift, parallax layer, or scroll reveal is not a thesis.
+لحظهٔ کانونی باید از همین محصول و مفهومِ سطح بیاید. fade-and-rise عمومی، بالاآمدنِ هاور، لایهٔ parallax یا reveal اسکرولی، تز نیست.
 
-## Choose material by meaning
+## متریال را با معنا انتخاب کن
 
-Transform and opacity are reliable foundations, not the entire palette. Choose properties for what the transition communicates:
+transform و opacity پایه‌های قابل‌اعتمادند، نه کل پالت. پراپرتی‌ها را بر اساس آنچه ترنزیشن منتقل می‌کند انتخاب کن:
 
-- **Continuity and relationship:** shared-element motion, FLIP-style transforms, view transitions, or deliberate spatial movement.
-- **Focus and depth:** bounded blur, filter, backdrop, light, or shadow changes.
-- **Reveal and composition:** masks, clip paths, cropping, or controlled occlusion.
-- **Material and energy:** color, gradient position, texture, distortion, or shader effects when the world and runtime support them.
-- **State and feedback:** the smallest change that makes cause and result unmistakable.
+- **پیوستگی و رابطه:** حرکتِ عنصر-مشترک، transformهای سبک FLIP، view transitionها، یا جابه‌جایی فضاییِ آگاهانه.
+- **فوکوس و عمق:** تغییرهای محدودِ بلور، فیلتر، backdrop، نور یا سایه.
+- **آشکارسازی و ترکیب‌بندی:** ماسک‌ها، clip pathها، برش، یا محوشدگیِ کنترل‌شده.
+- **متریال و انرژی:** رنگ، موقعیت گرادیان، بافت، اعوجاج یا افکت‌های شیدر وقتی جهان و runtime پشتیبانی می‌کنند.
+- **وضعیت و بازخورد:** کوچک‌ترین تغییری که علت و نتیجه را بی‌ابهام می‌کند.
 
-Do not stack techniques for spectacle. One strong material idea, carried through the focal sequence and quiet supporting states, is usually enough.
+تکنیک‌ها را برای نمایش در هم نریز. یک ایدهٔ متریالیِ قوی، حمل‌شده در توالی کانونی و حالت‌های پشتیبانِ آرام، معمولاً کافی است.
 
-Sibling stagger is appropriate when a list appears as a list. Cap the total delay, and never reinterpret every scrolled section as a staggered list.
+پلکانی‌شدنِ خواهرها وقتی مناسب است که فهرستی به‌شکل فهرست ظاهر شود. سقفِ تأخیر کل را بگذار و هر بخشِ اسکرول‌شده را هرگز به‌شکل فهرست پلکانی تفسیر نکن.
 
-## Timing and easing
+## زمان‌بندی و ایزینگ
 
-Timing should express distance and consequence:
+زمان‌بندی باید فاصله و پیامد را بیان کند:
 
-| Duration | Typical use |
+| مدت | کاربرد معمول |
 |---|---|
-| 100–150 ms | immediate feedback |
-| 150–300 ms | routine state change |
-| 300–500 ms | layout, overlay, or view transition |
-| 500–800 ms | a deliberately authored focal entrance |
+| ۱۰۰–۱۵۰ ms | بازخورد فوری |
+| ۱۵۰–۳۰۰ ms | تغییر حالت روتین |
+| ۳۰۰–۵۰۰ ms | ترنزیشن چیدمان، اورلی یا view |
+| ۵۰۰–۸۰۰ ms | ورودِ کانونیِ آگاهانه‌نویسنده‌شده |
 
-Exit faster than entrance. Use natural deceleration such as `cubic-bezier(0.16, 1, 0.3, 1)` for confident arrivals; do not use bounce or elastic curves by reflex. Long feedback feels like latency.
+خروج سریع‌تر از ورود. برای فرودهای مطمئن از شتاب‌کاهش طبیعی مثل `cubic-bezier(0.16, 1, 0.3, 1)` استفاده کن؛ منحنی‌های جهش یا فنر را از روی غریزه استفاده نکن. بازخوردِ بلند مثل تأخیر حس می‌شود.
 
-## Implement to the runtime
+## مطابق runtime پیاده کن
 
-- Use CSS transitions and keyframes for declarative state and bounded sequences.
-- Use Web Animations API or the project's existing motion library for interruption, sequencing, and dynamic values.
-- Use View Transitions or shared-element techniques when continuity across states is the point.
-- Use scroll-driven motion only when the scroll relationship itself carries meaning, with a robust fallback.
-- Do not add a dependency for an effect the existing stack can express cleanly.
+- برای حالت‌های اعلامی و توالی‌های محدود از ترنزیشن‌ها و keyframeهای CSS استفاده کن.
+- برای قطع‌شدگی، توالی‌دهی و مقدارهای پویا از Web Animations API یا کتابخانهٔ حرکتِ موجودِ پروژه استفاده کن.
+- وقتی پیوستگیِ بین-حالتی نکتهٔ ماجراست، از View Transitions یا تکنیک‌های عنصر-مشترک استفاده کن.
+- حرکتِ scroll-driven فقط وقتی که خود رابطهٔ اسکرول معنا حمل می‌کند، با fallback محکم.
+- برای افکتی که استکِ موجود تمیز بیانش می‌کند وابستگی اضافه نکن.
 
-Keep content visible in the default state so failed scripts do not hide the page. Avoid casually animating layout-driving properties such as `width`, `height`, `top`, `left`, and margins; use FLIP, transforms, or grid techniques when appropriate. Bound blur, filter, shadow, canvas, and shader work to isolated regions. Apply `will-change` only during known animation. Measure on target viewports and devices rather than assuming transform means fast.
+محتوا را در حالت پیش‌فرض نمایان نگه دار تا اسکریپت‌های شکسته صفحه را نپوشانند. انیمیت‌کردنِ سرسریِ پراپرتی‌های راننده-چیدمان مثل `width`، `height`، `top`، `left` و marginها را بپرهیز؛ جایی که مناسب است از FLIP، transform یا تکنیک‌های grid استفاده کن. کارِ بلور، فیلتر، سایه، canvas و شیدر را به ناحیه‌های مجزا محدود کن. `will-change` را فقط حین انیمیشنِ معلوم اعمال کن. روی ویوپورت‌ها و دستگاه‌های هدف اندازه بگیر، به‌جای فرضِ اینکه transform یعنی سریع.
 
-## Accessibility and control
+## دسترس‌پذیری و کنترل
 
-Respect autoplay and sound preferences. Any nonessential loop must stop when offscreen or hidden.
+ترجیحات autoplay و صدا را رعایت کن. هر حلقهٔ غیرضروری باید وقتی خارج‌ازنمای یا پنهان است متوقف شود.
 
-Every web animation needs a `prefers-reduced-motion` path with an intentional alternative. Remove or reduce spatial movement while preserving opacity, color, and state transitions that carry meaning. Reduced motion means fewer and gentler animations, not disabling all motion; feedback that confirms an action should remain legible.
+هر انیمیشن وب به مسیر `prefers-reduced-motion` با جایگزینیِ آگاهانه نیاز دارد. جابه‌جایی فضایی را حذف یا کم کن در حالی که ترنزیشن‌های opacity، رنگ و وضعیتِ معناحامل حفظ شوند. حرکتِ کاهش‌یافته یعنی انیمیشن‌های کمتر و نرم‌تر، نه خاموشیِ همهٔ حرکت؛ بازخوردی که کنش را تأیید می‌کند باید خوانا بماند.
 
-## Verify
+## راستی‌آزمایی
 
-- The focal motion is specific to the selected world and surface.
-- Every supporting animation explains feedback, state, or relationship.
-- Interruption and repeated use behave correctly.
-- Desktop, mobile, and keyboard paths remain usable.
-- The `prefers-reduced-motion` path reduces movement without erasing meaningful feedback or state changes.
-- Expensive effects stay smooth on the target device.
-- Removing an animation would lose meaning or authored character, not merely decoration.
+- حرکت کانونی مخصوصِ جهان و سطحِ انتخاب‌شده است.
+- هر انیمیشن پشتیبان بازخورد، وضعیت یا رابطه را توضیح می‌دهد.
+- قطع‌شدگی و استفادهٔ تکراری درست رفتار می‌کنند.
+- مسیرهای دسکتاپ، موبایل و کیبورد کارا می‌مانند.
+- مسیر `prefers-reduced-motion` حرکت را کم می‌کند بدون پاک‌کردن بازخورد یا تغییر حالتِ معنادار.
+- افکت‌های گران روی دستگاه هدف نرم می‌مانند.
+- حذف یک انیمیشن معنا یا کاراکترِ نویسنده‌دار را از دست می‌دهد، نه صرفاً تزئین را.
 
-When motion earns its place, hand off to `$impeccable polish` for the final pass.
+وقتی حرکت جایش را گرفت، پاسِ نهایی را به `$jala polish` بسپار.

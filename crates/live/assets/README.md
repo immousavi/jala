@@ -18,6 +18,15 @@ source checkout or a repo tarball (impeccable.style counts and renders the
 rules from it) has no other way to read the registry without a Rust
 toolchain.
 
+> **jala fork note:** the engine intentionally stays upstream — the launcher
+> downloads `impeccable-<target>` binaries from the original repo's releases,
+> whose registry descriptions are English. This file is regenerated from the
+> Rust registry by `cargo xtask bundle`, so translating it by hand is both
+> ineffective (nothing user-facing reads the tracked copy) and a drift hazard
+> (`cargo xtask bundle --check` fails against a hand-edited file). Persian
+> rule text lives in the skill layer: `skill/scripts/command-metadata.json`
+> and the translated reference files.
+
 ```bash
 cargo xtask bundle          # rewrites both (and extension/detector/)
 cargo xtask bundle --check  # fails when either is stale

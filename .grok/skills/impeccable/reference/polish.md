@@ -1,105 +1,105 @@
-> **Additional context needed**: quality bar and shipping constraints.
+> **زمینهٔ بیشتری لازم است**: معیار کیفیت و محدودیت‌های انتشار.
 
-Polish is refinement, never concealed redesign. Preserve the incumbent visual world, content, behavior, and everything outside scope. If the concept itself is wrong, say so and recommend redesign or `bolder` instead of smuggling in a replacement.
+پالایش یعنی صیقل‌کاری، هرگز بازطراحیِ پنهان. جهان بصریِ برجا، محتوا، رفتار و هر چیز خارج از محدوده را حفظ کن. اگر خودِ مفهوم غلط است، همین را بگو و به‌جای قاچاق یک جایگزین، بازطراحی یا `bolder` را پیشنهاد بده.
 
-A detector result is defect evidence, not proof of quality. Inspect the rendered experience and real interaction path.
+خروجی دیتکتور شاهدِ نقص است، نه اثبات کیفیت. تجربهٔ رندرشده و مسیر تعامل واقعی را بازرسی کن.
 
-## 1. Establish the system
+## ۱. برپا کردن سیستم
 
-Read DESIGN.md and representative tokens, shared components, patterns, and neighboring flows. If no formal system exists, use coherent project conventions.
+DESIGN.md و توکن‌های نماینده، کامپوننت‌های مشترک، الگوها و جریان‌های مجاور را بخوان. اگر سیستم رسمی وجود ندارد، از قراردادهای منسجم پروژه استفاده کن.
 
-Classify each drift before fixing it:
+هر انحراف را پیش از رفع، دسته‌بندی کن:
 
-- **missing token:** the system needs a reusable value;
-- **one-off implementation:** an existing shared component or pattern should replace it;
-- **conceptual mismatch:** the flow, information architecture, or hierarchy differs from comparable product areas;
-- **local defect:** the implementation is simply incomplete or inconsistent.
+- **توکن جاافتاده:** سیستم به یک مقدار بازاستفاده‌پذیر نیاز دارد؛
+- **پیاده‌سازی تک‌موردی:** یک کامپوننت یا الگوی مشترکِ موجود باید جای آن را بگیرد؛
+- **عدم تطابق مفهومی:** جریان، معماری اطلاعات یا سلسله‌مراتب با نواحی مشابه محصول فرق دارد؛
+- **نقص موضعی:** پیاده‌سازی صرفاً ناقص یا ناسازگار است.
 
-Fix the cause at the narrowest correct level. Ask when a binding system principle cannot be inferred.
+علت را در تنگ‌ترین سطحِ درست رفع کن. وقتی اصل الزام‌آورِ سیستم را نمی‌توان استنباط کرد، بپرس.
 
-## 2. Gather the evidence
+## ۲. گردآوری شواهد
 
-Use the feature yourself at the surface's representative sizes: desktop and mobile on the web; on a native platform (`ios` / `android` / `adaptive`), the shipped device classes on the simulator, emulator, or hardware, captured per the platform reference's Verifying the build section. Determine:
+خودت از ویژگی استفاده کن، در اندازه‌های نمایندهٔ سطح: در وب، دسکتاپ و موبایل؛ روی پلتفرم نیتیو (`ios` / `android` / `adaptive`)، کلاس‌های دستگاهِ عرضه‌شده روی شبیه‌ساز، امولاتور یا سخت‌افزار، با ضبطِ مطابق بخش «Verifying the build» در مرجع پلتفرم. مشخص کن:
 
-- whether the path is functionally complete;
-- the intended quality bar and time available;
-- known constraints or deliberately unfinished work;
-- the states, content lengths, roles, and input methods users will actually encounter.
+- آیا مسیر از نظر عملکردی کامل است؛
+- معیار کیفیتِ موردنظر و زمانِ موجود چیست؛
+- چه محدودیت‌های شناخته‌شده یا کارهای عمداً ناتمامی وجود دارد؛
+- کدام حالت‌ها، طول‌های محتوا، نقش‌ها و روش‌های ورودی را کاربران واقعاً با آن‌ها روبه‌رو می‌شوند.
 
-If a prior critique exists, use it as one input:
+اگر نقد (critique) قبلی وجود دارد، آن را به‌عنوان یکی از ورودی‌ها به کار بگیر:
 
 ```bash
 .grok/skills/impeccable/scripts/impeccable critique-storage latest "<resolved target>" --json
 ```
 
-Exit 0 returns JSON with the latest snapshot's `body` and an exact `snapshot_file` identity. Retain `snapshot_file` until the end of the pass. For a local file target, the helper compares the file's exact current content fingerprint with the fingerprint captured by critique. Unchanged staged, unstaged, or untracked content remains current; any byte change, deletion, or replacement with a non-file closes the backlog it identified while preserving its trend history and exits 2. A URL target has no local fingerprint and remains current until explicitly closed. When current, incorporate relevant P0/P1 findings from `body` and name the snapshot read. Exit 2 means none exists or the target changed. Perform an independent pass either way.
+کد خروج 0، JSONای شامل `body` آخرین اسنپ‌شات و هویت دقیق `snapshot_file` برمی‌گرداند. `snapshot_file` را تا پایان این پاس نگه دار. برای هدفِ فایل محلی، ابزار کمکی، اثر انگشتِ محتوای فعلیِ دقیق فایل را با اثر انگشتی که critique ثبت کرده مقایسه می‌کند. محتوای بدون تغییر در وضعیت staged، unstaged یا untracked همچنان به‌روز است؛ هر تغییر بایتی، حذف، یا جایگزینی با غیرفایل، بک‌لاگی که همین اسنپ‌شات شناسایی کرده را می‌بندد، تاریخچهٔ روند آن را حفظ می‌کند و با کد خروج 2 تمام می‌شود. هدفِ URL اثر انگشت محلی ندارد و تا وقتی صریحاً بسته نشود، به‌روز می‌ماند. وقتی اسنپ‌شات به‌روز است، یافته‌های مرتبط P0/P1 را از `body` بگنجان و به خوانده‌شدنِ اسنپ‌شات اشاره کن. کد خروج 2 یعنی هیچ اسنپ‌شاتی وجود ندارد یا هدف تغییر کرده. در هر دو حالت یک پاسِ مستقل انجام بده.
 
-## 3. Triage
+## ۳. اولویت‌بندی
 
-Separate functional defects from cosmetic ones and fix in this order:
+نقص‌های عملکردی را از نقص‌های ظاهری جدا کن و به این ترتیب رفع کن:
 
-1. broken or blocked tasks, data loss, misleading state, and inaccessible paths;
-2. missing loading, empty, error, success, disabled, and permission states;
-3. flow, hierarchy, responsive, and design-system drift;
-4. visual and motion inconsistencies;
-5. code and asset cleanup.
+1. کارهای شکسته یا مسدودشده، از دست رفتن داده، حالت گمراه‌کننده و مسیرهای غیرقابل‌دسترس؛
+2. حالت‌های جاافتادهٔ بارگذاری، حالت خالی، خطا، موفقیت، غیرفعال و مجوز؛
+3. انحراف جریان، سلسله‌مراتب، واکنش‌گرایی و سیستم طراحی؛
+4. ناسازگاری‌های بصری و حرکتی؛
+5. پاک‌سازی کد و assetها.
 
-Do not perfect one corner while leaving the rest below the same quality bar.
+یک گوشه را بی‌نقص نکن در حالی که بقیه زیر همان معیار کیفیت می‌مانند.
 
-## 4. Polish the whole path
+## ۴. پالایش کل مسیر
 
-### Flow and hierarchy
+### جریان و سلسله‌مراتب
 
-- Match neighboring mental models, terminology, disclosure, routing, save behavior, and optimistic or pessimistic patterns.
-- Make the primary task and current state obvious without flattening every element to equal weight.
-- Ensure arrival, transition, empty, and recovery paths connect instead of behaving as isolated screens.
+- مدل‌های ذهنی مجاور، واژگان، آشکارسازی، روتینگ، رفتار ذخیره و الگوهای خوش‌بینانه یا بدبینانه را هماهنگ کن.
+- کار اصلی و وضعیت فعلی را آشکار کن، بی‌آن‌که همهٔ عناصر را به وزنی برابر تخت کنی.
+- مسیرهای ورود، گذار، حالت خالی و بازیابی به هم متصل باشند، نه این‌که مثل صفحه‌های ایزوله رفتار کنند.
 
-### Layout and type
+### چیدمان و تایپوگرافی
 
-- Align to the project's grid and spacing scale; fix optical as well as mathematical alignment.
-- Group related content tightly and separate distinct groups generously.
-- Keep same-role typography consistent; test measure, wrapping, localization expansion, zoom, and font loading.
-- Verify every supported viewport rather than correcting only the current screenshot.
+- به گرید و مقیاس فاصله‌گذاری پروژه تراز کن؛ تراز اپتیکال را در کنار تراز ریاضی اصلاح کن.
+- محتوای مرتبط را فشرده گروه کن و گروه‌های متمایز را سخاوتمندانه جدا کن.
+- تایپوگرافیِ هم‌نقش را یکدست نگه دار؛ طول خط، شکستن سطر، رشدِ ناشی از بومی‌سازی، زوم و بارگذاری فونت را تست کن.
+- هر ویوپورتِ پشتیبانی‌شده را راستی‌آزمایی کن، نه این‌که فقط اسکرین‌شات فعلی را اصلاح کنی.
 
-### Color, imagery, and icons
+### رنگ، تصویر و آیکن‌ها
 
-- Use semantic tokens and stable color meanings across themes.
-- Verify text, control, and focus contrast in every state.
-- Keep icon families, stroke/weight, sizing, and optical alignment coherent.
-- Prevent image layout shift; use correct aspect ratios, responsive sources, and useful alt text.
+- از توکن‌های معنایی و معانی رنگی پایدار در همهٔ تم‌ها استفاده کن.
+- کنتراست متن، کنترل و فوکوس را در هر حالت راستی‌آزمایی کن.
+- خانوادهٔ آیکن‌ها، ضخامت/وزن، اندازه و تراز اپتیکال را منسجم نگه دار.
+- از جابه‌جایی چیدمان به‌خاطر تصویر جلوگیری کن؛ از نسبت ابعاد درست، منابع واکنش‌گرا و alt text مفید استفاده کن.
 
-### Interaction and state
+### تعامل و حالت
 
-- Every control needs appropriate default, hover, focus, active, disabled, loading, error, and success behavior.
-- Preserve visible keyboard focus, logical tab order, labels, and platform-appropriate touch targets.
-- Keep motion coherent, interruptible, and performant. Do not add animation merely to make polish visible.
-- Validate long, missing, localized, offline, slow, and permission-limited content where the product can encounter it.
+- هر کنترل به رفتار مناسبِ پیش‌فرض، هاور، فوکوس، فعال، غیرفعال، بارگذاری، خطا و موفقیت نیاز دارد.
+- فوکوس مرئی کیبورد، ترتیب منطقی tab، برچسب‌ها و اهداف لمسیِ مناسبِ پلتفرم را حفظ کن.
+- حرکت را منسجم، قابل‌قطع و بهینه نگه دار. انیمیشن را صرفاً برای پیداکردنِ پالایش اضافه نکن.
+- محتوای بلند، جاافتاده، بومی‌شده، آفلاین، کند و محدودشده به مجوز را هر جا محصول ممکن است با آن روبه‌رو شود، اعتبارسنجی کن.
 
-### Content and code
+### محتوا و کد
 
-- Keep terminology, capitalization, punctuation, and factual copy consistent. Ask before changing claims.
-- Remove debug output, dead code, unused imports, obsolete styles, and polish-created duplication.
-- Replace custom implementations with shared components where the system owns the pattern.
-- Promote genuinely reusable values to tokens; do not create a system abstraction for one local exception.
+- واژگان، بزرگ/کوچکی حروف، نشانه‌گذاری و متن‌های واقعی را یکدست نگه دار. پیش از تغییر ادعاها بپرس.
+- خروجی دیباگ، کد مرده، importهای بلااستفاده، استایل‌های منسوخ و تکرارهای ناشی از خودِ پالایش را حذف کن.
+- هر جا سیستم مالک الگوست، پیاده‌سازی‌های سفارشی را با کامپوننت‌های مشترک جایگزین کن.
+- مقدارهای واقعاً بازاستفاده‌پذیر را به توکن ارتقا بده؛ برای یک استثنای موضعی، آبسترهٔ سیستمی نساز.
 
-## 5. Verify and finish
+## ۵. راستی‌آزمایی و پایان کار
 
-Walk the complete path again with mouse, keyboard, and touch where applicable. Check:
+کل مسیر را دوباره با ماوس، کیبورد و — هر جا کاربرد دارد — لمس طی کن. بررسی کن:
 
-- mobile, intermediate, and wide layouts on the web; phone and tablet size classes in both supported orientations on native;
-- loading, empty, error, success, disabled, long-content, and missing-content states;
-- zoom, contrast, focus, semantics, and screen-reader names;
-- console errors, layout shift, interaction latency, and image loading everywhere; supported browsers on the web; supported OS versions, runtime warnings, and dropped frames on native;
-- agreement with DESIGN.md, neighboring features, and the user's scope.
+- چیدمان‌های موبایل، میانی و عریض در وب؛ کلاس‌های اندازهٔ گوشی و تبلت در هر دو جهتِ پشتیبانی‌شده روی نیتیو؛
+- حالت‌های بارگذاری، حالت خالی، خطا، موفقیت، غیرفعال، محتوای بلند و محتوای جاافتاده؛
+- زوم، کنتراست، فوکوس، معناداری و نام‌های صفحه‌خوان؛
+- خطاهای کنسول، جابه‌جایی چیدمان، تأخیر تعامل و بارگذاری تصویر در همه‌جا؛ مرورگرهای پشتیبانی‌شده در وب؛ نسخه‌های پشتیبانی‌شدهٔ سیستم‌عامل، هشدارهای رانتایم و فریم‌های افتاده در نیتیو؛
+- تطابق با DESIGN.md، ویژگی‌های مجاور و محدودهٔ درخواست کاربر.
 
-Follow the quality guidance supplied by `impeccable context` and hooks, then run any other relevant QA commands. Context requests a manual scan only when no automatic detector is active; never add another detector pass. Fix real defects and document only narrow intentional exceptions. A clean scan does not replace visual judgment.
+راهنمای کیفیتِ ارائه‌شده توسط `impeccable context` و هوک‌ها را دنبال کن، سپس هر فرمان QA دیگرِ مرتبط را اجرا کن. `context` فقط وقتی هیچ دیتکتور خودکاری فعال نیست، اسکن دستی می‌خواهد؛ هرگز یک پاسِ دیتکتور دیگر اضافه نکن. نقص‌های واقعی را رفع کن و فقط استثناهای عمدیِ محدود را مستند کن. اسکنِ تمیز جای قضاوت بصری را نمی‌گیرد.
 
-Finish with a source diff: remove accidental churn, orphaned code, redundant values, and temporary artifacts. Ship only when the feature is functionally complete and consistently finished across the path.
+کار را با یک دیف سورس تمام کن: تغییرات تصادفی، کد بی‌سر و ته، مقدارهای تکراری و فایل‌های موقت را حذف کن. فقط وقتی منتشر کن که ویژگی از نظر عملکردی کامل و در کل مسیر یکدست تمام‌شده باشد.
 
-When this pass clears every Priority Issue it took from a snapshot, close that snapshot:
+وقتی این پاس همهٔ Priority Issueهایی را که از یک اسنپ‌شات گرفته پاک کرد، آن اسنپ‌شات را ببند:
 
 ```bash
 .grok/skills/impeccable/scripts/impeccable critique-storage close "<resolved target>" "<snapshot_file returned by latest>"
 ```
 
-This closes only the snapshot this pass actually processed; if a newer critique landed meanwhile, its backlog stays live. Do not close when no snapshot was read, when `snapshot_file` was not retained, or when Priority Issues remain.
+این کار فقط اسنپ‌شاتی را می‌بندد که این پاس واقعاً پردازش کرده؛ اگر در این میان critique تازه‌تری رسیده باشد، بک‌لاگ آن زنده می‌ماند. وقتی هیچ اسنپ‌شاتی خوانده نشده، وقتی `snapshot_file` نگه داشته نشده، یا وقتی Priority Issueها باقی‌اند، نبند.

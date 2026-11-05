@@ -1,84 +1,86 @@
-Layout turns product priority into reading order, grouping, rhythm, and usable space. Diagnose the structural problem before moving boxes.
+چیدمان اولویت محصول را به ترتیب خواندن، گروه‌بندی، ریتم و فضای کارا تبدیل می‌کند. قبل از جابه‌جایی جعبه‌ها، مسئلهٔ ساختاری را تشخیص بده.
+
+**سطوح فارسی:** اول [fa-rtl.md](fa-rtl.md) را بخوان — آینه‌سازی RTL، پراپرتی‌های منطقی و جهت آیکون‌ها بیشتر تصمیم‌های چیدمان را عوض می‌کنند.
 
 ---
 
-## Visitor mode
+## حالت بازدیدکننده
 
-- **Persuade + Experience:** composition may be asymmetric, fluid, or intentionally disruptive when the selected world earns it.
-- **Operate + Read:** predictable structure, stable density, and navigable linearity are affordances.
-- **Native:** follow [ios.md](ios.md) or [android.md](android.md) for navigation, insets, adaptation, and touch targets.
+- **اقناع (Persuade) + تجربه (Experience):** ترکیب‌بندی می‌تواند نامتقارن، سیال یا عمداً برهم‌زننده باشد وقتی جهانِ انتخاب‌شده لیاقتش را دارد.
+- **عملیات (Operate) + خواندن (Read):** ساختارِ قابل‌پیش‌بینی، تراکم پایدار و خطی‌بودنِ قابل‌ناوبری، امکان‌اند.
+- **نیتیو:** برای ناوبری، insetها، وفق‌دادن و اهداف لمسی از [ios.md](ios.md) یا [android.md](android.md) پیرو کن.
 
-Preserve the established visual world. A layout command changes structure inside it; identity replacement belongs to [new-work.md](new-work.md).
+جهان بصریِ تثبیت‌شده را حفظ کن. فرمانِ چیدمان ساختار را درونش تغییر می‌دهد؛ جایگزینی هویت مالِ [new-work.md](new-work.md) است.
 
-## Two isolated assessments
+## دو ارزیابی جداگانه
 
-When a sub-agent tool is available and permitted, run these independently; otherwise run them yourself in this order.
+وقتی ابزار زیرایجنت در دسترس و مجاز است، این دو را مستقل اجرا کن؛ در غیر این صورت خودت به همین ترتیب اجرایشان کن.
 
-1. **Layout assessment:** inspect representative states and viewports. Answer every question below with rendered or source evidence:
-   - **Reading order:** Apply the squint test. With detail blurred, can you still identify the primary element, the secondary element, and the major groups in order?
-   - **Grouping:** Are related items close and distinct groups separated, or are containers compensating for weak proximity?
-   - **Rhythm:** Do tight and generous intervals create a deliberate cadence, or is one spacing value repeated until everything has equal weight?
-   - **Structure:** Does the topology match the content and task? Are repeated cards, columns, or sections genuinely equivalent, or merely a framework default?
-   - **Density:** Does the amount of information per region fit use frequency, decision complexity, and visitor mode?
-   - **Adaptation:** At narrow, intermediate, wide, zoomed, and localized states, what reorders, collapses, wraps, scrolls, or remains fixed? Does DOM and focus order still agree with the visual order?
-   - **Extremes:** Do long content, empty states, overlays, sticky elements, safe areas, and small touch targets expose structural failures?
-2. **Mechanical scan:** run:
+1. **ارزیابی چیدمان:** حالت‌ها و ویوپورت‌های نماینده را بازرسی کن. هر پرسش زیر را با شاهد رندرشده یا سورس جواب بده:
+   - **ترتیب خواندن:** تستِ چشم‌لخت را اعمال کن. با تاری جزئیات، هنوز می‌توانی عنصر اصلی، عنصر ثانویه و گروه‌های اصلی را به ترتیب شناسایی کنی؟
+   - **گروه‌بندی:** آیا آیتم‌های مرتبط نزدیک‌اند و گروه‌های متمایز جدا، یا ظرف‌ها جبران‌گرِ نزدیکیِ ضعیف‌اند؟
+   - **ریتم:** آیا فاصله‌های چسبان و سخاوتمندانه آهنگی آگاهانه می‌سازند، یا یک مقدار فاصله آن‌قدر تکرار می‌شود که همه هم‌وزن شوند؟
+   - **ساختار:** آیا توپولوژی با محتوا و کار می‌خواند؟ آیا کارت‌ها، ستون‌ها یا بخش‌های تکرارشونده واقعاً هم‌ارزند، یا صرفاً پیش‌فرضِ یک فریم‌ورک؟
+   - **تراکم:** آیا حجم اطلاعات هر ناحیه با فرکانس استفاده، پیچیدگی تصمیم و حالت بازدیدکننده می‌خواند؟
+   - **وفق‌دادن:** در حالت‌های باریک، میانی، عریض، زوم‌شده و بومی‌شده چه چیزی مرتب می‌شود، جمع می‌شود، می‌شکند، اسکرول می‌شود یا ثابت می‌ماند؟ آیا ترتیب DOM و فوکوس هنوز با ترتیب بصری هم‌خوان‌اند؟
+   - **افراط‌ها:** آیا محتوای بلند، حالت‌های خالی، اورلی‌ها، عناصر sticky، safe areaها و اهداف لمسی کوچک شکست‌های ساختاری را لو می‌دهند؟
+2. **اسکن مکانیکی:** اجرا کن:
 
 ```bash
 .qoder/skills/impeccable/scripts/impeccable detect --json --scope layout [target files or dirs]
 ```
 
-Also inspect arbitrary spacing, overflow, stacking, and container behavior the detector cannot resolve. Keep mechanical evidence out of the first assessment, then synthesize both passes before editing. A clean scan cannot prove hierarchy or rhythm.
+فاصله‌گذاری‌های دلخواه، سرریز، انباشت و رفتار ظرف‌هایی را هم که دیتکتور نمی‌تواند حل کند بازرسی کن. شواهد مکانیکی را از ارزیابی اول دور نگه دار، بعد قبل از ویرایش هر دو پاس را ترکیب کن. اسکنِ تمیز نمی‌تواند سلسله‌مراتب یا ریتم را اثبات کند.
 
-## Set the spatial thesis
+## تز فضایی را تعیین کن
 
-Before editing, name:
+قبل از ویرایش نام ببر:
 
-- the primary reading or task path;
-- what belongs together and what must separate;
-- which element leads and which supports;
-- the intended density and spacing rhythm;
-- how the structure changes across containers, viewports, input modes, and content extremes.
+- مسیر اصلی خواندن یا کار؛
+- چه چیزی به هم تعلق دارد و چه چیزی باید جدا بماند؛
+- کدام عنصر پیشتاز است و کدام پشتیبان؛
+- تراکم و ریتم فاصله‌گذاریِ مقصود؛
+- ساختار چطور در ظرف‌ها، ویوپورت‌ها، حالت‌های ورودی و افراط‌های محتوا تغییر می‌کند.
 
-Choose the simplest structural model that expresses those relationships. Use layout primitives according to the relationships they control, and name reusable spacing and container roles semantically.
+ساده‌ترین مدل ساختاری را انتخاب کن که آن روابط را بیان می‌کند. پریمیتیوهای چیدمان را مطابق رابطه‌ای که کنترل می‌کنند استفاده کن و نقش‌های فاصله و ظرفِ تکرارشونده را معنایی نام‌گذاری کن.
 
-## Apply
+## اعمال کن
 
-- Group by meaning. Use proximity before adding containers or decoration.
-- Create rhythm through deliberate contrast between tight and generous intervals.
-- Use a documented spacing scale rather than one-off values. A 4-unit base usually provides the useful middle steps that an 8-only scale misses.
-- Let hierarchy follow product priority, not framework defaults.
-- Keep distinct content visually distinct without turning every group into an isolated component.
-- Make responsive behavior structural: reorder, collapse, reflow, or reveal based on what remains important.
-- Prefer container-aware components when the same component appears in different contexts.
-- Use `gap` for sibling rhythm when it expresses the relationship more directly than child margins.
-- Keep touch targets usable even when their visible marks are small.
-- Use depth only when it clarifies state or hierarchy.
-- Make optical corrections only after inspecting the rendered result.
+- بر اساس معنا گروه کن. قبل از افزودن ظرف یا تزئین، از نزدیکی استفاده کن.
+- ریتم را از کنتراست آگاهانهٔ فاصله‌های چسبان و سخاوتمندانه بساز.
+- از مقیاس فاصله‌گذاریِ مستندشده استفاده کن، نه مقدارهای تک‌موردی. پایهٔ ۴-واحدی معمولاً پله‌های میانیِ مفیدی را می‌دهد که مقیاسِ فقط-۸ جا می‌گذارد.
+- بگذار سلسله‌مراتب از اولویت محصول پیروی کند، نه پیش‌فرض‌های فریم‌ورک.
+- محتوای متمایز را بصری‌متمایز نگه دار بدون تبدیل‌کردنِ هر گروه به کامپوننت ایزوله.
+- رفتار واکنش‌گرا را ساختاری کن: بازترتیب، جمع‌شدن، بازجریان یا آشکارسازی بر اساس آنچه مهم می‌ماند.
+- وقتی همان کامپوننت در بافت‌های مختلف ظاهر می‌شود، کامپوننت‌های آگاه-از-ظرف را ترجیح بده.
+- وقتی `gap` رابطهٔ خواهرها را مستقیم‌تر از margin فرزندان بیان می‌کند، ازش استفاده کن.
+- اهداف لمسی را حتی وقتی نشان‌های نمایانشان کوچک است کارا نگه دار.
+- عمق را فقط وقتی وضعیت یا سلسله‌مراتب را شفاف می‌کند استفاده کن.
+- اصلاح‌های اپتیکال را فقط بعد از بازرسیِ نتیجهٔ رندرشده اعمال کن.
 
-Variation is not a goal by itself. Repetition should support recognition; break it only when content or priority changes.
+تنوع خودش هدف نیست. تکرار باید بازشناسی را پشتیبانی کند؛ فقط وقتی بشکنش که محتوا یا اولویت عوض شود.
 
-## Verify
+## راستی‌آزمایی
 
-- The squint test still reveals the primary, secondary, and major groups in order.
-- The reading and task path remains clear at every supported size.
-- Related content groups naturally; unrelated content does not blur together.
-- Tight and generous spacing create intentional rhythm instead of monotonous repetition.
-- Density matches use frequency and content complexity.
-- Long text, empty states, localization, zoom, and dynamic content do not break the structure.
-- Keyboard, touch, and assistive-technology order agree with the visual order.
-- The final mechanical scan has no unexplained findings.
+- تستِ چشم‌لخت همچنان اصلی، ثانویه و گروه‌های اصلی را به ترتیب آشکار می‌کند.
+- مسیر خواندن و کار در هر سایز پشتیبانی‌شده شفاف می‌ماند.
+- محتوای مرتبط طبیعی گروه می‌شود؛ محتوای نامرتبط در هم نمی‌میرد.
+- فاصله‌گذاری چسبان و سخاوتمندانه ریتم آگاهانه می‌سازد نه تکرار یکنواخت.
+- تراکم با فرکانس استفاده و پیچیدگی محتوا می‌خواند.
+- متن بلند، حالت‌های خالی، بومی‌سازی، زوم و محتوای پویا ساختار را نمی‌شکنند.
+- ترتیب کیبورد، لمس و فناوری‌های یاری‌گر با ترتیب بصری هم‌خوان است.
+- اسکن مکانیکی نهایی یافتهٔ بی‌توضیح ندارد.
 
-Answer each item with rendered or source evidence, then rerun the scan. Do not substitute a bare “yes” for verification.
+هر مورد را با شاهد رندرشده یا سورس جواب بده، بعد دوباره اسکن کن. «بله»ی لخت را جای راستی‌آزمایی نگذار.
 
-When the structure holds, hand off to `/impeccable polish`.
+وقتی ساختار سرپا ماند، تحویل بده به `/jala polish`.
 
-## Live-mode signature params
+## پارامترهای امضادار حالت زنده
 
-Every variant declares a coarse `density` parameter and authors spacing against `var(--p-density, 1)`.
+هر واریانت پارامتر کلانِ `density` را اعلام می‌کند و فاصله‌گذاری را روی `var(--p-density, 1)` می‌نویسد.
 
 ```json
 {"id":"density","kind":"range","min":0.6,"max":1.4,"step":0.05,"default":1,"label":"Density"}
 ```
 
-Add one structural parameter only when the topology genuinely branches. Follow [live.md](live.md)'s parameter contract.
+پارامتر ساختاری فقط وقتی اضافه کن که توپولوژی واقعاً شاخه می‌زند. قرارداد پارامترِ [live.md](live.md) را دنبال کن.

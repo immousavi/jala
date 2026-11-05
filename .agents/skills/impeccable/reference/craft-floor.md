@@ -1,50 +1,63 @@
-# Craft floor
+# خط پایه کیفیت (craft floor)
 
-Load this after the direction is settled, and build without announcing the checklist. A pinned brief or the committed visual world overrides anything here except a line marked as a ban; your own habit does not. When the design hook is active it already enforces the mechanical checks below as you edit: act on its findings instead of re-auditing each rule.
+این فایل را پس از تثبیت جهت بارگذاری کن و بدون اعلام کردنِ چک‌لیست بساز. بریف سنجاق‌شده یا جهان بصریِ متعهدشده بر هر چیز در این سند تقدم دارد، به‌جز خط‌هایی که به‌عنوان ممنوعیت علامت خورده‌اند؛ عادت خودت چنین تقدمی ندارد. وقتی هوک طراحی فعال است، همان حین ویرایش، بازرسی‌های مکانیکیِ زیر را خودش اعمال می‌کند: به‌جای ممیزی دوبارهٔ تک‌تک قواعد، بر یافته‌های آن عمل کن.
 
-## Verify
+## راستی‌آزمایی
 
-Each of these is a check on the built result, not an intention. Run them together in each batched look at the render, not as separate screenshot trips; the checks share one render.
+هر یک از این‌ها بازرسیِ نتیجهٔ ساخته‌شده است، نه قصدِ روی کاغذ. آن‌ها را در هر نگاه دسته‌ای به رندر با هم اجرا کن، نه به‌شکل سفرهای جداگانهٔ اسکرین‌شات؛ همهٔ این بازرسی‌ها یک رندر مشترک دارند.
 
-- **Contrast:** body and placeholder text ≥4.5:1, large text ≥3:1. On colored surfaces tint secondary text from that hue or the foreground; never gray.
-- **Depth:** shadows carry an offset and a soft blur. A zero-offset colored halo is decoration.
-- **Spacing:** tight groups, generous separation, more space above a heading than below it. Read the computed values.
-- **Type:** body measure 65–75ch, display max 6rem, tracking floor -0.04em, balanced headings, obvious scale and weight steps. Run the real copy at every breakpoint and fix what overflows.
-- **Motion:** one authored moment, not scattered effects and not one identical entrance on every section. Exponential ease-out from an already-visible default. Reach past transform and opacity: blur, backdrop-filter, clip-path, mask, and shadow belong to the palette when they stay smooth.
-- **States:** hover, disabled, loading, error, empty. Plus real content, working controls, responsive composition, keyboard focus.
-- **Browser surfaces:** the parts you did not draw still carry the design. Text selection, the caret, custom scrollbars, focus rings, underline offset, and the numerals in tabular data all ship with browser defaults that belong to no design system. Theme them from the palette. This is the cheapest signal that a page was built rather than assembled, and the one models skip most reliably.
-- **Copy:** the product's own language. Controls name their action; errors name the problem and the recovery.
-- **Coverage:** every brief requirement present and findable within seconds.
+- **کنتراست:** متن بدنه و متن جای‌نگهدار ≥4.5:1، متن درشت ≥3:1. روی سطوح رنگی، رنگ متن ثانویه را از همان ته‌رنگِ سطح یا از رنگ پیش‌زمینه بگیر؛ هرگز خاکستری نه.
+- **عمق:** سایه‌ها جابه‌جایی (offset) و محوشدگی نرم دارند. هالهٔ رنگی با جابه‌جایی صفر صرفاً تزئین است.
+- **فاصله‌گذاری:** گروه‌های چسبیده، جدایی‌های سخاوتمندانه، فضای بیشتر بالای عنوان تا زیر آن. مقدارهای محاسبه‌شده (computed) را بخوان.
+- **تایپوگرافی:** طول سطر متن بدنه 65–75ch، حداکثر تایپ نمایشی 6rem، کف تراکینگ -0.04em، عنوان‌های متوازن، پله‌های مقیاس و وزنِ آشکار. متن واقعی را روی هر بریک‌پوینت اجرا کن و هر چه سرریز می‌شود را رفع کن.
+- **حرکت:** یک لحظهٔ طراحی‌شده، نه افکت‌های پراکنده و نه یک ورود یکسان در همهٔ بخش‌ها. با ease-out نمایی، از یک حالت پیش‌فرضِ از پیش نمایان. فراتر از transform و opacity برو: blur، backdrop-filter، clip-path، mask و سایه وقتی نرم می‌مانند، جزو پالت افکت‌هایند.
+- **حالت‌ها:** هاور، غیرفعال، بارگذاری، خطا، حالت خالی. به‌علاوهٔ محتوای واقعی، کنترل‌های کارا، چیدمان واکنش‌گرا و فوکوس کیبورد.
+- **سطوح مرورگر:** بخش‌هایی که خودت نکشیده‌ای هم باید طراحی را حمل کنند. انتخاب متن، کرسر (caret)، اسکرول‌بارهای سفارشی، حلقه‌های فوکوس، آفست زیرخط و ارقام داده‌های جدولی، همه با پیش‌فرض‌های مرورگر عرضه می‌شوند که به هیچ سیستم طراحی‌ای تعلق ندارند. آن‌ها را از پالت تم کن. ارزان‌ترین نشانهٔ این‌که یک صفحه «ساخته» شده نه «مونتاژ»، همین است؛ و همان چیزی است که مدل‌ها بیش از همه از کنارش می‌گذرند.
+- **متن:** زبانِ خودِ محصول. کنترل‌ها عملشان را نام ببرند؛ خطاها مسئله و راه بازیابی را نام ببرند.
+- **پوشش:** هر الزام بریف حاضر و در چند ثانیه یافتنی باشد.
 
-## Refuse
+## نپذیر
 
-These are the category's defaults, not bans: the brief's own words can earn any of them. Reaching for one when the axis is free means you were not deciding; recognizing that means rewriting the element, not softening it.
+این‌ها پیش‌فرض‌هایِ این مقوله‌اند، نه ممنوعیت: واژه‌های خودِ بریف می‌توانند هر یک را بازپس بگیرند. وقتی محور آزاد است سراغ یکی از آن‌ها رفتن یعنی تو تصمیم نمی‌گرفتی؛ شناختِ این نکته یعنی عنصر را بازنویسی کن، نه این‌که نرمش کنی.
 
-Page scaffolds:
+اسکلت‌های صفحه:
 
-- Same-size cards of icon plus heading plus text as the page structure. Cards are the lazy container; nested cards are always wrong.
-- The hero-metric template: big number, small label, supporting stats, accent.
-- A kicker or eyebrow above a heading. This one is a ban, not a default: no brief earns it back. The heading carries its own weight; delete the label and let the heading speak.
-- Section numbers (01 / 02 / 03) unless the sequence itself carries information the reader needs.
-- A modal for a task that needs neither interruption nor protected focus.
+- کارت‌های هم‌اندازهٔ «آیکن + عنوان + متن» به‌عنوان ساختار صفحه. کارت ظرف تنبل است؛ کارتِ درون کارت همیشه غلط است.
+- قالب هیرو-متریک: عدد بزرگ، برچسب کوچک، آمارهای پشتیبان، رنگ تأکید.
+- کیکر (kicker) یا ابرو (eyebrow) بالای عنوان. این یکی ممنوعیت است، نه پیش‌فرض: هیچ بریفی آن را بازنمی‌خرد. عنوان وزن خودش را دارد؛ برچسب را حذف کن و بگذار عنوان حرف بزند.
+- شماره‌گذاری بخش‌ها (01 / 02 / 03)، مگر این‌که خود توالی اطلاعاتی داشته باشد که خواننده به آن نیاز دارد.
+- مودال برای کاری که نه وقفه می‌خواهد و نه فوکوس محافظت‌شده.
 
-Surface habits:
+عادت‌های سطح:
 
-- Gradient text. Emphasis comes from weight or size.
-- Glass and blur as decoration rather than as a specific effect.
-- A colored `border-left` or `border-right` above 1px on cards, list items, callouts, or alerts.
-- Hard offset shadows (`box-shadow: 4px 4px 0`) outside a world that is actually neobrutalist. The zero-blur block shadow is a costume, not a depth system; a world that did not choose it never earns it as a default.
-- Sparklines, progress rings, and soft-shadowed rounded rectangles standing in for content.
-- Monospace as a costume for "technical" rather than for code, data, or measurement.
-- A system display face (Impact, Arial Black, the platform sans) as the display voice of an own-world page. Source and self-host a face whose character matches the approved lettering; the closest installed font is a failure, not a fallback.
-- Unicode glyphs or emoji standing in for an icon system. Icons are drawn, from a real library or authored SVG, in one consistent stroke and weight.
-- Geometric masks standing in for organic contours. A circle, polygon, or radial-gradient cutout approximating a photographic subject's edge is the cheap version of the effect and reads worse than omitting it. Derive an alpha matte from the actual image, or produce a cut-out asset.
-- Light or dark picked by category. Pick it from the use scene: who, where, under what ambient light.
+- متن گرادیانی. تأکید از وزن یا اندازه می‌آید.
+- شیشه و بلور به‌عنوان تزئین، نه به‌عنوان یک افکت مشخص.
+- `border-left` یا `border-right` رنگی ضخیم‌تر از 1px روی کارت‌ها، آیتم‌های فهرست، calloutها یا هشدارها.
+- سایه‌های آفست‌دار سخت (`box-shadow: 4px 4px 0`) بیرون از جهانی که واقعاً نئوبروتالیستی است. سایهٔ بلوکیِ بدون محوشدگی لباس مبدل است، نه سیستم عمق؛ جهانی که آن را انتخاب نکرده هرگز به‌عنوان پیش‌فرض سزایش را نمی‌گیرد.
+- اسپارک‌لاین، حلقهٔ پیشرفت و مستطیل‌های گوشه‌گردِ سایه‌دار به‌جای محتوا.
+- مونواسپیس به‌عنوان لباس مبدلِ «فنی»، نه برای کد، داده یا اندازه‌گیری.
+- فونت نمایشی سیستمی (Impact، Arial Black، سانسِ پلتفرم) به‌عنوان صدای نمایشیِ صفحه‌ای که جهان خودش را دارد. فونتی را که شخصیتش با حروف‌نگاری مصوب بخواند پیدا و سلف‌هاست کن؛ نزدیک‌ترین فونتِ نصب‌شده شکست است، نه جایگزین (fallback).
+- گلیف‌های یونی‌کد یا ایموجی به‌جای سیستم آیکن. آیکن‌ها کشیده می‌شوند، از یک کتابخانهٔ واقعی یا SVG دست‌ساز، با ضخامت و وزنِ یکدست.
+- ماسک‌های هندسی به‌جای کانتورهای ارگانیک. برشِ دایره، چندضلعی یا radial-gradient که لبهٔ سوژهٔ عکس را تقریب می‌زند، نسخهٔ ارزان این افکت است و از حذف کاملش بدتر خوانده می‌شود. آلفا-مت (alpha matte) را از خود تصویر استخراج کن، یا یک فایل برش‌خورده تولید کن.
+- روشن یا تیره، انتخاب‌شده بر پایهٔ مقوله. آن را از صحنهٔ استفاده انتخاب کن: چه کسی، کجا، زیر چه نور محیطی.
 
-- Tracking stops at -0.04em. -0.02 to -0.03em usually reads better.
-- Declare elevation once, border or shadow. A 1px border under a wide soft shadow is the ghost card. Card radii stay at 12–16px; pills are for small controls.
-- Real illustration or none. Sketch-style SVG scenes, `loose-sketch` / `doodle` class names, and `feTurbulence` grain read as amateur. This bans SVG imitating pictures, never SVG doing geometry: crisp vector shapes, diagrams, animated linework, and shader-driven effects remain first-class media. A shaded, perspectived, or figure-bearing illustration is a picture even in line-art style; geometry means shapes a session can specify exactly.
-- Backgrounds are surfaces, textured only from the subject's world. `repeating-linear-gradient` stripes and two-axis grid overlays need an actual canvas, map, blueprint, or measuring tool under them.
-- Claims and configuration come from supplied truth; label illustrative values honestly. Naming a concept and then ironizing it is not a claim.
+## خط پایه فارسی
 
-The floor holds the mechanics; it never picks the direction. With every check green, spend the page on the committed world, and when torn between refined and committed, commit.
+روی سطوح فارسی این‌ها ممنوعیت مطلق‌اند، فارغ از بریف؛ جزئیات در [fa-typography.md](fa-typography.md) و [fa-rtl.md](fa-rtl.md):
+
+- `letter-spacing` مثبت روی حروف چسبان فارسی — اتصال حروف را می‌شکند؛ همیشه صفر.
+- ایتالیک مصنوعی (`font-style: italic`) روی متن فارسی — فارسی ایتالیک ندارد؛ تأکید با وزن و رنگ.
+- Tahoma یا Arial به‌عنوان فونت اصلی فارسی — پیش‌فرضِ تنبلِ سه‌دهه‌ای وب ایرانی است.
+- ارقام عربی (٠١٢٣) یا ترکیب ارقام فارسی و لاتین در یک نقش — فقط ۰۱۲۳ فارسی، یکدست در هر نقش.
+- ارتفاع خط لاتین (۱٫۴ تا ۱٫۶) روی بدنهٔ فارسی — نقطه‌ها را می‌خواباند؛ بدنهٔ فارسی ۱٫۷ تا ۲٫۱.
+- چپ‌چین‌کردن متن فارسی با `text-align: left` و `margin/padding` فیزیکی — فقط پراپرتی‌های منطقی (`start`/`end`).
+- رشتهٔ UI فارسی بدون نیم‌فاصله («می شود»، «طراحی ها») — غلط املاییِ قابل‌دید است.
+- قالب‌های LTR باقی‌مانده: فلش «بعدی» رو به راست، تقویم میلادی، هفتهٔ دوشاشروع، قیمت بدون «تومان».
+
+- تراکینگ از -0.04em فراتر نمی‌رود. -0.02 تا -0.03em معمولاً خواناتر است.
+- ارتفاع (elevation) را یک‌بار اعلام کن: یا بوردر، یا سایه. بوردر 1px زیر سایهٔ نرمِ پهن، همان کارتِ روح (ghost card) است. شعاع گوشهٔ کارت‌ها در 12–16px می‌ماند؛ قرص‌ها (pill) برای کنترل‌های کوچک‌اند.
+- تصویرسازی واقعی یا هیچ. صحنه‌های SVG به سبک اسکیس، نام کلاس‌های `loose-sketch` / `doodle` و دانه‌دانه‌کردن با `feTurbulence` حس آماتوری می‌دهند. این قاعده SVGِ تقلیدکنندهٔ عکس را ممنوع می‌کند، هرگز SVGِ کارِ هندسی را نه: شکل‌های وکتوری تمیز، نمودارها، خطوط متحرک و افکت‌های شیدری رسانه‌های درجه‌یک باقی می‌مانند. تصویرسازیِ سایه‌دار، پرسپکتیودار یا شامل فیگور، حتی در سبک خطی، یک تصویر است؛ هندسه یعنی شکل‌هایی که یک نشست می‌تواند دقیقاً مشخصشان کند.
+- پس‌زمینه‌ها سطح‌اند و فقط از جهانِ سوژه بافت می‌گیرند. راه‌راه‌های `repeating-linear-gradient` و گریدهای دو محوره به یک بوم واقعی، نقشه، بلوپرینت یا ابزار اندازه‌گیریِ واقعی زیر خود نیاز دارند.
+- ادعاها و پیکربندی از دادهٔ واقعیِ داده‌شده می‌آیند؛ مقدارهای نمایشی را صادقانه برچسب بزن. نامیدن یک مفهوم و سپس آیرونی‌کردنش، ادعا نیست.
+
+خط پایه مکانیک را نگه می‌دارد؛ هرگز جهت را انتخاب نمی‌کند. وقتی همهٔ بازرسی‌ها سبزند، صفحه را صرف جهانِ متعهدشده کن و وقتی میان پالودگی و تعهد مرددی، متعهد شو.

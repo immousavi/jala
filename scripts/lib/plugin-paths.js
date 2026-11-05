@@ -47,12 +47,14 @@ function stripAllowedToolsFrontmatter(content) {
 // working project fallback (that path is the bug this rewrite exists to
 // fix). SKILL.md receives host substitution; references need the directory
 // resolved by the assistant, so spell out that boundary in the entrypoint.
+// jala fork: Setup step 1 is Persian, so both sides of the issue #523
+// rewrite are Persian. SETUP_FALLBACK_TEXT is byte-pinned to the dist
+// claude-code output; if SKILL.src.md step 1 is reworded, re-extract the
+// sentence from dist/claude-code/.claude/skills/impeccable/SKILL.md.
 const SETUP_FALLBACK_TEXT =
-  'That base directory resolves every `.claude/skills/impeccable/scripts/impeccable <verb>` command in this skill and its references, ' +
-  'and `.claude/skills/impeccable/scripts` is the fallback only when the runtime reports no base directory.';
+  "این پوشهٔ پایه، همهٔ فرمان‌های `.claude/skills/impeccable/scripts/impeccable <verb>` در این اسکیل و مرجع‌هایش را حل می‌کند و `.claude/skills/impeccable/scripts` فقط وقتی استفاده می‌شود که runtime دایرکتوری پایه گزارش نکند؛";
 const SETUP_PLUGIN_TEXT =
-  'Every `"${CLAUDE_SKILL_DIR}/scripts/impeccable" <verb>` command in this skill and its references resolves against that base directory. ' +
-  'In reference files, replace the skill-base-dir placeholder with this directory before running commands; it is not a shell variable.';
+  "هر فرمانِ `\"${CLAUDE_SKILL_DIR}/scripts/impeccable\" <verb>` در این اسکیل و مرجع‌هایش نسبت به همین پوشهٔ پایه حل می‌شود. در فایل‌های مرجع، نشانهٔ skill-base-dir را پیش از اجرای فرمان‌ها با همین پوشه جایگزین کن؛ این نشانه متغیر شل نیست.";
 
 // Agent files are subagent system prompts: a spawned agent never loads
 // SKILL.md, so Setup's <skill-base-dir> token is undefined in the one

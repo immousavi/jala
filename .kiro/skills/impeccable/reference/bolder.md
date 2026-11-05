@@ -1,33 +1,33 @@
-> **Additional context needed**: which section is the target, and what must stay untouched.
+> **context اضافه لازم است**: کدام بخش هدف است و چه چیزی باید دست‌نخورده بماند.
 
-An open direction round owns the word first: "bolder" said while a direction decision is on the table is the Bolder hand register steer, a fresh deal of foreign forms (see new-work.md), not this command. This command refines a surface whose world already shipped.
+یک دورِ جهتِ آزاد اول صاحبِ کلمه است: «bolder» که گفته می‌شود در حالی که تصمیمِ جهت روی میز است، هدایت رجیسترِ دستِ Bolder است — توزیعِ تازه‌ای از فرم‌های بیگانه (ببین new-work.md) — نه این فرمان. این فرمان سطحی را پالایش می‌کند که جهانش از قبل عرضه شده.
 
-"Bolder" is an amplification request, and almost always it is scoped to something that already exists. The surrounding page, its system, and its conventions are the given. Your job is to raise one part to the conviction the rest already implies, without rebuilding anything the brief did not name. The reflex answer, reaching for more effects, is the opposite of bold; reject it first.
+«bolder» درخواستِ تقویت است و تقریباً همیشه به چیزی که از قبل وجود دارد محدود می‌شود. صفحهٔ اطراف، سیستم و عرف‌هایش مفروض‌اند. کار تو این است که یک بخش را به سطحِ اطمینانی ببری که بقیه از قبل تلویحش می‌کنند، بدون بازساختن هیچ چیزِ که بریف نامش را نبرده. پاسخِ غریزی — دست‌دراز‌کردن به افکت‌های بیشتر — نقطهٔ مقابلِ جسارت است؛ اول آن را رد کن.
 
-## Scope is sovereign
+## دامنه حاکم است
 
-"Everything else stays" is a literal instruction. Touch only the named target. Do not restyle its neighbors, do not migrate the page to a new idea, do not add colors, fonts, radii, shadows, or system primitives the surface does not already own. If the existing system genuinely cannot express the direction, do not expand it on your own. Ask the user directly to clarify what you cannot infer. Name the exact addition and the job it would do.
+«بقیهٔ چیزها سر جایشان بمانند» دستورِ تحت‌اللفظی است. فقط هدفِ نام‌برده را دست بزن. همسایه‌هایش را restyle نکن، صفحه را به ایدهٔ جدید مهاجرت نده، رنگ، فونت، شعاع، سایه یا پریمیتیوِ سیستمی که سطح از قبل ندارد اضافه نکن. اگر سیستم موجود واقعاً نمی‌تواند جهت را بیان کند، خودت آن را گسترش نده. آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس. افزودنِ دقیق و کارش را نام ببر.
 
-## Why it reads flat
+## چرا تخت می‌خواند
 
-A section usually reads flat for reasons its neighbors have already solved. Look at what the rest of the page does that this section does not: the display type at full strength, the structural devices that carry meaning, the signature motif, the density and pacing. A flat section is typically one that quietly opts out of the system's own strongest moves. The most reliable bolder pass brings the target up to the expressive level its neighbors already reach, in the system's own vocabulary rather than a new one.
+یک بخش معمولاً به دلیلی تخت می‌خواند که همسایه‌هایش حلش کرده‌اند. ببین بقیهٔ صفحه چه می‌کند که این بخش نمی‌کند: تایپ نمایشی در تمام‌قد، سازه‌های ساختاریِ معناحامل، موتیف امضادار، تراکم و ریتم. بخشِ تخت معمولاً بخشی است که بی‌سروصدا از قوی‌ترین حرکت‌های خودِ سیستم کنار کشیده. مطمئن‌ترین پاسِ bolder، هدف را به سطحِ بیانی می‌برد که همسایه‌هایش از قبل می‌رسند، در واژگانِ خودِ سیستم نه واژگانی جدید.
 
-## The amplification
+## تقویت
 
-- **Amplify what the system already owns.** Reuse its motif and its type scale at full strength, turned up for this section rather than invented for it. The bolder version should look more like the same brand, not less.
-- **Keep content true.** Existing claims are part of the scope: preserve them unless the user supplies replacements. If real evidence is essential to the direction but absent, ask for it.
-- **Commit, then clarify.** Half-measures read as noise. Make the one decisive move completely, then quiet everything around it so the move is legible. If every element got louder, the section got flatter.
-- **Give it its own rhythm.** The target should read as a peak in the scroll, a shift in density or pace from what surrounds it, not simply more of the same.
+- **چیزی را تقویت کن که سیستم از قبل دارد.** موتیف و مقیاس تایپش را در تمام‌قد دوباره استفاده کن، برای این بخش بلندتر شده نه برایش اختراع‌شده. نسخهٔ bolder باید شبیه‌ترِ همان برند شود، نه کمتر.
+- **محتوا صادق بماند.** ادعاهای موجود جزو دامنه‌اند: حفظشان کن مگر کاربر جایگزین بدهد. اگر شاهدِ واقعی برای جهت حیاتی است و غایب، درخواستش کن.
+- **متعهد شو، بعد شفاف کن.** نیمه‌کارها نوفه می‌خوانند. آن یک حرکتِ قاطع را کامل انجام بده، بعد همه‌چیز دورش را آرام کن تا حرکت خوانا شود. اگر هر عنصر بلندتر شد، بخش تخت‌تر شد.
+- **ریتم خودش را بهش بده.** هدف باید به‌شکل قله‌ای در اسکرول بخواند، جابه‌جایی در تراکم یا تندی نسبت به اطرافش، نه صرفاً «بیشترِ همان».
 
-## The skeleton test
+## تست اسکلت
 
-Strip the copy out of your planned section and study the bare structure. Does the skeleton still say what this section is and why it matters, through hierarchy and the system's devices alone? If it only works once the words return, the boldness is in the text size, not the design. A placeholder for an image or artifact names a job, an anchor and a piece of evidence, not a cue to drop in a decorative photo; fill that job with whatever the subject actually has.
+متن را از بخشِ برنامه‌ریزی‌شده‌ات بیرون بکش و ساختار لخت را مطالعه کن. آیا اسکلت هنوز با سلسله‌مراتب و سازه‌های خودِ سیستم می‌گوید این بخش چیست و چرا مهم است؟ اگر فقط با بازگشتِ واژه‌ها جواب می‌دهد، جسارت در سایز متن است نه در طراحی. جای‌نگهدارِ تصویر یا آرتیفکت، یک کار، یک لنگر و یک قطعه شاهد نام می‌برد، نه اشاره‌ای برای انداختن یک عکس تزئینی؛ آن کار را با هرچه سوژه واقعاً دارد پر کن.
 
-## Before you finish
+## قبل از پایان
 
-- Everything outside the named target is unchanged.
-- No new color, font, or system primitive appeared without being asked for.
-- The conventions the section carried, including anything that drives an action, still work the same way.
-- The section is unmistakably the same brand, only more sure of itself.
+- هرچیز بیرون از هدفِ نام‌برده تغییر نکرده.
+- هیچ رنگ، فونت یا پریمیتیو سیستمی جدید بدون درخواست ظاهر نشده.
+- عرف‌هایی که بخش حمل می‌کرد، شامل هرچیزی که یک کنش را به پیش می‌برد، همان‌طور کار می‌کنند.
+- بخش بی‌ابهام همان برند است، فقط مطمئن‌تر.
 
-When the target holds its own without pulling the page apart, hand off to `/impeccable polish` for the final pass.
+وقتی هدف بدون ازهم‌پاشاندن صفحه سرپا می‌ایستد، پاسِ نهایی را به `/jala polish` بسپار.

@@ -1,4 +1,4 @@
 interface:
-  display_name: Impeccable
-  short_description: Use when the user wants to design, redesign, shape, critique, audit, polish, simplify,...
-  default_prompt: Use Impeccable to redesign, critique, audit, or polish this frontend.
+  display_name: Jala
+  short_description: وقتی کاربر می‌خواهد یک رابط کاربری را طراحی، بازطراحی، شکل‌دهی، نقد، ممیزی، پالایش،...
+  default_prompt: Use Jala to redesign, critique, audit, or polish this frontend.

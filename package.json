@@ -23,10 +23,10 @@
     "jalali"
   ],
   "license": "Apache-2.0",
-  "homepage": "https://impeccable.style",
+  "homepage": "https://github.com/immousavi/jala",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pbakaus/impeccable.git"
+    "url": "git+https://github.com/immousavi/jala.git"
   },
   "engines": {
     "node": ">=18.19.0"
@@ -86,6 +86,7 @@
     "release:engine": "node scripts/release.mjs engine",
     "release:platform-packages": "node scripts/publish-platform-packages.mjs",
     "check:engine-release": "node scripts/check-engine-release.mjs",
+    "verify:farsi": "node scripts/verify-farsi.mjs",
     "build:component-review": "bun scripts/build-component-review.mjs"
   },
   "optionalDependencies": {

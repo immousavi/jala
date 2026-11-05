@@ -1,111 +1,111 @@
-Strip a design to its essence. Remove anything that doesn't earn its place: redundant elements, repeated information, decorative noise, cosmetic complexity.
+یک طراحی را تا جوهرش برهن کن. هر چیزی که جای خودش را نمی‌خرد حذف کن: عناصر تکراری، اطلاعات مکرر، نویز تزئینی، پیچیدگی آرایشی.
 
 
 ---
 
-## Assess Current State
+## ارزیابی وضعیت فعلی
 
-Analyze what makes the design feel complex or cluttered:
+تحلیل کن چه چیزی طراحی را پیچیده یا شلوغ حس می‌کند:
 
-1. **Identify complexity sources**:
-   - **Too many elements**: Competing buttons, redundant information, visual clutter
-   - **Excessive variation**: Too many colors, fonts, sizes, styles without purpose
-   - **Information overload**: Everything visible at once, no progressive disclosure
-   - **Visual noise**: Unnecessary borders, shadows, backgrounds, decorations
-   - **Confusing hierarchy**: Unclear what matters most
-   - **Feature creep**: Too many options, actions, or paths forward
+1. **منابع پیچیدگی را شناسایی کن**:
+   - **عناصر بیش از حد**: دکمه‌های رقیب، اطلاعات افزونه، شلوغی بصری
+   - **تنوع افراطی**: رنگ‌ها، فونت‌ها، اندازه‌ها و استایل‌های بی‌هدفِ بیش از حد
+   - **انفجار اطلاعات**: همه‌چیز یک‌جا نمایان، بدون آشکارسازی تدریجی
+   - **نویز بصری**: بوردرها، سایه‌ها، پس‌زمینه‌ها و تزئینات غیرضروری
+   - **سلسله‌مراتب گیج‌کننده**: نامشخص بودن این‌که مهم‌ترین چیست
+   - **بیماری قابلیت (feature creep)**: گزینه‌ها، اقدام‌ها یا مسیرهای پیش‌رویِ بیش از حد
 
-2. **Find the essence**:
-   - What's the primary user goal? (There should be ONE)
-   - What's actually necessary vs nice-to-have?
-   - What can be removed, hidden, or combined?
-   - What's the 20% that delivers 80% of value?
+2. **جوهر را پیدا کن**:
+   - هدف اصلی کاربر چیست؟ (باید فقط یکی باشد)
+   - چه چیزی واقعاً ضروری است و چه چیزی صرفاً «خوب است باشد»؟
+   - چه چیزی را می‌توان حذف، پنهان یا ادغام کرد؟
+   - آن ۲۰ درصدی که ۸۰ درصد ارزش را می‌دهد کدام است؟
 
-If any of these are unclear from the codebase, do not guess. Ask with the ask_user_question tool when available, or directly in chat if it is not, and wait for the answer before continuing.
+اگر هر یک از این‌ها از کدبیس روشن نیست، حدس نزن. اگر ابزار ask_user_question در دسترس است با آن بپرس، وگرنه مستقیم در چت؛ و قبل از ادامه منتظر پاسخ بمان.
 
-Simplicity is not about removing features. It's about removing obstacles between users and their goals. Every element should justify its existence.
+سادگی یعنی حذف ویژگی‌ها نیست. یعنی حذف موانع میان کاربران و اهدافشان. هر عنصر باید دلیل وجودش را توجیه کند.
 
-## Plan Simplification
+## برنامه‌ریزی ساده‌سازی
 
-Create a ruthless editing strategy:
+یک استراتژی ویرایش بی‌رحم بساز:
 
-- **Core purpose**: What's the ONE thing this should accomplish?
-- **Essential elements**: What's truly necessary to achieve that purpose?
-- **Progressive disclosure**: What can be hidden until needed?
-- **Consolidation opportunities**: What can be combined or integrated?
+- **هدف اصلی**: قرار است این دقیقاً به یک چه چیزی برسد؟
+- **عناصر ضروری**: برای رسیدن به آن هدف چه چیزی واقعاً لازم است؟
+- **آشکارسازی تدریجی**: چه چیزی را می‌توان تا زمان نیاز پنهان نگه داشت؟
+- **فرصت‌های تجمیع**: چه چیزی را می‌توان ادغام یا یکپارچه کرد؟
 
-Expect to say no to good ideas to make room for great execution.
+منتظر باش تا به ایده‌های خوب «نه» بگویی تا جای اجرای عالی باز شود.
 
-## Simplify the Design
+## ساده‌سازی طراحی
 
-Systematically remove complexity across these dimensions:
+پیچیدگی را در این بُعدها به‌صورت سیستماتیک حذف کن:
 
-### Information Architecture
-- **Reduce scope**: Remove secondary actions, redundant information
-- **Progressive disclosure**: Hide complexity behind clear entry points (accordions, modals, step-through flows)
-- **Combine related actions**: Merge similar buttons, consolidate forms, group related content
-- **Clear hierarchy**: ONE primary action, few secondary actions, everything else tertiary or hidden
-- **Remove redundancy**: If it's said elsewhere, don't repeat it here
+### معماری اطلاعات
+- **کاهش دامنه**: اقدام‌های ثانویه و اطلاعات افزونه را حذف کن
+- **آشکارسازی تدریجی**: پیچیدگی را پشت نقطه‌های ورودِ روشن پنهان کن (آکاردئون، مودال، جریان‌های پله‌به‌پله)
+- **ادغام اقدام‌های مرتبط**: دکمه‌های مشابه را یکی کن، فرم‌ها را تجمیع کن، محتوای مرتبط را گروه کن
+- **سلسله‌مراتب روشن**: دقیقاً یک اقدام اصلی، تعداد اندکی اقدام ثانویه، و بقیه در رتبهٔ سوم یا پنهان
+- **حذف افزونگی**: اگر جای دیگری گفته شده، این‌جا تکرارش نکن
 
-### Visual Simplification
-- **Reduce color palette**: Use 1-2 colors plus neutrals, not 5-7 colors
-- **Limit typography**: One font family, 3-4 sizes maximum, 2-3 weights
-- **Remove decorations**: Eliminate borders, shadows, backgrounds that don't serve hierarchy or function
-- **Flatten structure**: Reduce nesting, remove unnecessary containers; never nest cards inside cards
-- **Remove unnecessary cards**: Cards aren't needed for basic layout; use spacing and alignment instead
-- **Consistent spacing**: Use one spacing scale, remove arbitrary gaps
+### ساده‌سازی بصری
+- **کاهش پالت رنگ**: ۱ تا ۲ رنگ به‌علاوهٔ رنگ‌های خنثی، نه ۵ تا ۷ رنگ
+- **محدود کردن تایپوگرافی**: یک خانوادهٔ فونت، حداکثر ۳ تا ۴ اندازه، ۲ تا ۳ وزن
+- **حذف تزئینات**: بوردرها، سایه‌ها و پس‌زمینه‌هایی را که به سلسله‌مراتب یا کارکرد خدمت نمی‌کنند حذف کن
+- **تخت کردن ساختار**: تو در تویی را کم کن، ظرف‌های غیرضروری را حذف کن؛ هرگز کارت درون کارت نگذار
+- **حذف کارت‌های غیرضروری**: برای چیدمان پایه به کارت نیاز نیست؛ به‌جایش فاصله‌گذاری و تراز را به کار ببر
+- **فاصله‌گذاری یکدست**: از یک مقیاس فاصله‌گذاری استفاده کن و فاصله‌های سلیقه‌ای را حذف کن
 
-### Layout Simplification
-- **Linear flow**: Replace complex grids with simple vertical flow where possible
-- **Remove sidebars**: Move secondary content inline or hide it
-- **Full-width**: Use available space generously instead of complex multi-column layouts
-- **Consistent alignment**: Pick left or center, stick with it
-- **Generous white space**: Let content breathe, don't pack everything tight
+### ساده‌سازی چیدمان
+- **جریان خطی**: هر جا ممکن است گریدهای پیچیده را با جریان عمودی ساده جایگزین کن
+- **حذف سایدبارها**: محتوای ثانویه را درون خط بیاور یا پنهانش کن
+- **عرض کامل**: به‌جای چیدمان‌های پیچیدهٔ چندستونی، از فضای موجود سخاوتمندانه استفاده کن
+- **تراز یکدست**: چپ یا وسط را انتخاب کن و به همان بچسب
+- **فضای سفید سخاوتمندانه**: بگذار محتوا نفس بکشد؛ همه‌چیز را به هم فشرده نکن
 
-### Interaction Simplification
-- **Reduce choices**: Fewer buttons, fewer options, clearer path forward (paradox of choice is real)
-- **Smart defaults**: Make common choices automatic, only ask when necessary
-- **Inline actions**: Replace modal flows with inline editing where possible
-- **Remove steps**: Can the flow lose a step?
-- **Clear next action**: ONE obvious next action, not five competing ones
+### ساده‌سازی تعامل
+- **کاهش انتخاب‌ها**: دکمه‌های کمتر، گزینه‌های کمتر، مسیر پیش‌رویِ روشن‌تر (پارادوکس انتخاب واقعی است)
+- **پیش‌فرض‌های هوشمند**: انتخاب‌های رایج را خودکار کن؛ فقط وقتی لازم است بپرس
+- **اقدام‌های درون‌خطی**: هر جا ممکن است جریان‌های مودال را با ویرایش درون‌خطی جایگزین کن
+- **حذف گام‌ها**: آیا جریان می‌تواند یک گام کم داشته باشد؟
+- **اقدام بعدیِ روشن**: یک اقدام بعدیِ آشکار، نه پنج اقدام رقیب
 
-### Content Simplification
-- **Shorter copy**: Cut filler, not meaning
-- **Active voice**: "Save changes" not "Changes will be saved"
-- **Remove jargon**: Plain language always wins
-- **Scannable structure**: Short paragraphs, bullet points, clear headings
-- **Essential information only**: Remove marketing fluff, hedging
-- **Remove redundant copy**: No headers restating intros, no repeated explanations, say it once
+### ساده‌سازی محتوا
+- **متن کوتاه‌تر**: پرگوئی را بزن، نه معنا را
+- **فعل معلوم**: «تغییرات را ذخیره کن» نه «تغییرات ذخیره خواهند شد»
+- **حذف اصطلاحات پیچیده**: زبان ساده همیشه برنده است
+- **ساختار اسکن‌پذیر**: پاراگراف‌های کوتاه، فهرست‌های نقطه‌ای، عنوان‌های روشن
+- **فقط اطلاعات ضروری**: پرگویی بازاریابی و طفره‌روی را حذف کن
+- **حذف متن‌های افزونه**: عنوانی که مقدمه را تکرار نکند، توضیح تکراری نه؛ یک بار بگو
 
-### Code Simplification
-- **Remove unused code**: Dead CSS, unused components, orphaned files
-- **Flatten component trees**: Reduce nesting depth
-- **Consolidate styles**: Merge similar styles, use utilities consistently
-- **Reduce variants**: Does that component need 12 variations, or can 3 cover 90% of cases?
+### ساده‌سازی کد
+- **حذف کد بی‌استفاده**: CSS مرده، کامپوننت‌های بلااستفاده، فایل‌های یتیم
+- **تخت کردن درخت کامپوننت‌ها**: عمق تو در تویی را کم کن
+- **تجمیع استایل‌ها**: استایل‌های مشابه را ادغام کن، از utilityها یکدست استفاده کن
+- **کاهش واریانت‌ها**: آیا آن کامپوننت به ۱۲ واریانت نیاز دارد، یا ۳ مورد ۹۰ درصد حالت‌ها را پوشش می‌دهد؟
 
-**Avoid**:
-- Remove necessary functionality (simplicity ≠ feature-less)
-- Sacrifice accessibility for simplicity (clear labels and ARIA still required)
-- Make things so simple they're unclear (mystery ≠ minimalism)
-- Remove information users need to make decisions
-- Eliminate hierarchy completely (some things should stand out)
-- Oversimplify complex domains (match complexity to actual task complexity)
+**از این‌ها بپرهیز**:
+- حذف کارکردِ ضروری (سادگی ≠ بی‌ویژگی)
+- قربانی‌کردن دسترس‌پذیری به پای سادگی (برچسب‌های روشن و ARIA همچنان لازم‌اند)
+- ساده‌کردن چیزها تا حد ناگویایی (ابهام ≠ مینیمالیسم)
+- حذف اطلاعاتی که کاربران برای تصمیم‌گیری لازم دارند
+- حذف کامل سلسله‌مراتب (بعضی چیزها باید دیده شوند)
+- بیش‌ازحد ساده‌کردن حوزه‌های پیچیده (پیچیدگی را با پیچیدگی واقعیِ کار تطبیق بده)
 
-## Verify Simplification
+## راستی‌آزمایی ساده‌سازی
 
-Ensure simplification improves usability:
+مطمئن شو ساده‌سازی، کاربردپذیری را بهبود داده است:
 
-- **Faster task completion**: Can users accomplish goals more quickly?
-- **Reduced cognitive load**: Is it easier to understand what to do?
-- **Still complete**: Are all necessary features still accessible?
-- **Clearer hierarchy**: Is it obvious what matters most?
-- **Better performance**: Does simpler design load faster?
+- **انجام سریع‌تر کار**: آیا کاربران سریع‌تر به اهدافشان می‌رسند؟
+- **بار شناختی کمتر**: آیا فهمیدن این‌که چه باید کرد آسان‌تر شده؟
+- **هنوز کامل**: آیا همهٔ ویژگی‌های لازم هنوز در دسترس‌اند؟
+- **سلسله‌مراتب روشن‌تر**: آیا معلوم است مهم‌ترین چیست؟
+- **کارایی بهتر**: آیا طراحی ساده‌تر سریع‌تر بارگذاری می‌شود؟
 
-## Document Removed Complexity
+## مستندسازی پیچیدگی حذف‌شده
 
-If you removed features or options:
-- Document why they were removed
-- Consider if they need alternative access points
-- Note any user feedback to monitor
+اگر ویژگی‌ها یا گزینه‌هایی حذف کردی:
+- مستند کن چرا حذف شدند
+- در نظر بگیر آیا به نقطه‌های دسترسی جایگزین نیاز دارند
+- هر بازخورد کاربری که باید زیر نظر باشد را یادداشت کن
 
-When the cuts feel right, hand off to `/impeccable polish` for the final pass. As Antoine de Saint-Exupéry put it: "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away."
+وقتی برش‌ها درست حس شدند، برای پاس نهایی تحویل بده به `/jala polish`. به تعبیر Antoine de Saint-Exupéry: «کمال آن‌جا حاصل می‌شود که دیگر چیزی برای افزودن نمانده نیست، بلکه وقتی است که چیزی برای برداشتن باقی نمانده است.»

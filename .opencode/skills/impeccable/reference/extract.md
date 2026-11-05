@@ -1,69 +1,68 @@
-# Extract Flow
+# جریان Extract
 
-Identify reusable patterns, components, and design tokens, then extract and consolidate them into the design system for systematic reuse.
+الگوها، کامپوننت‌ها و توکن‌های طراحیِ تکرارشونده را شناسایی کن، بعد آن‌ها را برای استفادهٔ سیستماتیک استخراج و در سیستم طراحی یکپارچه کن.
 
-## Step 1: Discover the Design System
+## گام ۱: کشف سیستم طراحی
 
-Find the design system, component library, or shared UI directory. Understand its structure: component organization, naming conventions, design token structure, import/export conventions.
+سیستم طراحی، کتابخانهٔ کامپوننت یا پوشهٔ UI مشترک را پیدا کن. ساختارش را بفهم: سازماندهی کامپوننت‌ها، عرف نام‌گذاری، ساختار توکن‌های طراحی، عرف‌های import/export.
 
-If no design system exists, do not create one yet. Ask with the `question` tool and wait for the answer before continuing. Understand the preferred location and structure first.
+اگر سیستم طراحی وجود ندارد، هنوز نساز. با ابزار `question` بپرس و قبل از ادامه، منتظر پاسخ بمان. اول مکان و ساختارِ پسندیده را بفهم.
 
-## Step 2: Identify Patterns
+## گام ۲: شناسایی الگوها
 
-Look for extraction opportunities in the target area:
+در ناحیهٔ هدف دنبال فرصت‌های استخراج بگرد:
 
-- **Repeated components**: Similar UI patterns used 3+ times (buttons, cards, inputs)
-- **Hard-coded values**: Colors, spacing, typography, shadows that should be tokens
-- **Inconsistent variations**: Multiple implementations of the same concept
-- **Composition patterns**: Layout or interaction patterns that repeat (form rows, toolbar groups, empty states)
-- **Type styles**: Repeated font-size + weight + line-height combinations
-- **Animation patterns**: Repeated easing, duration, or keyframe combinations
+- **کامپوننت‌های تکرارشونده**: الگوهای UI مشابه که ۳ بار یا بیشتر استفاده شده‌اند (دکمه‌ها، کارت‌ها، ورودی‌ها)
+- **مقدارهای هاردکد**: رنگ‌ها، فاصله‌گذاری‌ها، تایپوگرافی، سایه‌هایی که باید توکن شوند
+- **واریانت‌های ناسازگار**: چند پیاده‌سازی از یک مفهوم
+- **الگوهای ترکیب‌بندی**: الگوهای چیدمان یا تعامل که تکرار می‌شوند (ردیف‌های فرم، گروه‌های toolbar، حالت‌های خالی)
+- **استایل‌های تایپ**: ترکیب‌های تکرارشوندهٔ font-size + وزن + ارتفاع خط
+- **الگوهای انیمیشن**: ترکیب‌های تکرارشوندهٔ ایزینگ، مدت یا keyframe
 
-Assess value: only extract things used 3+ times with the same intent. Premature abstraction is worse than duplication.
+ارزش را بسنج: فقط چیزهایی را استخراج کن که ۳ بار یا بیشتر با یک نیت استفاده شده‌اند. انتزاعِ زودهنگام از تکرار بدتر است.
 
-## Step 3: Plan Extraction
+## گام ۳: برنامه‌ریزی استخراج
 
-Create a systematic plan:
+برنامه‌ای سیستماتیک بساز:
 
-- **Components to extract**: Which UI elements become reusable components?
-- **Tokens to create**: Which hard-coded values become design tokens?
-- **Variants to support**: What variations does each component need?
-- **Naming conventions**: Component names, token names, prop names that match existing patterns
-- **Migration path**: How to refactor existing uses to consume the new shared versions
+- **کامپوننت‌های قابل‌استخراج**: کدام عناصر UI به کامپوننت تکرارشونده تبدیل می‌شوند؟
+- **توکن‌های قابل‌ساخت**: کدام مقدارهای هاردکد به توکن طراحی تبدیل می‌شوند؟
+- **واریانت‌های پشتیبانی‌شده**: هر کامپوننت چه تنوع‌هایی لازم دارد؟
+- **عرف نام‌گذاری**: نام کامپوننت‌ها، نام توکن‌ها و نام propها که با الگوهای موجود می‌خوانند
+- **مسیر مهاجرت**: چطور کاربردهای موجود به نسخه‌های مشترک جدید refactored شوند
 
-Design systems grow incrementally. Extract what is clearly reusable now, not everything that might someday be reusable.
+سیستم‌های طراحی تدریجی رشد می‌کنند. آنچه الان واضحاً تکرارشونده است را استخراج کن، نه هرچه ممکن است روزی تکرارشونده باشد.
 
-## Step 4: Extract & Enrich
+## گام ۴: استخراج و غنی‌سازی
 
-Build improved, reusable versions:
+نسخه‌های تکرارشوندهٔ بهبودیافته بساز:
 
-- **Components**: Clear props API with sensible defaults, proper variants for different use cases, accessibility built in (ARIA, keyboard navigation, focus management), documentation and usage examples
-- **Design tokens**: Clear naming (primitive vs semantic), proper hierarchy and organization, documentation of when to use each token
-- **Patterns**: When to use this pattern, code examples, variations and combinations
+- **کامپوننت‌ها**: API پروش صریح با پیش‌فرض‌های منطقی، واریانت‌های درست برای کاربردهای مختلف، دسترس‌پذیریِ داخلی (ARIA، ناوبری کیبورد، مدیریت فوکوس)، مستندسازی و مثال‌های استفاده
+- **توکن‌های طراحی**: نام‌گذاری روشن (primitive در برابر semantic)، سلسله‌مراتب و سازماندهی درست، مستندسازیِ اینکه هر توکن کِی استفاده می‌شود
+- **الگوها**: کِی این الگو را استفاده کنی، مثال‌های کد، واریانت‌ها و ترکیب‌ها
 
-## Step 5: Migrate
+## گام ۵: مهاجرت
 
-Replace existing uses with the new shared versions:
+کاربردهای موجود را با نسخه‌های مشترک جدید جایگزین کن:
 
-- **Find all instances**: Search for the patterns you extracted
-- **Replace systematically**: Update each use to consume the shared version
-- **Test thoroughly**: Ensure visual and functional parity
-- **Delete dead code**: Remove the old implementations
+- **همهٔ نمونه‌ها را پیدا کن**: الگوهایی را که استخراج کردی جست‌وجو کن
+- **سیستماتیک جایگزین کن**: هر کاربرد را به‌روز کن تا نسخهٔ مشترک را مصرف کند
+- **کامل تست کن**: برابری بصری و کارکردی را مطمئن شو
+- **کد مرده را حذف کن**: پیاده‌سازی‌های قدیمی را بردار
 
-## Step 6: Document
+## گام ۶: مستندسازی
 
-Update design system documentation:
+مستندات سیستم طراحی را به‌روز کن:
 
-- Add new components to the component library
-- Document token usage and values
-- Add examples and guidelines
-- Update any Storybook or component catalog
+- کامپوننت‌های جدید را به کتابخانهٔ کامپوننت اضافه کن
+- استفاده و مقدارهای توکن‌ها را مستند کن
+- مثال و رهنمود اضافه کن
+- هر Storybook یا کاتالوگ کامپوننت را به‌روز کن
 
-**Avoid**:
-- Extract one-off, context-specific implementations without generalization
-- Create components so generic they are useless
-- Extract without considering existing design system conventions
-- Skip proper TypeScript types or prop documentation
-- Create tokens for every single value (tokens should have semantic meaning)
-- Extract things that differ in intent (two buttons that look similar but serve different purposes should stay separate)
-
+**بپرهیز از**:
+- استخراج پیاده‌سازی‌های یک‌بارمصرف و مخصوصِ-بافت بدون تعمیم
+- ساخت کامپوننت‌هایی آن‌قدر عمومی که بی‌استفاده‌اند
+- استخراج بدون توجه به عرف‌های موجود سیستم طراحی
+- رد‌کردن typeهای TypeScript یا مستندسازیِ propها
+- ساخت توکن برای تک‌تک مقدارها (توکن‌ها باید معنای معنایی داشته باشند)
+- استخراج چیزهایی که در نیت فرق دارند (دو دکمه که شبیه‌اند ولی هدفشان فرق دارد جدا بمانند)

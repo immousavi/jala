@@ -6,7 +6,7 @@
   },
   "owner": {
     "name": "Jala contributors (based on Impeccable by Paul Bakaus)",
-    "email": "paul@paulbakaus.com"
+    "email": "immousavi@users.noreply.github.com"
   },
   "plugins": [
     {
@@ -15,11 +15,11 @@
       "version": "4.8.0",
       "author": {
         "name": "Jala (based on Impeccable by Paul Bakaus)",
-        "email": "paul@paulbakaus.com"
+        "email": "immousavi@users.noreply.github.com"
       },
       "source": "./plugin",
       "category": "design",
-      "homepage": "https://impeccable.style",
+      "homepage": "https://github.com/immousavi/jala",
       "tags": [
         "design",
         "frontend",

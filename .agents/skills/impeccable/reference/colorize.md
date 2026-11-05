@@ -1,86 +1,86 @@
-> **Additional context needed**: existing brand colors.
+> **context اضافه لازم است**: رنگ‌های برندِ موجود.
 
-Introduce color as hierarchy, meaning, and atmosphere. Preserve confirmed brand and semantic conventions; do not replace a visual world under the guise of colorizing it.
+رنگ را به‌شکل سلسله‌مراتب، معنا و حس‌وحال وارد کن. تعهدهای تأییدشدهٔ برند و عرف‌های معنایی را حفظ کن؛ تحت‌عنوانِ رنگ‌آمیزی، جهان بصری را جایگزین نکن.
 
 ---
 
-## Visitor mode
+## حالت بازدیدکننده
 
-- **Persuade + Experience:** color may carry the voice and own large regions when the selected world calls for it.
-- **Operate + Read:** color primarily encodes action, selection, status, wayfinding, and reading hierarchy. Rarity gives an accent force.
+- **اقناع (Persuade) + تجربه (Experience):** رنگ می‌تواند صدا را حمل کند و وقتی جهانِ انتخاب‌شده می‌طلبد، ناحیه‌های بزرگی را مالک شود.
+- **عملیات (Operate) + خواندن (Read):** رنگ اول کنش، انتخاب، وضعیت، مسیریابی و سلسله‌مراتبِ خواندن را رمزگذاری می‌کند. کمیابی به تاکید قدرت می‌دهد.
 
-## Audit before choosing
+## ممیزی قبل از انتخاب
 
-Read DESIGN.md, tokens, assets, current themes, and representative states. Identify:
+DESIGN.md، توکن‌ها، assetها، تم‌های فعلی و حالت‌های نماینده را بخوان. شناسایی کن:
 
-- which colors are confirmed brand commitments;
-- current surface, text, action, and semantic roles;
-- places where grayscale obscures hierarchy or state;
-- contrast failures and color-only communication;
-- light/dark or data-visualization requirements;
-- whether the task asks for more color or a new identity.
+- کدام رنگ‌ها تعهدهای برندِ تأییدشده‌اند؛
+- نقش‌های فعلی سطح، متن، کنش و معنایی؛
+- جاهایی که سیاه‌وسفیدی سلسله‌مراتب یا وضعیت را مبهم می‌کند؛
+- شکست‌های کنتراست و ارتباطِ فقط-رنگی؛
+- الزامات حالت روشن/تیره یا بصری‌سازیِ داده؛
+- اینکه کارِ درخواستی «رنگ بیشتر» است یا هویت جدید.
 
-If a new identity is required, use [new-work.md](new-work.md). Ask only when a binding brand decision cannot be inferred.
+اگر هویت جدید لازم است، [new-work.md](new-work.md) را استفاده کن. فقط وقتی بپرس که تصمیمِ الزام‌آورِ برند استنتاج‌نپذیر باشد.
 
-## Choose a strategy
+## راهبرد را انتخاب کن
 
-Name the intended emotional temperature, dominant relationship, contrast range, and color dosage before editing. The strategy may be restrained or immersive; it must follow the brief and selected world rather than a fixed percentage rule.
+دمای احساسیِ موردنظر، رابطهٔ غالب، بازهٔ کنتراست و دوز رنگ را قبل از ویرایش نام ببر. راهبرد می‌تواند خویشتن‌دار یا فراگیر باشد؛ باید بریف و جهانِ انتخاب‌شده را دنبال کند نه یک قاعدهٔ درصدیِ ثابت.
 
-Build roles, not a bag of swatches:
+نقش‌ها بساز، نه کیسه‌ای سواچ:
 
-- canvas and elevated surfaces;
-- primary and secondary text;
-- action, focus, and selection;
-- borders and separators;
-- success, warning, error, and information;
-- data categories or scales when needed.
+- بوم و سطوح بالانشسته؛
+- متن اصلی و ثانویه؛
+- کنش، فوکوس و انتخاب؛
+- حاشیه‌ها و جداکننده‌ها؛
+- موفقیت، هشدار، خطا و اطلاع؛
+- دسته‌ها یا مقیاس‌های داده وقتی لازم است.
 
-Use the project's existing color space. For a new web palette, prefer OKLCH because lightness and chroma can be adjusted predictably. Choose hue from product meaning and visual direction, never from a default category association.
+از فضای رنگِ موجودِ پروژه استفاده کن. برای پالت وبِ جدید OKLCH را ترجیح بده چون روشنایی و کروما قابل‌تنظیمِ پیش‌بینی‌پذیرند. رنگ را از معنای محصول و جهت بصری انتخاب کن، هرگز از تداعیِ پیش‌فرضِ دسته‌بندی نه.
 
-## Apply at system scale
+## در مقیاس سیستم اعمال کن
 
-- Let the strongest color own a deliberate region or role instead of scattering tiny accents.
-- Keep the primary action easy to find; do not spend its color on decoration.
-- Tint neutrals only when the brand hue genuinely creates cohesion. Neutral gray is valid when it serves the world.
-- On colored surfaces, derive secondary text from the foreground or surface hue rather than using washed-out generic gray.
-- Keep semantic meanings consistent, but respect platform and domain conventions instead of assuming fixed hues.
-- For data, use distinct lightness, chroma, shape, label, or pattern so color is not the only code.
-- In dark mode, design surface elevation and contrast explicitly; do not invert the light theme mechanically.
-- Define primitive values and semantic tokens when the project has a token system. Theme changes should normally remap semantic roles.
+- بگذار قوی‌ترین رنگ ناحیه یا نقشی آگاهانه را مالک شود، به‌جای پاشیدن تاکیدهای ریز.
+- کنش اصلی را راحت‌یافتنی نگه دار؛ رنگش را خرج تزئین نکن.
+- خنثی‌ها را فقط وقتی رنگ‌مایه بده که رنگ برند واقعاً انسجام می‌سازد. خاکستریِ خنثی وقتی به جهان خدمت می‌کند معتبر است.
+- روی سطوح رنگی، متن ثانویه را از رنگ پیش‌زمینه یا سطح مشتق کن، نه خاکستری عمومیِ شسته‌شده.
+- معناهای معنایی را یکدست نگه دار، ولی به عرف‌های پلتفرم و حوزه احترام بگذار، به‌جای فرضِ رنگ‌های ثابت.
+- برای داده، از روشنایی، کروما، شکل، لیبل یا الگوی متمایز استفاده کن تا رنگ تنها کد نباشد.
+- در حالت تیره، ارتفاع سطح و کنتراست را صریح طراحی کن؛ تم روشن را مکانیکی معکوس نکن.
+- وقتی پروژه سیستم توکن دارد، مقدارهای primitive و توکن‌های semantic را تعریف کن. تعویض تم باید عادیاً نقش‌های semantic را بازنگاشت کند.
 
-Decoration without a relationship to hierarchy, state, content, or the visual world is not a color strategy.
+تزئین بدون رابطه با سلسله‌مراتب، وضعیت، محتوا یا جهان بصری، راهبرد رنگ نیست.
 
-## Contrast and perception
+## کنتراست و ادراک
 
-Verify computed foreground/background pairs:
+جفت‌های محاسبه‌شدهٔ متن/پس‌زمینه را تأیید کن:
 
-| Content | WCAG AA minimum |
+| محتوا | حداقل WCAG AA |
 |---|---|
-| body text | 4.5:1 |
-| large text | 3:1 |
-| controls, icons, focus indicators | 3:1 |
+| متن بدنه | 4.5:1 |
+| متن درشت | 3:1 |
+| کنترل‌ها، آیکن‌ها، نشانگرهای فوکوس | 3:1 |
 
-Do not rely on eyesight alone. Check interactive states, overlays, text on images, disabled content, and both themes. Simulate common vision deficiencies. Information conveyed by color also needs text, shape, iconography, or position.
+فقط به چشم تکیه نکن. حالت‌های تعاملی، اورلی‌ها، متن روی تصویر، محتوای غیرفعال و هر دو تم را چک کن. نقص‌های بینایی رایج را شبیه‌سازی کن. اطلاعاتی که رنگ منتقل می‌کند به متن، شکل، آیکونوگرافی یا موقعیت هم نیاز دارد.
 
-When deriving OKLCH ramps, vary lightness and reduce chroma near white and black. Do not keep high chroma at extreme lightness merely to make the math uniform. Prefer explicit colors over chains of translucent overlays when alpha would make contrast context-dependent.
+موقع مشتق‌کردن رامپ‌های OKLCH، روشنایی را تغییر بده و نزدیک سفید و سیاه کروما را کم کن. کرومای بالا را در روشنایی افراطی فقط برای یکنواختیِ ریاضی نگه ندار. رنگِ صریح را به زنجیرهٔ اورلی‌های نیمه‌شفاف ترجیح بده وقتی آلفا کنتراست را وابسته به بافت می‌کند.
 
-## Verify
+## راستی‌آزمایی
 
-- Every color has a stable role or a world-specific atmospheric purpose.
-- Attention lands on the intended action, content, or state.
-- The palette works across quiet, dense, interactive, error, and empty states.
-- Light and dark themes are each composed, not mechanically inverted.
-- Contrast and non-color cues pass in all relevant states.
-- The result is recognizably this product, not a generic “colorful” treatment.
+- هر رنگ نقش پایدار یا هدفِ حس‌وحالیِ مخصوصِ جهان دارد.
+- توجه روی کنش، محتوا یا وضعیتِ مقصود فرود می‌آید.
+- پالت در حالت‌های آرام، متراکم، تعاملی، خطا و خالی کار می‌کند.
+- تم روشن و تیره هر کدام ترکیب‌بندی شده‌اند، نه معکوس‌سازی مکانیکی.
+- کنتراست و نشانه‌های غیر-رنگی در همهٔ حالت‌های مرتبط پاس می‌شوند.
+- نتیجه قابل‌شناسایی همین محصول است، نه یک پرداخت عمومیِ «رنگارنگ».
 
-When the palette earns its place, hand off to `$impeccable polish` for the final pass.
+وقتی پالت جایش را گرفت، پاسِ نهایی را به `$jala polish` بسپار.
 
-## Live-mode signature params
+## پارامترهای امضادار حالت زنده
 
-When invoked from live mode, every variant declares a `color-amount` parameter. Author CSS against `var(--p-color-amount, 0.5)` so the user can move from neutral to the variant's full color strategy without regeneration.
+وقتی از حالت زنده فراخوانی می‌شود، هر واریانت پارامتر `color-amount` را اعلام می‌کند. CSS را روی `var(--p-color-amount, 0.5)` بنویس تا کاربر بدون تولیدِ دوباره، از خنثی تا راهبرد کاملِ رنگِ واریانت برود.
 
 ```json
 {"id":"color-amount","kind":"range","min":0,"max":1,"step":0.05,"default":0.5,"label":"Color amount"}
 ```
 
-Add at most two variant-specific parameters, such as palette, temperature, or tint behavior. Follow [live.md](live.md)'s parameter contract.
+حداکثر دو پارامتر مخصوصِ واریانت اضافه کن، مثل پالت، دما یا رفتار رنگ‌مایه. قرارداد پارامترِ [live.md](live.md) را دنبال کن.

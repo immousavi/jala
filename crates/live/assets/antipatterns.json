@@ -1,392 +1,392 @@
 [
   {
     "id": "side-tab",
-    "name": "حاشیهٔ رنگیِ یک‌طرفه (side-tab)",
+    "name": "Side-tab accent border",
     "category": "slop",
-    "description": "حاشیهٔ رنگیِ ضخیم روی یک سمت کارت — شناخته‌شده‌ترین نشانهٔ UIهای تولیدشده با هوش مصنوعی. تاکیدِ ظریف‌تر بگذار یا کلاً حذفش کن."
+    "description": "Thick colored border on one side of a card — the most recognizable tell of AI-generated UIs. Use a subtler accent or remove it entirely."
   },
   {
     "id": "border-accent-on-rounded",
-    "name": "حاشیهٔ تاکیدی روی عنصر گوشه‌گرد",
+    "name": "Border accent on rounded element",
     "category": "slop",
-    "description": "حاشیهٔ تاکیدیِ ضخیم روی کارتِ گوشه‌گرد — حاشیه با گوشه‌های گرد تضاد دارد. حاشیه یا border-radius را حذف کن."
+    "description": "Thick accent border on a rounded card — the border clashes with the rounded corners. Remove the border or the border-radius."
   },
   {
     "id": "overused-font",
-    "name": "فونت بیش‌ازحد استفاده‌شده",
+    "name": "Overused font",
     "category": "slop",
-    "description": "Inter، Roboto، Fraunces، Geist، Plus Jakarta Sans و Space Grotesk آن‌قدر در سایت‌ها تکرار شده‌اند که دیگر متمایز نیستند. هر موج از UIهای هوش مصنوعی به همان چند فونت محدود همگرا می‌شود. فونتی انتخاب کن که به رابط تو شخصیت بدهد. برای سطح‌های فارسی، فونت‌های فارسی (وزیرمتن، استعداد و...) را با [fa-typography] انتخاب کن."
+    "description": "Inter, Roboto, Fraunces, Geist, Plus Jakarta Sans, and Space Grotesk are used on so many sites they no longer feel distinctive. Each new wave of AI-generated UIs converges on the same handful of faces. Choose a face that gives your interface personality."
   },
   {
     "id": "flat-type-hierarchy",
-    "name": "سلسله‌مراتب تایپِ تخت",
+    "name": "Flat type hierarchy",
     "category": "slop",
-    "description": "نقش تیتر غالب و بدنه در هر پله کمتر از ۱٫۲۵ برابر فاصله دارند و مقیاس اندازه تخت مانده. دست‌کم یک پلهٔ اندازهٔ قوی‌تر اضافه کن."
+    "description": "Dominant heading and body roles are separated by less than 1.25× at every step, leaving the size hierarchy flat. Add at least one stronger size step."
   },
   {
     "id": "gradient-text",
-    "name": "متن گرادیانی",
+    "name": "Gradient text",
     "category": "slop",
-    "description": "متن گرادیانی تزئینی است نه معنادار — نشانهٔ رایج هوش مصنوعی، به‌ویژه روی تیترها و اعداد شاخص. برای متن از رنگ تخت استفاده کن."
+    "description": "Gradient text is decorative rather than meaningful — a common AI tell, especially on headings and metrics. Use solid colors for text."
   },
   {
     "id": "ai-color-palette",
-    "name": "پالت رنگیِ هوش مصنوعی",
+    "name": "AI color palette",
     "category": "slop",
-    "description": "گرادیان بنفش/بنفش‌فام و فیروزه‌ای-روی-تیره شناخته‌شده‌ترین نشانه‌های UI تولیدشده‌اند. گرادیان در یکی از این رنگ‌ها به‌تنهایی نشانه است؛ جوهر نئونی تخت روی زمینهٔ تیره وقتی رنگِ نشانهٔ دوم هم بپیوندد بار مثبت می‌گیرد. پالتی متمایز و عمدی انتخاب کن."
+    "description": "Purple/violet gradients and cyan-on-dark are the most recognizable tells of AI-generated UIs. A gradient in one of those hues is the tell on its own; flat neon ink on a dark ground is charged once a second tell hue joins it. Choose a distinctive, intentional palette."
   },
   {
     "id": "cream-palette",
-    "name": "پالت کرم/بژ",
+    "name": "Cream / beige palette",
     "category": "slop",
-    "description": "پس‌زمینهٔ کرم یا بژِ گرم به سطحِ «خوش‌سلیقه»ٔ پیش‌فرضِ هوش مصنوعی تبدیل شده و از روی عادت برداشته می‌شود. پس‌زمینه‌ای انتخاب کن که از پالت عمدی بیاید، نه سفیدِ مایل به گرمِ امن."
+    "description": "A warm cream or beige page background has become the default \"tasteful\" AI surface, reached for by reflex. Choose a background that comes from a deliberate palette, not the safe warm off-white."
   },
   {
     "id": "nested-cards",
-    "name": "کارت‌های تودرتو",
+    "name": "Nested cards",
     "category": "slop",
-    "description": "کارت داخل کارت نوفهٔ بصری و عمقِ بیش‌ازحد می‌سازد. سلسله‌مراتب را تخت کن — به‌جای تودرتوکردن ظرف‌ها از فاصله‌گذاری، تایپوگرافی و خط جداکننده استفاده کن."
+    "description": "Cards inside cards create visual noise and excessive depth. Flatten the hierarchy — use spacing, typography, and dividers instead of nesting containers."
   },
   {
     "id": "monotonous-spacing",
-    "name": "فاصله‌گذاری یکنواخت",
+    "name": "Monotonous spacing",
     "category": "slop",
-    "description": "همان یک مقدار فاصله همه‌جا — نه ریتم، نه تنوع. برای آیتم‌های هم‌گروه فاصلهٔ چسبان و بین بخش‌ها جداییِ سخاوتمندانه بگذار."
+    "description": "The same spacing value used everywhere — no rhythm, no variation. Use tight groupings for related items and generous separations between sections."
   },
   {
     "id": "bounce-easing",
-    "name": "ایزینگ جهشی یا فنری",
+    "name": "Bounce or elastic easing",
     "category": "slop",
-    "description": "ایزینگ جهش و فنر، قدیمی و بی‌سلیقه حس می‌شود. اشیای واقعی نرم شتاب‌کاه می‌شوند — به‌جایش ایزینگ نمایی (ease-out-quart/quint/expo) بگذار.",
+    "description": "Bounce and elastic easing feel dated and tacky. Real objects decelerate smoothly — use exponential easing (ease-out-quart/quint/expo) instead.",
     "severity": "advisory"
   },
   {
     "id": "pulsing-dot",
-    "name": "نقطهٔ وضعیتِ تپنده",
+    "name": "Pulsing status dot",
     "category": "slop",
-    "description": "نقطه‌های وضعیتِ کوچکِ تپنده، «زنده‌بودن» را تزئینی جلوه می‌دهند. انیمیشن تپش را فقط برای نشانگرهایی نگه دار که به دادهٔ واقعاً زنده و تغییرکننده وصل‌اند؛ نشانگر ایستا با لیبل روشن، صادقانه‌تر و آرام‌تر است."
+    "description": "Small pulsing status dots simulate liveness decoratively. Reserve pulse animation for indicators tied to genuinely live, changing data; a static indicator with clear labeling is honest and calmer."
   },
   {
     "id": "blinking-cursor",
-    "name": "کرسر چشمک‌زنِ تزئینی",
+    "name": "Decorative blinking cursor",
     "category": "slop",
-    "description": "کرسر متنیِ چشمک‌زن در هیرو یا صفحهٔ فرود، تایپ‌شدن را شبیه‌سازی می‌کند در حالی که هیچ ورودی‌ای وجود ندارد. زیبایی ابزار توسعه‌دهنده را به‌عنوان تزئین قرض می‌گیرد. فیلدهای واقعاً قابل‌ویرایش کرسر خودشان را می‌کشند؛ در هر جای دیگر، بگذار ترکیب‌بندی بدون پرامپتِ جعلی توجه را نگه دارد.",
+    "description": "A blinking text cursor animated into a hero or landing section simulates typing where no input exists. It borrows the dev-tool aesthetic as decoration. Real editable fields draw their own caret; anywhere else, let the composition hold attention without a fake prompt.",
     "severity": "advisory"
   },
   {
     "id": "shape-assembled-illustration",
-    "name": "تصویرسازیِ مونتاژشکل",
+    "name": "Shape-assembled illustration",
     "category": "slop",
-    "description": "SVG درون‌خطیِ بزرگی که صحنهٔ تصویری را از انبوهی شکل اولیه می‌سازد، کلیپ‌آرتِ جای‌نگهدار خوانده می‌شود نه تصویرسازی. آیکن، لوگو و گرافیک داده در مقیاس خودشان اشکالی ندارند؛ بصریِ هم‌اندازهٔ هیرو لیاقت artwork واقعی، عکس یا گرافیکِ عمداً کشیده‌شده دارد.",
+    "description": "A large inline SVG that builds a pictorial scene from a pile of primitive shapes reads as placeholder clip art, not illustration. Icons, logos, and data graphics are fine at their scale; a hero-sized visual deserves real artwork, a photograph, or a deliberately drawn graphic.",
     "severity": "advisory"
   },
   {
     "id": "organic-clip-path",
-    "name": "کانتور ارگانیک با clip-path",
+    "name": "Organic contour drawn as clip-path",
     "category": "quality",
-    "description": "چندضلعی clip-path با رئوس دلخواهِ زیاد، یا مسیر خمیدهٔ clip-path()، تقریب CSS از لبهٔ پاره، بلاب یا سیلوئت است. نسخهٔ ارزان این افکت خوانده می‌شود و معمولاً متریال تولیدشده یا عکس را با کد جایگزین کرده. آلفا-مت را از خود تصویر استخراج کن یا شکل را به‌صورت رaster برش‌خورده عرضه کن؛ clip-path را برای هندسه نگه دار (گوشهٔ بریده، مورب، شش‌ضلعی)."
+    "description": "A clip-path polygon with many arbitrary vertices, or a curved clip-path path(), is CSS approximating a torn edge, blob, or silhouette. It reads as the cheap version of the effect and is usually a produced or photographic material replaced with code. Derive an alpha matte from the real image, or ship the shape as a cut-out raster; keep clip-path for geometry (cut corners, diagonals, hexagons)."
   },
   {
     "id": "buried-raster",
-    "name": "رaster دفن‌شده زیر شست‌وشو یا شفافیت",
+    "name": "Raster buried under a wash or opacity",
     "category": "quality",
-    "description": "تصویر پس‌زمینه زیر لایهٔ گرادیانیِ تقریباً مات، یا raster روی عنصری با شفافیت نزدیک به صفر، هرگز به صفحه نمی‌رسد: کاربر شست‌وشو را می‌بیند و بافت یا عکسِ تولیدشده فقط یک توکنِ امتثال شده. بگذار متریال دیده شود (رنگ‌مایه زیر آلفای ۰٫۹، blend mode، شفافیتی که دیده می‌شود) یا فایل را حذف کن."
+    "description": "A background image under a near-opaque gradient wash, or a raster on an element at near-zero opacity, never reaches the screen: the page shows the wash, and the produced texture or photo ships as a compliance token. Let the material show (a tint under 0.9 alpha, a blend mode, an opacity you can see) or remove the file."
   },
   {
     "id": "hard-offset-shadow",
-    "name": "سایهٔ آفست‌دار سخت",
+    "name": "Hard offset shadow",
     "category": "quality",
-    "description": "سایهٔ نمایانِ بدون محوشدگی با جابه‌جایی دست‌کم ۴px می‌تواند به جهتِ عمدیِ نئوبروتالیستی تعلق داشته باشد. چک کن که با طراحیِ مقصود می‌خواند؛ این یک پرامپت بازبینی است، نه مدرک تولیدِ هوش مصنوعی و نه درخواست حذف خودکار. کاربردهای عمدی را با data-impeccable-ignore=\"hard-offset-shadow\" معاف کن.",
+    "description": "A visible, unblurred shadow displaced by at least 4px can belong to an intentional neobrutalist direction. Check whether it fits the intended design; this is a review prompt, not evidence of AI authorship or a request to remove it automatically. Waive intentional uses with data-impeccable-ignore=\"hard-offset-shadow\".",
     "severity": "advisory"
   },
   {
     "id": "dark-glow",
-    "name": "درخششِ سایه‌ای رنگی",
+    "name": "Glowing shadow accents",
     "category": "slop",
-    "description": "سایه‌های درخشانِ رنگی — هالهٔ رنگی با آفست صفر (box-shadow یا text-shadow) روی هر پس‌زمینه، یا سایهٔ تارِ رنگی روی پس‌زمینهٔ تیره — ظاهرِ «خفن»ِ پیش‌فرضِ UIهای تولیدشده‌اند. سایه‌های ارتفاعِ خنثی و نورپردازیِ ظریف و هدفمند استفاده کن."
+    "description": "Colored glow shadows — a zero-offset chromatic halo (box- or text-shadow) on any background, or any colored blurred shadow on a dark background — are the default \"cool\" look of AI-generated UIs. Use neutral elevation shadows and subtle, purposeful lighting instead."
   },
   {
     "id": "radial-halo",
-    "name": "هالهٔ پس‌زمینهٔ radial-gradient",
+    "name": "Radial-gradient background halo",
     "category": "slop",
-    "description": "لکهٔ radial-gradient رنگی — اشباع در مرکز، محوشده به شفاف — به‌عنوان درخشش تزئینی پس‌زمینهٔ صفحهٔ تیره. همان نشانهٔ سایه‌های درخشان، این‌بار با گرادیان به‌جای سایه. سطح را با پس‌زمینهٔ تخت یا جابه‌جاییِ ظریف زمین‌گیر کن."
+    "description": "A chromatic radial-gradient wash — saturated at the center, fading to transparent — used as a decorative background glow on a dark page. Same tell as glowing shadows, drawn with a gradient instead of a shadow. Ground the surface with a solid or subtly shifted background instead."
   },
   {
     "id": "radial-spotlight-glow",
-    "name": "نورافکن تزئینیِ شعاعی",
+    "name": "Decorative radial spotlight glow",
     "category": "slop",
-    "description": "گرادیان شعاعیِ رنگ تاکیدی که به شفافی محو می‌شود، پشت هیرو یا بخش به‌عنوان «نورافکن» افتاده و آن‌قدر پررنگ است که مثل ابری شناور روی متن خوانده می‌شود. تزئینِ غریزیِ هوش مصنوعی و پسرخالهٔ نیمه‌شفافِ هالهٔ شعاعیِ اشباع است. بگذار سطح خودش بایستد، یا ترکیب‌بندی را با یک تاکیدِ متریالیِ عمدی نور بده نه هازهٔ رنگی شناور."
+    "description": "An accent-colored radial gradient fading to transparent, dropped behind a hero or section as a \"spotlight\" and bright enough against that surface to read as a cloud floating over the copy. It is a reflex AI decoration — the translucent cousin of the saturated radial halo. Let the surface stand on its own, or light the composition with a deliberate material accent rather than a floating colored haze."
   },
   {
     "id": "marquee",
-    "name": "مارکیِ اسکرول خودکار",
+    "name": "Auto-scrolling marquee",
     "category": "slop",
-    "description": "محتوای پیوستهٔ اسکرول‌شونده توجهی می‌طلبد که نمرده و هر لحظه نیمی از محتوایش را پنهان می‌کند. حرکت را برای محتوایی نگه دار که واقعاً تغییر می‌کند؛ بگذار خواننده با سرعت خودش برود."
+    "description": "Continuously auto-scrolling content demands attention it has not earned and hides half its content at any moment. Reserve motion for content that changes; let readers move at their own pace."
   },
   {
     "id": "icon-tile-stack",
-    "name": "کاشی آیکن بالای عنوان",
+    "name": "Icon tile stacked above heading",
     "category": "slop",
-    "description": "ظرف آیکنِ مربع‌گوشه‌گردِ کوچک بالای عنوان، قالبِ جهانیِ کارت-ویژگیِ هوش مصنوعی است — هر مولدی دقیقاً همین شکل را بیرون می‌دهد. آیکن و عنوان را کنار هم بگذار، یا بگذار آیکن بدون ظرف اختصاصی در جریان متن بنشیند."
+    "description": "A small rounded-square icon container above a heading is the universal AI feature-card template — every generator outputs this exact shape. Try a side-by-side icon and heading, or let the icon sit in flow without its own container."
   },
   {
     "id": "italic-serif-display",
-    "name": "تیتر نمایشیِ سریف ایتالیک",
+    "name": "Italic serif display headline",
     "category": "slop",
-    "description": "سریف ایتالیکِ اورسایز (Fraunces، Recoleta، Playfair، Newsreader-italic) به‌عنوان تیتر اصلی هیرو، در خلوت سلیقه خوانده می‌شود ولی به هیروی جهانیِ استارتاپ‌هایِ هوش‌مصنوعی تبدیل شده. رومی بچین یا به فونت نمایشیِ غیرسریف برو. رجیستر مجله‌ای/ادیتوریال می‌تواند به‌جا این را بخواهد — با بافت قضاوت کن. روی سطوح فارسی اصلاً موضوعیت ندارد: فارسی ایتالیک ندارد."
+    "description": "Oversized italic serif (Fraunces, Recoleta, Playfair, Newsreader-italic) as the primary hero headline reads as taste in isolation but has become the universal AI-startup landing page hero. Set roman, or move to a non-serif display face. Editorial / magazine register may legitimately want this — judge by context."
   },
   {
     "id": "hero-eyebrow-chip",
-    "name": "ابروی هیرو / چیپ قرصی",
+    "name": "Hero eyebrow / pill chip",
     "category": "slop",
-    "description": "لیبل کوچکِ حروف‌فاصله‌دارِ بزرگ (uppercase) بلافاصله بالای تیترِ هیروی اورسایز — یا همان شکل به‌صورت چیپ قرصی — حالا هیروی پیش‌فرضِ SaaSهایِ هوش‌مصنوعی است. ابرو را حذف کن، کیکر را در تیتر ادغام کن، یا به‌شکل بردکرامب ناوبری اجرایش کن."
+    "description": "A tiny uppercase letter-spaced label sitting immediately above an oversized hero headline — or the same shape rendered as a pill chip — is now the default AI SaaS hero. Drop the eyebrow, integrate the kicker into the headline, or run it as a navigation breadcrumb instead."
   },
   {
     "id": "kicker-above-heading",
-    "name": "کیکر/لیبل ابرو بالای عنوان",
+    "name": "Kicker / eyebrow label above heading",
     "category": "slop",
-    "description": "لیبل کوچکِ بزرگ‌نویس یا small-caps که به‌شکل بلوکِ مستقل بلافاصله بالای عنوان نشسته مطلقاً ممنوع است، تکرارشده یا نه. کیکرهای تولیدشده هرگز جایشان را نمی‌گیرند: عنوان خودش وزنش را دارد. لیبل را حذف کن و بگذار عنوان حرف بزند؛ اگر واژه‌ها مهم‌اند، در عنوان یا بدنه کارشان بده."
+    "description": "A tiny tracked uppercase or small-caps label sitting as its own block directly above a heading is banned outright, repeated or not. Generated kickers never earn their place: the heading carries its own weight. Delete the label and let the heading speak; if the words matter, work them into the heading or the body."
   },
   {
     "id": "numbered-section-labels",
-    "name": "لیبل‌های عددیِ ریزِ بخش‌ها",
+    "name": "Tiny numbered section labels",
     "category": "slop",
-    "description": "لیبل‌های شماره‌دارِ کوچکِ چسبیده به عنوانِ بخش‌ها، بخش‌به‌بخش تکرارشونده، داربستِ ادیتوریالِ هوش مصنوعی‌اند — صفحه‌ای که به‌جای ساخت‌دادنِ ساختار، فصل‌های خودش را شماره می‌زند. بگذار سلسله‌مراتب، محتوا و ریتم توالی را حمل کنند.",
+    "description": "Small numeric index labels riding next to section headings, repeated section after section, are AI editorial scaffolding — a page numbering its own chapters instead of earning structure. Let hierarchy, content, and rhythm carry the sequence.",
     "severity": "advisory"
   },
   {
     "id": "em-dash-overuse",
-    "name": "اشباع خط تیرهٔ بلند",
+    "name": "Em-dash overuse",
     "category": "slop",
-    "description": "اشباع خط تیرهٔ بلند (—) در متن بدنه، ریتمِ آهنگینِ هوش مصنوعی را لو می‌دهد. فقط توصیه‌ای: آدم‌ها هم خط تیره را به‌جا استفاده می‌کنند، پس این قاعده فقط روی اشباع فعال می‌شود — دست‌کم ۸ خط تیره (— یا --) با چگالی نزدیک به یکی در هر ۵۰۰ نویسهٔ متن بدنه — هرگز روی مقالهٔ بلندی که چندتا دارد. ویرگول، دونقطه، نقطه یا پرانتز را ترجیح بده.",
+    "description": "Em-dash saturation in body copy is an AI cadence tell. Advisory only: humans use em-dashes legitimately, so this fires only on saturation — at least 8 em-dashes (— or --) at a density near one per 500 characters of body text — never on a long article that uses a few. Prefer commas, colons, periods, or parentheses.",
     "severity": "advisory"
   },
   {
     "id": "marketing-buzzword",
-    "name": "واژهٔ بازاریابیِ توخالی",
+    "name": "Marketing buzzword",
     "category": "slop",
-    "description": "عبارت‌های عمومیِ SaaS (ساده‌سازی/توانمندسازی/جهان‌سطح/درجهٔ سازمانی/نسل بعدی/فناوری روز و معادل‌های فارسی‌شان) نشانهٔ آنیِ هوش مصنوعی‌اند. فعل و اسمِ مشخصی انتخاب کن که محصول را دقیقاً همان‌طور که هست بگوید."
+    "description": "Generic SaaS phrases (streamline / empower / supercharge / world-class / enterprise-grade / next-generation / cutting-edge / etc) are instant AI tells. Pick a specific verb and noun that says what the product literally does."
   },
   {
     "id": "aphoristic-cadence",
-    "name": "نثرِ حکمت‌واره",
+    "name": "Aphoristic-cadence copy",
     "category": "slop",
-    "description": "سه بخش یا بیشتر که روی جملهٔ کوتاهِ ردِّیه می‌نشینند («X. هیچ Y.» / «X. فقط Y.») یا حکمتِ تضادِ ساختگی («یک فیچر نیست. یک پلتفرم است.») ریتم هوش مصنوعی می‌خواند نه صدا. یک‌بار اشکال ندارد؛ الگو خودش نشانه است."
+    "description": "Three or more sections landing on a short rebuttal sentence (\"X. No Y.\" / \"X. Just Y.\") or a manufactured-contrast aphorism (\"Not a feature. A platform.\") reads as AI cadence, not voice. Once is fine; the pattern is the tell."
   },
   {
     "id": "oversized-h1",
-    "name": "تیتر هیروی اورسایز",
+    "name": "Oversized hero headline",
     "category": "slop",
-    "description": "تیترِ جمله‌کامل در اندازهٔ نمایشی، ویوپورت را اشغال می‌کند و بالای فولد جایی برای هیچ‌چیز دیگر نمی‌گذارد. تیترِ یک‌دوکلمه‌ایِ کوبنده در آن اندازه اشکال ندارد — مشکل تیترِ بلندِ بزرگ‌شدهٔ بیش‌ازحد است. تیترهای بلند را کوچک‌تر بچین یا متن را جمع کن."
+    "description": "A full-sentence headline set at display size ends up dominating the viewport, leaving no room for anything else above the fold. A punchy one- or two-word headline at that size is fine — the problem is a long headline blown up too large. Set long headlines smaller, or tighten the copy."
   },
   {
     "id": "extreme-negative-tracking",
-    "name": "فاصلهٔ حروف له‌شده",
+    "name": "Crushed letter spacing",
     "category": "slop",
-    "description": "فاصله‌گذاریِ حروف تنگ‌تر از مرزی که نویسه‌ها شکل خودشان را نگه دارند، خوانایی را می‌بلعد. تایپ نمایشی را اپتیکال جمع کن، نه ویرانگر. روی حروف چسبان فارسی هر تراکینگی مطلقاً ممنوع است."
+    "description": "Letter-spacing pulled tighter than the point where characters keep their own shapes costs legibility. Tighten display type optically, not destructively."
   },
   {
     "id": "broken-image",
-    "name": "تصویر شکسته یا جای‌نگهدار",
+    "name": "Broken or placeholder image",
     "category": "quality",
-    "description": "تگ‌های <img> با src خالی، src غایب یا مقدارهای جای‌نگهدار به‌شکل جعبهٔ تصویرِ شکسته عرضه می‌شوند. تصویر واقعی، asset تولیدشده، یا حذف تگ."
+    "description": "<img> tags with empty src, missing src, or placeholder values ship as broken-image boxes. Use real images, generated assets, or remove the tag."
   },
   {
     "id": "script-error",
-    "name": "خطای اسکریپتِ رهاشده در بارگذاری",
+    "name": "Uncaught script error on load",
     "category": "quality",
-    "description": "یک اسکریپت در حین لود صفحه استثنای رهاشده پرتاب کرد یا parse نشد. جاوااسکریپتِ شکسته بی‌سروصدا revealها، تعامل‌ها و محتوای پویا را می‌کُشد و می‌تواند بیشترِ صفحه را نامرئی بگذارد. قبل از قضاوت دربارهٔ هر چیز دیگر، خطا را رفع کن.",
+    "description": "A script threw an uncaught exception or failed to parse while the page loaded. Broken JavaScript silently kills reveals, interactions, and dynamic content, and can leave most of a page invisible. Fix the error before judging anything else.",
     "severity": "error"
   },
   {
     "id": "content-hidden-at-rest",
-    "name": "محتوای نامرئی در حالت آرام",
+    "name": "Content invisible at rest",
     "category": "quality",
-    "description": "سهم بزرگی از متن صفحه حتی بعد از این‌که همهٔ هندلرهای reveal فرصت اجرا داشتند، روی opacity 0 یا visibility hidden نشسته است. این امضای revealِ شکسته است: محتوا عرضه شده ولی هرگز دیده نمی‌شود. محتوا را به‌صورت پیش‌فرض نمایان کن و بگذار جاوااسکریپت ورودش را غنی کند، نه این‌که وجودش را قفل کند.",
+    "description": "A large share of the page text sits at opacity 0 or visibility hidden even after every reveal handler had a chance to run. This is the failed-reveal signature: the content shipped but never becomes visible. Make content visible by default and let JavaScript enhance its entrance instead of gating its existence.",
     "severity": "error"
   },
   {
     "id": "edge-flush-cards",
-    "name": "کارت‌های چسبیده به لبهٔ اسکرولر",
+    "name": "Cards flush against the scroller edge",
     "category": "quality",
-    "description": "کارت‌های داخل اسکرولر افقی یا پنل تب در حالت آرام به لبهٔ ظرف چسبیده‌اند در حالی که در سمت دیگر گاتر نگه داشته‌اند؛ لبه‌ها و گوشه‌های گردشان بریده می‌شود. معمولاً پنل عریض‌تر از جعبهٔ کلیپ‌اش سایز خورده. داخل‌گذری (inset) یکسان در هر دو سمت نگه دار."
+    "description": "Cards inside a horizontal scroller or tab panel sit flush against the container edge at rest while keeping a gutter on the other side, so their edges and rounded corners get cut off. Usually the panel is sized wider than its clip box. Keep a consistent inset on both sides."
   },
   {
     "id": "text-occlusion",
-    "name": "متنِ محو‌شده زیر عنصر هم‌پوشان",
+    "name": "Text occluded by an overlapping element",
     "category": "quality",
-    "description": "متن زیر یک عنصر مات یا ران متنِ دومی رنگ شده و بخشی از آن خوانده نمی‌شود. جعبهٔ تزئینی، لایهٔ روی‌هم‌چیده یا عنصر درون‌خطی با padding نشتی روی واژه‌ها می‌افتد نه کنارشان. به لایه‌های هم‌پوشان جا بده، یا متن را از زیر لایهٔ بالایی بیرون بکش."
+    "description": "Text is painted under an opaque element or a second text run, so part of it cannot be read. A decorative box, a stacked layer, or an inline element with leaked padding lands on the words instead of beside them. Give overlapping layers room, or move the text out from under the layer above it."
   },
   {
     "id": "first-viewport-column-overflow",
-    "name": "ستونی که ویوپورت اول را می‌کشد",
+    "name": "One column stretches the first viewport",
     "category": "quality",
-    "description": "بخشِ آغازینِ چندستونه اجازه می‌دهد یک ستون خیلی فراتر از فولد برود در حالی که برادرش در یک ویوپورت جا می‌شود؛ ستون کوتاه در فضای مرده شناور می‌ماند و فولد عمیق داخل یک بخش می‌افتد. ستون‌ها را متعادل کن، ستون بلند را سقف بزن، یا بگذار محتوای بلند زیر ردیف آغازین جاری شود."
+    "description": "A multi-column opening section lets one column run far past the fold while its sibling fits in a single viewport, so the short column floats in dead space and the fold falls deep inside one section. Balance the columns, cap the tall one, or let the long content flow below the opening row."
   },
   {
     "id": "gray-on-color",
-    "name": "متن خاکستری روی پس‌زمینهٔ رنگی",
+    "name": "Gray text on colored background",
     "category": "quality",
-    "description": "متن خاکستری روی پس‌زمینهٔ رنگی شسته و بی‌جان دیده می‌شود. به‌جایش سایهٔ تیره‌ترِ همان رنگ پس‌زمینه را بردار، یا برای کنتراست سفید/نزدیک‌سفید."
+    "description": "Gray text looks washed out on colored backgrounds. Use a darker shade of the background color instead, or white/near-white for contrast."
   },
   {
     "id": "low-contrast",
-    "name": "متن با کنتراست کم",
+    "name": "Low contrast text",
     "category": "quality",
-    "description": "متن الزام کنتراست WCAG AA را برآورده نمی‌کند (۴٫۵:۱ برای بدنه، ۳:۱ برای متن درشت). کنتراست متن و پس‌زمینه را بالا ببر."
+    "description": "Text does not meet WCAG AA contrast requirements (4.5:1 for body, 3:1 for large text). Increase the contrast between text and background."
   },
   {
     "id": "line-length",
-    "name": "طول خط بیش‌ازحد بلند",
+    "name": "Line length too long",
     "category": "quality",
-    "description": "خط‌های متنیِ پهن‌تر از حدود ۸۰ نویسه سخت خوانده می‌شوند: چشم در بازگشت به ابتدای خط بعد جایش را گم می‌کند. این قاعده روی خط‌هایی سنجیده می‌شود که رندر شده‌اند و وقتی بیش از یکی بلند باشد گزارش می‌شود. به ظرف‌های متن max-width بده (۶۵ch تا ۷۵ch)."
+    "description": "Text lines wider than ~80 characters are hard to read. The eye loses its place tracking back to the start of the next line, so it is measured on the lines that rendered and charged when more than one of them runs long. Add a max-width (65ch to 75ch) to text containers."
   },
   {
     "id": "cramped-padding",
-    "name": "پدینگ خفه",
+    "name": "Cramped padding",
     "category": "quality",
-    "description": "متن بیش‌ازحد به لبهٔ ظرفش چسبیده. دو شکل دارد: (۱) عنصری با متن خودش که فاصلهٔ متنِ رندرشده تا جعبهٔ حاشیه برای سایز فونتش کم است، و (۲) رپری که متن فرزندانش روی مرزِ نمایان (حاشیه، outline یا پس‌زمینهٔ غیرشفاف) می‌نشیند بدون هیچ داخل‌گذری. دست‌کم ۸px (ایده‌آل ۱۲–۱۶px) فاصلهٔ داخلی در ظرف‌های حاشیه‌دار یا رنگی بگذار."
+    "description": "Text is too close to the edge of its container. Two shapes: (1) an element with its own text where the space between the rendered text and the border box is too small for the font size, and (2) a wrapper whose children's text lands flush against a visible boundary (border, outline, or non-transparent background) with nothing to inset it. Add at least 8px (ideally 12–16px) of space inside bordered, outlined, or colored containers."
   },
   {
     "id": "body-text-viewport-edge",
-    "name": "متن بدنه چسبیده به لبهٔ ویوپورت",
+    "name": "Body text touching viewport edge",
     "category": "quality",
-    "description": "پاراگراف‌های بدنه بدون هیچ ظرفی با پدینگ افقی، تخت به لبهٔ چپ یا راست ویوپورت رندر می‌شوند: نزدیک‌تر از ۱۶px، یا ۱۲px در ویوپورت‌های ۴۸۰px و باریک‌تر. محتوا را در ظرفی با دست‌کم ۱۶px (ایده‌آل ۲۴–۳۲px) پدینگ افقی بپیچان، یا max-width با mx-auto بگذار. متن بدنه‌ای که از لبهٔ ویوپورت بیرون می‌زند یک‌بار در هر صفحه به‌عنوان overflow با نام پهن‌ترین عنصر گزارش می‌شود: عرض آن عنصر را محدود کن نه این‌که پدینگ اضافه کنی."
+    "description": "Body paragraphs render flush against the left or right viewport edge with no container providing horizontal padding: closer than 16px, or 12px on viewports 480px wide or narrower. Wrap content in a container with at least 16px (ideally 24-32px) of horizontal padding, or apply max-width with mx-auto. Body text that runs past the viewport edge is reported once per page as overflow, naming the widest element: constrain that element's width instead of adding padding."
   },
   {
     "id": "tight-leading",
-    "name": "ارتفاع خط تنگ",
+    "name": "Tight line height",
     "category": "quality",
-    "description": "ارتفاع خطِ زیر ۱٫۳ برابر سایز فونت، متنِ چندخطی را سخت می‌خواند. برای متن بدنه از ۱٫۵ تا ۱٫۷ استفاده کن تا خط‌ها جا برای نفس داشته باشند. روی سطوح فارسی کف بدنه ۱٫۷ تا ۲٫۱ است."
+    "description": "Line height below 1.3x the font size makes multi-line text hard to read. Use 1.5 to 1.7 for body text so lines have room to breathe."
   },
   {
     "id": "skipped-heading",
-    "name": "پرش سطح عنوان",
+    "name": "Skipped heading level",
     "category": "quality",
-    "description": "سطح عنوان‌ها نباید بپرد (مثلاً h1 بعد h3 بدون h2). صفحه‌خوان‌ها برای ناوبری از سلسله‌مراتب عنوان استفاده می‌کنند و پرش سطح، طرح‌ریزی سند را می‌شکند."
+    "description": "Heading levels should not skip (e.g. h1 then h3 with no h2). Screen readers use heading hierarchy for navigation. Skipping levels breaks the document outline."
   },
   {
     "id": "heading-rhythm",
-    "name": "عنوانِ چسبیده به بلوک قبلی",
+    "name": "Heading crowded against the previous block",
     "category": "quality",
-    "description": "عنوان به محتوایی که معرفی‌اش می‌کند می‌چسبد، پس فضای رندرشده بالای آن باید بیشتر از فضای زیرش باشد. وقتی عنوان‌های یک صفحه به بلوک بالایی به‌اندازه یا بیشتر از محتوای خودشان نزدیک‌اند، هر بخش انگار کپشنِ بخش قبلی است. فضای بالای هر عنوان را باز کن."
+    "description": "A heading binds to the content it introduces, so the rendered space above it should exceed the space below it. When headings across a page sit as close or closer to the block above than to their own content, every section reads as if it captions the previous one. Open up the space above each heading."
   },
   {
     "id": "justified-text",
-    "name": "متن جاستیفای‌شده",
+    "name": "Justified text",
     "category": "quality",
-    "description": "در ستونی به این باریکی، جاستیفای بدون سیلاب‌گذاری فاصلهٔ واژه‌ها را می‌کشد تا رودخانه‌های عمودیِ سفید در بلوک جاری شوند. text-align: left (در RTL: start) بگذار، عرض ستون را باز کن، یا اگر جاستیفای لازم است hyphens: auto را فعال کن. اسکریپت‌هایی که روی گرید نویسه یا با کشیدن گلیف جاستیفای می‌شوند — مثل CJK، تایلندی و عربی/فارسی — مشمول این قاعده نیستند و گزارش نمی‌شوند."
+    "description": "In a column this narrow, justifying without hyphenation stretches the word spaces until vertical rivers of white run down the block. Use text-align: left, widen the measure, or enable hyphens: auto if you must justify. Scripts that justify on a character grid or by elongating glyphs, such as CJK, Thai and Arabic, are not affected and are not reported."
   },
   {
     "id": "straggler",
-    "name": "واژهٔ جاافتاده در خط آخر",
+    "name": "Straggler",
     "category": "quality",
-    "description": "خط آخر این پاراگراف فقط یک واژه دارد و زیر بلوک حفره می‌گذارد. روی متن بدنه text-wrap: pretty بگذار (Chrome، Safari) تا یک واژه پایین کشیده شود. جایی که مرورگر نادیده‌اش می‌گیرد، جملهٔ آخر را ویرایش کن یا دو واژهٔ آخر را با نویسهٔ عدم‌شکست (no-break space) ببند. اگر شکست عمدی است، همین بماند.",
+    "description": "The last line of this paragraph holds one word, which leaves a hole under the block. Set text-wrap: pretty on body copy (Chrome, Safari) to pull a word down beside it. Where a browser ignores it, edit the last sentence or bind the last two words with a no-break space. Keep it if the break is intended.",
     "severity": "advisory"
   },
   {
     "id": "unbalanced-heading",
-    "name": "عنوان نامتوازن",
+    "name": "Unbalanced heading",
     "category": "quality",
-    "description": "این عنوان طوری می‌شکند که خط آخرش خیلی کوتاه‌تر از خط بالاست، اغلب یک واژه تنها. روی عنوان‌ها text-wrap: balance بگذار تا خط‌ها نزدیک‌هم دربیایند، یا متنش را بازنویسی کن که جا شود. اگر شکست عمداً وزن دارد، همین بماند.",
+    "description": "This heading wraps with its last line far shorter than the line above, often one word alone. Set text-wrap: balance on headings so the lines come out near even, or rewrite it to fit. Keep it if the break carries weight on purpose.",
     "severity": "advisory"
   },
   {
     "id": "tiny-text",
-    "name": "متن بدنهٔ خیلی ریز",
+    "name": "Tiny body text",
     "category": "quality",
-    "description": "متن بدنه زیر ۱۲px سخت خوانده می‌شود، به‌خصوص روی صفحه‌های پرتراکم. برای محتوای بدنه دست‌کم ۱۴px، ایده‌آل ۱۶px. روی سطوح فارسی کف بدنه ۱۵ تا ۱۶px توصیه می‌شود."
+    "description": "Body text below 12px is hard to read, especially on high-DPI screens. Use at least 14px for body content, 16px is ideal."
   },
   {
     "id": "undersized-ui-text",
-    "name": "متن کاربردیِ زیراندازه",
+    "name": "Undersized functional text",
     "category": "quality",
-    "description": "متن UIِ تعاملی یا محتوادار (لینک، دکمه، آیتم ناوبری، لیبل، سلول جدول، ردیف متا، تایم‌کد) زیر ۱۱px شکستِ خوانایی است نه انتخاب استایل. WCAG کف مطلق پیکسلی ندارد ولی متنِ کاربردیِ زیر ۱۱px معیارِ کیفیتِ قابل‌دفاعی است: روی صفحه‌های پرتراکم و ویوپورت‌های کوچک شکست می‌خورد و هدفِ لمس و خواندن را تنزل می‌دهد. کف ۱۱px حتی داخل فوتر برقرار است؛ فقط ریزنویسیِ حقوقیِ غیرتعاملی کف نرم‌تر ۱۰px می‌گیرد. بودن روی رامپ اندازه‌های DESIGN.md معاف نمی‌کند: افزودن ۸px به رامپ، توکن را تطهیر می‌کند نه مشکل خوانایی را — و دقیقاً همان فرارگاهی است که این قاعده می‌بندد. sup/sub، متنِ بصری‌پنهان (sr-only) و بافت‌های کد/ترمینال معاف‌اند. ریزلیبل‌های تزئینیِ حروف‌فاصله‌دار همچنان کاربردی‌اند و در دامنه می‌مانند."
+    "description": "Interactive and content-bearing UI text (links, buttons, nav items, labels, table cells, meta rows, timecodes) below 11px is a legibility failure, not a style choice. WCAG sets no absolute pixel floor, but functional text under 11px is a defensible quality bar: it fails on high-DPI and small viewports and it degrades tap and read targets. The 11px floor holds even inside a footer; only non-interactive legal smallprint gets the softer 10px floor. Being ON the DESIGN.md size ramp does not exempt a value here: adding 8px to the ramp launders the token but not the legibility problem, and that is exactly the escape hatch this rule closes. Exempts sup/sub, visually-hidden (sr-only) text, and code/terminal contexts. Decorative letterspaced micro-labels are still functional and stay in scope."
   },
   {
     "id": "all-caps-body",
-    "name": "متن بدنهٔ تمام‌بزرگ",
+    "name": "All-caps body text",
     "category": "quality",
-    "description": "بندهای بلند در حروف بزرگ سخت خوانده می‌شوند: واژه‌ها را با شکلشان (بالا و پایین‌رفتگی حروف) می‌شناسیم و تمام‌بزرگ همین را حذف می‌کند. حروف بزرگ را برای لیبل‌های کوتاه و عنوان‌ها نگه دار. فقط رانی که مثل جمله بخواند شمرده می‌شود: ۸۰ نویسه یا بیشتر از متنِ خود عنصر. دکمه، آیتم ناوبری، کیکر و ابروی بزرگ‌نویس عرف‌اند و ساکت می‌مانند. (روی فارسی text-transform بی‌اثر است؛ نگرانی اصلی، متن لاتینِ داخل رابط فارسی است.)"
+    "description": "Long passages in uppercase are hard to read. We recognize words by shape (ascenders and descenders), which all-caps removes. Reserve uppercase for short labels and headings. Only a run that reads as a sentence counts: 80 characters or more of an element's own text. Buttons, nav items, kickers and eyebrows set in caps are a convention and stay silent."
   },
   {
     "id": "wide-tracking",
-    "name": "فاصلهٔ حروف باز روی متن بدنه",
+    "name": "Wide letter spacing on body text",
     "category": "quality",
-    "description": "فاصله‌گذاری حروف بالای ۰٫۰۵em روی متن بدنه، گروه‌بندی طبیعی نویسه‌ها را می‌شکند و خواندن را کند می‌کند. تراکینگ باز را فقط برای لیبل‌های بزرگ‌نویسِ کوتاه نگه دار. روی حروف چسبان فارسی هر مقدار مثبتی ممنوع است."
+    "description": "Letter spacing above 0.05em on body text disrupts natural character groupings and slows reading. Reserve wide tracking for short uppercase labels only."
   },
   {
     "id": "text-overflow",
-    "name": "محتوای سرریزشده از ظرف",
+    "name": "Content overflowing its container",
     "category": "quality",
-    "description": "محتوا عریض‌تر از ظرفش رندر می‌شود و سرریز آسیب می‌زند: نیای کلیپ‌کننده آن را می‌بُرد، داخل جعبهٔ دیگری می‌رود، یا به لبهٔ ویوپورت می‌رسد. بگذار متن بشکند، عرض‌ها را محدود کن، یا به ناحیه امکان اسکرولِ عمدی بده."
+    "description": "Content renders wider than its container and the spill does harm: a clipping ancestor cuts it off, it runs into another box, or it reaches the viewport edge. Let text wrap, constrain widths, or give the region a deliberate scroll affordance."
   },
   {
     "id": "repeated-container-text",
-    "name": "متن تکراری درون یک ظرف",
+    "name": "Same text repeated inside one container",
     "category": "quality",
-    "description": "همان متنِ تحت‌اللفظی که سه بار یا بیشتر در جایگاه‌های ساختاریِ متفاوتِ یک کارت یا پنل رندر شده، پیام‌رسانیِ افزونه است — معمولاً وضعیت یا لیبلی که به هر جایگاهِ قالب وصل شده. یک‌بار بگو، در جایگاهی که بیشترین اهمیت را دارد."
+    "description": "The same literal text rendered three or more times in structurally different spots inside a single card or panel is redundant messaging — usually a status or label wired into every slot of a template. Say it once, in the slot where it matters most."
   },
   {
     "id": "clipped-overflow-container",
-    "name": "فرزندِ position شده که ظرف کلیپ‌کننده می‌بُردش",
+    "name": "Positioned child clipped by overflow container",
     "category": "quality",
-    "description": "ظرف کلیپ‌کننده (overflow hidden یا clip) که دور فرزندِ absolute-position شده می‌پیچد، تولتیپ، منو و پاپ‌آوری را که باید فرار کنند می‌بُرد. بگذار overflow نمایان باشد، یا لایهٔ position شده را از کلیپ بیرون ببر.",
+    "description": "A clipping container (overflow hidden or clip) wrapping an absolutely-positioned child cuts off tooltips, menus, and popovers that need to escape. Let the overflow be visible, or move the positioned layer out of the clip.",
     "severity": "advisory"
   },
   {
     "id": "design-system-font",
-    "name": "فونت خارج از DESIGN.md",
+    "name": "Font outside DESIGN.md",
     "category": "quality",
-    "description": "فونتی استفاده شده که در تایپوگرافی DESIGN.md اعلام نشده. سیستم تایپِ مستندشده را استفاده کن، یا اگر افزودنِ برند عمدی است DESIGN.md را به‌روز کن."
+    "description": "A font is used that is not declared in DESIGN.md typography. Use the documented type system or update DESIGN.md if this is an intentional brand addition."
   },
   {
     "id": "design-system-color",
-    "name": "رنگ خارج از DESIGN.md",
+    "name": "Color outside DESIGN.md",
     "category": "quality",
-    "description": "یک رنگِ تحت‌اللفظی خارج از پالت DESIGN.md و رامپ‌های تونالِ سایدکار است. می‌تواند موجه باشد، ولی باید افزودنیِ عمدی به سیستم طراحی باشد نه drift.",
+    "description": "A literal color is outside the DESIGN.md palette and sidecar tonal ramps. This may be legitimate, but it should be an intentional design-system addition rather than drift.",
     "severity": "advisory"
   },
   {
     "id": "design-system-radius",
-    "name": "شعاع خارج از DESIGN.md",
+    "name": "Radius outside DESIGN.md",
     "category": "quality",
-    "description": "مقدار border-radius خارج از مقیاس گردِ DESIGN.md است. توکن شعاعِ مستندشده را بردار، یا اگر شکل جدید عمدی است سیستم طراحی را به‌روز کن.",
+    "description": "A border-radius value is outside the DESIGN.md rounded scale. Use a documented radius token or update the design system if the new shape is intentional.",
     "severity": "advisory"
   },
   {
     "id": "design-system-font-size",
-    "name": "سایز فونت خارج از DESIGN.md",
+    "name": "Font size outside DESIGN.md",
     "category": "quality",
-    "description": "یک font-sizeِ تحت‌اللفظی خارج از رامپ تایپِ مستندشده در تایپوگرافی DESIGN.md است. پلهٔ اندازهٔ مستندشده را بردار، یا اگر پلهٔ جدید عمدی است سیستم طراحی را به‌روز کن.",
+    "description": "A literal font-size is off the type ramp documented in DESIGN.md typography. Use a documented size step or update the design system if the new step is intentional.",
     "severity": "advisory"
   },
   {
     "id": "gpt-thin-border-wide-shadow",
-    "name": "حاشیهٔ مویی با سایهٔ پهن",
+    "name": "Hairline border with wide shadow",
     "category": "slop",
-    "description": "هر کارت این ردیف حاشیهٔ مویی دارد که با سایهٔ پهنِ پخش جفت شده — امضای تکرارشوندهٔ UIهای تولیدشده. یک پنل شناور هر دو را می‌برد؛ یک ردیف کاملِ پوشیده از آن‌ها، پیش‌فرضی خوانده می‌شود که هیچ‌کس انتخابش نکرده. در کل ردیف به یکی تعهد کن: لبهٔ مشخص یا ارتفاعِ نرم.",
+    "description": "Every card of this row wears a hairline border paired with a wide, diffuse shadow, which is a recurring generated-UI signature. One floating panel earns both; a whole row wearing them reads as a default nobody chose. Across the row, commit to one: a defined edge or a soft elevation.",
     "severity": "advisory"
   },
   {
     "id": "repeating-stripes-gradient",
-    "name": "راه‌راه‌های گرادیان تکرارشونده",
+    "name": "Repeating-gradient stripes",
     "category": "slop",
-    "description": "راه‌راه‌های repeating-gradient به‌عنوان تزئین سطح، امضای تکرارشوندهٔ UIهای تولیدشده‌اند. بافتِ عمدی بردار یا سطح را ساده بگذار.",
+    "description": "Repeating-gradient stripes used as surface decoration are a recurring generated-UI signature. Reach for a deliberate texture or leave the surface plain.",
     "severity": "advisory"
   },
   {
     "id": "codex-grid-background",
-    "name": "پس‌زمینهٔ خط‌شبکهٔ تزئینی",
+    "name": "Decorative grid-line background",
     "category": "slop",
-    "description": "پس‌زمینهٔ شبکه یا میدانِ خطیِ تزئینی که با لایه‌های linear-gradient مویی و خانه‌بندی پیکسلی ثابت کشیده شده، امضای تکرارشوندهٔ UIهای تولیدشده است. اورلی شبکه را برای بوم واقعی، نقشه، بلوپرینت یا سطح اندازه‌گیری نگه دار؛ در بقیهٔ جاها ساختار محصول یا سطح ساده.",
+    "description": "A decorative grid or line-field background drawn with hairline linear-gradient layers tiled by a fixed pixel cell is a recurring generated-UI signature. Reserve grid overlays for actual canvas, map, blueprint, or measurement surfaces; elsewhere use product structure or a plain surface.",
     "severity": "advisory"
   },
   {
     "id": "theater-slop-phrase",
-    "name": "نثرِ تئاتربازی",
+    "name": "Theater framing copy",
     "category": "slop",
-    "description": "رد کردن چیزی با برچسب «تئاتر» (و معادل‌های فارسی‌اش مثل نمایش‌بازی و سالن‌بازی) تیکِ تکرارشوندهٔ متنِ تولیدشده است. ساده بگو آن چیز چه می‌کند و چه نمی‌کند.",
+    "description": "Dismissing something as \"theater\" is a recurring generated-copy tic. Say plainly what the thing does or does not do.",
     "severity": "advisory"
   }
 ]

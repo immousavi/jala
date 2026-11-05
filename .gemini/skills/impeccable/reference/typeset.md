@@ -1,90 +1,92 @@
-Typography carries information, hierarchy, and voice. Improve it inside the established visual world; do not replace the identity unless the user asked to.
+تایپوگرافی اطلاعات، سلسله‌مراتب و صدا را حمل می‌کند. آن را درونِ جهان بصریِ برجا بهبود بده؛ مگر این‌که کاربر خواسته باشد، هویت را جایگزین نکن.
+
+**سطوح فارسی:** پیش از برپا کردن سیستم، [fa-typography.md](fa-typography.md) را بخوان — خط فارسی قواعد متفاوتی برای ارتفاع خط، تراکینگ (باید صفر باشد)، تأکید (بدون ایتالیک) و ارقام دارد.
 
 ---
 
-## Visitor mode
+## حالت بازدیدکننده
 
-- **Persuade + Experience:** display type may carry the voice. Use decisive contrast and responsive scale when the composition benefits.
-- **Operate + Read:** stability, scanability, and measure come first. A single well-tuned family and fixed role scale are often right.
-- **Native:** follow [ios.md](ios.md) or [android.md](android.md), including platform scaling and accessibility behavior.
+- **اقناع (Persuade) + تجربه (Experience):** تایپ نمایشی می‌تواند صدا را حمل کند. وقتی ترکیب‌بندی سود می‌برد، از کنتراست قاطع و مقیاس واکنش‌گرا استفاده کن.
+- **عملیات (Operate) + خواندن (Read):** پایداری، اسکن‌پذیری و طول خط مقدم‌اند. یک خانوادهٔ خوش‌تنظیم و مقیاس نقشِ ثابت اغلب انتخاب درستی است.
+- **نیتیو:** [ios.md](ios.md) یا [android.md](android.md) را دنبال کن، از جمله مقیاس‌بندی و رفتار دسترس‌پذیریِ پلتفرم.
 
-If typography replacement would create a new identity, route through [new-work.md](new-work.md) and update DESIGN.md. Otherwise preserve confirmed families and improve their use.
+اگر جایگزینی تایپوگرافی هویت تازه‌ای می‌سازد، از [new-work.md](new-work.md) عبور کن و DESIGN.md را به‌روز کن. در غیر این صورت خانواده‌های تأییدشده را حفظ کن و کاربردشان را بهبود بده.
 
-## Two isolated assessments
+## دو ارزیابی جداگانه
 
-When a sub-agent tool is available and permitted, run these independently; otherwise run them yourself in this order. Do not let detector findings anchor the design assessment.
+وقتی ابزار زیرایجنت (sub-agent) در دسترس و مجاز است، این دو را مستقل اجرا کن؛ در غیر این صورت خودت به همین ترتیب اجرایشان کن. نگذار یافته‌های دیتکتور ارزیابی طراحی را لنگر کنند.
 
-1. **Typographic assessment:** inspect representative pages and styles. Answer every question below with a file, selector, or computed value:
-   - **Authority and fit:** Which faces, weights, and roles are established? Do they fit the product and selected world, or are they unexamined defaults? Is every family necessary?
-   - **Hierarchy:** Can heading, body, label, metadata, and data roles be distinguished at a glance? Are adjacent sizes or weights too close to carry different jobs?
-   - **Scale and consistency:** Is there a deliberate role scale, or a collection of arbitrary values? Do repeated roles stay identical across screens and states?
-   - **Reading:** Does body copy stay within a comfortable 45–75 character measure? Are line height, paragraph rhythm, contrast, and tracking tuned to the actual face, width, language, and surface?
-   - **Stress:** What happens with long headings, localization expansion, zoom, narrow containers, missing weights, and font fallback?
-   - **Delivery:** Are only used assets loaded? Do fallback metrics, loading strategy, and variable-font settings avoid invisible text and disruptive reflow?
-2. **Mechanical scan:** run:
+1. **ارزیابی تایپوگرافیک:** صفحه‌ها و استایل‌های نماینده را بازرسی کن. هر پرسش زیر را با یک فایل، سلکتور یا مقدار محاسبه‌شده (computed) جواب بده:
+   - **اقتدار و تناسب:** کدام فونت‌ها، وزن‌ها و نقش‌ها برقرارند؟ با محصول و جهانِ انتخاب‌شده می‌خوانند یا پیش‌فرض‌های بدون بررسی‌اند؟ آیا هر خانواده لازم است؟
+   - **سلسله‌مراتب:** آیا نقش‌های عنوان، بدنه، برچسب، متادیتا و داده در یک نگاه قابل‌تمیزند؟ آیا اندازه‌ها یا وزن‌های مجاور برای کارهای متفاوت بیش از حد به هم نزدیک‌اند؟
+   - **مقیاس و یکدستی:** آیا مقیاس نقشِ آگاهانه‌ای وجود دارد یا انبوهی مقدار سلیقه‌ای؟ آیا نقش‌های تکرارشونده در صفحه‌ها و حالت‌ها یکسان می‌مانند؟
+   - **خواندن:** آیا متن بدنه در طول خطِ راحتِ 45–75 نویسه می‌ماند؟ آیا ارتفاع خط، ریتم پاراگراف، کنتراست و تراکینگ با فونت، عرض، زبان و سطحِ واقعی تنظیم شده‌اند؟
+   - **فشار:** با عنوان‌های بلند، رشدِ بومی‌سازی، زوم، ظرف‌های باریک، وزن‌های جاافتاده و fallback فونت چه می‌شود؟
+   - **تحویل:** آیا فقط assetهای استفاده‌شده بارگذاری می‌شوند؟ آیا متریک‌های fallback، استراتژی بارگذاری و تنظیمات فونت متغیر از متن نامرئی و reflow مخل جلوگیری می‌کنند؟
+2. **اسکن مکانیکی:** اجرا کن:
 
 ```bash
 .gemini/skills/impeccable/scripts/impeccable detect --json --scope type [target files or dirs]
 ```
 
-Also inspect dynamic or arbitrary font values the detector cannot interpret. Synthesize both assessments before editing, noting what each caught alone. A clean scan is a floor, not proof of good typography.
+مقدارهای فونتِ داینامیک یا دلخواهی را هم که دیتکتور نمی‌تواند تفسیرشان کند بازرسی کن. پیش از ویرایش، دو ارزیابی را ترکیب کن و یادداشت کن هر یک به‌تنهایی چه چیزی را گرفته است. اسکنِ تمیز، خط پایه است، نه اثبات تایپوگرافی خوب.
 
-## Set the system
+## برپا کردن سیستم
 
-Before editing, state:
+پیش از ویرایش، این‌ها را مشخص کن:
 
-- the roles the interface needs;
-- the intended contrast between those roles;
-- the reading measure and density;
-- which existing faces and weights are authoritative;
-- any performance, localization, or accessibility constraints.
+- نقش‌هایی که رابط نیاز دارد؛
+- کنتراستِ موردنظر میان آن نقش‌ها؛
+- طول خطِ خواندن و تراکم؛
+- کدام فونت‌ها و وزن‌های موجود مرجع‌اند؛
+- هر محدودیت کارایی، بومی‌سازی یا دسترس‌پذیری.
 
-Use the fewest roles and families that make the hierarchy unmistakable. Combine size, weight, space, and tone deliberately instead of asking size alone to do all the work. Role names and tokens should describe purpose rather than values.
+کمترین نقش و خانواده‌ای را به کار ببر که سلسله‌مراتب را بی‌ابهام کند. اندازه، وزن، فضا و لحن را آگاهانه ترکیب کن، به‌جای این‌که از اندازه به‌تنهایی بخواهی همهٔ کار را بکند. نام نقش‌ها و توکن‌ها باید هدف را توصیف کنند، نه مقدار را.
 
-## Apply
+## اعمال
 
-- Keep body copy comfortably readable and zoomable. Use 1rem / 16px as the ordinary web body floor unless a dense role, platform convention, or user setting justifies otherwise.
-- Keep prose in the 45–75ch range. Tune line height inversely with measure: wider lines generally need more leading.
-- Compensate light text on dark surfaces on all three perceptual axes: slightly more line height, a touch more tracking, and one step more weight when the face needs it.
-- Tune line height to the face, width, language, and contrast, not a universal ratio.
-- Keep repeated roles consistent across screens and states.
-- Use numeric, tabular, code, and label features when their content benefits.
-- Load only used font assets and weights. Provide metric-compatible fallbacks and avoid blocking text.
-- Let marketing display type respond to available space when useful; keep dense product and reading surfaces spatially predictable.
-- Preserve browser zoom, user font settings, Dynamic Type, and platform text scaling.
-- Use paragraph spacing or first-line indentation as the primary paragraph rhythm; combining both usually double-marks the boundary.
+- متن بدنه را راحت‌خوان و زوم‌پذیر نگه دار. مگر این‌که نقش متراکم، قرارداد پلتفرم یا تنظیم کاربر دلیل دیگری داشته باشد، 1rem / 16px را به‌عنوان کفِ معمول متن بدنهٔ وب به کار ببر.
+- نثر را در بازهٔ 45–75ch نگه دار. ارتفاع خط را عکسِ طول خط تنظیم کن: سطرهای عریض‌تر معمولاً به leading بیشتری نیاز دارند.
+- متن روشن روی سطوح تیره را روی هر سه محور ادراکی جبران کن: کمی ارتفاع خط بیشتر، اندکی تراکینگ بیشتر و در صورت نیازِ فونت، یک پله وزن بیشتر.
+- ارتفاع خط را با فونت، عرض، زبان و کنتراست تنظیم کن، نه با یک نسبت جهانی.
+- نقش‌های تکرارشونده را در صفحه‌ها و حالت‌ها یکدست نگه دار.
+- ویژگی‌های عددی، جدولی (tabular)، کد و برچسب را وقتی محتوایشان سود می‌برد به کار ببر.
+- فقط فایل‌ها و وزن‌های فونتِ استفاده‌شده را بارگذاری کن. fallbackهای هم‌متریک فراهم کن و از متنِ بلاک‌شده جلوگیری کن.
+- بگذار تایپ نمایشیِ بازاریابی وقتی مفید است به فضای موجود واکنش نشان دهد؛ سطوح متراکمِ محصول و خواندن را از نظر فضایی قابل‌پیش‌بینی نگه دار.
+- زوم مرورگر، تنظیمات فونت کاربر، Dynamic Type و مقیاس‌بندی متنِ پلتفرم را حفظ کن.
+- فاصلهٔ پاراگراف یا تورفتگی سطر اول را به‌عنوان ریتم اصلی پاراگراف به کار ببر؛ ترکیب هر دو معمولاً مرز را دوبار علامت می‌زند.
 
-Do not make type decorative at the expense of comprehension, or introduce a second family without a clear role it alone can perform.
+تایپ را به قیمت فهم، تزئینی نکن و بدون نقشِ روشنی که فقط خودش بتواند انجامش بدهد، خانوادهٔ دوم معرفی نکن.
 
-## Line breaks
+## شکستن سطرها
 
-After Matthew Butterick's *Practical Typography*, paraphrased; where his numbers differ from these, these stand.
+برگرفته از *Practical Typography* اثر Matthew Butterick، با بازگویی؛ هر جا اعداد او با همین قواعد فرق می‌کند، همین قواعد معتبرند.
 
-- Set `text-wrap: balance` on headings and short centered blocks, and `text-wrap: pretty` on body copy. Both are progressive: a browser that ignores them keeps its default wrap.
-- `pretty` pulls a word down beside a lone last word. It does not fill the last line, and a two-word tail is fine.
-- In a column too narrow for either to help, edit the copy or widen the column.
-- Break a heading by hand only between phrases, and check the break at every width the heading renders at. A hard break that lands mid-line on a phone is worse than the default wrap.
-- An uneven break can carry meaning: a headline that lands on one word for weight, a poster line, a pull quote. Make it deliberate with a hard break or a wrap set on that element, and keep it rare. The detector's `straggler` and `unbalanced-heading` findings are advisory for this reason; say which breaks are intended.
+- `text-wrap: balance` را روی عنوان‌ها و بلاک‌های کوتاهِ وسط‌چین، و `text-wrap: pretty` را روی متن بدنه بگذار. هر دو تدریجی‌اند: مرورگری که آن‌ها را نادیده می‌گیرد، شکستن پیش‌فرض خودش را نگه می‌دارد.
+- `pretty` واژه‌ای را پایین می‌کشد تا در کنار واژهٔ تنهاِ پایان سطر بنشیند. سطر آخر را پر نمی‌کند و دمِ دوم‌واژه‌ای هم اشکالی ندارد.
+- در ستونی که برای هیچ‌کدام تنگ است، متن را ویرایش کن یا ستون را عریض کن.
+- عنوان را فقط میان عبارت‌ها به‌طور دستی بشکن و شکست را در هر عرضی که عنوان رندر می‌شود چک کن. شکست سختِ وسط‌سطر روی موبایل از شکستن پیش‌فرض بدتر است.
+- شکست نابرابر می‌تواند معنا حمل کند: تیتری که برای وزن روی یک واژه می‌نشیند، سطر پوستر، نقل‌قول برجسته. با یک شکست سخت یا تنظیم wrap روی همان عنصر، آن را آگاهانه کن و کم‌یاب نگهش دار. یافته‌های `straggler` و `unbalanced-heading` دیتکتور به همین دلیل توصیه‌ای (advisory) هستند؛ بگو کدام شکست‌ها عمدی‌اند.
 
-## Verify
+## راستی‌آزمایی
 
-- Primary, secondary, body, and metadata roles are recognizable without reading the copy.
-- Long text remains comfortable across relevant widths and languages.
-- The typography belongs to the product and its established world.
-- Loading does not create disruptive reflow or invisible text.
-- Zoom, text scaling, focus, contrast, and reduced viewport paths remain usable.
-- The final mechanical scan has no unexplained findings.
+- نقش‌های اصلی، ثانویه، بدنه و متادیتا بدون خواندن متن قابل‌شناسایی‌اند.
+- متن بلند در عرض‌ها و زبان‌های مرتبط همچنان راحت می‌ماند.
+- تایپوگرافی به محصول و جهانِ برجایش تعلق دارد.
+- بارگذاری، reflow مخل یا متن نامرئی نمی‌سازد.
+- زوم، مقیاس متن، فوکوس، کنتراست و مسیرهای ویوپورت کوچک همچنان قابل‌استفاده می‌مانند.
+- اسکن مکانیکیِ نهایی هیچ یافتهٔ بی‌توضیحی ندارد.
 
-Answer each item with rendered or source evidence, then rerun the scan. Do not substitute a bare “yes” for verification.
+هر بند را با شاهد رندرشده یا سورس جواب بده، سپس اسکن را دوباره اجرا کن. «بله»ی خالی را جایگزین راستی‌آزمایی نکن.
 
-When the hierarchy holds, hand off to `/impeccable polish`.
+وقتی سلسله‌مراتب پابرجاست، تحویل بده به `/jala polish`.
 
-## Live-mode signature params
+## پارامترهای امضای حالت زنده (live)
 
-Every variant declares a coarse `scale` parameter and authors its type ramp against `var(--p-scale, 1)`.
+هر واریانت یک پارامتر درشت‌دانهٔ `scale` اعلام می‌کند و نردبان تایپ خود را بر پایهٔ `var(--p-scale, 1)` می‌سازد.
 
 ```json
 {"id":"scale","kind":"range","min":0.85,"max":1.3,"step":0.05,"default":1,"label":"Scale"}
 ```
 
-Add at most one pairing or weight parameter when it represents a real system choice. Follow [live.md](live.md)'s parameter contract.
+حداکثر یک پارامتر جفت‌فونت یا وزن اضافه کن، وقتی نشان‌دهندهٔ یک انتخاب واقعی سیستم است. قرارداد پارامترهای [live.md](live.md) را دنبال کن.

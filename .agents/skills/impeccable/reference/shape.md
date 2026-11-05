@@ -1,59 +1,59 @@
 # Shape
 
-Discover what should be made and how it should work, then return a confirmed design brief without code.
+کشف کن چه چیزی باید ساخته شود و چطور باید کار کند، بعد یک بریفِ طراحیِ تأییدشده برگردان — بدون کد.
 
-## Phase 1: Discovery interview
+## فاز ۱: مصاحبهٔ کشف
 
-Do not write code or choose visual direction yet.
+هنوز کد ننویس و جهت بصری انتخاب نکن.
 
-### Cadence
+### آهنگ
 
-- Use the structured question tool when available; otherwise ask and stop.
-- Ask two or three related questions per round, then wait. One round is the default; add a second only when the answers expose a material gap.
-- Do not dump a questionnaire, repeat settled facts, or turn obvious facts into menus. Assert the likely reading and invite correction.
-- A sparse prompt requires at least one answer round. A precise prompt may need only a compact confirmation.
+- از ابزار سؤالِ ساختاریافته وقتی در دسترس است استفاده کن؛ در غیر این صورت بپرس و توقف کن.
+- در هر دور دو یا سه سؤالِ مرتبط بپرس، بعد صبر کن. یک دور پیش‌فرض است؛ دور دوم را فقط وقتی اضافه کن که پاسخ‌ها شکافِ مادی‌ای را نشان بدهند.
+- پرسشنامه نریز، حقایق تثبیت‌شده را تکرار نکن، یا حقایق بدیهی را به منو تبدیل نکن. خوانشِ محتمل را ادعا کن و اصلاح را دعوت کن.
+- پرامپتِ کم‌محتوا دست‌کم یک دورِ پاسخ لازم دارد. پرامپتِ دقیق شاید فقط یک تأییدِ فشرده بخواهد.
 
-### Round 1: purpose, people, and outcome
+### دور ۱: هدف، آدم‌ها و نتیجه
 
-Choose the two or three questions that most change the result:
+آن دو یا سه سؤالی را انتخاب کن که بیشترین تغییر را در نتیجه می‌دهند:
 
-- What is this surface or feature for, and what problem must it solve?
-- Who specifically reaches it, in what situation and state of mind?
-- What is the primary thing they must understand or do? What would success look like?
-- What is uniquely true here that a neighboring product or generic template could not claim?
+- این سطح یا ویژگی برای چیست و چه مسئله‌ای باید حل کند؟
+- دقیقاً چه کسی بهش می‌رسد، در چه موقعیت و حال‌وهوایی؟
+- اصلی‌ترین چیزی که باید بفهمند یا انجام دهند چیست؟ موفقیت چه شکلی دارد؟
+- چه حقیقتِ یکتایی اینجاست که محصول همسایه یا قالب عمومی نمی‌تواند ادعایش را بکند؟
 
-### Round 2: material, behavior, and boundaries
+### دور ۲: متریال، رفتار و مرزها
 
-Run only for material unresolved decisions:
+فقط برای تصمیم‌های مادیِ حل‌نشده اجرا کن:
 
-- What real content, evidence, data, and assets must the experience carry? What are realistic minimum, typical, and maximum ranges?
-- Which states and transitions matter: first-run, empty, loading, error, success, permissions, overflow, or expert use?
-- What is the intended fidelity, breadth, and interactivity: exploration, production-ready screen, full flow, or broader surface?
-- What must remain untouched? What would make the result feel wrong even if it looked polished?
-- Which platform, framework, performance, accessibility, localization, or delivery constraints are binding?
+- چه محتوا، شاهد، داده و asset واقعی‌ای باید تجربه حمل کند؟ بازه‌های واقع‌بینانهٔ حداقل، معمول و حداکثر چیستند؟
+- کدام حالت‌ها و ترنزیشن‌ها مهم‌اند: اولین‌اجراء، خالی، بارگذاری، خطا، موفقیت، مجوزها، سرریز یا استفادهٔ خبره؟
+- وفاداری، گستردگی و تعامل موردنظر چیست: کاوش، صفحهٔ آمادهٔ پروداکشن، جریان کامل، یا سطح گسترده‌تر؟
+- چه چیزی باید دست‌نخورده بماند؟ چه چیزی نتیجه را با وجود پخته‌بودنِ ظاهر، غلط حس می‌کند؟
+- کدام محدودیت‌های پلتفرم، فریم‌ورک، کارایی، دسترس‌پذیری، بومی‌سازی یا تحویل الزام‌آورند؟
 
-Never ask for CSS values or canned aesthetic lanes. New-work owns visual-world and concept choices.
+هرگز مقدارهای CSS یا لاین‌های زیبایی‌شناسیِ آماده نخواه. انتخاب‌های جهان بصری و مفهوم، مالِ new-work است.
 
-## Phase 2: Resolve the design direction
+## فاز ۲: حل جهت طراحی
 
-For new surfaces, brand expansion, or replacement, follow [new-work.md](new-work.md) through visual authority, any world workshop, and concept choice. Reuse discovery, then return before its contract, persistence, or implementation. Inside an established world, use its concept process only when composition or interaction remains materially open.
+برای سطح‌های جدید، گسترش برند یا جایگزینی، [new-work.md](new-work.md) را تا اقتدار بصری، هر ورکشاپ جهان و انتخاب مفهوم دنبال کن. کشف را دوباره استفاده کن، بعد قبل از قرارداد، ثبت یا پیاده‌سازی‌اش برگرد. داخل جهانِ تثبیت‌شده، فرایند مفهومش را فقط وقتی استفاده کن که ترکیب‌بندی یا تعامل هنوز مادی‌وار باز است.
 
-## Phase 3: Write the brief
+## فاز ۳: نوشتن بریف
 
-Write the smallest useful brief:
+کوچک‌ترین بریفِ مفید را بنویس:
 
-1. **Job and audience:** who arrives, their context, need, and visitor mode.
-2. **Outcome and proof:** primary task/action, success, real evidence, and product-specific truth.
-3. **Selected direction:** visual authority, structural/interaction thesis, sequence, focal moment, and implementation consequence.
-4. **Scope and boundaries:** fidelity, breadth, interactivity, named target, what remains untouched, and explicit anti-goals.
-5. **States and ranges:** realistic content/data ranges and material states.
-6. **Interaction and layout:** hierarchy, topology, responsiveness, affordances, feedback, and transitions; intent, not CSS.
-7. **Constraints and open decisions:** platform, delivery, accessibility, localization, reusable components, and choices a builder must not invent.
+1. **کار و مخاطب:** چه کسی می‌رسد، بافت و نیازش، و حالت بازدیدکننده‌اش.
+2. **نتیجه و اثبات:** کار/کنش اصلی، موفقیت، شاهد واقعی و حقیقتِ مخصوصِ محصول.
+3. **جهت انتخاب‌شده:** اقتدار بصری، تز ساختاری/تعاملی، توالی، لحظهٔ کانونی و پیامد پیاده‌سازی.
+4. **دامنه و مرزها:** وفاداری، گستردگی، تعامل، هدفِ نام‌برده، چه‌چیزی دست‌نخورده می‌ماند، و ضد-هدف‌های صریح.
+5. **حالت‌ها و بازه‌ها:** بازه‌های واقع‌بینانهٔ محتوا/داده و حالت‌های مادی.
+6. **تعامل و چیدمان:** سلسله‌مراتب، توپولوژی، واکنش‌گرایی، امکان‌ها، بازخورد و ترنزیشن‌ها؛ نیت، نه CSS.
+7. **محدودیت‌ها و تصمیم‌های باز:** پلتفرم، تحویل، دسترس‌پذیری، بومی‌سازی، کامپوننت‌های تکرارشونده، و انتخاب‌هایی که سازنده نباید اختراعشان کند.
 
-Use three to five bullets when the task is settled; use the full structure only for ambiguous, multi-screen, or standalone planning. Do not restate the conversation.
+وقتی کار تثبیت شده از سه تا پنج بولت استفاده کن؛ ساختار کامل را فقط برای برنامه‌ریزیِ مبهم، چند-صفحه‌ای یا مستقل نگه دار. گفتگو را بازگو نکن.
 
-## Confirm and stop
+## تأیید و توقف
 
-Present the brief for explicit confirmation or one correction round, then stop: shape never writes code or a direction contract.
+بریف را برای تأییدِ صریح یا یک دورِ اصلاح ارائه کن، بعد توقف کن: shape هرگز کد یا قراردادِ جهت نمی‌نویسد.
 
-When no human or structured answer mechanism exists, mark assumptions plainly, return the brief, and stop.
+وقتی هیچ سازوکار پاسخِ انسانی یا ساختاریافته‌ای وجود ندارد، فرض‌ها را صریح علامت بزن، بریف را برگردان و توقف کن.

@@ -1,810 +1,812 @@
-### Purpose
+### هدف
 
-Resolve one stable target, run two independent assessments, synthesize a design critique, persist a snapshot, and ask the user what to improve next. The chat response is the primary deliverable; the snapshot is an archive of that run.
+یک هدفِ پایدار را تعیین کن، دو ارزیابیِ مستقل اجرا کن، یک نقدِ طراحی را ترکیب کن، یک اسنپ‌شات را ماندگار کن، و از کاربر بپرس بعد چه چیزی را بهتر کنیم. پاسخِ گفتگو تحویل‌دادنیِ اصلی است؛ اسنپ‌شات آرشیوِ همان اجراست.
 
-### Hard Invariants
+### قواعد تغییرناپذیر (Hard Invariants)
 
-- Assessment A (design review) and Assessment B (detector/browser evidence) are both required, except on a native platform (see Assessment Orchestration).
-- Assessment A and B MUST run as two isolated sub-agents whenever a sub-agent/Task tool is exposed. Running them inline in this context is "possible" but is NOT permitted; it is a degraded run. Inline is allowed ONLY when no sub-agent tool exists (or the user declined, on harnesses that ask). Native platforms run A alone (see Assessment Orchestration).
-- If you degrade for any reason, the report's first line MUST be a banner: `⚠️ DEGRADED: single-context (<reason>)`. A silent degraded critique is a failed critique.
-- Assessment A must finish before detector findings enter the parent synthesis context. Detector output is deterministic, but it still anchors judgment.
-- A skipped detector is a failed critique run unless `impeccable detect` is missing or crashes after a real attempt, or the platform is native (see Assessment Orchestration).
-- Viewable targets require browser inspection when available.
-- Any local server started only for critique visualization must run in the background, have a recorded stop method, and be stopped before final reporting unless the user asks to keep it.
-- Do not claim a user-visible overlay exists unless script injection succeeded and the detector ran in the page.
-- The question is the LAST thing in the response. Write the entire report out first, then ask; nothing follows the question. Prose emitted after a structured question is withheld until the user answers it, so a report written after the question reads as if the critique never ran.
-- A run that ends with neither the targeted questions nor a literal `Questions skipped: <reason>` line is an incomplete run. The report is not the finish; the close is.
+- ارزیابی A (بازبینی طراحی) و ارزیابی B (شواهد دیتکتور/مرورگر) هر دو لازم‌اند، جز روی پلتفرم نیتیو (بخش «هماهنگی ارزیابی‌ها» را ببین).
+- ارزیابی A و B هرگاه ابزار زیرایجنت/Task در معرض باشد، باید به‌صورت دو زیرایجنتِ جداشده اجرا شوند. اجرای آن‌ها درون‌خطی در همین بافت "ممکن" است اما مجاز نیست؛ چنین اجرایی تنزل‌یافته (degraded) است. درون‌خطی فقط وقتی مجاز است که هیچ ابزار زیرایجنتی موجود نباشد (یا کاربر رد کرده باشد، در هارنس‌هایی که می‌پرسند). پلتفرم‌های نیتیو فقط A را اجرا می‌کنند (بخش «هماهنگی ارزیابی‌ها» را ببین).
+- اگر به هر دلیلی تنزل رخ داد، خطِ اولِ گزارش باید این بنر باشد: `⚠️ DEGRADED: single-context (<reason>)`. نقدِ بی‌سروصدای تنزل‌یافته، نقدِ شکست‌خورده است.
+- ارزیابی A باید پیش از آن‌که یافته‌های دیتکتور وارد بافتِ ترکیبِ والد شوند تمام شده باشد. خروجی دیتکتور قطعی است، اما باز هم قضاوت را لنگر می‌اندازد.
+- دیتکتورِ ردشده یعنی اجرای نقد شکست‌خورده، مگر این‌که `impeccable detect` موجود نباشد یا پس از یک تلاش واقعی کرش کند، یا پلتفرم نیتیو باشد (بخش «هماهنگی ارزیابی‌ها» را ببین).
+- هدف‌های قابل‌مشاهده، وقتی مرورگر در دسترس است، بازرسیِ مرورگری می‌خواهند.
+- هر سرور محلی که فقط برای تصویری‌کردنِ نقد راه افتاده باشد باید در پس‌زمینه اجرا شود، روشِ توقفش ثبت شده باشد، و پیش از گزارش نهایی متوقف شود، مگر کاربر بخواهد باقی بماند.
+- ادعا نکن که اورلیِ دیدنیِ برای کاربر وجود دارد، مگر وقتی تزریق اسکریپت موفق بوده و دیتکتور داخل صفحه اجرا شده است.
+- پرسش، دقیقاً آخرین چیز در پاسخ است. اول تمام گزارش را بنویس، بعد بپرس؛ بعد از پرسش هیچ چیز نمی‌آید. نثرِ منتشرشده بعد از یک پرسشِ ساختاریافته تا وقتی کاربر جواب ندهد نگه داشته می‌شود، پس گزارشی که بعد از پرسش نوشته شود به نظر می‌رسد انگار نقد اصلاً اجرا نشده.
+- اجرایی که نه با پرسش‌های هدفمند تمام شود نه با خطِ دقیقِ `Questions skipped: <reason>`، اجرایی ناکامل است. گزارش پایانِ کار نیست؛ جمع‌بندی است.
 
-### Setup
+### راه‌اندازی
 
-1. **Resolve the target** to a concrete file path or URL. Prefer a source path over a dev-server URL when both identify the same surface; ports drift, paths do not.
-   - "the homepage" -> `site/pages/index.astro` or `index.html`
-   - "the settings modal" -> the primary component file
-   - "this page" -> the current URL or source file
-2. **Confirm the target slugs cleanly**:
+1. **هدف را** به یک مسیر فایل یا URL مشخص تعیین کن. وقتی هر دو یک سطح را نشانی می‌دهند، مسیر منبع را بر URL سرور توسعه ترجیح بده؛ پورت‌ها جابه‌جا می‌شوند، مسیرها نه.
+   - «صفحهٔ اصلی» -> `site/pages/index.astro` یا `index.html`
+   - «مودال تنظیمات» -> فایل کامپوننت اصلی
+   - «این صفحه» -> URL فعلی یا فایل منبع
+2. **تأیید کن که از هدف، اسلاگِ تمیزی ساخته می‌شود**:
    ```bash
    .hermes/skills/impeccable/scripts/impeccable critique-storage slug "<resolved-path-or-url>"
    ```
-   Every later command also accepts the resolved target directly and derives the same slug internally; never hand-write a slug. If this exits non-zero, skip persistence and trend for this run, but continue the critique.
-3. **Read `.impeccable/critique/ignore.md`** if it exists. Drop matching findings silently; it is the only prior-run input critique consumes.
+   هر دستور بعدی هم هدفِ تعیین‌شده را مستقیم می‌پذیرد و درون خودش همان اسلاگ را می‌سازد؛ هرگز اسلاگ را دستی ننویس. اگر این دستور با کد خروج غیرصفر تمام شد، ماندگارسازی و روند را در این اجرا رد کن، اما نقد را ادامه بده.
+3. **`.impeccable/critique/ignore.md` را بخوان** اگر وجود دارد. یافته‌های منطبق را بی‌سروصدا کنار بگذار؛ این تنها ورودیِ اجرای پیشین است که نقد مصرف می‌کند.
 
-### Assessment Orchestration
+### هماهنگی ارزیابی‌ها
 
-**Native platforms** (`ios` / `android` / `adaptive`): Assessment B does not apply, because `impeccable detect` and the browser overlay read only web markup. Run Assessment A alone in this context and skip both sub-agent gates below, the Codex permission question included: with no B there is nothing to isolate A from, so this is the complete native method and carries no degraded banner. Do not run `impeccable detect` on native source; its empty result reads as clean.
+**پلتفرم‌های نیتیو** (`ios` / `android` / `adaptive`): ارزیابی B موضوعیت ندارد، چون `impeccable detect` و اورلی مرورگری فقط مارک‌آپ وب را می‌خوانند. ارزیابی A را تنها در همین بافت اجرا کن و هر دو گیتِ زیرایجنتِ پایین را رد کن، از جمله پرسشِ مجوز Codex: بدون B چیزی نیست که A از آن جداشده باشد، پس این همان روشِ کاملِ نیتیو است و بنرِ تنزل ندارد. `impeccable detect` را روی منبع نیتیو اجرا نکن؛ نتیجهٔ خالی‌اش «تمیز» خوانده می‌شود.
 
-Delegate Assessment A and Assessment B to separate sub-agents. They must not see each other's output. Do not show findings to the user until synthesis.
+ارزیابی A و ارزیابی B را به زیرایجنت‌های جدا واگذار کن. نباید خروجیِ یکدیگر را ببینند. یافته‌ها را تا پیش از ترکیب به کاربر نشان نده.
 
-Sub-agent gate (all harnesses):
-- Unless a harness-specific gate below overrides this, spawn A and B as two isolated, parallel sub-agents whenever a sub-agent/Task tool is exposed. This is the default and is mandatory; do not run them inline because it is faster.
-- Desktop apps (see **Desktop apps** under Assessment B) are the one exception to parallel: both sub-agents would drive the app's single window at once. Seed the window, spawn A, wait until it has finished and put the window back, then spawn B. They are still two isolated sub-agents, so this is not the degraded path.
-- "Unavailable" means exactly one thing: no sub-agent/Task tool is exposed in this session (or, on harnesses that ask, the user declined). It does not mean inconvenient.
-- If and only if sub-agents are unavailable, fall back sequentially: finish and record Assessment A, then run Assessment B, then synthesize, and emit the degraded banner.
-- Whichever path you take, declare it in the report header (see Report header provenance). Skipping sub-agents without the banner is the most common failure of this command.
+گیتِ زیرایجنت (همهٔ هارنس‌ها):
 
-If browser automation is available, each assessment creates its own new tab. Never reuse an existing tab, even if it is already at the right URL. Desktop apps are the exception (see **Desktop apps** under Assessment B).
+- مگر این‌که یکی از گیت‌های مخصوصِ هارنس در پایین جای این را بگیرد، هرگاه ابزار زیرایجنت/Task در معرض است، A و B را به‌صورت دو زیرایجنتِ موازی و جداشده spawn کن. این پیش‌فرض است و اجباری؛ به‌خاطر سرعت بیشتر آن‌ها را درون‌خطی اجرا نکن.
+- اپ‌های دسکتاپ (بخش **اپ‌های دسکتاپ** زیر ارزیابی B) تنها استثنا بر موازی‌اند: هر دو زیرایجنت هم‌زمان تک‌پنجرهٔ اپ را می‌رانند. وضعیتِ پنجره را آماده کن، A را spawn کن، صبر کن کارش تمام شود و پنجره را سر جایش بگذارد، بعد B را spawn کن. همچنان دو زیرایجنتِ جداشده‌اند، پس این مسیرِ تنزل نیست.
+- "در دسترس نبودن" دقیقاً یک معنا دارد: در این نشست هیچ ابزار زیرایجنت/Task ای در معرض نیست (یا، در هارنس‌هایی که می‌پرسند، کاربر رد کرده). معنایش "زحمت دارد" نیست.
+- فقط و فقط وقتی زیرایجنت‌ها در دسترس نیستند، ترتیبی بازگرد: ارزیابی A را تمام و ثبت کن، بعد ارزیابی B را اجرا کن، بعد ترکیب کن، و بنرِ تنزل را بده.
+- هر مسیری که رفتی، در سربرگ گزارش اعلانش کن (بخش «منشأ اجرا در سربرگ گزارش» را ببین). ردکردنِ زیرایجنت‌ها بدون بنر، رایج‌ترین شکستِ این دستور است.
 
-### Assessment A: Design Review
+اگر اتوماسیون مرورگر در دسترس است، هر ارزیابی تبِ جدیدِ خودش را می‌سازد. هرگز از یک تبِ موجود دوباره استفاده نکن، حتی اگر همین حالا روی URL درست است. اپ‌های دسکتاپ استثنا هستند (بخش **اپ‌های دسکتاپ** زیر ارزیابی B را ببین).
 
-Read relevant source files and visually inspect the live page when browser automation is available. Think like a design director.
+### ارزیابی A: بازبینی طراحی
 
-Evaluate:
-- **Design specificity**: Is the composition, interaction, and visual language grounded in this product, or could an unrelated product use it unchanged? Make this judgment before seeing detector output.
-- **Holistic design**: hierarchy, IA, emotional fit, discoverability, composition, typography, color, accessibility, states, copy, and edge cases.
-- **Cognitive load**: consult the [Cognitive Load Assessment](#cognitive-load-assessment) section below; report checklist failures and decision points with >4 visible options.
-- **Emotional journey**: peak-end rule, emotional valleys, reassurance at high-stakes moments.
-- **Nielsen heuristics**: consult the [Heuristics Scoring Guide](#heuristics-scoring-guide) section below; score all 10 heuristics 0-4, marking any heuristic the mode-applicability rule allows as `n/a` instead of forcing a number.
+فایل‌های منبعِ مرتبط را بخوان و وقتی اتوماسیون مرورگر در دسترس است، صفحهٔ زنده را بصری بازرسی کن. مثل یک مدیر طراحی فکر کن.
 
-Return: design-specificity verdict, heuristic scores, cognitive load, emotional journey, 2-3 strengths, 3-5 priority issues, persona red flags, minor observations, and provocative questions.
+بسنج:
 
-### Assessment B: Detector + Browser Evidence
+- **خاص‌بودن طراحی (design specificity)**: آیا کامپوزیشن، تعامل و زبان بصری در این محصول ریشه دارد، یا یک محصول بی‌ربط می‌تواند بدون هیچ تغییری از آن استفاده کند؟ این قضاوت را پیش از دیدن خروجی دیتکتور بساز.
+- **طراحی کل‌نگر**: سلسله‌مراتب، IA، تناسب احساسی، کشف‌پذیری، کامپوزیشن، تایپوگرافی، رنگ، دسترس‌پذیری، حالت‌ها، متن و حالت‌های مرزی.
+- **بار شناختی**: بخش [ارزیابی بار شناختی](#cognitive-load-assessment) در پایین را ببین؛ موارد ردشدهٔ چک‌لیست و نقاط تصمیم با >4 گزینهٔ نمایان را گزارش کن.
+- **سفر احساسی**: قاعدهٔ اوج-پایان، دره‌های احساسی، اطمینان‌بخشی در لحظه‌های حساس.
+- **هیوریستیک‌های نیلسن**: بخش [راهنمای نمره‌دهی هیوریستیک‌ها](#heuristics-scoring-guide) در پایین را ببین؛ هر ۱۰ هیوریستیک را از 0 تا 4 نمره بده و هر هیوریستیک را که قاعدهٔ تناسب با حالت اجازه می‌دهد، به جای عدد `n/a` علامت بزن.
 
-Run the bundled detector and browser visualization evidence. On web, Assessment B is mandatory and must remain isolated from Assessment A until both are complete.
+برگردان: حکمِ خاص‌بودن طراحی، نمره‌های هیوریستیک، بار شناختی، سفر احساسی، ۲ تا ۳ نقطهٔ قوت، ۳ تا ۵ مسئلهٔ اولویت‌دار، پرچم‌های قرمز شخصیت‌ها، مشاهده‌های جزئی، و پرسش‌های برانگیزاننده.
 
-CLI scan:
+### ارزیابی B: دیتکتور + شواهد مرورگر
+
+دیتکتور همراه را اجرا کن و شواهدِ تصویرسازی مرورگری را گردآوری کن. روی وب، ارزیابی B اجباری است و باید تا وقتی هر دو کامل نشده‌اند از ارزیابی A جداشده بماند.
+
+اسکن CLI:
 ```bash
 .hermes/skills/impeccable/scripts/impeccable detect --json [target]
 ```
 
-- Pass markup files/directories as `[target]`; do not pass CSS-only files.
-- For URLs, skip CLI scan and use browser visualization.
-- For very large trees (500+ scannable files), narrow scope or ask.
-- Exit code 0 = clean; 2 = findings.
-- If the detector entrypoint is missing or fails to load, report deterministic scan unavailable and continue with browser/manual review.
+- فایل‌ها/پوشه‌های مارک‌آپ را به‌عنوان `[target]` بده؛ فایل‌های فقط-CSS را نده.
+- برای URLها، اسکن CLI را رد کن و تصویرسازی مرورگری را به کار ببر.
+- برای درخت‌های خیلی بزرگ (500+ فایل قابل‌اسکن)، دامنه را تنگ‌تر کن یا بپرس.
+- کد خروج 0 یعنی تمیز؛ 2 یعنی یافته دارد.
+- اگر نقطهٔ ورود دیتکتور غایب است یا لود نمی‌شود، «اسکن قطعی در دسترس نیست» را گزارش کن و با بازبینی مرورگری/دستی ادامه بده.
 
-Browser visualization is required for a viewable target when browser automation is available. Use a localhost dev/static URL for local files; avoid `file://` unless the available browser explicitly supports this workflow. Overlay flow:
+برای هدفِ قابل‌مشاهده وقتی اتوماسیون مرورگر در دسترس است، تصویرسازی مرورگری الزامی است. برای فایل‌های محلی از URL لوکال‌هاستِ توسعه/استاتیک استفاده کن؛ از `file://` پرهیز کن مگر مرورگرِ در دسترس صریحاً از این گردش‌کار پشتیبانی کند. جریان اورلی:
 
-1. Create a fresh tab and navigate. Prefer the harness's native/browser-canvas screenshot path before hand-rolling a Playwright/Puppeteer script; only fall back to a custom script when no native browser tool is exposed.
-2. Preflight mutable injection by setting `document.title` and appending a `<script>` tag. Read-only evaluate APIs do not count.
-3. If mutation is unavailable, skip live server, browser presentation, and injection; report fallback signal.
-4. If mutation is available, start `.hermes/skills/impeccable/scripts/impeccable live-server --background`, present the browser if supported, label `[Human]`, scroll top, inject `http://localhost:PORT/detect.js`, wait 2-3 seconds, read `impeccable` console messages, then run `.hermes/skills/impeccable/scripts/impeccable live-server stop --keep-inject`. The overlay went in through the browser, so the project's HTML has no script tag to strip; a bare `stop` also runs `live-inject --remove` against the project's entry file, an edit a read-only critique should not make.
-5. For multi-view targets, inject on 3-5 representative pages.
+1. یک تب تازه بساز و ناوبری کن. مسیر اسکرین‌شات بومی/بومِ مرورگریِ هارنس را به دست‌ساز‌کردن اسکریپت Playwright/Puppeteer ترجیح بده؛ فقط وقتی هیچ ابزار مرورگری بومی در معرض نیست، به اسکریپت سفارشی بازگرد.
+2. تزریقِ تغییردهنده را با ست‌کردن `document.title` و افزودن یک تگ `<script>` پیش‌آزمایی کن. APIهای evaluate فقط‌خواندنی حساب نمی‌شوند.
+3. اگر تغییردادن ممکن نیست، سرور زنده، نمایش مرورگر و تزریق را رد کن؛ سیگنالِ جایگزین (fallback) را گزارش کن.
+4. اگر تغییردادن ممکن است، `.hermes/skills/impeccable/scripts/impeccable live-server --background` را اجرا کن، اگر پشتیبانی می‌شود مرورگر را نمایش بده، برچسب `[Human]` بزن، به بالای صفحه اسکرول کن، `http://localhost:PORT/detect.js` را تزریق کن، ۲ تا ۳ ثانیه صبر کن، پیام‌های کنسول `impeccable` را بخوان، سپس `.hermes/skills/impeccable/scripts/impeccable live-server stop --keep-inject` را اجرا کن. اورلی از راه مرورگر وارد شده، پس HTML پروژه هیچ تگ اسکریپتی برای برداشتن ندارد؛ `stop` خالی هم `live-inject --remove` را روی فایل ورودیِ پروژه اجرا می‌کند — ویرایشی که یک نقدِ فقط‌خواندنی نباید انجام دهد.
+5. برای هدف‌های چندنما، روی ۳ تا ۵ صفحهٔ نماینده تزریق کن.
 
-**Desktop apps** (Electron, NW.js, CEF, WebView2): there is no URL to open, so Assessment B attaches to the running app instead.
+**اپ‌های دسکتاپ** (Electron, NW.js, CEF, WebView2): URL ای برای بازکردن نیست، پس ارزیابی B به‌جای آن به اپِ در حال اجرا وصل می‌شود.
 
-1. Launch the app with a local DevTools port: `--remote-debugging-port=9222` (Electron, NW.js, CEF), or `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222` for WebView2. Keep the port on 127.0.0.1 and never expose it beyond this machine; prefer a test profile and test data.
-2. Seed the state under review (route, open panel, theme, data). The scan reads the window as it stands. Keep the window on screen: a minimized or hidden window scans without the pixel contrast reads.
-3. Run `.hermes/skills/impeccable/scripts/impeccable detect --cdp 9222 --target <part of the page URL or title> --json`. It returns the same JSON as a URL scan and leaves the page as found. With several pages open it fails and lists them; rerun with a `--target` that names one.
-4. Take screenshots through the harness's CDP tooling (`Page.captureScreenshot` on the same target). Skip the live-server overlay: there is no `[Human]` tab.
+1. اپ را با یک پورت DevTools محلی اجرا کن: `--remote-debugging-port=9222` (Electron, NW.js, CEF)، یا `WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS=--remote-debugging-port=9222` برای WebView2. پورت را روی 127.0.0.1 نگه دار و هرگز فراتر از همین ماشین در معرضش نگذار؛ پروفایل تست و دادهٔ تست را ترجیح بده.
+2. وضعیتِ تحت بازبینی را بذر بزن (مسیر، پنل باز، تم، داده). اسکن پنجره را همان‌طور که هست می‌خواند. پنجره را روی صفحه نگه دار: پنجرهٔ کمینه‌شده یا پنهان، بدون خوانش‌های کنتراست پیکسلی اسکن می‌شود.
+3. `.hermes/skills/impeccable/scripts/impeccable detect --cdp 9222 --target <part of the page URL or title> --json` را اجرا کن. همان JSON اسکن URL را برمی‌گرداند و صفحه را همان‌طور که یافته رها می‌کند. با چند صفحهٔ باز شکست می‌خورد و آن‌ها را فهرست می‌کند؛ با `--target` ای که یکی را نام ببرد دوباره اجرا کن.
+4. اسکرین‌شات‌ها را از طریق ابزار CDP هارنس بگیر (`Page.captureScreenshot` روی همان هدف). اورلی live-server را رد کن: هیچ تب `[Human]` ای وجود ندارد.
 
-The app has one window, so the assessments take turns in it instead of opening tabs (A, then B; see the sub-agent gate), and each must leave it as found: put back any route, scroll, theme, or panel it changed. Tauri on macOS (WKWebView) and on Linux (WebKitGTK) expose no CDP: run Assessment A and the source scan only, and say so in Run Notes.
+اپ یک پنجره دارد، پس ارزیابی‌ها به جای بازکردن تب در آن نوبتی می‌روند (اول A، بعد B؛ گیتِ زیرایجنت را ببین)، و هر یک باید آن را همان‌طور که یافته رها کند: هر مسیر، اسکرول، تم یا پنلی که عوض کرده برگردان. Tauri روی macOS (WKWebView) و روی Linux (WebKitGTK) هیچ CDP ای در معرض نمی‌گذارند: فقط ارزیابی A و اسکن منبع را اجرا کن، و همین را در یادداشت‌های اجرا بنویس.
 
-Return: CLI findings JSON/counts, browser console findings if applicable, false positives, and skipped/failed browser steps with concrete reasons.
+برگردان: JSON/شمارش یافته‌های CLI، یافته‌های کنسول مرورگر در صورت لزوم، مثبت‌های کاذب، و گام‌های مرورگریِ ردشده/شکست‌خورده با دلایل مشخص.
 
-After Assessment B returns usable CLI findings, reuse them. Do not rerun `impeccable detect` in the parent unless Assessment B failed, was truncated, or omitted count, rule names, or file locations.
+بعد از آن‌که ارزیابی B یافته‌های CLI قابل‌استفاده برگرداند، همان‌ها را دوباره به کار ببر. `impeccable detect` را در والد دوباره اجرا نکن، مگر ارزیابی B شکست خورده باشد، ناقص بریده شده باشد، یا شمارش، نام قاعده‌ها یا محل فایل‌ها را نیاورده باشد.
 
-### Generate Combined Critique Report
+### ساخت گزارش نقد ترکیبی
 
-Synthesize both assessments into a single report. Do not simply concatenate. Weave the findings together, noting where the LLM review and detector agree, where the detector caught issues the LLM missed, and where detector findings are false positives.
+هر دو ارزیابی را در یک گزارش ترکیب کن. صرفاً پشت‌سرهم نچین. یافته‌ها را در هم بباف و نشان بده کجا بازبینیِ LLM و دیتکتور هم‌نظرند، کجا دیتکتور مسئله‌هایی را گرفته که از چشم LLM پنهان مانده، و کجا یافته‌های دیتکتور مثبتِ کاذب‌اند.
 
-The chat response is the primary user-facing deliverable. Present the full structured critique below in chat; do not replace it with a summary and a link. The persisted snapshot is an archive of that run.
+پاسخِ گفتگو، تحویل‌دادنیِ اصلیِ روبه‌کاربر است. نقدِ ساختاریافتهٔ کامل را مطابق زیر، در گفتگو ارائه کن؛ آن را با یک خلاصه و یک لینک جایگزین نکن. اسنپ‌شاتِ ماندگارشده آرشیوِ همان اجراست.
 
-Structure your feedback as a design director would:
+بازخوردت را همان‌طور که یک مدیر طراحی ساختار می‌دهد ساختاربندی کن:
 
-#### Report header provenance
+#### منشأ اجرا در سربرگ گزارش
 
-The report's first line MUST declare how the assessments were run, so a degraded run is never silent:
-- Dual-agent: `Method: dual-agent (A: <agent-id> · B: <agent-id>)`
-- Degraded: `⚠️ DEGRADED: single-context (<reason, e.g. no sub-agent tool exposed>)`
-- Native: `Method: design review only (detector not applicable, native platform)`
+خطِ اولِ گزارش باید اعلام کند ارزیابی‌ها چطور اجرا شده‌اند، تا اجرای تنزل‌یافته هرگز بی‌سروصدا نماند:
+- دوایجنت: `Method: dual-agent (A: <agent-id> · B: <agent-id>)`
+- تنزل‌یافته: `⚠️ DEGRADED: single-context (<reason, e.g. no sub-agent tool exposed>)`
+- نیتیو: `Method: design review only (detector not applicable, native platform)`
 
-#### Design Health Score
-> *Consult the [Heuristics Scoring Guide](#heuristics-scoring-guide) section below.*
+#### نمرهٔ سلامت طراحی
+> *به بخش [راهنمای نمره‌دهی هیوریستیک‌ها](#heuristics-scoring-guide) در پایین مراجعه کن.*
 
-Present the Nielsen's 10 heuristics scores as a table:
+نمره‌های ۱۰ هیوریستیک نیلسن را به‌صورت جدول ارائه کن:
 
-| # | Heuristic | Score | Key Issue |
+| # | هیوریستیک | نمره | مسئلهٔ کلیدی |
 |---|-----------|-------|-----------|
-| 1 | Visibility of System Status | ? | [specific finding or "n/a" if solid] |
-| 2 | Match System / Real World | ? | |
-| 3 | User Control and Freedom | ? | |
-| 4 | Consistency and Standards | ? | |
-| 5 | Error Prevention | ? | |
-| 6 | Recognition Rather Than Recall | ? | |
-| 7 | Flexibility and Efficiency | ? | |
-| 8 | Aesthetic and Minimalist Design | ? | |
-| 9 | Error Recovery | ? | |
-| 10 | Help and Documentation | ? | |
-| **Total** | | **??/[applicable max]** | **[Rating band]** |
+| 1 | مشاهده‌پذیری وضعیت سیستم | ? | [یافتهٔ مشخص یا "n/a" اگر سالم است] |
+| 2 | تناسب سیستم / جهان واقعی | ? | |
+| 3 | کنترل و آزادی کاربر | ? | |
+| 4 | سازگاری و استانداردها | ? | |
+| 5 | پیشگیری از خطا | ? | |
+| 6 | بازشناسی به جای یادآوری | ? | |
+| 7 | انعطاف‌پذیری و کارایی | ? | |
+| 8 | طراحی زیبایی‌شناختی و مینیمال | ? | |
+| 9 | بازیابی از خطا | ? | |
+| 10 | راهنما و مستندات | ? | |
+| **جمع** | | **??/[سقف قابل‌اعمال]** | **[باند رتبه‌بندی]** |
 
-The applicable maximum is 4 times the number of heuristics you actually scored: **/40** when all ten apply, **/32** when two are `n/a`. Never print `/40` over a partial set.
+سقفِ قابل‌اعمال، 4 برابرِ شمارِ هیوریستیک‌هایی است که واقعاً برایشان نمره دادی: **/40** وقتی هر ده مورد اعمال می‌شوند، **/32** وقتی دو مورد `n/a` هستند. هرگز روی مجموعه‌ای ناقص `/40` چاپ نکن.
 
-Be honest with scores. A 4 means genuinely excellent. Most real interfaces score 20-32 out of 40.
+با نمره‌ها صادق باش. یک 4 یعنی واقعاً عالی. بیشتر رابط‌های واقعی بین 20-32 از 40 نمره می‌گیرند.
 
-**Mode applicability**: heuristics 7 (Flexibility and Efficiency) and 10 (Help and Documentation) may be scored `n/a` on Persuade and Experience surfaces (landing pages, campaigns, portfolios, bodies of work), as may any other heuristic that genuinely cannot apply to the surface under review. Write `n/a` in the Score cell with a one-line reason, and renormalize the total to the applicable maximum (e.g. **24/32** when two heuristics are n/a) so the rating band stays proportional. The persisted snapshot must record the applicable maximum and which heuristics were scored n/a.
+**تناسب با حالت (mode applicability)**: هیوریستیک 7 (انعطاف‌پذیری و کارایی) و 10 (راهنما و مستندات) روی سطوحِ اقناع (Persuade) و تجربه (Experience) (صفحات فرود، کمپین‌ها، پورتفولیوها، مجموعه‌آثار) می‌توانند `n/a` نمره بگیرند؛ هر هیوریستیک دیگری هم که واقعاً بر سطحِ تحتِ بازبینی قابل‌اعمال نباشد همین‌طور. در سلولِ نمره `n/a` بنویس با یک دلیلِ یک‌خطی، و جمع را به سقفِ قابل‌اعمال بازمقیاس کن (مثلاً **24/32** وقتی دو هیوریستیک n/a است) تا باندِ رتبه‌بندی متناسب بماند. اسنپ‌شاتِ ماندگارشده باید سقفِ قابل‌اعمال و کدام هیوریستیک‌ها n/a نمره گرفته‌اند را ثبت کند.
 
-#### Design Specificity Verdict
+#### حکمِ خاص‌بودن طراحی
 
-**Start here.** Does the result feel authored for this product, or category-interchangeable?
+**از اینجا شروع کن.** آیا نتیجه حس می‌شود برای همین محصول ساخته شده، یا میان محصولاتِ هم‌دسته جابه‌جاپذیر است؟
 
-**LLM assessment**: Your unanchored evaluation of design specificity. Cover overall coherence, structural sameness, category-interchangeable choices, and missed opportunities for product character.
+**ارزیابی LLM**: ارزیابیِ لنگرنشدهٔ تو از خاص‌بودن طراحی. انسجامِ کلی، یکسانیِ ساختاری، انتخاب‌های جابه‌جاپذیرِ بین‌دسته‌ای و فرصت‌های ازدست‌رفته برای شخصیتِ محصول را پوشش بده.
 
-**Deterministic scan**: Summarize what the automated detector found, with counts and file locations. Note any additional issues the detector caught that you missed, and flag any false positives. On a native platform, write `not applicable (native platform)` instead.
+**اسکن قطعی**: خلاصه‌ای از آن‌چه دیتکتورِ خودکار یافته، با شمارش و محلِ فایل‌ها. مسئله‌های اضافه‌ای را که دیتکتور گرفته و تو از دستشان داده‌ای یادآوری کن و مثبت‌های کاذب را علامت بزن. روی پلتفرم نیتیو، به‌جایش بنویس `not applicable (native platform)`.
 
-**Visual overlays** (if injection succeeded): Tell the user that overlays are now visible in the **[Human]** tab in their browser, highlighting the detected issues. Summarize what the console output reported. If browser visualization was attempted but injection failed, say that no reliable user-visible overlay is available and report the fallback signal instead.
+**اورلی‌های بصری** (اگر تزریق موفق بود): به کاربر بگو اورلی‌ها حالا در تب **[Human]** در مرورگرش نمایان‌اند و مسئله‌های شناسایی‌شده را برجسته می‌کنند. خلاصه کن خروجیِ کنسول چه گزارش داده. اگر تصویرسازی مرورگری تلاش شده اما تزریق شکست خورده، بگو اورلیِ قابل‌اعتمادی که برای کاربر دیدنی باشد موجود نیست و به‌جایش سیگنالِ جایگزین را گزارش کن.
 
-#### Overall Impression
-A brief gut reaction: what works, what doesn't, and the single biggest opportunity.
+#### برداشت کلی
+یک واکنشِ درونیِ کوتاه: چه چیزی جواب می‌دهد، چه چیزی نه، و بزرگ‌ترین فرصتِ واحد.
 
-#### What's Working
-Highlight 2-3 things done well. Be specific about why they work.
+#### چه چیزهایی کار می‌کند
+۲ تا ۳ چیزِ خوب‌انجام‌شده را برجسته کن. دقیق بگو چرا کار می‌کنند.
 
-#### Priority Issues
-The 3-5 most impactful design problems, ordered by importance.
+#### مسئله‌های اولویت‌دار
+تأثیرگذارترین ۳ تا ۵ مسئلهٔ طراحی، مرتب‌شده بر حسب اهمیت.
 
-For each issue, tag with **P0-P3 severity** (see [Issue Severity below](#issue-severity-p0p3) for definitions):
-- **[P?] What**: Name the problem clearly
-- **Why it matters**: How this hurts users or undermines goals
-- **Fix**: What to do about it (be concrete)
-- **Suggested command**: Which command could address this (from: /impeccable adapt, /impeccable animate, /impeccable audit, /impeccable bolder, /impeccable clarify, /impeccable colorize, /impeccable critique, /impeccable delight, /impeccable distill, /impeccable document, /impeccable harden, /impeccable layout, /impeccable onboard, /impeccable optimize, /impeccable overdrive, /impeccable polish, /impeccable quieter, /impeccable shape, /impeccable typeset)
+برای هر مسئله، برچسب **شدت P0-P3** بزن (تعریف‌ها را در [شدت مسئله](#issue-severity-p0p3) پایین ببین):
+- **[P?] چیست**: مسئله را روشن نام‌گذاری کن
+- **چرا مهم است**: چگونه به کاربران آسیب می‌زند یا اهداف را تضعیف می‌کند
+- **اصلاح**: در برابرش چه باید کرد (مشخص باش)
+- **دستور پیشنهادی**: کدام دستور می‌تواند به این رسیدگی کند (از میان: /jala adapt, /jala animate, /jala audit, /jala bolder, /jala clarify, /jala colorize, /jala critique, /jala delight, /jala distill, /jala document, /jala harden, /jala layout, /jala onboard, /jala optimize, /jala overdrive, /jala polish, /jala quieter, /jala shape, /jala typeset)
 
-#### Persona Red Flags
-> *Consult the [Personas reference](#persona-based-design-testing) below.*
+#### پرچم‌های قرمز شخصیت‌ها
+> *به [مرجع شخصیت‌ها](#persona-based-design-testing) در پایین مراجعه کن.*
 
-Auto-select 2-3 personas most relevant to this interface type (use the selection table in the reference). If `AGENTS.md` contains a `## Design Context` section from `impeccable init`, also generate 1-2 project-specific personas from the audience/brand info.
+۲ تا ۳ شخصیتِ مرتبط‌ترین با این نوع رابط را خودکار انتخاب کن (از جدولِ انتخاب در مرجع استفاده کن). اگر `AGENTS.md` بخش `## Design Context` را از `impeccable init` دارد، ۱ تا ۲ شخصیتِ مخصوص پروژه هم از اطلاعاتِ مخاطب/برند بساز.
 
-For each selected persona, walk through the primary user action and list specific red flags found:
+برای هر شخصیتِ انتخاب‌شده، کنشِ اصلیِ کاربر را قدم‌به‌قدم برو و پرچم‌های قرمزِ مشخصِ یافته را فهرست کن:
 
-**Alex (Power User)**: No keyboard shortcuts detected. Form requires 8 clicks for primary action. Forced modal onboarding. High abandonment risk.
+**الکس (کاربر حرفه‌ای)**: هیچ میان‌بر صفحه‌کلیدی شناسایی نشد. فرم برای کنشِ اصلی ۸ کلیک می‌خواهد. آنبوردینگ مودالیِ اجباری. خطرِ رهاکردنِ بالا.
 
-**Jordan (First-Timer)**: Icon-only nav in sidebar. Technical jargon in error messages ("404 Not Found"). No visible help. Will abandon at step 2.
+**جردن (تازه‌کار)**: ناوبریِ فقط‌آیکونی در سایدبار. اصطلاح فنی در پیام‌های خطا («404 Not Found»). هیچ راهنمای نمایانی نیست. در گام ۲ رها می‌کند.
 
-Be specific. Name the exact elements and interactions that fail each persona. Don't write generic persona descriptions; write what broke for them.
+مشخص باش. عنصرها و تعامل‌های دقیقی که برای هر شخصیت شکست می‌خورند را نام ببر. توصیف‌های کلی از شخصیت ننویس؛ بنویس برایشان چه چیزی شکست خورد.
 
-#### Minor Observations
-Quick notes on smaller issues worth addressing.
+#### مشاهده‌های جزئی
+یادداشت‌های کوتاه دربارهٔ مسئله‌های کوچک‌تری که ارزشِ رسیدگی دارند.
 
-#### Questions to Consider
-Provocative questions that might unlock better solutions:
-- "What if the primary action were more prominent?"
-- "Does this need to feel this complex?"
-- "What would a confident version of this look like?"
+#### پرسش‌هایی برای اندیشیدن
+پرسش‌های برانگیزاننده‌ای که شاید راه‌حل‌های بهتری باز کنند:
+- "اگر کنشِ اصلی برجسته‌تر بود چه می‌شد؟"
+- "آیا این واقعاً لازم است این‌قدر پیچیده حس شود؟"
+- "نسخهٔ مطمئن و بااعتمادِ این چه شکلی می‌شود؟"
 
-**Remember**:
-- Be direct. Vague feedback wastes everyone's time.
-- Be specific. "The submit button," not "some elements."
-- Say what's wrong AND why it matters to users.
-- Give concrete suggestions. Cut "consider exploring..." entirely.
-- Prioritize ruthlessly. If everything is important, nothing is.
-- Don't soften criticism. Developers need honest feedback to ship great design.
+**یادت باشد**:
+- مستقیم باش. بازخوردِ مبهم وقتِ همه را هدر می‌دهد.
+- مشخص باش. «دکمهٔ ارسال»، نه «چند عنصر».
+- بگو چه چیزی غلط است و چرا برای کاربران مهم است.
+- پیشنهادِ مشخص بده. عبارت‌هایی مثل "بهتر است بررسی کنید که..." را کلاً حذف کن.
+- بی‌رحم اولویت‌بندی کن. اگر همه چیز مهم است، هیچ چیز مهم نیست.
+- نقد را نرم نکن. توسعه‌دهنده‌ها برای رهاکردنِ طراحیِ عالی به بازخوردِ صادقانه نیاز دارند.
 
-### Deliver the Report
+### تحویل گزارش
 
-Write the full report into the chat response now, before any persistence work. This is the deliverable; everything below it is bookkeeping.
+حالا، پیش از هر کارِ ماندگارسازی، گزارشِ کامل را در پاسخِ گفتگو بنویس. این همان تحویل‌دادنی است؛ هر چیزِ زیرِ آن صرفاً ثبت‌وحفظ است.
 
-Do this first because the alternative is the most common way this command fails: the report gets composed once, straight into the persistence heredoc, and the run ends with a perfect archive nobody has read. Composing it into a file is not delivering it. If the report exists only in `.impeccable/critique/`, the run produced nothing.
+این را اول انجام بده، چون حالتِ دیگر رایج‌ترین راهِ شکستِ این دستور است: گزارش یک بار نوشته می‌شود، مستقیم داخل heredocِ ماندگارسازی، و اجرا با آرشیوی بی‌نقص تمام می‌شود که هیچ‌کس نخوانده. نوشتنش در یک فایل، تحویل‌دادنش نیست. اگر گزارش فقط در `.impeccable/critique/` وجود داشته باشد، این اجرا هیچ تولید نکرده.
 
-Persistence is not the end of the run. After it, the response continues with the trend line and the close.
+ماندگارسازی پایانِ اجرا نیست. بعد از آن، پاسخ با خطِ روند و جمع‌بندی ادامه می‌یابد.
 
-### Persist the Snapshot
+### ماندگارسازی اسنپ‌شات
 
-Once the report above is finalized, write it to `.impeccable/critique/` so the user can refer back, and so `/impeccable polish` can pick up the priority issues without a copy-paste.
+وقتی گزارشِ بالا نهایی شد، آن را در `.impeccable/critique/` بنویس تا کاربر بتواند به آن برگردد و `/jala polish` بتواند مسئله‌های اولویت‌دار را بدون کپی‌پیست بردارد.
 
-Skip this step if the Setup slug was null (vague or root-level target).
+اگر اسلاگِ راه‌اندازی null بود (هدفِ مبهم یا سطحِ ریشه)، این گام را رد کن.
 
-1. **Write the body to a temp file** so you can pipe it to the helper. Use the full critique report (heuristic table, design-specificity verdict, priority issues, persona red flags, minor observations, and questions), but stop before the "Ask the User" / "Recommended Actions" sections that come later.
+1. **بدنه را در یک فایل موقت بنویس** تا بتوانی به ابزار کمکی پایپش کنی. گزارشِ کاملِ نقد را به کار ببر (جدول هیوریستیک‌ها، حکمِ خاص‌بودن طراحی، مسئله‌های اولویت‌دار، پرچم‌های قرمز شخصیت‌ها، مشاهده‌های جزئی و پرسش‌ها)، اما پیش از بخش‌های «پرسش از کاربر» / «اقدامات پیشنهادی» که بعداً می‌آیند متوقف شو.
 
-   This is a copy of the report you already delivered above, for later commands to read. It is not delivery. If you find yourself composing the report for the first time inside this heredoc, you have skipped Deliver the Report; go back and send it.
+   این کپیِ همان گزارشی است که بالاتر تحویل داده‌ای، برای این‌که دستورهای بعدی بخوانندش. این تحویل‌دادن نیست. اگر ببینی گزارش را برای اولین بار داخل همین heredoc داری می‌سازی، یعنی بخش «تحویل گزارش» را رد کرده‌ای؛ برگرد و بفرستش.
 
-2. **Pass the structured metadata** through `IMPECCABLE_CRITIQUE_META` (JSON), then run the write command:
+2. **فرادادهٔ ساختاریافته** را از طریق `IMPECCABLE_CRITIQUE_META` (JSON) پاس بده، بعد دستورِ نوشتن را اجرا کن:
    ```bash
    IMPECCABLE_CRITIQUE_META='{"target":"<user phrasing>","total_score":<n>,"max_score":<n>,"na_heuristics":"<comma-separated numbers, or empty>","p0_count":<n>,"p1_count":<n>}' \
      .hermes/skills/impeccable/scripts/impeccable critique-storage write "<resolved target>" <body-file>
    ```
-   `max_score` is the applicable maximum from the heuristic table (40 when every heuristic applied), so a later run can tell a renormalized total from a full one. For a local file target, the helper also records an exact content fingerprint so polish can distinguish the assessed bytes from later edits without relying on Git state or timestamps. The helper prints the absolute path it wrote. Leave that file on disk. Polish closes it; this run does not.
+   `max_score` همان سقفِ قابل‌اعمال از جدولِ هیوریستیک‌ها است (40 وقتی هر هیوریستیک اعمال شده)، تا اجرای بعدی بتواند جمعِ بازمقیاس‌شده را از جمعِ کامل تشخیص دهد. برای هدفِ فایلِ محلی، ابزار کمکی یک اثرانگشتِ دقیق از محتوا هم ثبت می‌کند تا polish بتواند بایت‌های ارزیابی‌شده را از ویرایش‌های بعدی تشخیص دهد، بدون اتکا به وضعیت Git یا timestampها. ابزار کمکی مسیرِ مطلقِ نوشته‌شده را چاپ می‌کند. آن فایل را روی دیسک بگذار. polish می‌بنددش؛ این اجرا نه.
 
-3. **Delete the temp body file** after the write attempt completes, whether the write succeeded or failed. If deletion fails, mention `temp-file cleanup failed: <reason>` briefly in the final output, but do not block the critique.
+3. **فایل موقتِ بدنه را حذف کن** بعد از آن‌که تلاشِ نوشتن تمام شد، چه نوشتن موفق باشد چه نه. اگر حذف شکست خورد، `temp-file cleanup failed: <reason>` را کوتاه در خروجی نهایی بیاور، اما جلوی نقد را نگیر.
 
-4. **Read the trend** for context:
+4. **روند را برای بافت بخوان**:
    ```bash
    .hermes/skills/impeccable/scripts/impeccable critique-storage trend "<resolved target>" 5
    ```
-   This returns a JSON array of the last 5 frontmatter entries (including the one you just wrote).
+   این یک آرایهٔ JSON از ۵ ورودیِ فرانت‌مترِ آخر برمی‌گرداند (شامل همان که همین حالا نوشتی).
 
-5. **Append a single line to the user-visible output**, after the report and before the questions:
+5. **یک خط به خروجیِ دیدنیِ کاربر اضافه کن**، بعد از گزارش و پیش از پرسش‌ها:
 
-   > **Trend for `<slug>` (last 5 runs): 24 → 28 → 32 → 29 → 32 (out of 40)**
-   > Wrote `.impeccable/critique/<filename>`.
+   > **روند برای «`<slug>`» (۵ اجرای آخر): 24 → 28 → 32 → 29 → 32 (از 40)**
+   > نوشته شد `.impeccable/critique/<filename>`.
 
-   Read `max_score` on each trend entry. When every entry shares one maximum, state it once as above. When they differ, print each score with its own denominator (`24/32 → 30/40`) and note that the runs scored different heuristic sets, so the line is not a like-for-like comparison. Treat a missing `max_score` on an older entry as 40.
+   `max_score` را روی هر ورودیِ روند بخوان. وقتی همهٔ ورودی‌ها سقفِ واحدی دارند، یک بار مثل بالا بگو. وقتی متفاوت‌اند، هر نمره را با مخرجِ خودش چاپ کن (`24/32 → 30/40`) و بنویس که اجراها مجموعه‌های هیوریستیکِ متفاوتی نمره داده‌اند، پس این خط مقایسهٔ هم‌ارز نیست. `max_score` غایب روی یک ورودیِ قدیمی‌تر را 40 در نظر بگیر.
 
-   If this is the first run for the slug, the trend is just one score; say so: "First run for this target, no trend yet."
+   اگر این اولین اجرای این اسلاگ است، روند فقط یک نمره است؛ همین را بگو: «اولین اجرا برای این هدف است، هنوز روندی نیست.»
 
-6. **Close the run.** Go to Ask the User below and emit the questions, or the `Questions skipped: <reason>` line when the count allows it. The run is not complete until you do. Persistence is bookkeeping and cleanup is not an ending; stopping here leaves the user with a report and no way forward, and leaves `/impeccable polish` with no priorities to inherit.
+6. **اجرا را ببند.** به بخش «پرسش از کاربر» در پایین برو و پرسش‌ها را بده، یا وقتی شمارش اجازه می‌دهد، خطِ `Questions skipped: <reason>` را. اجرا تا وقتی این کار را نکنی کامل نیست. ماندگارسازی کارِ ثبت است و پاک‌سازی پایانِ کار نیست؛ توقف در اینجا کاربر را با گزارشی بدونِ راهِ پیش‌رو رها می‌کند و `/jala polish` را بدونِ اولویتی برای به‌ارث‌رفتن.
 
-This is fire-and-forget. Do not show the user the helper's JSON output; only the human-readable trend line and the written path. Failures here should not block the rest of the flow; print the error and move on.
+این گام آتش‌کن-فراموش‌کن (fire-and-forget) است. خروجی JSON ابزار کمکی را به کاربر نشان نده؛ فقط خطِ روندِ خوانا برای انسان و مسیرِ نوشته‌شده. شکست در اینجا نباید جلوی بقیهٔ جریان را بگیرد؛ خطا را چاپ کن و ادامه بده.
 
-### Ask the User
+### پرسش از کاربر
 
-**After presenting findings**, use targeted questions based on what was actually found. Ask the user directly to clarify what you cannot infer. These answers will shape the action plan.
+**بعد از ارائهٔ یافته‌ها**، از پرسش‌های هدفمند بر اساس آن‌چه واقعاً یافته شده استفاده کن. آنچه را نمی‌توانی استنتاج کنی، مستقیم از کاربر بپرس. این پاسخ‌ها شکلِ برنامهٔ اقدام را می‌سازند.
 
-Ask in the same message that carries the report, with the report written out first and the question last. Do not split the two across turns: a turn that ends on the report is a turn that ends, and the questions never arrive. Order within the message is what matters, because prose emitted after a structured question is withheld until the user answers.
+در همان پیامی که گزارش را حمل می‌کند بپرس، با گزارشِ نوشته‌شده در ابتدا و پرسش در انتها. این دو را بین نوبت‌ها نشکن: نوبتی که با گزارش تمام شود، تمام است و پرسش‌ها هرگز نمی‌رسند. آن‌چه اهمیت دارد ترتیبِ درونِ پیام است، چون نثرِ منتشرشده بعد از یک پرسشِ ساختاریافته تا پاسخِ کاربر نگه داشته می‌شود.
 
-Ask questions along these lines (adapt to the specific findings; do not ask generic questions):
+پرسش‌ها را در این خطوط بپرس (با یافته‌های مشخص وفق بده؛ پرسشِ کلی نپرس):
 
-1. **Priority direction**: Based on the issues found, ask which category matters most to the user right now. For example: "I found problems with visual hierarchy, color usage, and information overload. Which area should we tackle first?" Offer the top 2-3 issue categories as options.
+1. **جهتِ اولویت**: بر اساس مسئله‌های یافته‌شده، بپرس کدام دسته همین حالا برای کاربر مهم‌ترین است. مثلاً: «مسئله‌هایی در سلسله‌مراتب بصری، کاربردِ رنگ و شلوغیِ اطلاعاتی پیدا کردم. اول سراغ کدام حوزه برویم؟» ۲ تا ۳ دستهٔ برترِ مسئله‌ها را به‌عنوان گزینه پیشنهاد بده.
 
-2. **Design intent**: If the critique found a tonal mismatch, ask whether it was intentional. For example: "The interface feels clinical and corporate. Is that the intended tone, or should it feel warmer/bolder/more playful?" Offer 2-3 tonal directions as options based on what would fix the issues found.
+2. **قصدِ طراحی**: اگر نقد ناهماهنگیِ لحنی یافت، بپرس آیا عمدی بوده. مثلاً: «رابط حسِ بالینی و شرکتی دارد. این لحن مقصود است، یا باید گرم‌تر/جسورتر/بازیگوش‌تر حس شود؟» ۲ تا ۳ جهتِ لحنی را بر اساس آن‌چه مسئله‌های یافته‌شده را اصلاح می‌کند، به‌عنوان گزینه پیشنهاد بده.
 
-3. **Scope**: Ask how much the user wants to take on. For example: "I found N issues. Want to address everything, or focus on the top 3?" Offer scope options like "Top 3 only", "All issues", "Critical issues only".
+3. **دامنه**: بپرس کاربر چقدر می‌خواهد بر عهده بگیرد. مثلاً: «N مسئله پیدا کردم. همه را رسیدگی کنیم یا روی ۳ موردِ برتر تمرکز کنیم؟» گزینه‌های دامنه مثل «فقط ۳ مورد برتر»، «همهٔ مسئله‌ها»، «فقط مسئله‌های بحرانی» پیشنهاد بده.
 
-4. **Constraints** (optional; only ask if relevant): If the findings touch many areas, ask if anything is off-limits. For example: "Should any sections stay as-is?" This prevents the plan from touching things the user considers done.
+4. **محدودیت‌ها** (اختیاری؛ فقط اگر مربوط است بپرس): اگر یافته‌ها به حوزه‌های زیادی می‌خورند، بپرس آیا چیزی خارج از محدوده است. مثلاً: «آیا بخشی باید دست‌نخورده بماند؟» این جلوگیری می‌کند برنامه چیزهایی را که کاربر تمام‌شده می‌داند دست بزند.
 
-**Rules for questions**:
-- Every question must reference specific findings from the report. Never ask generic "who is your audience?" questions.
-- Keep it to 2-4 questions maximum. Respect the user's time.
-- Offer concrete options, not open-ended prompts.
-- Skipping is allowed only when the report listed **fewer than 3 Priority Issues**. Count them; do not judge the findings "straightforward" by feel. At 3 or more, the questions are required.
+**قواعد پرسش‌ها**:
+- هر پرسش باید به یافته‌های مشخصی از گزارش ارجاع دهد. هرگز پرسش‌های کلی مثل «مخاطبت کیست؟» نپرس.
+- حداکثر ۲ تا ۴ پرسش. وقتِ کاربر را محترم بشمار.
+- گزینهٔ مشخص پیشنهاد بده، نه پرامپتِ باز.
+- ردکردن فقط وقتی مجاز است که گزارش **کمتر از ۳ مسئلهٔ اولویت‌دار** فهرست کرده باشد. بشمارشان؛ با حسِ درونی یافته‌ها را "ساده" قضاوت نکن. از ۳ به بالا، پرسش‌ها الزامی‌اند.
 
-**Final-question gate.** The user-visible response must either include the targeted questions or carry the literal line `Questions skipped: <reason>` naming the count that permitted the skip. Each question must include 2-3 concrete answer options tied to the actual critique findings. Do not end with only open-ended questions, and do not end with neither: stopping after the report, having asked nothing and printed no skip line, is the most common way this command fails.
+**گیتِ پرسشِ پایانی.** پاسخِ دیدنیِ کاربر باید یا پرسش‌های هدفمند را داشته باشد یا خطِ دقیقِ `Questions skipped: <reason>` را که شمارِ مجوزدهندهٔ ردشدن را نام می‌برد. هر پرسش باید ۲ تا ۳ گزینهٔ پاسخِ مشخصِ گره‌خورده با یافته‌های واقعیِ نقد را داشته باشد. فقط با پرسش‌های باز تمام نکن، و با هیچ‌کدام هم تمام نکن: توقفِ بعد از گزارش، بدونِ پرسیدن و بدونِ چاپِ خطِ رد، رایج‌ترین راهِ شکستِ این دستور است.
 
-### Recommended Actions
+### اقدامات پیشنهادی
 
-**After receiving the user's answers**, present a prioritized action summary reflecting the user's priorities and scope from Ask the User.
+**بعد از دریافت پاسخ‌های کاربر**، خلاصهٔ اقدامِ اولویت‌بندی‌شده‌ای ارائه کن که اولویت‌ها و دامنهٔ کاربر از بخش «پرسش از کاربر» را منعکس کند.
 
-#### Action Summary
+#### خلاصهٔ اقدامات
 
-List recommended commands in priority order, based on the user's answers:
+دستورهای پیشنهادی را به ترتیبِ اولویت فهرست کن، بر اساس پاسخ‌های کاربر:
 
-1. **`/command-name`**: Brief description of what to fix (specific context from critique findings)
-2. **`/command-name`**: Brief description (specific context)
+1. **`/command-name`**: توضیحِ کوتاه از این‌که چه چیزی را اصلاح کند (بافتِ مشخص از یافته‌های نقد)
+2. **`/command-name`**: توضیحِ کوتاه (بافتِ مشخص)
 ...
 
-**Rules for recommendations**:
-- Only recommend commands from: /impeccable adapt, /impeccable animate, /impeccable audit, /impeccable bolder, /impeccable clarify, /impeccable colorize, /impeccable critique, /impeccable delight, /impeccable distill, /impeccable document, /impeccable harden, /impeccable layout, /impeccable onboard, /impeccable optimize, /impeccable overdrive, /impeccable polish, /impeccable quieter, /impeccable shape, /impeccable typeset
-- Order by the user's stated priorities first, then by impact
-- Each item's description should carry enough context that the command knows what to focus on
-- Map each Priority Issue to the appropriate command
-- Skip commands that would address zero issues
-- If the user chose a limited scope, only include items within that scope
-- If the user marked areas as off-limits, exclude commands that would touch those areas
-- End with `/impeccable polish` as the final step if any fixes were recommended
+**قواعد پیشنهادها**:
+- فقط دستورهای این فهرست را پیشنهاد بده: /jala adapt, /jala animate, /jala audit, /jala bolder, /jala clarify, /jala colorize, /jala critique, /jala delight, /jala distill, /jala document, /jala harden, /jala layout, /jala onboard, /jala optimize, /jala overdrive, /jala polish, /jala quieter, /jala shape, /jala typeset
+- اول بر اساس اولویت‌های اعلان‌شدهٔ کاربر مرتب کن، بعد بر اساس اثر
+- توضیحِ هر مورد باید به‌اندازه‌ای بافت داشته باشد که دستور بداند روی چه چیزی تمرکز کند
+- هر مسئلهٔ اولویت‌دار را به دستورِ مناسب نگاشت کن
+- دستورهایی که هیچ مسئله‌ای را حل نمی‌کنند را رد کن
+- اگر کاربر دامنهٔ محدودی انتخاب کرده، فقط مواردِ درونِ آن دامنه را بیاور
+- اگر کاربر حوزه‌هایی را خارج از محدوده علامت زده، دستورهایی که به آن‌ها می‌خورند را حذف کن
+- اگر اصلاحی پیشنهاد شده، با `/jala polish` به‌عنوان گامِ آخر تمام کن
 
-After presenting the summary, tell the user:
+بعد از ارائهٔ خلاصه، به کاربر بگو:
 
-> You can ask me to run these one at a time, all at once, or in any order you prefer.
+> می‌توانی از من بخواهی این‌ها را یکی‌یکی، همه‌با‌هم، یا به هر ترتیبی که ترجیح می‌دهی اجرا کنم.
 >
-> Re-run `/impeccable critique` after fixes to see your score improve.
+> بعد از اصلاح‌ها، `/jala critique` را دوباره اجرا کن تا بهبودِ نمره‌ات را ببینی.
 
 ---
 
-## Reference Material
+## مطالب مرجع
 
-The sections below were previously separate reference files (`cognitive-load.md`, `heuristics-scoring.md`, `personas.md`). They live inline now so the critique flow has all its deep context in one place.
+بخش‌های پایین پیش‌تر فایل‌های مرجعِ جدا بودند (`cognitive-load.md`، `heuristics-scoring.md`، `personas.md`). حالا درون‌خطی‌اند تا جریانِ نقد همهٔ بافتِ عمیقش را یک‌جا داشته باشد.
 
-### Cognitive Load Assessment
+### ارزیابی بار شناختی
 
-Cognitive load is the total mental effort required to use an interface. Overloaded users make mistakes, get frustrated, and leave. This reference helps identify and fix cognitive overload.
-
----
-
-#### Three Types of Cognitive Load
-
-##### Intrinsic Load: The Task Itself
-Complexity inherent to what the user is trying to do. You can't eliminate this, but you can structure it.
-
-**Manage it by**:
-- Breaking complex tasks into discrete steps
-- Providing scaffolding (templates, defaults, examples)
-- Progressive disclosure: show what's needed now, hide the rest
-- Grouping related decisions together
-
-##### Extraneous Load: Bad Design
-Mental effort caused by poor design choices. **Eliminate this ruthlessly.** It's pure waste.
-
-**Common sources**:
-- Confusing navigation that requires mental mapping
-- Unclear labels that force users to guess meaning
-- Visual clutter competing for attention
-- Inconsistent patterns that prevent learning
-- Unnecessary steps between user intent and result
-
-##### Germane Load: Learning Effort
-Mental effort spent building understanding. This is *good* cognitive load; it leads to mastery.
-
-**Support it by**:
-- Progressive disclosure that reveals complexity gradually
-- Consistent patterns that reward learning
-- Feedback that confirms correct understanding
-- Onboarding that teaches through action, not walls of text
+بار شناختی کلِ تلاشِ ذهنیِ لازم برای استفاده از یک رابط است. کاربرِ بیش‌بار خطا می‌کند، کلافه می‌شود و می‌رود. این مرجع کمک می‌کند بیش‌باریِ شناختی را شناسایی و اصلاح کنی.
 
 ---
 
-#### Cognitive Load Checklist
+#### سه نوع بار شناختی
 
-Evaluate the interface against these 8 items:
+##### بار ذاتی: خودِ تکلیف
+پیچیدگیِ درون‌زادِ آن‌چه کاربر می‌خواهد انجام دهد. این را نمی‌توانی حذف کنی، اما می‌توانی ساختارش بدهی.
 
-- [ ] **Single focus**: Can the user complete their primary task without distraction from competing elements?
-- [ ] **Chunking**: Is information presented in digestible groups (≤4 items per group)?
-- [ ] **Grouping**: Are related items visually grouped together (proximity, borders, shared background)?
-- [ ] **Visual hierarchy**: Is it immediately clear what's most important on the screen?
-- [ ] **One thing at a time**: Can the user focus on a single decision before moving to the next?
-- [ ] **Minimal choices**: Are decisions simplified (≤4 visible options at any decision point)?
-- [ ] **Working memory**: Does the user need to remember information from a previous screen to act on the current one?
-- [ ] **Progressive disclosure**: Is complexity revealed only when the user needs it?
+**مدیریتش کن با**:
+- شکستنِ تکلیف‌های پیچیده به گام‌های مجزا
+- فراهم‌کردنِ داربست (الگوها، مقدارهای پیش‌فرض، مثال‌ها)
+- افشای تدریجی: آن‌چه الان لازم است نشان بده، بقیه را پنهان کن
+- گروه‌کردنِ تصمیم‌های مرتبط کنار هم
 
-**Scoring**: Count the failed items. 0–1 failures = low cognitive load (good). 2–3 = moderate (address soon). 4+ = high cognitive load (critical fix needed).
+##### بار بیرونی: طراحی بد
+تلاشِ ذهنی‌ای که انتخاب‌های طراحیِ بد ایجاد می‌کنند. **این را بی‌رحم حذف کن.** هدررفتِ خالص است.
 
----
+**منابع رایج**:
+- ناوبریِ گیج‌کننده‌ای که نگاشتِ ذهنی می‌خواهد
+- برچسب‌های نامفهومی که کاربر را وادار به حدس‌زدنِ معنا می‌کنند
+- شلوغیِ بصری‌ای که برای جلبِ توجه رقابت می‌کند
+- الگوهای ناسازگار که مانعِ یادگیری می‌شوند
+- گام‌های غیرضروری بین قصدِ کاربر و نتیجه
 
-#### The Working Memory Rule
+##### بار سازنده: تلاشِ یادگیری
+تلاشِ ذهنی‌ای که صرفِ ساختنِ فهم می‌شود. این بارِ شناختیِ *خوب* است؛ به تسلط می‌انجامد.
 
-**Humans can hold ≤4 items in working memory at once** (Miller's Law revised by Cowan, 2001).
-
-At any decision point, count the number of distinct options, actions, or pieces of information a user must simultaneously consider:
-- **≤4 items**: Within working memory limits, manageable
-- **5–7 items**: Pushing the boundary; consider grouping or progressive disclosure
-- **8+ items**: Overloaded; users will skip, misclick, or abandon
-
-**Practical applications**:
-- Action buttons: 1 primary, 1–2 secondary, group the rest in a menu
-- Navigation menus: ≤5 top-level items (group the rest under clear categories)
-- Long-form articles: one reading path; gather related links into a single block at the end instead of scattering them mid-flow
-- Documentation sidebars: ≤4 sibling choices visible per level before grouping kicks in
-- Portfolio and gallery indexes: one decision per screen (which piece to open), not filter, sort, and tag controls all at once
+**پشتیبانی‌اش کن با**:
+- افشای تدریجی‌ای که پیچیدگی را کم‌کم آشکار می‌کند
+- الگوهای سازگاری که یادگیری را پاداش می‌دهند
+- بازخوردی که فهمِ درست را تأیید می‌کند
+- آنبوردینی که با کنش یاد می‌دهد، نه با دیوارِ متن
 
 ---
 
-#### Common Cognitive Load Violations
+#### چک‌لیست بار شناختی
 
-##### 1. The Wall of Options
-**Problem**: Presenting 10+ choices at once with no hierarchy.
-**Fix**: Group into categories, highlight recommended, use progressive disclosure.
+رابط را با این ۸ مورد بسنج:
 
-##### 2. The Memory Bridge
-**Problem**: User must remember info from step 1 to complete step 3.
-**Fix**: Keep relevant context visible, or repeat it where it's needed.
+- [ ] **تمرکز واحد**: آیا کاربر می‌تواند تکلیف اصلی را بدون حواس‌پرتی از عناصر رقیب کامل کند؟
+- [ ] **تکه‌تکه‌کردن (chunking)**: آیا اطلاعات در گروه‌های قابل‌هضم ارائه شده (≤4 مورد در هر گروه)؟
+- [ ] **گروه‌بندی**: آیا موارد مرتبط به‌صورت بصری کنار هم گروه شده‌اند (نزدیکی، کادر، پس‌زمینهٔ مشترک)؟
+- [ ] **سلسله‌مراتب بصری**: آیا بلافاصله معلوم است مهم‌ترین چیز روی صفحه چیست؟
+- [ ] **هر بار یک چیز**: آیا کاربر می‌تواند پیش از رفتن به تصمیم بعدی روی یک تصمیم متمرکز بماند؟
+- [ ] **انتخاب‌های حداقلی**: آیا تصمیم‌ها ساده شده‌اند (≤4 گزینهٔ نمایان در هر نقطهٔ تصمیم)؟
+- [ ] **حافظهٔ کاری**: آیا کاربر باید اطلاعاتی را از صفحهٔ قبلی به خاطر بسپارد تا روی صفحهٔ فعلی عمل کند؟
+- [ ] **افشای تدریجی**: آیا پیچیدگی فقط وقتی آشکار می‌شود که کاربر نیاز دارد؟
 
-##### 3. The Hidden Navigation
-**Problem**: User must build a mental map of where things are.
-**Fix**: Always show current location (breadcrumbs, active states, progress indicators).
-
-##### 4. The Jargon Barrier
-**Problem**: Technical or domain language forces translation effort.
-**Fix**: Use plain language. If domain terms are unavoidable, define them inline.
-
-##### 5. The Visual Noise Floor
-**Problem**: Every element has the same visual weight; nothing stands out.
-**Fix**: Establish clear hierarchy: one primary element, 2–3 secondary, everything else muted.
-
-##### 6. The Inconsistent Pattern
-**Problem**: Similar actions work differently in different places.
-**Fix**: Standardize interaction patterns. Same type of action = same type of UI.
-
-##### 7. The Multi-Task Demand
-**Problem**: Interface requires processing multiple simultaneous inputs (reading + deciding + navigating).
-**Fix**: Sequence the steps. Let the user do one thing at a time.
-
-##### 8. The Context Switch
-**Problem**: User must jump between screens/tabs/modals to gather info for a single decision.
-**Fix**: Co-locate the information needed for each decision. Reduce back-and-forth.
+**نمره‌دهی**: مواردِ ردشده را بشمار. 0–1 خطا = بار شناختی کم (خوب). 2–3 = متوسط (به‌زودی رسیدگی کن). 4+ = بار شناختی بالا (اصلاحِ بحرانی لازم است).
 
 ---
 
-### Heuristics Scoring Guide
+#### قاعدهٔ حافظهٔ کاری
 
-Score each of Nielsen's 10 Usability Heuristics on a 0–4 scale. Be honest: a 4 means genuinely excellent, not "good enough."
+**انسان‌ها هم‌زمان حداکثر ≤4 مورد را در حافظهٔ کاری جا می‌دهند** (قانون میلر در بازنگریِ کوان، 2001).
 
-#### Nielsen's 10 Heuristics
+در هر نقطهٔ تصمیم، شمارِ گزینه‌ها، کنش‌ها یا قطعه‌های اطلاعاتیِ متمایزی را که کاربر باید هم‌زمان در نظر بگیرد بشمار:
+- **≤4 مورد**: در محدودهٔ حافظهٔ کاری، قابل‌مدیریت
+- **5–7 مورد**: لبهٔ مرز؛ گروه‌بندی یا افشای تدریجی را در نظر بگیر
+- **8+ مورد**: بیش‌بار؛ کاربر رد می‌شود، اشتباه کلیک می‌کند یا رها می‌کند
 
-##### 1. Visibility of System Status
-
-Keep users informed about what's happening through timely, appropriate feedback.
-
-**Check for**:
-- Loading indicators during async operations
-- Confirmation of user actions (save, submit, delete)
-- Progress indicators for multi-step processes
-- Current location in navigation (breadcrumbs, active states)
-- Form validation feedback (inline, not just on submit)
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | No feedback; user is guessing what happened |
-| 1 | Rare feedback; most actions produce no visible response |
-| 2 | Partial; some states communicated, major gaps remain |
-| 3 | Good; most operations give clear feedback, minor gaps |
-| 4 | Excellent; every action confirms, progress is always visible |
-
-##### 2. Match Between System and Real World
-
-Speak the user's language. Follow real-world conventions. Information appears in natural, logical order.
-
-**Check for**:
-- Familiar terminology (no unexplained jargon)
-- Logical information order matching user expectations
-- Recognizable icons and metaphors
-- Domain-appropriate language for the target audience
-- Natural reading flow (left-to-right, top-to-bottom priority)
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | Pure tech jargon, alien to users |
-| 1 | Mostly confusing; requires domain expertise to navigate |
-| 2 | Mixed; some plain language, some jargon leaks through |
-| 3 | Mostly natural; occasional term needs context |
-| 4 | Speaks the user's language fluently throughout |
-
-##### 3. User Control and Freedom
-
-Users need a clear "emergency exit" from unwanted states without extended dialogue.
-
-**Check for**:
-- Undo/redo functionality
-- Cancel buttons on forms and modals
-- Clear navigation back to safety (home, previous)
-- Easy way to clear filters, search, selections
-- Escape from long or multi-step processes
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | Users get trapped; no way out without refreshing |
-| 1 | Difficult exits; must find obscure paths to escape |
-| 2 | Some exits; main flows have escape, edge cases don't |
-| 3 | Good control; users can exit and undo most actions |
-| 4 | Full control; undo, cancel, back, and escape everywhere |
-
-##### 4. Consistency and Standards
-
-Users shouldn't wonder whether different words, situations, or actions mean the same thing.
-
-**Check for**:
-- Consistent terminology throughout the interface
-- Same actions produce same results everywhere
-- Platform conventions followed (standard UI patterns)
-- Visual consistency (colors, typography, spacing, components)
-- Consistent interaction patterns (same gesture = same behavior)
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | Inconsistent everywhere; feels like different products stitched together |
-| 1 | Many inconsistencies; similar things look/behave differently |
-| 2 | Partially consistent; main flows match, details diverge |
-| 3 | Mostly consistent; occasional deviation, nothing confusing |
-| 4 | Fully consistent; cohesive system, predictable behavior |
-
-##### 5. Error Prevention
-
-Better than good error messages is a design that prevents problems in the first place.
-
-**Check for**:
-- Confirmation before destructive actions (delete, overwrite)
-- Constraints preventing invalid input (date pickers, dropdowns)
-- Smart defaults that reduce errors
-- Clear labels that prevent misunderstanding
-- Autosave and draft recovery
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | Errors easy to make; no guardrails anywhere |
-| 1 | Few safeguards; some inputs validated, most aren't |
-| 2 | Partial prevention; common errors caught, edge cases slip |
-| 3 | Good prevention; most error paths blocked proactively |
-| 4 | Excellent; errors nearly impossible through smart constraints |
-
-##### 6. Recognition Rather Than Recall
-
-Minimize memory load. Make objects, actions, and options visible or easily retrievable.
-
-**Check for**:
-- Visible options (not buried in hidden menus)
-- Contextual help when needed (tooltips, inline hints)
-- Recent items and history
-- Autocomplete and suggestions
-- Labels on icons (not icon-only navigation)
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | Heavy memorization; users must remember paths and commands |
-| 1 | Mostly recall; many hidden features, few visible cues |
-| 2 | Some aids; main actions visible, secondary features hidden |
-| 3 | Good recognition; most things discoverable, few memory demands |
-| 4 | Everything discoverable; users never need to memorize |
-
-##### 7. Flexibility and Efficiency of Use
-
-Accelerators, invisible to novices, speed up expert interaction.
-
-**Check for**:
-- Keyboard shortcuts for common actions
-- Customizable interface elements
-- Recent items and favorites
-- Bulk/batch actions
-- Power user features that don't complicate the basics
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | One rigid path; no shortcuts or alternatives |
-| 1 | Limited flexibility; few alternatives to the main path |
-| 2 | Some shortcuts; basic keyboard support, limited bulk actions |
-| 3 | Good accelerators; keyboard nav, some customization |
-| 4 | Highly flexible; multiple paths, power features, customizable |
-
-##### 8. Aesthetic and Minimalist Design
-
-Interfaces should not contain irrelevant or rarely needed information. Every element should serve a purpose.
-
-**Check for**:
-- Only necessary information visible at each step
-- Clear visual hierarchy directing attention
-- Purposeful use of color and emphasis
-- No decorative clutter competing for attention
-- Focused, uncluttered layouts
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | Overwhelming; everything competes for attention equally |
-| 1 | Cluttered; too much noise, hard to find what matters |
-| 2 | Some clutter; main content clear, periphery noisy |
-| 3 | Mostly clean; focused design, minor visual noise |
-| 4 | Perfectly minimal; every element earns its pixel |
-
-##### 9. Help Users Recognize, Diagnose, and Recover from Errors
-
-Error messages should use plain language, precisely indicate the problem, and constructively suggest a solution.
-
-**Check for**:
-- Plain language error messages (no error codes for users)
-- Specific problem identification ("Email is missing @" not "Invalid input")
-- Actionable recovery suggestions
-- Errors displayed near the source of the problem
-- Non-blocking error handling (don't wipe the form)
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | Cryptic errors; codes, jargon, or no message at all |
-| 1 | Vague errors; "Something went wrong" with no guidance |
-| 2 | Clear but unhelpful; names the problem but not the fix |
-| 3 | Clear with suggestions; identifies problem and offers next steps |
-| 4 | Perfect recovery; pinpoints issue, suggests fix, preserves user work |
-
-##### 10. Help and Documentation
-
-Even if the system is usable without docs, help should be easy to find, task-focused, and concise.
-
-**Check for**:
-- Searchable help or documentation
-- Contextual help (tooltips, inline hints, guided tours)
-- Task-focused organization (not feature-organized)
-- Concise, scannable content
-- Easy access without leaving current context
-
-**Scoring**:
-| Score | Criteria |
-|-------|----------|
-| 0 | No help available anywhere |
-| 1 | Help exists but hard to find or irrelevant |
-| 2 | Basic help; FAQ or docs exist, not contextual |
-| 3 | Good documentation; searchable, mostly task-focused |
-| 4 | Excellent contextual help; right info at the right moment |
+**کاربردهای عملی**:
+- دکمه‌های کنشی: ۱ اصلی، ۱ تا ۲ فرعی، بقیه را در یک منو گروه کن
+- منوهای ناوبری: حداکثر ≤5 آیتمِ سطح بالا (بقیه را زیر دسته‌های روشن گروه کن)
+- مقاله‌های بلند: یک مسیرِ خواندن؛ لینک‌های مرتبط را به‌جای پخش‌کردن در میانهٔ متن، در یک بلاک واحد در انتها جمع کن
+- سایدبارهای مستندات: پیش از آن‌که گروه‌بندی لازم شود، در هر لایه حداکثر ≤4 انتخابِ هم‌سطح نمایان باشد
+- فهرست‌های پورتفولیو و گالری: هر صفحه یک تصمیم (کدام اثر باز شود)، نه کنترل‌های فیلتر و مرتب‌سازی و تگ همه‌با‌هم
 
 ---
 
-#### Score Summary
+#### نقض‌های رایج بار شناختی
 
-**Total possible**: 40 points (10 heuristics × 4 max)
+##### 1. دیوار گزینه‌ها
+**مسئله**: ارائهٔ 10+ انتخاب هم‌زمان بدون هیچ سلسله‌مراتبی.
+**اصلاح**: در دسته‌ها گروه کن، گزینهٔ پیشنهادی را برجسته کن، از افشای تدریجی استفاده کن.
 
-| Score Range | Rating | What It Means |
+##### 2. پل حافظه
+**مسئله**: کاربر باید اطلاعات گام ۱ را به خاطر بسپارد تا گام ۳ را کامل کند.
+**اصلاح**: بافتِ مرتبط را نمایان نگه دار، یا همان‌جا که لازم است تکرارش کن.
+
+##### 3. ناوبری پنهان
+**مسئله**: کاربر باید نقشهٔ ذهنی‌ای از محل چیزها بسازد.
+**اصلاح**: همیشه مکان فعلی را نشان بده (بردکرامب، حالت‌های فعال، نشانگرهای پیشرفت).
+
+##### 4. دیوار اصطلاحات
+**مسئله**: زبان فنی یا حوزه‌ای، تلاشِ ترجمه تحمیل می‌کند.
+**اصلاح**: زبان ساده به کار ببر. اگر اصطلاح‌های حوزه‌ای گریزناپذیرند، همان‌جا تعریفشان کن.
+
+##### 5. نوفهٔ بصریِ هم‌تراز
+**مسئله**: هر عنصر وزن بصری یکسانی دارد؛ هیچ چیز برجسته نیست.
+**اصلاح**: سلسله‌مراتب روشن بساز: یک عنصر اصلی، ۲ تا ۳ فرعی، بقیه کم‌رنگ.
+
+##### 6. الگوی ناسازگار
+**مسئله**: کنش‌های مشابه در جاهای مختلف متفاوت کار می‌کنند.
+**اصلاح**: الگوهای تعامل را استاندارد کن. همان نوع کنش = همان نوع UI.
+
+##### 7. تکلیف چندکارگی
+**مسئله**: رابط پردازشِ هم‌زمانِ چند ورودی را می‌طلبد (خواندن + تصمیم‌گرفتن + ناوبری).
+**اصلاح**: گام‌ها را توالی بده. بگذار کاربر هر بار یک کار بکند.
+
+##### 8. تعویض بافت
+**مسئله**: کاربر باید برای جمع‌کردن اطلاعاتِ یک تصمیمِ واحد بین صفحه‌ها/تب‌ها/مودال‌ها بپرد.
+**اصلاح**: اطلاعات لازم برای هر تصمیم را هم‌جا جمع کن. رفت‌وبرگشت را کم کن.
+
+---
+
+### راهنمای نمره‌دهی هیوریستیک‌ها
+
+هر یک از ۱۰ هیوریستیکِ کاربردپذیری نیلسن را روی مقیاس 0–4 نمره بده. صادق باش: یک 4 یعنی واقعاً عالی، نه صرفاً «قابل‌قبول».
+
+#### ۱۰ هیوریستیک نیلسن
+
+##### 1. مشاهده‌پذیری وضعیت سیستم
+
+کاربر را با بازخوردِ به‌موقع و مناسب از آن‌چه می‌گذرد باخبر نگه دار.
+
+**بررسی کن**:
+- نشانگرهای بارگذاری در عملیات‌های ناهمگام
+- تأیید کنش‌های کاربر (ذخیره، ارسال، حذف)
+- نشانگرهای پیشرفت برای فرایندهای چندمرحله‌ای
+- مکان فعلی در ناوبری (بردکرامب، حالت‌های فعال)
+- بازخورد اعتبارسنجی فرم (درون‌خطی، نه فقط موقع ارسال)
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | هیچ بازخوردی نیست؛ کاربر حدس می‌زند چه شد |
+| 1 | بازخورد نادر؛ بیشتر کنش‌ها پاسخ نمایانی تولید نمی‌کنند |
+| 2 | جزئی؛ بعضی وضعیت‌ها منتقل می‌شوند، شکاف‌های بزرگ باقی است |
+| 3 | خوب؛ بیشتر عملیات بازخورد روشن می‌دهند، شکاف‌های جزئی |
+| 4 | عالی؛ هر کنش تأیید می‌شود، پیشرفت همیشه نمایان است |
+
+##### 2. تناسب سیستم با جهان واقعی
+
+به زبان کاربر حرف بزن. از قراردادهای جهان واقعی پیروی کن. اطلاعات به ترتیبی طبیعی و منطقی ظاهر شوند.
+
+**بررسی کن**:
+- اصطلاحات آشنا (بدون اصطلاح فنیِ بی‌توضیح)
+- ترتیب اطلاعات هم‌سو با انتظار کاربر
+- آیکون‌ها و استعاره‌های قابل‌شناسایی
+- زبان مناسبِ حوزه برای مخاطب هدف
+- جریان خواندن طبیعی (اولویت چپ‌به‌راست، بالا‌به‌پایین)
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | اصطلاحات فنی خالص، بیگانه برای کاربر |
+| 1 | بیشتر گیج‌کننده؛ ناوبری تخصصِ حوزه‌ای می‌خواهد |
+| 2 | مخلوط؛ بعضی جاها زبان ساده، بعضی اصطلاحات درز می‌کنند |
+| 3 | بیشتر طبیعی؛ گاهی یک اصطلاح بافت می‌خواهد |
+| 4 | در کل، روان به زبان کاربر حرف می‌زند |
+
+##### 3. کنترل و آزادی کاربر
+
+کاربران به یک «خروج اضطراری» روشن از وضعیت‌های ناخواسته نیاز دارند، بدون دیالوگِ طولانی.
+
+**بررسی کن**:
+- قابلیت واگرد/بازانجام
+- دکمه‌های لغو روی فرم‌ها و مودال‌ها
+- ناوبری روشن به جای امن (خانه، قبلی)
+- راه آسان برای پاک‌کردن فیلترها، جستجو، انتخاب‌ها
+- فرار از فرایندهای طولانی یا چندمرحله‌ای
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | کاربر گیر می‌کند؛ بدون رفرش راه خروجی نیست |
+| 1 | خروج سخت؛ باید مسیرهای پنهان را برای فرار پیدا کند |
+| 2 | بعضی خروجی‌ها؛ جریان‌های اصلی فرار دارند، حالت‌های مرزی نه |
+| 3 | کنترل خوب؛ کاربر می‌تواند از بیشتر کنش‌ها خارج و واگرد کند |
+| 4 | کنترل کامل؛ واگرد، لغو، برگشت و فرار همه‌جا |
+
+##### 4. سازگاری و استانداردها
+
+کاربر نباید در ابهام بماند که آیا کلمه‌ها، موقعیت‌ها یا کنش‌های متفاوت همین معنا را می‌دهند.
+
+**بررسی کن**:
+- اصطلاحات سازگار در کل رابط
+- کنش‌های یکسان همه‌جا نتیجهٔ یکسان
+- پیروی از قراردادهای پلتفرم (الگوهای استاندارد UI)
+- سازگاری بصری (رنگ، تایپوگرافی، فاصله‌گذاری، کامپوننت‌ها)
+- الگوهای تعامل سازگار (همان ژست = همان رفتار)
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | همه‌جا ناسازگار؛ مثل چند محصولِ دوخته‌شده به هم حس می‌شود |
+| 1 | ناسازگاری‌های زیاد؛ چیزهای مشابه متفاوت دیده/رفتار می‌کنند |
+| 2 | تا حدی سازگار؛ جریان‌های اصلی هم‌خوان، جزئیات واگرا |
+| 3 | بیشتر سازگار؛ انحرافِ گاه‌به‌گاه، هیچ چیز گیج‌کننده نیست |
+| 4 | کاملاً سازگار؛ سیستمِ منسجم، رفتارِ قابل‌پیش‌بینی |
+
+##### 5. پیشگیری از خطا
+
+بهتر از پیام خطای خوب، طراحی‌ای است که از همان اول جلوی مسئله را می‌گیرد.
+
+**بررسی کن**:
+- تأیید پیش از کنش‌های مخرب (حذف، بازنویسی)
+- محدودیت‌هایی که جلوی ورودی نامعتبر را می‌گیرند (تاریخ‌گیر، فهرست کشویی)
+- مقدارهای پیش‌فرض هوشمند که خطا را کم می‌کنند
+- برچسب‌های روشنی که سوءتفهم را پیشگیری می‌کنند
+- ذخیرهٔ خودکار و بازیابی پیش‌نویس
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | خطا آسان است؛ هیچ‌جا حفاظی نیست |
+| 1 | حفاظ‌های کم؛ بعضی ورودی‌ها اعتبارسنجی می‌شوند، بیشترشان نه |
+| 2 | پیشگیری جزئی؛ خطاهای رایج گرفته می‌شوند، حالت‌های مرزی درز می‌کنند |
+| 3 | پیشگیری خوب؛ بیشتر مسیرهای خطا پیش‌دستانه بسته می‌شوند |
+| 4 | عالی؛ با محدودیت‌های هوشمند، خطا تقریباً ناممکن است |
+
+##### 6. بازشناسی به جای یادآوری
+
+بار حافظه را کمینه کن. شیءها، کنش‌ها و گزینه‌ها را دیدنی یا به‌آسانی قابل‌یافتن کن.
+
+**بررسی کن**:
+- گزینه‌های نمایان (نه دفن‌شده در منوهای پنهان)
+- راهنمای بافتی وقتی لازم است (تولتیپ، راهنمای درون‌خطی)
+- موارد اخیر و تاریخچه
+- تکمیل خودکار و پیشنهادها
+- برچسب روی آیکون‌ها (نه ناوبریِ فقط‌آیکونی)
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | حفظ‌کردن سنگین؛ کاربر باید مسیرها و دستورها را به خاطر بسپارد |
+| 1 | بیشتر یادآوری؛ ویژگی‌های پنهان زیاد، نشانه‌های نمایان کم |
+| 2 | بعضی کمکی‌ها؛ کنش‌های اصلی نمایان، ویژگی‌های فرعی پنهان |
+| 3 | بازشناسی خوب؛ بیشتر چیزها کشف‌پذیر، بار حافظه کم |
+| 4 | همه چیز کشف‌پذیر؛ کاربر هرگز لازم نیست حفظ کند |
+
+##### 7. انعطاف‌پذیری و کارایی استفاده
+
+شتاب‌دهنده‌ها که برای تازه‌کارها نامرئی‌اند، تعامل کاربر خبره را سریع می‌کنند.
+
+**بررسی کن**:
+- میان‌برهای صفحه‌کلید برای کنش‌های رایج
+- عناصر رابطِ قابل‌سفارشی‌سازی
+- موارد اخیر و علاقه‌مندی‌ها
+- کنش‌های گروهی/دسته‌ای
+- ویژگی‌های کاربر حرفه‌ای که پایه‌ها را پیچیده نمی‌کنند
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | فقط یک مسیر خشک؛ هیچ میان‌بر یا جایگزینی نیست |
+| 1 | انعطاف کم؛ جایگزین‌های کمی برای مسیر اصلی |
+| 2 | بعضی میان‌برها؛ پشتیبانی صفحه‌کلیدی پایه، کنش گروهی محدود |
+| 3 | شتاب‌دهنده‌های خوب؛ ناوبری صفحه‌کلیدی، بعضی سفارشی‌سازی |
+| 4 | به‌شدت انعطاف‌پذیر؛ مسیرهای چندگانه، ویژگی‌های حرفه‌ای، قابل‌سفارشی‌سازی |
+
+##### 8. طراحی زیبایی‌شناختی و مینیمال
+
+رابط‌ها نباید اطلاعات بی‌ربط یا به‌ندرتِ لازم داشته باشند. هر عنصر باید هدفی را خدمت کند.
+
+**بررسی کن**:
+- فقط اطلاعات ضروری نمایان در هر گام
+- سلسله‌مراتب بصری روشنی که توجه را هدایت کند
+- کاربرد هدفمند رنگ و تأکید
+- نبودِ شلوغی تزئینیِ رقیبِ توجه
+- چیدمان‌های متمرکز و بی‌شلوغی
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | کلافه‌کننده؛ همه چیز به‌طور برابر برای توجه رقابت می‌کنند |
+| 1 | شلوغ؛ نوفه خیلی زیاد، پیداکردنِ چیزِ مهم سخت |
+| 2 | بعضی شلوغی؛ محتوای اصلی روشن، پیرامون پرنوفه |
+| 3 | بیشتر تمیز؛ طراحی متمرکز، نوفهٔ بصری جزئی |
+| 4 | کاملاً مینیمال؛ هر عنصر برای پیکسلش دلیل دارد |
+
+##### 9. کمک به کاربر برای بازشناسی، تشخیص و بازیابی از خطا
+
+پیام‌های خطا باید زبان ساده به کار برند، مسئله را دقیق نشان دهند و سازنده راه‌حل پیشنهاد کنند.
+
+**بررسی کن**:
+- پیام‌های خطا با زبان ساده (بدون کد خطا برای کاربر)
+- شناسایی دقیق مسئله («ایمیل @ ندارد» نه «ورودی نامعتبر»)
+- پیشنهادهای بازیابیِ قابل‌اجرا
+- نمایش خطا نزدیک منبعِ مسئله
+- مدیریت خطای غیرمسدودکننده (فرم را پاک نکن)
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | خطاهای رمزآلود؛ کد، اصطلاح فنی، یا اصلاً هیچ پیامی |
+| 1 | خطاهای مبهم؛ «مشکلی پیش آمد» بدون هیچ هدایتی |
+| 2 | روشن اما بی‌فایده؛ مسئله را نام می‌برد اما اصلاح را نه |
+| 3 | روشن با پیشنهاد؛ مسئله را می‌گوید و گام بعدی می‌دهد |
+| 4 | بازیابی بی‌نقص؛ مسئله را نشانه‌گیری می‌کند، اصلاح پیشنهاد می‌دهد، کار کاربر را حفظ می‌کند |
+
+##### 10. راهنما و مستندات
+
+حتی اگر سیستم بدون مستندات قابل‌استفاده است، راهنما باید به‌آسانی پیدا شود، محورِ تکلیف باشد و کوتاه.
+
+**بررسی کن**:
+- راهنما یا مستندات قابل‌جستجو
+- راهنمای بافتی (تولتیپ، راهنمای درون‌خطی، تورهای هدایت‌شده)
+- سازمان‌دهی محورِ تکلیف (نه محورِ ویژگی)
+- محتوای کوتاه و قابل‌مرور
+- دسترسی آسان بدون ترک بافت فعلی
+
+**نمره‌دهی**:
+| نمره | معیار |
+|-------|----------|
+| 0 | هیچ‌جا راهنمایی موجود نیست |
+| 1 | راهنما هست اما پیدا کردنش سخت است یا بی‌ربط است |
+| 2 | راهنمای پایه؛ FAQ یا مستندات هست، اما بدون بافت |
+| 3 | مستندات خوب؛ قابل‌جستجو، بیشتر محورِ تکلیف |
+| 4 | راهنمای بافتی عالی؛ اطلاعات درست در لحظهٔ درست |
+
+---
+
+#### خلاصهٔ نمره
+
+**جمعِ ممکن**: 40 نمره (10 هیوریستیک × 4 سقف)
+
+| بازهٔ نمره | رتبه | معنا |
 |-------------|--------|---------------|
-| 36–40 | Excellent | Minor polish only; ship it |
-| 28–35 | Good | Address weak areas, solid foundation |
-| 20–27 | Acceptable | Significant improvements needed before users are happy |
-| 12–19 | Poor | Major UX overhaul required; core experience broken |
-| 0–11 | Critical | Redesign needed; unusable in current state |
+| 36–40 | عالی | فقط پالایش جزئی؛ قابل انتشار |
+| 28–35 | خوب | نواحی ضعیف را رسیدگی کن، پایه محکم است |
+| 20–27 | قابل‌قبول | پیش از خشنودشدن کاربران، بهبودهای چشمگیر لازم است |
+| 12–19 | ضعیف | بازسازی عمدهٔ UX لازم است؛ تجربهٔ اصلی شکسته است |
+| 0–11 | بحرانی | بازطراحی لازم است؛ در وضعیت فعلی غیرقابل‌استفاده |
 
-When heuristics were scored `n/a`, the maximum is lower than 40; read the band off the percentage instead of the raw number (90%+ Excellent, 70%+ Good, 50%+ Acceptable, 30%+ Poor, below that Critical). 24/32 is 75%, so Good.
+وقتی هیوریستیک‌ها `n/a` نمره گرفته‌اند، سقف کمتر از 40 است؛ باند را از درصد بخوان نه از عدد خام (90%+ عالی، 70%+ خوب، 50%+ قابل‌قبول، 30%+ ضعیف، کمتر از آن بحرانی). 24/32 یعنی 75%، پس خوب.
 
 ---
 
-#### Issue Severity (P0–P3)
+#### شدت مسئله (P0–P3)
 
-Tag each individual issue found during scoring with a priority level:
+هر مسئلهٔ منفردی که هنگام نمره‌دهی یافته شد را با یک سطح اولویت برچسب بزن:
 
-| Priority | Name | Description | Action |
+| اولویت | نام | توصیف | کنش |
 |----------|------|-------------|--------|
-| **P0** | Blocking | Prevents task completion entirely | Fix immediately; this is a showstopper |
-| **P1** | Major | Causes significant difficulty or confusion | Fix before release |
-| **P2** | Minor | Annoyance, but workaround exists | Fix in next pass |
-| **P3** | Polish | Nice-to-fix, no real user impact | Fix if time permits |
+| **P0** | مسدودکننده | کلاً مانعِ انجامِ تکلیف می‌شود | فوراً اصلاح کن؛ این مسئله همه‌چیز را متوقف می‌کند |
+| **P1** | عمده | دشواری یا سردرگمیِ چشمگیر ایجاد می‌کند | پیش از انتشار اصلاح کن |
+| **P2** | جزئی | آزاردهنده، اما راهِ گریزی هست | در دور بعدی اصلاح کن |
+| **P3** | پالایش | اصلاحش خوب است، اثرِ واقعی بر کاربر ندارد | اگر وقت اجازه داد اصلاح کن |
 
-**Tip**: If you're unsure between two levels, ask: "Would a user contact support about this?" If yes, it's at least P1.
-
----
-
-### Persona-Based Design Testing
-
-Test the interface through the eyes of 5 distinct user archetypes. Each persona exposes different failure modes that a single "design director" perspective would miss.
-
-**How to use**: Select 2–3 personas most relevant to the interface being critiqued. Walk through the primary user action as each persona. Report specific red flags, not generic concerns.
+**نکته**: اگر بین دو سطح مرددی، بپرس: «آیا کاربر بابتِ این با پشتیبانی تماس می‌گرفت؟» اگر بله، دست‌کم P1 است.
 
 ---
 
-#### 1. Impatient Power User: "Alex"
+### آزمون طراحی مبتنی بر شخصیت
 
-**Profile**: Expert with similar products. Expects efficiency, hates hand-holding. Will find shortcuts or leave.
+رابط را از چشم ۵ کهن‌الگوی کاربریِ متمایز بیازما. هر شخصیت حالت‌های شکستِ متفاوتی را آشکار می‌کند که از دیدِ یک «مدیر طراحی» تنها پنهان می‌ماند.
 
-**Behaviors**:
-- Skips all onboarding and instructions
-- Looks for keyboard shortcuts immediately
-- Tries to bulk-select, batch-edit, and automate
-- Gets frustrated by required steps that feel unnecessary
-- Abandons if anything feels slow or patronizing
-
-**Test Questions**:
-- Can Alex complete the core task in under 60 seconds?
-- Are there keyboard shortcuts for common actions?
-- Can onboarding be skipped entirely?
-- Do modals have keyboard dismiss (Esc)?
-- Is there a "power user" path (shortcuts, bulk actions)?
-
-**Red Flags** (report these specifically):
-- Forced tutorials or unskippable onboarding
-- No keyboard navigation for primary actions
-- Slow animations that can't be skipped
-- One-item-at-a-time workflows where batch would be natural
-- Redundant confirmation steps for low-risk actions
+**نحوهٔ استفاده**: ۲ تا ۳ شخصیتِ مرتبط‌ترین با رابطِ در حال نقد را انتخاب کن. کنشِ اصلیِ کاربر را در نقش هر شخصیت قدم‌به‌قدم برو. پرچم‌های قرمزِ مشخص گزارش کن، نه نگرانی‌های کلی.
 
 ---
 
-#### 2. Confused First-Timer: "Jordan"
+#### 1. کاربر حرفه‌ایِ بی‌حوصله: «الکس»
 
-**Profile**: Never used this type of product. Needs guidance at every step. Will abandon rather than figure it out.
+**پروفایل**: در محصولات مشابه خبره است. کارایی می‌خواهد، از راه‌نماییِ افراطی بیزار است. یا میان‌بر پیدا می‌کند یا می‌رود.
 
-**Behaviors**:
-- Reads all instructions carefully
-- Hesitates before clicking anything unfamiliar
-- Looks for help or support constantly
-- Misunderstands jargon and abbreviations
-- Takes the most literal interpretation of any label
+**رفتارها**:
+- همهٔ آنبوردینگ و دستورالعمل‌ها را رد می‌شود
+- بلافاصله دنبال میان‌برهای صفحه‌کلید می‌گردد
+- تلاش می‌کند انتخاب گروهی، ویرایش دسته‌ای و اتوماسیون انجام دهد
+- از گام‌های اجباری‌ای که غیرضروری حس می‌شوند کلافه می‌شود
+- اگر چیزی کند یا تحقیرآمیز حس شود، رها می‌کند
 
-**Test Questions**:
-- Is the first action obviously clear within 5 seconds?
-- Are all icons labeled with text?
-- Is there contextual help at decision points?
-- Does terminology assume prior knowledge?
-- Is there a clear "back" or "undo" at every step?
+**پرسش‌های آزمون**:
+- آیا الکس می‌تواند تکلیف اصلی را در کمتر از ۶۰ ثانیه کامل کند؟
+- برای کنش‌های رایج میان‌بر صفحه‌کلید هست؟
+- آیا می‌توان آنبوردینگ را کلاً رد کرد؟
+- مودال‌ها بستن با صفحه‌کلید (Esc) دارند؟
+- مسیرِ "کاربر حرفه‌ای" هست (میان‌برها، کنش‌های گروهی)؟
 
-**Red Flags** (report these specifically):
-- Icon-only navigation with no labels
-- Technical jargon without explanation
-- No visible help option or guidance
-- Ambiguous next steps after completing an action
-- No confirmation that an action succeeded
-
----
-
-#### 3. Accessibility-Dependent User: "Sam"
-
-**Profile**: Uses screen reader (VoiceOver/NVDA), keyboard-only navigation. May have low vision, motor impairment, or cognitive differences.
-
-**Behaviors**:
-- Tabs through the interface linearly
-- Relies on ARIA labels and heading structure
-- Cannot see hover states or visual-only indicators
-- Needs adequate color contrast (4.5:1 minimum)
-- May use browser zoom up to 200%
-
-**Test Questions**:
-- Can the entire primary flow be completed keyboard-only?
-- Are all interactive elements focusable with visible focus indicators?
-- Do images have meaningful alt text?
-- Is color contrast WCAG AA compliant (4.5:1 for text)?
-- Does the screen reader announce state changes (loading, success, errors)?
-
-**Red Flags** (report these specifically):
-- Click-only interactions with no keyboard alternative
-- Missing or invisible focus indicators
-- Meaning conveyed by color alone (red = error, green = success)
-- Unlabeled form fields or buttons
-- Time-limited actions without extension option
-- Custom components that break screen reader flow
+**پرچم‌های قرمز** (این‌ها را مشخص گزارش کن):
+- آموزش اجباری یا آنبوردینگِ غیرقابل‌ردشدن
+- نبودِ ناوبری صفحه‌کلیدی برای کنش‌های اصلی
+- انیمیشن‌های کند که ردشدنی نیستند
+- گردش‌کارهای تک‌به‌تکی که طبیعی‌شان کار گروهی است
+- گام‌های تأییدِ تکراری برای کنش‌های کم‌خطر
 
 ---
 
-#### 4. Deliberate Stress Tester: "Riley"
+#### 2. تازه‌کارِ گیج‌شده: «جردن»
 
-**Profile**: Methodical user who pushes interfaces beyond the happy path. Tests edge cases, tries unexpected inputs, and probes for gaps in the experience.
+**پروفایل**: هرگز از این نوع محصول استفاده نکرده. در هر گام راهنمایی می‌خواهد. به‌جای این‌که خودش دربیاورد، رها می‌کند.
 
-**Behaviors**:
-- Tests edge cases intentionally (empty states, long strings, special characters)
-- Submits forms with unexpected data (emoji, RTL text, very long values)
-- Tries to break workflows by navigating backwards, refreshing mid-flow, or opening in multiple tabs
-- Looks for inconsistencies between what the UI promises and what actually happens
-- Documents problems methodically
+**رفتارها**:
+- همهٔ دستورالعمل‌ها را با دقت می‌خواند
+- پیش از کلیک‌کردن روی هر چیزِ ناآشنا مکث می‌کند
+- مدام دنبال راهنما یا پشتیبانی می‌گردد
+- اصطلاح‌ها و مخفف‌ها را بد می‌فهمد
+- حرفی‌ترین تفسیرِ ممکن را از هر برچسب می‌کند
 
-**Test Questions**:
-- What happens at the edges (0 items, 1000 items, very long text)?
-- Do error states recover gracefully or leave the UI in a broken state?
-- What happens on refresh mid-workflow? Is state preserved?
-- Are there features that appear to work but produce broken results?
-- How does the UI handle unexpected input (emoji, special chars, paste from Excel)?
+**پرسش‌های آزمون**:
+- آیا اولین کنش در ۵ ثانیهٔ اول کاملاً واضح است؟
+- همهٔ آیکون‌ها برچسب متنی دارند؟
+- در نقاط تصمیم، راهنمای بافتی هست؟
+- آیا اصطلاح‌ها دانشِ پیشینی را فرض می‌کنند؟
+- در هر گام «برگشت» یا «واگرد» روشنی هست؟
 
-**Red Flags** (report these specifically):
-- Features that appear to work but silently fail or produce wrong results
-- Error handling that exposes technical details or leaves UI in a broken state
-- Empty states that show nothing useful ("No results" with no guidance)
-- Workflows that lose user data on refresh or navigation
-- Inconsistent behavior between similar interactions in different parts of the UI
-
----
-
-#### 5. Distracted Mobile User: "Casey"
-
-**Profile**: Using phone one-handed on the go. Frequently interrupted. Possibly on a slow connection.
-
-**Behaviors**:
-- Uses thumb only; prefers bottom-of-screen actions
-- Gets interrupted mid-flow and returns later
-- Switches between apps frequently
-- Has limited attention span and low patience
-- Types as little as possible, prefers taps and selections
-
-**Test Questions**:
-- Are primary actions in the thumb zone (bottom half of screen)?
-- Is state preserved if the user leaves and returns?
-- Does it work on slow connections (3G)?
-- Can forms use autocomplete and smart defaults?
-- Are touch targets at least 44×44pt?
-
-**Red Flags** (report these specifically):
-- Important actions positioned at the top of the screen (unreachable by thumb)
-- No state persistence; progress lost on tab switch or interruption
-- Large text inputs required where selection would work
-- Heavy assets loading on every page (no lazy loading)
-- Tiny tap targets or targets too close together
+**پرچم‌های قرمز** (این‌ها را مشخص گزارش کن):
+- ناوبریِ فقط‌آیکونی بدون برچسب
+- اصطلاح فنی بدون توضیح
+- نبودِ گزینهٔ راهنمای نمایان یا هر نوع هدایت
+- گام‌های بعدیِ مبهم پس از انجام یک کنش
+- نبودِ تأییدِ این‌که کنش موفق شده
 
 ---
 
-#### Selecting Personas
+#### 3. کاربرِ متکی بر دسترس‌پذیری: «سم»
 
-Choose personas based on the interface type:
+**پروفایل**: از صفحه‌خوان (VoiceOver/NVDA) و ناوبریِ فقط‌صفحه‌کلید استفاده می‌کند. ممکن است بینایی کم، اختلال حرکتی یا تفاوت‌های شناختی داشته باشد.
 
-| Interface Type | Primary Personas | Why |
+**رفتارها**:
+- با Tab به‌صورت خطی در رابط حرکت می‌کند
+- به برچسب‌های ARIA و ساختار عنوان‌ها تکیه می‌کند
+- حالت‌های هاور یا نشانگرهای فقط‌بصری را نمی‌بیند
+- به کنتراست رنگی کافی نیاز دارد (حداقل 4.5:1)
+- ممکن است تا ۲۰۰٪ زوم مرورگر استفاده کند
+
+**پرسش‌های آزمون**:
+- آیا کلِ جریان اصلی فقط با صفحه‌کلید قابل‌انجام است؟
+- همهٔ عناصر تعاملی فوکوس‌پذیرند با نشانگر فوکوس نمایان؟
+- تصاویر متن جایگزین معنادار دارند؟
+- کنتراست رنگ با WCAG AA سازگار است (4.5:1 برای متن)؟
+- صفحه‌خوان تغییر وضعیت‌ها (بارگذاری، موفقیت، خطا) را اعلام می‌کند؟
+
+**پرچم‌های قرمز** (این‌ها را مشخص گزارش کن):
+- تعاملِ فقط‌کلیکی بدون جایگزین صفحه‌کلیدی
+- نشانگرهای فوکوسِ غایب یا نامرئی
+- انتقال معنا فقط با رنگ (قرمز = خطا، سبز = موفق)
+- فیلدهای فرم یا دکمه‌های بدون برچسب
+- کنش‌های زمان‌دار بدون امکان تمدید
+- کامپوننت‌های سفارشی که جریان صفحه‌خوان را می‌شکنند
+
+---
+
+#### 4. آزمون‌گرِ استرسِ روشمند: «رایلی»
+
+**پروفایل**: کاربری روشمند که رابط را از مسیر خوش‌خواسته بیرون می‌برد. حالت‌های مرزی را می‌آزماید، ورودی‌های غیرمنتظره را امتحان می‌کند و دنبال شکاف‌های تجربه می‌گردد.
+
+**رفتارها**:
+- عمداً حالت‌های مرزی را می‌آزماید (حالت‌های خالی، رشته‌های طولانی، نویسه‌های خاص)
+- فرم‌ها را با دادهٔ غیرمنتظره پر می‌کند (ایموجی، متن RTL، مقدارهای خیلی طولانی)
+- با ناوبری به عقب، رفرش وسط جریان، یا بازکردن در چند تب سعی می‌کند گردش‌کار را بشکند
+- دنبال ناسازگاری بین وعدهٔ UI و آن‌چه واقعاً می‌شود می‌گردد
+- مسائل را روشمند مستند می‌کند
+
+**پرسش‌های آزمون**:
+- در لبه‌ها چه می‌شود (0 مورد، 1000 مورد، متنِ خیلی طولانی)؟
+- حالت‌های خطا باوقار بازیابی می‌شوند یا UI را شکسته رها می‌کنند؟
+- رفرش وسط گردش‌کار چه می‌کند؟ وضعیت حفظ می‌شود؟
+- ویژگی‌هایی که به نظر کار می‌کنند ولی نتیجهٔ خراب می‌دهند وجود دارد؟
+- UI با ورودیِ غیرمنتظره (ایموجی، نویسه‌های خاص، پیست از Excel) چطور برخورد می‌کند؟
+
+**پرچم‌های قرمز** (این‌ها را مشخص گزارش کن):
+- ویژگی‌هایی که به نظر کار می‌کنند ولی بی‌صدا شکست می‌خورند یا نتیجهٔ اشتباه می‌دهند
+- مدیریتِ خطایی که جزئیات فنی لو می‌دهد یا UI را شکسته می‌گذارد
+- حالت‌های خالی که هیچ چیز مفیدی نشان نمی‌دهند («چیزی یافت نشد» بدون هیچ هدایتی)
+- گردش‌کارهایی که روی رفرش یا ناوبری، دادهٔ کاربر را گم می‌کنند
+- رفتارِ ناسازگار بین تعامل‌های مشابه در بخش‌های مختلف UI
+
+---
+
+#### 5. کاربرِ موبایلیِ حواس‌پرت: «کیسی»
+
+**پروفایل**: با گوشی، یک‌دست و در حین حرکت کار می‌کند. مدام قطع می‌شود. احتمالاً روی اتصال کند.
+
+**رفتارها**:
+- فقط با شست کار می‌کند؛ کنش‌های پایین صفحه را ترجیح می‌دهد
+- وسط کار قطع می‌شود و بعداً برمی‌گردد
+- مرتب بین اپ‌ها جابه‌جا می‌شود
+- دامنهٔ توجه محدود و صبر کم دارد
+- کمترین تایپ ممکن؛ تپ و انتخاب را ترجیح می‌دهد
+
+**پرسش‌های آزمون**:
+- کنش‌های اصلی در محدودهٔ شست هستند (نیمهٔ پایین صفحه)؟
+- اگر کاربر برود و برگردد، وضعیت حفظ می‌شود؟
+- روی اتصال کند (3G) کار می‌کند؟
+- فرم‌ها می‌توانند از autocomplete و مقدارهای پیش‌فرض هوشمند استفاده کنند؟
+- اهداف لمسی حداقل 44×44pt هستند؟
+
+**پرچم‌های قرمز** (این‌ها را مشخص گزارش کن):
+- کنش‌های مهم در بالای صفحه (خارج از دسترس شست)
+- نبودِ ماندگاری وضعیت؛ پیشرفت با تعویض تب یا قطع‌شدن گم می‌شود
+- ورودیِ متنیِ طولانیِ اجباری جایی که انتخاب کافی بود
+- assetهای سنگین که در هر صفحه لود می‌شوند (بدون lazy loading)
+- اهداف لمسیِ خیلی کوچک یا خیلی نزدیک به هم
+
+---
+
+#### انتخاب شخصیت‌ها
+
+شخصیت‌ها را بر اساس نوع رابط انتخاب کن:
+
+| نوع رابط | شخصیت‌های اصلی | چرا |
 |---------------|-----------------|-----|
-| Landing page / marketing | Jordan, Riley, Casey | First impressions, trust, mobile |
-| Dashboard / admin | Alex, Sam | Power users, accessibility |
-| E-commerce / checkout | Casey, Riley, Jordan | Mobile, edge cases, clarity |
-| Onboarding flow | Jordan, Casey | Confusion, interruption |
-| Data-heavy / analytics | Alex, Sam | Efficiency, keyboard nav |
-| Form-heavy / wizard | Jordan, Sam, Casey | Clarity, accessibility, mobile |
+| صفحهٔ فرود / بازاریابی | جردن، رایلی، کیسی | اولین برخوردها، اعتماد، موبایل |
+| داشبورد / پنل مدیریت | الکس، سم | کاربران حرفه‌ای، دسترس‌پذیری |
+| فروشگاهی / پرداخت | کیسی، رایلی، جردن | موبایل، حالت‌های مرزی، شفافیت |
+| جریانِ آنبوردینگ | جردن، کیسی | سردرگمی، قطع‌شدن |
+| داده‌محور / تحلیلی | الکس، سم | کارایی، ناوبری صفحه‌کلیدی |
+| فرم‌محور / چندمرحله‌ای | جردن، سم، کیسی | شفافیت، دسترس‌پذیری، موبایل |
 
 ---
 
-#### Project-Specific Personas
+#### شخصیت‌های مخصوص پروژه
 
-If `AGENTS.md` contains a `## Design Context` section (generated by `impeccable init`), derive 1–2 additional personas from the audience and brand information:
+اگر `AGENTS.md` بخشی به نام `## Design Context` دارد (ساخته‌شده با `impeccable init`)، ۱ تا ۲ شخصیت دیگر از اطلاعات مخاطب و برند بساز:
 
-1. Read the target audience description
-2. Identify the primary user archetype not covered by the 5 predefined personas
-3. Create a persona following this template:
+1. توصیف مخاطب هدف را بخوان
+2. کهن‌الگوی کاربرِ اصلی‌ای که ۵ شخصیت پیش‌فرض پوشش نمی‌دهند را شناسایی کن
+3. شخصیت را با این الگو بساز:
 
 ```
 ##### [Role]: "[Name]"
@@ -816,4 +818,4 @@ If `AGENTS.md` contains a `## Design Context` section (generated by `impeccable 
 **Red Flags**: [3-4 things that would alienate this specific user type]
 ```
 
-Only generate project-specific personas when real Design Context data is available. Don't invent audience details; use the 5 predefined personas when no context exists.
+فقط وقتی دادهٔ واقعی Design Context موجود است شخصیت مخصوص پروژه بساز. جزئیات مخاطب را از خودت نساز؛ وقتی بافتی نیست، از ۵ شخصیت پیش‌فرض استفاده کن.
